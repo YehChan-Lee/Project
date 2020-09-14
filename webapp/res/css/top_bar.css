@@ -44,7 +44,7 @@ html {
 *:focus {
 	outline: none;
 }
-/* a�깭洹� �뒪���씪 none */
+/* a태그 none */
 a:link {
 	color: white;
 	text-decoration: none;

@@ -348,8 +348,7 @@
 					</div>
 					<div id="nav_notice_list" class="border_radius soft">
 						<div id="nav_notice_list_tab">
-							소식 <span> <span> <span id="nav_mynews_btn">내
-										소식</span>
+							소식 <span> <span> <span id="nav_mynews_btn">내 소식</span>
 							</span> <span> <span id="nav_news_btn">밥풀 알림</span>
 							</span>
 							</span>
@@ -375,8 +374,8 @@
 						<img src="<c:url value="${path}/res/image/user2.png"/>"
 							height="32px">
 						<div id="nav_profile_list" class="border_radius soft">
-							<div class="item" data-link="">예약</div>
-							<div class="item" data-link="">설정</div>
+							<div class="item" data-link="mypage/mypage_reservation">예약</div>
+							<div class="item" data-link="mypage/mypage_setting">설정</div>
 							<div id="nav_logout" class="item">로그아웃</div>
 						</div>
 					</div>

@@ -9,7 +9,7 @@ public class ShopUserVo {
 	private String user_gender;		// 성별				NOT NULL
 	private String user_birth;		// 생년월일			NOT NULL
 	private String user_phone;		// 전화번호			NOT NULL
-	private String isOwner;		// 사업자 여부			NOT NULL
+	private String isOwner;			// 사업자 여부			NOT NULL
 	private Date sign_date;			// 가입날짜			NOT NULL
 	private int point;				// 포인트				NULL
 	private String user_photo;		// 사용자 사진			NULL

@@ -28,17 +28,6 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="setting_title">자기소개	</td>
-				<td class="setting_value">
-					<span></span>
-					<button type="button" tabindex="-1">변경하기</button>
-					<form action="">
-						<textarea name="simple_introduction"></textarea>
-						<button type="submit" tabindex="-1">변경</button>
-					</form>
-				</td>
-			</tr>
-			<tr>
 				<td class="setting_title">예약자명</td>
 				<td class="setting_value">
 					<span>사용자</span>

@@ -37,16 +37,13 @@ public class HelloController {
 		System.out.println("/BabPool/main");
 		return "main";
 	}
+	
 	@RequestMapping("/signup")
 	public String signup() {
 		System.out.println("/BobPool/signup");
 		return "signup";
 	}
-	@RequestMapping("/mypage")
-	public String mypage() {
-		System.out.println("/BabPool/mypage");
-		return "mypage/mypage";
-	}
+
 	@RequestMapping("/mypage/reservation")
 	public String mypage_reservation() {
 		System.out.println("/BabPool/mypage/mypage_reservation");
@@ -77,10 +74,10 @@ public class HelloController {
 		System.out.println("/BabPool/mypage/mypage_review3");
 		return "mypage/mypage_review3";
 	}
-	@RequestMapping("/mypage/star")
+	@RequestMapping("/mypage/dibs")
 	public String mypage_star() {
 		System.out.println("/BabPool/mypage/mypage_review");
-		return "mypage/mypage_star";
+		return "mypage/mypage_dibs";
 	}
 	@RequestMapping("/mypage/notice")
 	public String mypage_notice() {

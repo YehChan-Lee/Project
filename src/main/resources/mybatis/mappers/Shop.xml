@@ -6,31 +6,6 @@
 		<![CDATA[SELECT * FROM Shop]]> 		
 	</select>
 	
-	<resultMap type="Shop" id="ShopResult">
-		<id property="shop_id" column="SHOP_ID"/>
-		<result property="user_email" column="USER_EMAIL"/>
-		<result property="shop_idx" column="SHOP_IDX"/>
-		<result property="shop_title" column="SHOP_TITLE"/>
-		<result property="shop_addr" column="SHOP_ADDR"/>
-		<result property="shop_location" column="SHOP_LOCATION"/>
-		<result property="shop_type" column="SHOP_TYPE"/>
-		<result property="shop_tip" column="SHOP_TIP"/>
-		<result property="budget" column="BUDGET"/>
-		<result property="shop_reserve" column="SHOP_RESERVE"/>
-		<result property="shop_comment" column="SHOP_COMMENT"/>
-		<result property="shop_view" column="SHOP_VIEW"/>
-		<result property="shop_score" column="SHOP_SCORE"/>
-		<result property="shop_dibs" column="SHOP_DIBS"/>
-		<result property="shop_phone" column="SHOP_PHONE"/>
-		<result property="shop_time" column="SHOP_TIME"/>
-		<result property="shop_addinfo" column="SHOP_ADDINFO"/>
-		<result property="shop_tb" column="SHOP_TB"/>
-		<result property="shop_alcohol" column="SHOP_ALCOHOL"/>
-		<result property="shop_car" column="SHOP_CAR"/>
-		<result property="shop_close" column="SHOP_CLOSE"/>
-		<result property="shop_review" column="SHOP_REVIEW"/>		
-	</resultMap>
-
 	<select id="shopOne" parameterType="int" resultType="Shop">
 	<!-- 가게정보 -->
 		<![CDATA[
@@ -38,7 +13,7 @@
 		]]>		
 	</select>
 	
-	<select id="cntShopReserve" resultType="Shop">
+	<select id="cntShopReserve" resultType="int">
 		<![CDATA[
 			SELECT SUM(shop_reserve)
 			FROM Shop

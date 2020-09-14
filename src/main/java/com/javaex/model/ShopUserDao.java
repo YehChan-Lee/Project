@@ -15,10 +15,14 @@ public class ShopUserDao {
 	}
 	
 	public ShopUserVo loginCheck(String email) {		
-		return sqlSession.selectOne("ShopUser.getUser",email);
+		return sqlSession.selectOne("ShopUser.getUser", email);
 	}
 	
 	public void signUp(ShopUserVo user) {
 		sqlSession.insert("ShopUser.signUp",user);
+	}
+	
+	public ShopUserVo getUser(String user_email) {
+		return sqlSession.selectOne("ShopUser.getUser", user_email);
 	}
 }

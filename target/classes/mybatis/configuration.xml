@@ -8,11 +8,14 @@
 		<typeAlias alias="Notice" type="com.javaex.model.NoticeVo"></typeAlias>
 
 		<typeAlias alias="Shop" type="com.javaex.model.ShopVo"></typeAlias>
+
+		<typeAlias alias="Shop" type="com.javaex.model.ReservationVo"></typeAlias>
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="mybatis/mappers/ShopUser.xml" />
 		<mapper resource="mybatis/mappers/Notice.xml" />
 		<mapper resource="mybatis/mappers/Shop.xml" />
+		<mapper resource="mybatis/mappers/Reservation.xml" />
 	</mappers>
 </configuration>

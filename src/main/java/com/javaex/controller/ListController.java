@@ -1,7 +1,6 @@
 package com.javaex.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,8 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.javaex.model.NoticeDao;
@@ -111,6 +108,7 @@ public class ListController {
 		mav.setViewName("notice");
 		return mav;
 	}
+	
 	@RequestMapping("/detail/info.do")
 	public ModelAndView detail_info(ModelAndView mav,HttpServletRequest request) {
 		System.out.println("/BabPool/detail_info");
@@ -128,5 +126,16 @@ public class ListController {
 //		mav.setViewName("detail_photo");
 //		return mav;
 //	}
-
+	
+	// 마이페이지
+	@RequestMapping("/mypage")
+	public ModelAndView mypage(ModelAndView mav, HttpSession session) {
+		System.out.println("/BabPool/mypage");
+		// 아이디 가져오기
+		String user_email = (String)session.getAttribute("sessionID");
+		System.out.println(user_email);
+		mav.addObject("getUser", userDao.getUser(user_email));
+		mav.setViewName("mypage/mypage");
+		return mav;
+	}
 }

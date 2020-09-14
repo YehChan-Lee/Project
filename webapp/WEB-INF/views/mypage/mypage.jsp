@@ -1,3 +1,5 @@
+<%@page import="com.javaex.model.ShopUserVo"%>
+<%@page import="com.javaex.model.ShopVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
@@ -15,6 +17,10 @@
 <%@include file="../top_bar.jsp" %>
 <!-- 마이페이지 -->
 
+<%
+ShopVo shopvo = (ShopVo)request.getAttribute("selectShopByUser");
+%>
+
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.4.0/"/></script>
@@ -26,7 +32,11 @@
 		<div id="mypage_banner">
 			<div id="user_box">
 				<div id="user_img">
-					<img src="<c:url value="${path}/res/image/user2.png"/>" height="180px"/>
+					<%-- <img src="<c:url value="${path}/res/image/user2.png"/>" height="180px"/> --%>
+					<%-- <form id="frm" name="frm" action="${path}/mypage/uploadContent" enctype="multipart/form-data" method="post">
+    					<label for="file"><img src="<c:url value="${path}/res/image/user2.png"/>" height="180px"/></label>
+    					<input multiple="multiple" name="files[]" id="files" type="file" style="width:180px"/>
+					</form> --%>
 				</div>
 				<div id="user_info_box">
 					<div id="user_info">
@@ -46,6 +56,7 @@
 	</div>
 </div>
 <div id="content_wrap">
+	<div id="nav_shading" class="shading_bg scroll_enable"></div>
 	<div id="content" class="mypage">
 		<ul id="my_tab">
 			<li id="my_reserv" class="my_item selected">예약</li>			
@@ -125,15 +136,15 @@
         	 else if($("#my_tab>.selected")[0] == $("#my_review")[0]) {
         		 $("#mypage_import").load("mypage/review");
         	 }
-        	 else if($("#my_tab>.selected")[0] == $("#my_star")[0]) {
-        		 $("#mypage_import").load("mypage/star");
+         	 else if($("#my_tab>.selected")[0] == $("#my_star")[0]) {
+        		 $("#mypage_import").load("mypage/dibs");
         	 }
         	 else if($("#my_tab>.selected")[0] == $("#my_notice")[0]) {
         		 $("#mypage_import").load("mypage/notice");
         	 }
         	 else if($("#my_tab>.selected")[0] == $("#my_setting")[0]) {
         		 $("#mypage_import").load("mypage/setting");
-        	 }
+        	 } 
          }
      });
 	  
