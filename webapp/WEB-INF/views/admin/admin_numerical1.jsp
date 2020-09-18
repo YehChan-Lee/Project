@@ -42,6 +42,23 @@
 			<button><i class="fas fa-search"></i>검색</button>
 		</div>
 		<div id="num1_chart" style="width: 1400px; height: 700px;"></div>
+		<div class="num1_tb_info">
+			<h4><i class="fas fa-dice-d6"></i>접속자 통계 요약</h4>
+			<table>
+				<tr>
+					<th>총 접속자 수</th>
+					<td>123명</td>
+					<th>이달의 접속자 수</th>
+					<td>12명</td>
+				</tr>
+				<tr>
+					<th>오늘 접속자 수</th>
+					<td>1명</td>
+					<th>일일 평균 접속자 수</th>
+					<td>2명</td>
+				</tr>
+			</table>
+		</div>
 	</div>
 </body>
 <script>

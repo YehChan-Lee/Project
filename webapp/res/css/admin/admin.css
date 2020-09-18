@@ -1409,8 +1409,12 @@ div.paging_com2>div:nth-child(1) {
 	right: 450px;
 }
 
-#sec_admin_numerical1>div {
-	display: flex
+#sec_admin_numerical1>div:nth-child(1) {
+	display: flex;
+}
+
+#sec_admin_numerical1>div:nth-child(1) > div {
+	cursor: pointer;
 }
 
 #sec_admin_numerical1>div>div {
@@ -1448,3 +1452,19 @@ div.paging_com2>div:nth-child(1) {
 #num1_chart > div:nth-child(1) {
 	border: 0;
 }
+#sec_admin_numerical1 > div.numer1_sear {
+	text-align: end;
+}
+.num1_tb_info {
+	margin-top: 30px;
+} 
+.num1_tb_info > h4 {
+	margin-top: 30px;
+    padding: 10px;
+    display: flex;
+    color: #747474;
+}
+#sec_admin_numerical1 > div.numer1_sear > button {
+	font-size: 11px;
+}
+
