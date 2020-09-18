@@ -7,9 +7,17 @@
 
 		<typeAlias alias="Notice" type="com.javaex.model.NoticeVo"></typeAlias>
 
-		<typeAlias alias="Shop" type="com.javaex.model.ShopVo"></typeAlias>
+		<typeAlias alias="ShopVo" type="com.javaex.model.ShopVo"></typeAlias>
 
-		<typeAlias alias="Shop" type="com.javaex.model.ReservationVo"></typeAlias>
+		<typeAlias alias="Reservation" type="com.javaex.model.ReservationVo"></typeAlias>
+
+		<typeAlias alias="All" type="com.javaex.model.AllVo"></typeAlias>
+		
+		<typeAlias alias="ReviewVo" type="com.javaex.model.ReviewVo"></typeAlias>
+		
+		<typeAlias alias="Dibs" type="com.javaex.model.ShopDibsVo"></typeAlias>
+
+		<typeAlias alias="NewsVo" type="com.javaex.model.NewsVo"></typeAlias>
 	</typeAliases>
 
 	<mappers>
@@ -17,5 +25,9 @@
 		<mapper resource="mybatis/mappers/Notice.xml" />
 		<mapper resource="mybatis/mappers/Shop.xml" />
 		<mapper resource="mybatis/mappers/Reservation.xml" />
+		<mapper resource="mybatis/mappers/All.xml" />
+		<mapper resource="mybatis/mappers/Review.xml" />
+ 		<mapper resource="mybatis/mappers/Dibs.xml" />
+ 		<mapper resource="mybatis/mappers/News.xml" />
 	</mappers>
 </configuration>

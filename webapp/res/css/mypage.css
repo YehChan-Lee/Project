@@ -77,10 +77,11 @@ body, html{
 	width: 100%;
 }
 #content_wrap>#content{
-	position: relative;
-	left: 470px;
-	width:730px;
-	padding-bottom: 120px;
+    position: relative;
+    left: 23%;
+    width: 730px;
+    overflow: auto;
+    padding-bottom: 120px;
 }
 #content_wrap>#content>ul{
 	width:100%;
@@ -101,6 +102,10 @@ body, html{
 	text-align: center;
 	padding: 10px;
 	font-size: 20px;
+	font-weight: 600;
+}
+#content_wrap>#content>ul .my_item:hover{
+	color: #f05e23;
 }
 #my_tab a {
 	color: black;
@@ -127,11 +132,11 @@ body, html{
 	cursor: pointer;
 }
 #reservation>#contents_box{
-	text-align: center;
+	text-align: left;
 	background-color: #fff;
-	padding: 150px;
+	padding: 1px 10px 10px 10px;
 	font-size: 17px;
-	border-radius: 5px
+	border-radius: 5px;
 }
 /* mypage_notice */
 #my_notice, #bobpool_notice{
@@ -143,7 +148,7 @@ body, html{
 
 #my_notice>li, #pagination>li, #bobpool_notice>li{
 	list-style: none;
-	padding: 20px 0;
+	padding: 0;
 	min-height: 50px;
 	cursor:pointer;
 }
@@ -159,6 +164,14 @@ body, html{
 	line-height: 45px;
 	margin: 0 0 0 20px;
 }
+#my_notice>li>#my_info>#my_info_time, #bobpool_notice>li>#bobpool_info>#bobpool_time{
+	position: relative;
+	float: right;
+	line-height: 45px;
+	color: red;
+	font-weight: 600;
+}
+
 #mypage_list{
 	text-align: center;
 	min-height: 50px;
@@ -315,7 +328,8 @@ button{
 #nalzza{
 	position: absolute;
 	top: 464px;
-	left: 1220px;
+	/* left: 1220px; */
+	left: 62%;
 	width: 220px;
 	float: right;
 	border-top: 2px solid #ffa500;
@@ -326,4 +340,158 @@ button{
 	border: 0px solid blue;
 	text-align: center;
 	font-size: 20px;
+}
+
+/* 찜리스트 */
+#shop_list {
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+	text-align: left;
+}
+.shop_comment{
+   font-size: 13px;
+}
+.shop_first, .shop_medium {
+   width: 233px;
+   float: left;
+   overflow: visible;
+   margin-bottom: 20px;
+   border: 1px solid #f3f3f3;
+   box-sizing: border-box;
+}
+
+.shop_medium {
+   margin-left: 15px;
+}
+.list_img{
+   width: 233px;
+}
+.list_img > .img_a{
+   width: 233px;
+   height: 263px;
+   background: center center no-repeat;
+   background-size: cover;
+   display: block;
+}
+.img_top{
+   box-sizing : border-box;
+   padding : 7px 5px;
+   text-align:right;
+}
+.img_top > span{   
+   width : 100%;
+   font-size : 10pt;   
+   color : white;   
+   font-weight: 600;      
+}
+.img_top > span{
+   display: block;
+   margin-bottom: 5px;
+}
+.img_top > span > i{
+   cursor: pointer;
+}
+.star_.off{color : white;}
+.star_.on{color : #f05e23;}
+.list_img .img_bottom{
+   margin : 0 10px;
+   position : relative;
+   top : 50%;
+   color:white;
+   box-sizing: border-box;
+   display:block;
+}
+.list_img .img_bottom > div{
+   display : block;
+   margin : 0;
+   margin-bottom : 3px;
+   width : 100px;
+   font-weight: 600;   
+}
+.shop_desc {
+   box-sizing:border-box;
+   width : 233px;
+   padding: 8px 11px;
+   background-color: #fff;
+   margin-bottom: 5px;
+   height : 111px;
+   font-weight: 600;
+}
+.shop_star{
+   display: inline;
+   width: 211px;
+   height: 24px;
+}
+.shop_score{
+   box-sizing : border-box;
+   width : 45px;
+   height : 25px;
+   border : 1px solid #f05e23;
+   border-radius : 5px;
+   float : right;
+   text-align: center;
+   color : #f05e23;
+   padding: 3px 0;
+}
+.shop_area{
+   font-size: 13px;
+   font-weight: 600;   
+}
+
+.shop_budget {
+   font-size: 12px;
+   padding: 2px 0px 5px;
+   margin: 3px 0 0;
+}
+
+.review_btn {
+   box-sizing: border-box;
+   border-radius: 3px;   
+   background: #fff;
+   float: left;   
+   width: 233px;
+   text-align: center;
+   display: inline-block;
+   height: 28px;
+}
+.review_btn .review_a {
+   color: #444;
+   text-decoration: none;
+   font-size: 14px;
+   font-family: 'BBTreeGB';
+   font-weight: 600;
+   width: 233px;
+   height: 28px;
+   display: block;   
+   line-height: 28px;
+}
+/* 예약리스트 */
+.media{
+	display:flex;
+	align-items:flex-start;
+	border: 1px solid #dbdbdb;
+	border-radius: 10px;
+	padding: 10px;
+	cursor: pointer;
+}
+.mt-3{
+	margin-top:1rem!important
+}
+.align-self-center{
+	-ms-flex-item-align:center!important;
+	align-self:center!important
+}
+.mr-3{
+	margin-right:1rem!important
+}
+.media-body{
+	-ms-flex:1;flex:1;
+}
+#p_title{
+	font-size: 24px;
+	color: black;
+}
+#p_title:hover {
+	color: black;
 }

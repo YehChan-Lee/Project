@@ -2,6 +2,8 @@ package com.javaex.model;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+
 public class ReviewVo {
 	private int review_idx;			// 리뷰 인덱스(PK)		NOT NULL
 	private String shop_id;			// 사업자 번호(FK)		NOT NULL
@@ -10,7 +12,7 @@ public class ReviewVo {
 	private String review;			// 리뷰				NULL
 	private String review_photo;	// 리뷰 사진			NULL
 	private Date review_date;		// 리뷰 날짜			NOT NULL
-	private int like_review;		// 좋아요 수			NULL
+	private int like_review;		// 좋아6요 수			NULL
 	private int hate_review;		// 싫어요 수			NULL
 	
 	public ReviewVo() {}

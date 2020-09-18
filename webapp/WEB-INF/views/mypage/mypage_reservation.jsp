@@ -1,3 +1,6 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.javaex.model.AllVo"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,9 +19,8 @@
 			</ul>
 	</div>
 	<div id="contents_box">
-		
-	</div>
-</div>
+   </div>
+   </div>
 
 <script src="http://code.jquery.com/jquery.js"></script>
 <script>

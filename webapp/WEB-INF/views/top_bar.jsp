@@ -374,8 +374,8 @@
 						<img src="<c:url value="${path}/res/image/user2.png"/>"
 							height="32px">
 						<div id="nav_profile_list" class="border_radius soft">
-							<div class="item" data-link="mypage/mypage_reservation">예약</div>
-							<div class="item" data-link="mypage/mypage_setting">설정</div>
+							<div class="item" data-link="mypage">예약</div>
+							<div class="item" data-link="mypage">설정</div>
 							<div id="nav_logout" class="item">로그아웃</div>
 						</div>
 					</div>

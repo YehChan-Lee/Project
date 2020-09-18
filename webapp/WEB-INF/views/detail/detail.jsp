@@ -261,18 +261,6 @@
             		$("#import").unload();
             		$("#import").load("detail/photo.do")
             	}
-				/*else if($("#content > ul > .item.selected")[0] == $("review")[0]){
-            		$("#import").unload();
-            		$("#import").load("detail2/review.do")
-            	}
-            	else if($("#content > ul > .item.selected")[0] == $("menu")[0]){
-            		$("#import").unload();
-            		$("#import").load("detail2/menu.do")
-            	}
-            	else id($("#content > ul > .item.selected")[0] == $("map")[0]){
-            		$("#import").unload();
-            		$("#import").load("detail2/map.do")
-            	} */
             }
             
             function asyncMovePage(url){

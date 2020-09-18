@@ -29,10 +29,6 @@ public class ShopDao {
 		return sqlsession.selectOne("Shop.cntShopReserve");
 	}
 	
-	public ShopVo selectShopByUser(String user_email) {
-		return sqlsession.selectOne("Shop.selectShopByUser", user_email);
-	}
-	
 	public void insertShop() {
 		sqlsession.insert("Shop.shopInsert");
 	}

@@ -1,3 +1,7 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.javaex.model.AllVo"%>
+<%@page import="java.util.List"%>
+<%@page import="com.javaex.model.ReservationVo"%>
 <%@page import="com.javaex.model.ShopUserVo"%>
 <%@page import="com.javaex.model.ShopVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -18,12 +22,15 @@
 <!-- 마이페이지 -->
 
 <%
-ShopVo shopvo = (ShopVo)request.getAttribute("selectShopByUser");
+List<AllVo> reserveList = (ArrayList<AllVo>)request.getAttribute("reserveList");
+List<AllVo> reviewList = (ArrayList<AllVo>)request.getAttribute("reviewList");
+List<AllVo> dibsList = (ArrayList<AllVo>)request.getAttribute("dibsList");
 %>
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.4.0/"/></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 <link rel="stylesheet" href="<c:url value="${path}/res/css/jquery-ui.css"/>"/>
 <script src="<c:url value='${path}/res/js/jquery-ui.js'/>" type="text/javascript"></script>
 
@@ -32,7 +39,7 @@ ShopVo shopvo = (ShopVo)request.getAttribute("selectShopByUser");
 		<div id="mypage_banner">
 			<div id="user_box">
 				<div id="user_img">
-					<%-- <img src="<c:url value="${path}/res/image/user2.png"/>" height="180px"/> --%>
+					<img src="<c:url value="${path}/res/image/user2.png"/>" height="180px"/>
 					<%-- <form id="frm" name="frm" action="${path}/mypage/uploadContent" enctype="multipart/form-data" method="post">
     					<label for="file"><img src="<c:url value="${path}/res/image/user2.png"/>" height="180px"/></label>
     					<input multiple="multiple" name="files[]" id="files" type="file" style="width:180px"/>
@@ -41,14 +48,14 @@ ShopVo shopvo = (ShopVo)request.getAttribute("selectShopByUser");
 				<div id="user_info_box">
 					<div id="user_info">
 						<div id="user_name">
-							<span>USER NAME</span>
+							<span>${getUser.user_name}</span>
 						</div>
 						<div class="point">POINT</div>
 					</div>
 					<div id="situation">
-						<a href="">예약 0</a>
-						<a href="">리뷰 0</a>
-						<a href="">찜한 매장 0</a>
+						<a href="">예약 <%=reserveList.size() %></a>
+						<a href="">리뷰 <%=reviewList.size() %></a>
+						<a href="">찜한 매장 <%=dibsList.size() %></a>
 					</div>
 				</div>
 			</div>
@@ -61,7 +68,7 @@ ShopVo shopvo = (ShopVo)request.getAttribute("selectShopByUser");
 		<ul id="my_tab">
 			<li id="my_reserv" class="my_item selected">예약</li>			
 			<li id="my_review" class="my_item">리뷰</li>
-			<li id="my_star" class="my_item">찜</li>
+			<li id="my_dibs" class="my_item">찜</li>
 			<li id="my_notice" class="my_item">소식</li>
 			<li id="my_setting" class="my_item">설정</li>
 		</ul>
@@ -99,8 +106,6 @@ ShopVo shopvo = (ShopVo)request.getAttribute("selectShopByUser");
              ,minDate: "-1Y" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
              ,maxDate: "+1Y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)                    
          });
-         
-         
 
          //input을 datepicker로 선언
          $("#datepicker").datepicker();                    
@@ -136,7 +141,7 @@ ShopVo shopvo = (ShopVo)request.getAttribute("selectShopByUser");
         	 else if($("#my_tab>.selected")[0] == $("#my_review")[0]) {
         		 $("#mypage_import").load("mypage/review");
         	 }
-         	 else if($("#my_tab>.selected")[0] == $("#my_star")[0]) {
+         	 else if($("#my_tab>.selected")[0] == $("#my_dibs")[0]) {
         		 $("#mypage_import").load("mypage/dibs");
         	 }
         	 else if($("#my_tab>.selected")[0] == $("#my_notice")[0]) {

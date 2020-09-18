@@ -2,16 +2,19 @@ package com.javaex.controller;
 
 import java.io.IOException;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.javaex.model.NoticeDao;
+import com.javaex.model.ReservationDao;
 import com.javaex.model.ShopDao;
 import com.javaex.model.ShopUserDao;
 import com.javaex.model.ShopUserVo;
@@ -27,6 +30,9 @@ public class ListController {
 	
 	@Autowired
 	NoticeDao noticedao;
+	
+	@Autowired
+	ReservationDao reservedao;
 
 	@RequestMapping("/list")
 	public ModelAndView list(ModelAndView mav) {
@@ -85,7 +91,7 @@ public class ListController {
 		int joinType = Integer.parseInt(req.getParameter("join_type"));
 		
 		if(joinType == 1) {
-			userDao.signUp(new ShopUserVo(email, pw, name, gender, birth, phone, "0", null, 0, null));
+			userDao.signUp(new ShopUserVo(email, pw, name, gender, birth, phone, "0", null, 0, null, 0));
 		}else {
 			String buisnessNumber = req.getParameter("buisness_number");
 			String buisnessName = req.getParameter("buisness_name");
@@ -94,7 +100,7 @@ public class ListController {
 			String buisnessFoodType = req.getParameter("buisness_food_type");
 			
 			System.out.println(buisnessNumber + " " + buisnessName + " " + buisnessAddress + " " + buisnessAddressEtc + " " + buisnessFoodType);
-			userDao.signUp(new ShopUserVo(email, pw, name, gender, birth, phone, "1", null, 0, null));
+			userDao.signUp(new ShopUserVo(email, pw, name, gender, birth, phone, "1", null, 0, null, 0));
 		}		
 		mav.setViewName("main");		
 		return mav;
@@ -126,16 +132,5 @@ public class ListController {
 //		mav.setViewName("detail_photo");
 //		return mav;
 //	}
-	
-	// 마이페이지
-	@RequestMapping("/mypage")
-	public ModelAndView mypage(ModelAndView mav, HttpSession session) {
-		System.out.println("/BabPool/mypage");
-		// 아이디 가져오기
-		String user_email = (String)session.getAttribute("sessionID");
-		System.out.println(user_email);
-		mav.addObject("getUser", userDao.getUser(user_email));
-		mav.setViewName("mypage/mypage");
-		return mav;
-	}
+
 }

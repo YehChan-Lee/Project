@@ -2,21 +2,25 @@ package com.javaex.model;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+
 public class ReservationVo {
 	private String user_email;	// 사용자 이메일(FK)		NOT NULL
 	private String shop_title;	// 가게 이름			NOT NULL
 	private Date res_date;		// 예약 날짜			NOT NULL
 	private int res_customer;	// 예약 인원			NOT NULL
 	private String shop_id;		// 사업자 번호(FK)		NOT NULL
+	private int reserve_idx;
 	
 	public ReservationVo() {}
 
-	public ReservationVo(String user_email, String shop_title, Date res_date, int res_customer, String shop_id) {
+	public ReservationVo(String user_email, String shop_title, Date res_date, int res_customer, String shop_id, int reserve_idx) {
 		this.user_email = user_email;
 		this.shop_title = shop_title;
 		this.res_date = res_date;
 		this.res_customer = res_customer;
 		this.shop_id = shop_id;
+		this.reserve_idx = reserve_idx;
 	}
 
 	public String getUser_email() {
@@ -57,6 +61,14 @@ public class ReservationVo {
 
 	public void setShop_id(String shop_id) {
 		this.shop_id = shop_id;
+	}
+
+	public int getReserve_idx() {
+		return reserve_idx;
+	}
+
+	public void setReserve_idx(int reserve_idx) {
+		this.reserve_idx = reserve_idx;
 	}
 
 	@Override

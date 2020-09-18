@@ -238,44 +238,6 @@ div#wrap {
 #nav_container form>.search>.box>div {
 	vertical-align: top;
 }
-
-/* #nav_container form>.search>.box>.top{
-    height:15px;
-    line-height:15px;
-    border-bottom:1px solid #969696;
-    padding:9px 25px;
-    font-weight:700;
-    font-size:0
-} */
-/* #nav_container form>#nav_genre.search>.box>.top{
-    padding-left:20px;
-    font-size:15px;
-} */
-/* #nav_container form>.search>.box>.city{
-    width:129px;
-    height:365px;
-    float:left;
-    border-right:1px solid #dcdddf;
-    list-style-type: none;
-    /* padding: 0;
-} */
-/* #nav_container form>.search>.box>.city>li{
-    line-height:34px;
-    padding-left:20px;
-    color:#828282;
-    list-style-type: none;
-    padding: 0;
-} */
-/* #nav_container form>.search>.box>.city>li.selected{
-    background:#ffecc8;
-    color:#f05e23;
-    font-weight:700;
-    list-style-type: none;
-} */
-/* #nav_container form>.search>.box>.city>li>span{
-    float:right;
-    /* margin-right:15px; 
-} */
 #nav_container form>.search>.box>.district {
 	width: 149px;
 	height: 365px;
@@ -512,33 +474,6 @@ div#wrap {
 	float: right;
 	margin-top: -2px
 }
-/* #nav_recommend>ul.recent>.title>div>.page:after{
-    content:"/";
-    margin:0 3px
-}
-#nav_recommend>ul.recent>.title>div>i{
-    cursor:pointer
-}
-#nav_recommend>ul.recent>.title>div>i:first-of-type{
-    margin-right:8px
-}
-#nav_recommend>ul.recent>.title>div>i:last-of-type{
-    margin-left:8px
-}
-#nav_recommend>ul.recent>.item{
-    line-height:15px
-}
-#nav_recommend>ul>li.item:hover{
-    background:#e3e3e3
-}
-#nav_recommend>ul>li>i.icon{
-    position:relative;
-    float:left;
-    top:-2px}
-#nav_recommend>ul:not(.recent)>li>span{
-    display:block;
-    padding-left:22px
-} */
 #nav_auto_complete {
 	display: none;
 	width: 100%;

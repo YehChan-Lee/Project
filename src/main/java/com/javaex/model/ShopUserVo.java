@@ -2,6 +2,8 @@ package com.javaex.model;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+
 public class ShopUserVo {
 	private String user_email;		// 사용자 이메일(PK)	NOT NULL
 	private String user_pw;			// 사용자 비밀번호 		NOT NULL
@@ -9,25 +11,27 @@ public class ShopUserVo {
 	private String user_gender;		// 성별				NOT NULL
 	private String user_birth;		// 생년월일			NOT NULL
 	private String user_phone;		// 전화번호			NOT NULL
-	private String isOwner;			// 사업자 여부			NOT NULL
+	private String is_owner;		// 사업자 여부			NOT NULL
 	private Date sign_date;			// 가입날짜			NOT NULL
 	private int point;				// 포인트				NULL
 	private String user_photo;		// 사용자 사진			NULL
+	private int user_idx;			// 사용자 번호			NOT NULL
 	
 	public ShopUserVo() {}	
 
 	public ShopUserVo(String user_email, String user_pw, String user_name, String user_gender, String user_birth,
-			String user_phone, String isOwner, Date sign_date, int point, String user_photo) {
+			String user_phone, String is_owner, Date sign_date, int point, String user_photo, int user_idx) {
 		this.user_email = user_email;
 		this.user_pw = user_pw;
 		this.user_name = user_name;
 		this.user_gender = user_gender;
 		this.user_birth = user_birth;
 		this.user_phone = user_phone;
-		this.isOwner = isOwner;
+		this.is_owner = is_owner;
 		this.sign_date = sign_date;
 		this.point = point;
 		this.user_photo = user_photo;
+		this.user_idx = user_idx;
 	}
 
 	public String getUser_email() {
@@ -78,12 +82,12 @@ public class ShopUserVo {
 		this.user_phone = user_phone;
 	}
 
-	public String getIsOwner() {
-		return isOwner;
+	public String getIs_owner() {
+		return is_owner;
 	}
 
-	public void setIsOwner(String isOwner) {
-		this.isOwner = isOwner;
+	public void setIs_owner(String is_owner) {
+		this.is_owner = is_owner;
 	}
 
 	public Date getSign_date() {
@@ -109,11 +113,20 @@ public class ShopUserVo {
 	public void setUser_photo(String user_photo) {
 		this.user_photo = user_photo;
 	}
+	
+	public int getUser_idx() {
+		return user_idx;
+	}
+
+	public void setUser_idx(int user_idx) {
+		this.user_idx = user_idx;
+	}
 
 	@Override
 	public String toString() {
 		return "ShopUserVo [user_email=" + user_email + ", user_pw=" + user_pw + ", user_name=" + user_name
 				+ ", user_gender=" + user_gender + ", user_birth=" + user_birth + ", user_phone=" + user_phone
-				+ ", isOwner=" + isOwner + ", sign_date=" + sign_date + ", point=" + point + ", user_photo=" + user_photo +"]";
+				+ ", isOwner=" + is_owner + ", sign_date=" + sign_date + ", point=" + point 
+				+ ", user_photo=" + user_photo + ", user_idx=" + user_idx + "]";
 	}
 }

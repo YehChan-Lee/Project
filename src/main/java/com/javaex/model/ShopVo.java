@@ -1,5 +1,8 @@
 package com.javaex.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ShopVo {
 	private String shop_id;			// 사업자 번호(PK)			NOT NULL
 	private String user_email;		// 사용자 이메일(FK)			NOT NULL
@@ -13,25 +16,24 @@ public class ShopVo {
 	private int shop_reserve;		// 총 예약 수				NULL
 	private String shop_comment;	// 한줄 설명				NULL
 	private int shop_view;			// 조회수					NULL
-	private Double shop_score;			// 별점					NULL
-	private String dibs;			// 찜하기					NULL
+	private Double shop_score;		// 별점					NULL
 	private String shop_phone;		// 가게 전화번호				NULL
 	private String shop_time;		// 가게 운영시간				NOT NULL
 	private String shop_addinfo;	// 가게 부가정보				NULL
 	private String shop_tb;			// 가게 테이블 종류			NULL
-	private String shop_alcohol;		// 가게 주류				NULL
+	private String shop_alcohol;	// 가게 주류				NULL
 	private String shop_car;		// 주차기능				NOT NULL
 	private String shop_close;		// 휴무일					NULL
-	private int shop_review;		// 리뷰 수					NULL
 	private String shop_photo;		// 가게 사진				NULL
+	private String shop_review;		// 리뷰 수 					NULL
 
 	public ShopVo() {}
 
 	public ShopVo(String shop_id, String user_email, int shop_idx, String shop_title, String shop_addr,
 			String shop_location, String food_type, String shop_tip, String budget, int shop_reserve,
-			String shop_comment, int shop_view, Double shop_score, String dibs, String shop_phone, String shop_time,
-			String shop_addinfo, String shop_tb, String shop_alcohol, String shop_car, String shop_close, int shop_review,
-			String shop_photo) {
+			String shop_comment, int shop_view, Double shop_score, String shop_phone, String shop_time,
+			String shop_addinfo, String shop_tb, String shop_alcohol, String shop_car, String shop_close,
+			String shop_photo, String shop_review) {
 		this.shop_id = shop_id;
 		this.user_email = user_email;
 		this.shop_idx = shop_idx;
@@ -45,7 +47,6 @@ public class ShopVo {
 		this.shop_comment = shop_comment;
 		this.shop_view = shop_view;
 		this.shop_score = shop_score;
-		this.dibs = dibs;
 		this.shop_phone = shop_phone;
 		this.shop_time = shop_time;
 		this.shop_addinfo = shop_addinfo;
@@ -53,8 +54,8 @@ public class ShopVo {
 		this.shop_alcohol = shop_alcohol;
 		this.shop_car = shop_car;
 		this.shop_close = shop_close;
-		this.shop_review = shop_review;
 		this.shop_photo = shop_photo;
+		this.shop_review = shop_review;
 	}
 
 	public String getShop_id() {
@@ -161,14 +162,6 @@ public class ShopVo {
 		this.shop_score = shop_score;
 	}
 
-	public String getDibs() {
-		return dibs;
-	}
-
-	public void setDibs(String dibs) {
-		this.dibs = dibs;
-	}
-
 	public String getShop_phone() {
 		return shop_phone;
 	}
@@ -225,14 +218,6 @@ public class ShopVo {
 		this.shop_close = shop_close;
 	}
 
-	public int getShop_review() {
-		return shop_review;
-	}
-
-	public void setShop_review(int shop_review) {
-		this.shop_review = shop_review;
-	}
-
 	public String getShop_photo() {
 		return shop_photo;
 	}
@@ -241,14 +226,22 @@ public class ShopVo {
 		this.shop_photo = shop_photo;
 	}
 
+	public String getShop_review() {
+		return shop_review;
+	}
+
+	public void setShop_review(String shop_review) {
+		this.shop_review = shop_review;
+	}
+
 	@Override
 	public String toString() {
 		return "ShopVo [shop_id=" + shop_id + ", user_email=" + user_email + ", shop_idx=" + shop_idx + ", shop_title="
 				+ shop_title + ", shop_addr=" + shop_addr + ", shop_location=" + shop_location + ", food_type="
 				+ food_type + ", shop_tip=" + shop_tip + ", budget=" + budget + ", shop_reserve=" + shop_reserve
 				+ ", shop_comment=" + shop_comment + ", shop_view=" + shop_view + ", shop_score=" + shop_score
-				+ ", dibs=" + dibs + ", shop_phone=" + shop_phone + ", shop_time=" + shop_time + ", shop_addinfo="
+				+ ", shop_phone=" + shop_phone + ", shop_time=" + shop_time + ", shop_addinfo="
 				+ shop_addinfo + ", shop_tb=" + shop_tb + ", shop_alcohol=" + shop_alcohol + ", shop_car=" + shop_car
-				+ ", shop_close=" + shop_close + ", shop_review=" + shop_review + ", shop_photo=" + shop_photo + "]";
+				+ ", shop_close=" + shop_close + ", shop_photo=" + shop_photo + ", shop_review=" + shop_review + "]";
 	}
 }
