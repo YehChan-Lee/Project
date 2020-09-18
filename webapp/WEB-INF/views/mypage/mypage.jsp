@@ -15,7 +15,7 @@
 <title>Insert title here</title>
 
 <link rel="stylesheet" href="<c:url value="${path}/res/css/mypage.css?ver=1"/>"/>
-
+<link rel="stylesheet" href="<c:url value="${path}/res/css/jquery-ui.css"/>"/>
 </head>
 <body>
 <%@include file="../top_bar.jsp" %>
@@ -31,7 +31,10 @@ List<AllVo> dibsList = (ArrayList<AllVo>)request.getAttribute("dibsList");
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.4.0/"/></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+<<<<<<< HEAD
 <link rel="stylesheet" href="<c:url value="${path}/res/css/jquery-ui.css"/>"/>
+=======
+>>>>>>> 3cfb1ad5ada02fe4bd84ef55304a245d168aba95
 <script src="<c:url value='${path}/res/js/jquery-ui.js'/>" type="text/javascript"></script>
 
 <div id="timeline">

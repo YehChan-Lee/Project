@@ -16,6 +16,9 @@
 body {
 	background-color: #f3f3f3;
 }
+.jq-ry-container{
+	padding: 0;
+}
 
 #list_banner {	
 	overflow: hidden;	
@@ -109,7 +112,9 @@ body {
 	width: 100%;
 	height: 100%;
 }
-
+.shop_comment{
+	font-size: 13px;
+}
 .shop_first, .shop_medium {
 	width: 233px;
 	float: left;

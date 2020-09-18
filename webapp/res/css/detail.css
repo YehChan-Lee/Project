@@ -191,7 +191,7 @@ i_wrap background{
     float:right;
     position:relative;
     width:220px;
-    z-index: 4;
+   /*  z-index: 4; */
 }
 #sidebar_wrap>.sidebar{
     margin-top:20px;
@@ -358,7 +358,7 @@ i.icon.star.large.even.active{background-position:-314px -41px}
 .PoingSlider{position:relative;overflow:hidden;width:100%;height:100%;}
 .PoingSlider>.slice{position:absolute;display:block;}
 
-#import {
+#detail_content {
 	position: relative;
 	width: 730px;
 	border: 0px solid red;
@@ -366,4 +366,210 @@ i.icon.star.large.even.active{background-position:-314px -41px}
 	padding: 0;
 	z-index:5;
 	display: inline-block;
+}
+/* 지도관련 */
+#naverMap{
+	display: none;
+	width: 730px;
+	height: 530px;
+}
+
+/* 예약관련 */
+.shop_title_detail {
+       position: relative !important;
+    left: 80px !important;
+    top: 20px;
+    width: 300px !important;
+    height: 30px !important;
+    border: 1px solid #BCBCBC;
+    border-radius: 10px;
+}
+
+.shop_title_detail_div {
+       position: relative !important;
+    left: 80px !important;
+    top: 17px;
+    width: 100px;
+    color: #444;
+}
+
+.a {
+       position: relative !important;
+    width: 400px !important;
+    left: -40px;
+}
+
+.res_date_detail {
+position: relative !important;
+    top: 57px !important;
+    left: 79px;
+    width: 60px;
+    height: 30px;
+    border: 1px solid #BCBCBC;
+    border-radius: 10px;
+}
+
+.res_date_detail_div {
+   position: relative !important;
+    left: 80px !important;
+    top: 54px;
+    width: 100px;
+    color: #444;
+}
+
+.res_date_detail_div2 {
+       position: relative;
+    top: 31px;
+    left: 152px;
+    width: 20px;
+    color: #444;
+}
+
+.res_date_detail2 {
+   position: relative !important;
+    top: 7px !important;
+    left: 184px;
+    width: 60px;
+    height: 30px;
+    border: 1px solid #BCBCBC;
+    border-radius: 10px;
+}
+
+.res_date_detail_div3 {
+   position: relative;
+    top: -20px;
+    left: 260px;
+    width: 20px;
+    color: #444;
+}
+
+.res_date_detail3 {
+       position: relative !important;
+    top: -44px !important;
+    left: 293px;
+    width: 60px;
+    height: 30px;
+    border: 1px solid #BCBCBC;
+    border-radius: 10px;
+}
+
+.res_date_detail_div4 {
+   position: relative;
+    top: -71px;
+    left: 364px;
+    width: 20px;
+    color: #444;
+}
+
+.res_time_detail_div {
+       position: relative;
+    top: -26px;
+    left: 80px;
+    width: 70px;
+    color: #444;
+}
+
+.res_time_detail {
+       position: relative !important;
+    top: -22px !important;
+    left: 79px;
+    width: 110px;
+    height: 30px;
+    border: 1px solid #BCBCBC;
+    border-radius: 10px;
+}
+
+.res_time_detail_div2 {
+       position: relative;
+    top: -49px;
+    left: 204px;
+    width: 17px;
+    color: #444;
+}
+
+.res_time_detail2 {
+       position: relative !important;
+    top: -73px !important;
+    left: 241px;
+    width: 110px;
+    height: 30px;
+    border: 1px solid #BCBCBC;
+    border-radius: 10px;
+}
+
+.res_time_detail_div3 {
+   position: relative;
+    top: -100px;
+    left: 365px;
+    width: 17px;
+    color: #444;
+}
+
+.res_customer_detail_div {
+       position: relative;
+    top: -58px;
+    left: 80px;
+    width: 70px;
+    color: #444;
+}
+
+.res_customer_detail {
+       position: relative !important;
+    top: -54px !important;
+    left: 80px;
+    width: 271px;
+    height: 30px;
+    border: 1px solid #BCBCBC;
+    border-radius: 10px;
+}
+
+.res_customer_detail_div2 {
+   position: relative;
+    top: -81px;
+    left: 365px;
+    width: 17px;
+    color: #444;
+}
+
+.reservation_submit {
+       position: relative;
+    top: -25px;
+    left: 79px;
+    height: 40px;
+    width: 300px;
+    background: #f05f23;
+    border: 1px;
+    color: white;
+    font-weight: bolder;
+    border-radius: 10px;
+}
+#reservation_btn {
+      position: relative !important;
+    width: 220px !important;
+    height: 45px;
+    left: -15px;
+    font-weight: bolder;
+    background: #f05f23;
+    border: 1px solid;
+}
+
+#reservation_btn:focus {
+   box-shadow: 0 0 0 0.2rem #FFCB00 !important;
+}
+
+#reservation_btn:hover {
+   box-shadow: 0 0 0 0.2rem #FFCB00 !important;
+}
+#modal-body {
+   position: relative !important;
+    flex: 1 1 auto;
+    padding: 1rem;
+    height: 390px;
+    height: 500px;
+}
+.modal-content {
+       width: 401px !important;
+    position: relative !important;
+    left: 50px;
+   
 }

@@ -5,7 +5,58 @@
 	<select id="shopList" resultType="ShopVo">
 		<![CDATA[SELECT * FROM Shop]]> 		
 	</select>
+<<<<<<< HEAD
 	
+=======
+		
+	<select id="shopSearch" resultType="ShopVo" parameterType="hashMap">
+		select * from Shop where 1=1
+		<if test="location != null">
+			and SHOP_LOCATION = #{location}
+		</if>
+
+		<if test="shop_addrArr != null">
+			and
+			<foreach collection="shop_addrArr" item="shop_addr" index="index"
+				separator="or">
+				SHOP_ADDR like '%' || #{shop_addr} || '%'</foreach>
+		</if>
+
+		<if test="food_typeArr != null">
+			and FOOD_TYPE IN
+			<foreach collection="food_typeArr" item="food_type" index="index"
+				open="(" separator="," close=")">
+				#{food_type}
+			</foreach>
+		</if>
+
+		<if test="string_search != null">
+			and(
+			SHOP_TITLE like '%' || #{string_search} || '%'
+			or
+			SHOP_ADDR like '%' || #{string_search} || '%'
+			or
+			SHOP_LOCATION like '%' || #{string_search} || '%'
+			or
+			FOOD_TYPE like '%' || #{string_search} || '%'
+			)
+		</if>
+
+		<if test="solt != null">
+			<if test='solt == "1"'>
+				order by SHOP_SCORE DESC
+			</if>
+			<if test='solt == "2"'>
+				order by SHOP_RESERVE DESC
+			</if>
+			<if test='solt == "3"'>
+				order by SHOP_VIEW DESC
+			</if>
+		</if>
+
+	</select>
+
+>>>>>>> 3cfb1ad5ada02fe4bd84ef55304a245d168aba95
 	<select id="shopOne" parameterType="int" resultType="ShopVo">
 	<!-- 가게정보 -->
 		<![CDATA[
@@ -13,7 +64,18 @@
 		]]>		
 	</select>
 	
+<<<<<<< HEAD
 	<select id="cntShopReserve" resultType="int">
+=======
+	<select id="shopOwnerList" parameterType="String" resultType="ShopVo">
+		<!-- 가게정보 -->
+		<![CDATA[
+		SELECT * FROM Shop WHERE user_email=#{user_email}
+		]]>
+	</select>
+	
+	<select id="cntShopReserve" resultType="ShopVo">
+>>>>>>> 3cfb1ad5ada02fe4bd84ef55304a245d168aba95
 		<![CDATA[
 			SELECT SUM(shop_reserve)
 			FROM Shop

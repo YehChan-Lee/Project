@@ -337,7 +337,7 @@
 	</div>
 
 
-<div class="circle">
+<%-- <div class="circle">
       <span class="circlespan">뭐로 할까요?</span>
       <div class=circlediv>
          <div class="circlediv1">
@@ -407,7 +407,7 @@
 
       </div>
 
-   </div>
+   </div> --%>
 
 	<div class="category">
 		<span class="categoryspan">카테고리별</span>
@@ -415,7 +415,7 @@
 			<div class="categorydiv" onclick ="window.location.href='location';">
 				<img
 					src="<c:url value="${path}/res/image/main_content/popularity.jpg"/>">
-				<div class="categorydiv2">인기 지역별</div>
+				<div class="categorydiv2">주요 지역별</div>
 			</div>
 
 			<div class="categorydiv" onclick ="window.location.href='food';">

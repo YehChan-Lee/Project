@@ -108,9 +108,8 @@ div#wrap {
 #nav_logo {
 	float: left;
 	margin: 10px 20px 0 0;
-	text-align: center;
-	font-family: 'fromdamiM';
-	font-size: 40px;
+	position: relative;
+    left: -15px;
 }
 /* city */
 #nav_city>* {
@@ -1068,7 +1067,7 @@ position: relative;
 	display: none;
 	position: absolute;
 	top: 57px;
-	left: 1323px;
+	left: 1280px;
 	width: 100px;
 	border: 1px solid #b4b4b4;
 	background: #fff;

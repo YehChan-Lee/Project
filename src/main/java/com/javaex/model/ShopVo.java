@@ -17,23 +17,38 @@ public class ShopVo {
 	private String shop_comment;	// 한줄 설명				NULL
 	private int shop_view;			// 조회수					NULL
 	private Double shop_score;		// 별점					NULL
+<<<<<<< HEAD
 	private String shop_phone;		// 가게 전화번호				NULL
 	private String shop_time;		// 가게 운영시간				NOT NULL
 	private String shop_addinfo;	// 가게 부가정보				NULL
+=======
+	private String shop_phone;		// 가게 전화번호			NULL
+	private String shop_time;		// 가게 운영시간			NOT NULL
+	private String shop_addinfo;	// 가게 부가정보			NULL
+>>>>>>> 3cfb1ad5ada02fe4bd84ef55304a245d168aba95
 	private String shop_tb;			// 가게 테이블 종류			NULL
 	private String shop_alcohol;	// 가게 주류				NULL
 	private String shop_car;		// 주차기능				NOT NULL
 	private String shop_close;		// 휴무일					NULL
 	private String shop_photo;		// 가게 사진				NULL
+<<<<<<< HEAD
 	private String shop_review;		// 리뷰 수 					NULL
 
+=======
+	private String shop_review;	
+	
+>>>>>>> 3cfb1ad5ada02fe4bd84ef55304a245d168aba95
 	public ShopVo() {}
 
 	public ShopVo(String shop_id, String user_email, int shop_idx, String shop_title, String shop_addr,
 			String shop_location, String food_type, String shop_tip, String budget, int shop_reserve,
 			String shop_comment, int shop_view, Double shop_score, String shop_phone, String shop_time,
 			String shop_addinfo, String shop_tb, String shop_alcohol, String shop_car, String shop_close,
+<<<<<<< HEAD
 			String shop_photo, String shop_review) {
+=======
+			String shop_photo,String shop_review) {
+>>>>>>> 3cfb1ad5ada02fe4bd84ef55304a245d168aba95
 		this.shop_id = shop_id;
 		this.user_email = user_email;
 		this.shop_idx = shop_idx;
@@ -54,6 +69,31 @@ public class ShopVo {
 		this.shop_alcohol = shop_alcohol;
 		this.shop_car = shop_car;
 		this.shop_close = shop_close;
+<<<<<<< HEAD
+=======
+		this.shop_photo = shop_photo;
+		this.shop_review = shop_review;
+	}
+	
+	public ShopVo(String shop_title,String shop_id, String shop_addr, String shop_location, String food_type, String shop_tip,
+			String budget, String shop_comment, String shop_phone, String[] shop_time, String shop_addinfo,
+			String shop_tb, String shop_alcohol, String shop_car, String shop_close,String shop_photo) {
+		this.shop_title = shop_title;
+		this.shop_addr = shop_addr;
+		this.shop_location = shop_location;
+		this.shop_id = shop_id;
+		this.food_type = food_type;
+		this.shop_tip = shop_tip;
+		this.budget = budget;
+		this.shop_comment = shop_comment;
+		this.shop_phone = shop_phone;
+		this.shop_time = shop_time[0] + ":"+shop_time[1] + "-" + shop_time[2] + ":" + shop_time[3];
+		this.shop_addinfo = shop_addinfo;
+		this.shop_tb = shop_tb;
+		this.shop_alcohol = shop_alcohol;
+		this.shop_car = shop_car;
+		this.shop_close = shop_close;
+>>>>>>> 3cfb1ad5ada02fe4bd84ef55304a245d168aba95
 		this.shop_photo = shop_photo;
 		this.shop_review = shop_review;
 	}
@@ -217,13 +257,24 @@ public class ShopVo {
 	public void setShop_close(String shop_close) {
 		this.shop_close = shop_close;
 	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3cfb1ad5ada02fe4bd84ef55304a245d168aba95
 	public String getShop_photo() {
 		return shop_photo;
 	}
 
 	public void setShop_photo(String shop_photo) {
 		this.shop_photo = shop_photo;
+	}
+	
+	public String getShop_review() {
+		return shop_review;
+	}
+
+	public void setShop_review(String shop_review) {
+		this.shop_review = shop_review;
 	}
 
 	public String getShop_review() {
@@ -242,6 +293,10 @@ public class ShopVo {
 				+ ", shop_comment=" + shop_comment + ", shop_view=" + shop_view + ", shop_score=" + shop_score
 				+ ", shop_phone=" + shop_phone + ", shop_time=" + shop_time + ", shop_addinfo="
 				+ shop_addinfo + ", shop_tb=" + shop_tb + ", shop_alcohol=" + shop_alcohol + ", shop_car=" + shop_car
+<<<<<<< HEAD
 				+ ", shop_close=" + shop_close + ", shop_photo=" + shop_photo + ", shop_review=" + shop_review + "]";
+=======
+				+ ", shop_close=" + shop_close + ", shop_photo=" + shop_photo + "]";
+>>>>>>> 3cfb1ad5ada02fe4bd84ef55304a245d168aba95
 	}
 }

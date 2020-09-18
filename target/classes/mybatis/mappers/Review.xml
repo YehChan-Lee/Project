@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+<<<<<<< HEAD
 <mapper namespace="ReviewVo">
 
+=======
+<mapper namespace="Review">
+
+	<resultMap type="ReviewVo" id="ReviewResult">
+		<id property="review_idx" column="REVIEW_IDX"/>
+		<result property="review_score" column="REVIEW_SCORE"/>
+		<result property="review" column="REVIEW"/>
+		<collection property="ShopUserVo" javaType="ShopUser">
+			<result property="user_email" column="USER_EMAIL"/>
+		</collection>			
+	</resultMap>
+	
+	<select id="reviewList" resultMap="ReviewResult">
+		SELECT R.review_idx,U.user_email, R.review_score,R.review FROM Review R
+	    INNER JOIN ShopUser U
+	        ON U.user_email=R.user_email
+	    INNER JOIN Shop S
+	        ON S.shop_id=R.shop_id
+	    WHERE R.shop_id = '456-45-45678'
+	    ORDER BY R.review_date ASC
+	</select>
+	
+	<!-- <select id="reviewList" resultType="Review">
+		SELECT R.review_idx,U.user_email, R.review_score,R.review FROM Review R
+	    INNER JOIN ShopUser U
+	        ON U.user_email=R.user_email
+	    INNER JOIN Shop S
+	        ON S.shop_id=R.shop_id
+	    WHERE R.shop_id = '456-45-45678'
+	    ORDER BY R.review_date ASC
+	</select> -->
+>>>>>>> 3cfb1ad5ada02fe4bd84ef55304a245d168aba95
 </mapper>

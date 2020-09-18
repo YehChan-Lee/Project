@@ -68,7 +68,10 @@ $("#notice_list>.notice_open").click(function(e){
 	});
 
 });
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3cfb1ad5ada02fe4bd84ef55304a245d168aba95
 </script>
 </body>
 </html>

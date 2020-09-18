@@ -1,5 +1,6 @@
 package com.javaex.model;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -21,6 +22,20 @@ public class ShopDao {
 		return sqlsession.selectList("Shop.shopList");
 	}
 	
+	public List<ShopVo> shopSearch(String location, String[] shop_addrArr, String[] food_typeArr, String string_search, String solt){
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("location", location);
+		map.put("shop_addrArr", shop_addrArr);
+		map.put("food_typeArr", food_typeArr);
+		map.put("string_search", string_search);
+		map.put("solt", solt);
+		return sqlsession.selectList("Shop.shopSearch", map);
+	}
+	
+	public ShopVo shopOwnerList(String user_email){
+		return sqlsession.selectOne("Shop.shopOwnerList", user_email);
+	}
+	
 	public ShopVo shopOne(int shop_idx){
 		return sqlsession.selectOne("Shop.shopOne", shop_idx);
 	}
@@ -33,9 +48,10 @@ public class ShopDao {
 		sqlsession.insert("Shop.shopInsert");
 	}
 	
-	public void updateShop() {
-		sqlsession.update("Shop.shopUpdate");
+	public void updateShop(ShopVo shopVo) {
+		sqlsession.update("Shop.shopUpdate", shopVo);
 	}
+	
 	
 	public void deleteShop() {
 		sqlsession.delete("Shop.shopDelete");

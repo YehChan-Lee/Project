@@ -34,7 +34,7 @@
                 <div class="body">
 
                     <div class="content">
-                        <a href="" class="image lazy" >
+                        <a href="list?food_type=한식" class="image lazy" >
                             <div class="shading"></div> 
                             <div class="center">
                                 <div class="middle">
@@ -47,7 +47,7 @@
                     </div>
                     
                     <div class="content">
-                        <a href="" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475447465c3da8aa96cd2.png">
+                        <a href="list?food_type=일식" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475447465c3da8aa96cd2.png">
                             <div class="shading"></div> 
                             <div class="center">
                                  <div class="middle">
@@ -60,7 +60,7 @@
                     </div>
                     
                     <div class="content">
-                        <a href="" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475445375c3da7d93a73f.png">
+                        <a href="list?food_type=중식" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475445375c3da7d93a73f.png">
                             <div class="shading"></div> 
                             <div class="center">
                                 <div class="middle">
@@ -73,7 +73,7 @@
                     </div>
                     
                     <div class="content">
-                        <a href="" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475448665c3da92297813.png">
+                        <a href="list?food_type=양식" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475448665c3da92297813.png">
                             <div class="shading"></div> 
                             <div class="center">
                                 <div class="middle">
@@ -86,7 +86,7 @@
                     </div>
                     
                     <div class="content">
-                        <a href="" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475450715c3da9efb02e1.png">
+                        <a href="list?food_type=아시아식" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475450715c3da9efb02e1.png">
                             <div class="shading"></div> 
                             <div class="center">
                                  <div class="middle">
@@ -99,7 +99,7 @@
                     </div>
                     
                     <div class="content">
-                        <a href="" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475449435c3da96febbe0.png">
+                        <a href="list?food_type=패스트푸드" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475449435c3da96febbe0.png">
                             <div class="shading"></div> 
                             <div class="center">
                                 <div class="middle">
@@ -112,7 +112,7 @@
                     </div>
                     
                     <div class="content">
-                        <a href="" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475450055c3da9ad3655e.png">
+                        <a href="list?food_type=고깃집" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475450055c3da9ad3655e.png">
                             <div class="shading"></div> 
                             <div class="center">
                                 <div class="middle">
@@ -125,7 +125,7 @@
                     </div>
                     
                     <div class="content">
-                        <a href="" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475446855c3da86dd7f0a.png">
+                        <a href="list?food_type=해산물" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475446855c3da86dd7f0a.png">
                             <div class="shading"></div> 
                             <div class="center">
                                 <div class="middle">
@@ -138,7 +138,7 @@
                     </div>
                     
                     <div class="content">
-                        <a href="" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475446055c3da81dba890.png">
+                        <a href="list?food_type=술집" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475446055c3da81dba890.png">
                             <div class="shading"></div> 
                             <div class="center">
                                 <div class="middle">
@@ -151,13 +151,13 @@
                     </div>
                     
                     <div class="content">
-                        <a href="" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475449575c3da97d347ab.png">
+                        <a href="list?food_type=카페/베이커리" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475449575c3da97d347ab.png">
                             <div class="shading"></div> 
                             <div class="center">
                                 <div class="middle">
-                                    <div class="subtitle">카페 / 베이커리</div>        
+                                    <div class="subtitle">카페/베이커리</div>        
                                     <div id = "bg"></div>            
-                                    <img src="<c:url value='${path}/res/image/cafe.jpg'/>" alt="카페 / 베이커리">
+                                    <img src="<c:url value='${path}/res/image/cafe.jpg'/>" alt="카페/베이커리">
                                 </div>
                             </div>
                         </a>

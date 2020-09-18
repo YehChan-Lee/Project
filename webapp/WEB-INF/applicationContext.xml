@@ -30,14 +30,12 @@
 	<!-- oracle datasource -->
 	<bean id="oracleDatasource"
 		class="oracle.jdbc.pool.OracleDataSource">
-		<property name="URL"
-			value="jdbc:oracle:thin:@14.53.8.39:1525:XE" />
+		<property name="URL" value="jdbc:oracle:thin:@14.53.8.39:1525:XE" />
 		<property name="user" value="BP" />
 		<property name="password" value="bob1234" />
 		<property name="connectionCachingEnabled" value="true" />
 		<qualifier value="BOB" />
 	</bean>
-
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="oracleDatasource" />

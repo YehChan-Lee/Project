@@ -122,7 +122,7 @@
 	width: 330px;
 	height: 200px;
 	border-radius: 10px;
-	border: 1px solid black;
+	/* border: 1px solid black; */
 }
 
 .review {
@@ -159,7 +159,7 @@
 
 .reviewdiv2 {
 	position: relative;
-	border: 1px solid black;
+	/* border: 1px solid gray; */
 	width: 330px;
 	height: 150px;
 	border-radius: 10px 10px 0px 0px;
@@ -183,10 +183,12 @@
 }
 
 .reviewdiv3 {
-	border: 1px solid black;
+	/* border: 1px solid gray; */
 	width: 330px;
 	height: 250px;
 	border-radius: 0px 0px 10px 10px;
+	background-color: white;
+    padding-top: 10px;
 }
 
 .profile {
@@ -330,17 +332,19 @@
 
 .epicureandiv2 {
 	position: relative;
-	border: 1px solid black;
+	/* border: 1px solid gray; */
 	width: 330px;
 	height: 250px;
 	border-radius: 10px 10px 0px 0px;
 }
 
 .epicureandiv3 {
-	border: 1px solid black;
+	/* border: 1px solid gray; */
 	width: 330px;
 	height: 150px;
 	border-radius: 0px 0px 10px 10px;
+	background-color: white;
+    padding-top: 10px;
 }
 
 .epicureandiv2img {
@@ -443,7 +447,7 @@
 .circleimg {
     position: relative;
     border-radius: 125px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     width: 250px;
     height: 250px;
 } 
