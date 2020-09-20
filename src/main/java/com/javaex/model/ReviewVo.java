@@ -4,6 +4,7 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
+@Component
 public class ReviewVo {
 	private int review_idx;			// 리뷰 인덱스(PK)		NOT NULL
 	private String shop_id;			// 사업자 번호(FK)		NOT NULL

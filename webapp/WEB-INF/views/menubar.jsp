@@ -130,7 +130,7 @@
 			console.log(cntA);
 		});
 		// 세부음식 팝업 end
-		$(".confirm_btn").click(function(e) {
+ 		$(".confirm_btn").click(function(e) {
 			$("#nav_city>ul").hide();
 			$("#nav_shading.shading_bg").hide();
 			$("#nav_area>.box").hide();
@@ -142,53 +142,58 @@
 			$(".filters_popup").hide();
 			$('#nav_wrap').css('z-index', 100);
 			e.stopPropagation();
-		});
-
+		});	 
+		
 		$(".section_place").click(function(e) {
-			$(".filters_popup").hide();
 			if ($("#nav_area").attr("class").indexOf("focus") == -1) {
 				$("#nav_city>ul").hide();
+				$("#nav_genre>.box").hide();
+				$(".filters_popup").hide();
+				$('#nav_wrap').css('z-index', 100);
+				
 				$('#nav_area>.box').show();
 				// focus주고 형제들은 focus지우기
 				$("#nav_area").addClass('focus').siblings().removeClass('focus');
+				
+				$(".section_add_info").addClass('is-open').siblings().removeClass('is-open');
+				
 				// 배경 어둡게
-				$("#nav_shading.shading_bg").show();
+				$("#nav_shading.shading_bg").show();	
 			} else {
 				$("#nav_btn").siblings().removeClass('focus');
 			}
 			e.stopPropagation();
 		});
-
+		
 		$(".section_genre").click(function(e) {
-			$(".filters_popup").hide();
 			if ($("#nav_genre").attr("class").indexOf("focus") == -1) {
 				$("#nav_city>ul").hide();
+				$("#nav_area>.box").hide();
+				$(".filters_popup").hide();
+				$('#nav_wrap').css('z-index', 100);
+				
 				$('#nav_genre>.box').show();
 				// focus주고 형제들은 focus지우기
 				$("#nav_genre").addClass('focus').siblings().removeClass('focus');
+				
+				$(".section_add_info").addClass('is-open').siblings().removeClass('is-open');
+				
 				// 배경 어둡게
 				$("#nav_shading.shading_bg").show();
 			} else {
 				$("#nav_btn").siblings().removeClass('focus');
 			}
-			e.stopPropagation();
-		});
-		// 세부음식 선택
-		$(".section_detail_genre").click(function(e) {
-			$(".filters_popup").hide();
-			$('.section_detail_genre>.filters_popup').show();
-			$('#nav_wrap').css('z-index', 30);
-			// focus주고 형제들은 focus지우기
-			$(this).addClass('is-open').siblings().removeClass('is-open');
-			// 배경 어둡게
-			$(".shading_bg").show();
-			e.stopPropagation();
-		}).on('click', '.filters', function(e) {
 			e.stopPropagation();
 		});
 
 		$(".section_price").click(function(e) {
 			$(".filters_popup").hide();
+			
+			$("#nav_area>.box").hide();
+			$("#nav_genre>.box").hide();
+			$("#nav_search>#nav_recommend").hide();
+			$("#popup_body").hide();
+			
 			$('.section_price>.filters_popup').show();
 			$('#nav_wrap').css('z-index', 30);
 			// focus주고 형제들은 focus지우기
@@ -202,6 +207,12 @@
 
 		$(".section_add_info").click(function(e) {
 			$(".filters_popup").hide();
+			
+			$("#nav_area>.box").hide();
+			$("#nav_genre>.box").hide();
+			$("#nav_search>#nav_recommend").hide();
+			$("#popup_body").hide();
+			
 			$('.section_add_info>.filters_popup').show();
 			$('#nav_wrap').css('z-index', 30);
 			// focus주고 형제들은 focus지우기
@@ -215,6 +226,12 @@
 
 		$(".section_table").click(function(e) {
 			$(".filters_popup").hide();
+			
+			$("#nav_area>.box").hide();
+			$("#nav_genre>.box").hide();
+			$("#nav_search>#nav_recommend").hide();
+			$("#popup_body").hide();
+			
 			$('.section_table>.filters_popup').show();
 			$('#nav_wrap').css('z-index', 30);
 			// focus주고 형제들은 focus지우기
@@ -228,6 +245,12 @@
 
 		$(".section_liquor").click(function(e) {
 			$(".filters_popup").hide();
+			
+			$("#nav_area>.box").hide();
+			$("#nav_genre>.box").hide();
+			$("#nav_search>#nav_recommend").hide();
+			$("#popup_body").hide();
+			
 			$('.section_liquor>.filters_popup').show();
 			$('#nav_wrap').css('z-index', 30);
 			// focus주고 형제들은 focus지우기
@@ -483,7 +506,7 @@
 	<%-- <%@include file="" %> --%>
 	<!-- 우측 메뉴바 -->
 	<!-- 필터 사이드 바 -->
-	<form id="filter_sidebar" action="" method="get">
+	<form id="filter_sidebar" action="list" method="get">
 		<div class="filters">
 			<!-- 필터 타이틀 -->
 			<div class="section_title">필터로 더 자세하게 검색</div>
@@ -783,7 +806,7 @@
 			</div>
 		</div>
 		<!-- 필터 레스토랑 검색 버튼 -->
-		<button type="button" class="serch_btn">레스토랑 검색</button>
+		<input type="submit" class="serch_btn" value="레스토랑 검색">
 	</form>
 </body>
 </html>

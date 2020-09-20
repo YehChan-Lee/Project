@@ -16,8 +16,5 @@ public class ReviewDao {
 	
 	public ReviewDao(SqlSession sqlsession) {
 		this.sqlsession = sqlsession;
-	}
-	public List<ReviewVo> reviewList(){
-		return sqlsession.selectList("Review.reviewList");
-	}
+	}	
 }

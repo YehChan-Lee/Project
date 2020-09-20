@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.javaex.model.AllDao;
-import com.javaex.model.NewsDao;
 import com.javaex.model.ReservationDao;
 import com.javaex.model.ShopDao;
 import com.javaex.model.ShopUserDao;
@@ -125,6 +124,14 @@ public class JoinController {
 		mav.addObject("bpList", alldao.bpList(user_email));
 		mav.addObject("getUser", userDao.getUser(user_email));
 		mav.setViewName("mypage/mypage_notice3");
+		return mav;
+	}
+	@RequestMapping("/hello")
+	public ModelAndView hello(ModelAndView mav,HttpSession session) {
+		System.out.println("/BabPool/hello");
+		String user_email = (String)session.getAttribute("sessionID");
+		mav.addObject("reviewList",alldao.shopreviewList());
+		mav.setViewName("detail/detail_review");
 		return mav;
 	}
 }

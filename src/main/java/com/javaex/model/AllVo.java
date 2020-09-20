@@ -1,10 +1,13 @@
 package com.javaex.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class AllVo {
+	private ReviewVo ReviewVo;
 	private ReservationVo Reservation;
 	private ShopVo ShopVo;
 	private ShopUserVo ShopUser;
-	private ReviewVo ReviewVo;
 	private MenuVO menu;
 	private ShopDibsVo Dibs;
 	private NewsVo NewsVo;

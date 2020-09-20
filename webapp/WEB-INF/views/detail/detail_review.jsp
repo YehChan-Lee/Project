@@ -1,3 +1,5 @@
+<%@page import="com.javaex.model.AllVo"%>
+<%@page import="java.util.List"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -19,6 +21,10 @@
 <script src="<c:url value='${path}/res/js/jquery.magnific-popup.js'/>"></script>
 </head>
 <body>
+<%
+	List<AllVo> list = (List<AllVo>)request.getAttribute("reviewList");
+		AllVo vo = list.get(0);
+%>
 	<div id="review_wrap">
 		<form action="review_upload" method="post" id="form">
 			<div id="review_write_wrap">
@@ -56,7 +62,7 @@
 				<a class="author" href=""> <span class="thumbnail"
 					style="background-image: url(<c:url value="${path}/res/image/user2.png"/>);"></span>
 					<div class="info">
-						<p class="name">${review.user_email}</p>
+						<p class="name"><%=vo.getReviewVo().getUser_email()%></p>
 						<p class="stat">0 리뷰</p>
 					</div>
 				</a>
@@ -66,7 +72,7 @@
 					<div class = "grade_score"></div>
 					<div class="grade_comment"></div>
 				</div>
-				<div class="text">${review.review}</div>
+				<div class="text">리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 </div>
 				<div class="photo">					
 					<a href="http://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_b.jpg" title="The Cleaner"><img src="http://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_s.jpg" width="75" height="75"></a>
 					<a href="http://farm9.staticflickr.com/8382/8558295631_0f56c1284f_b.jpg" title="Winter Dance"><img src="http://farm9.staticflickr.com/8382/8558295631_0f56c1284f_s.jpg" width="75" height="75"></a>

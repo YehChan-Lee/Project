@@ -70,4 +70,13 @@ public class AllDao {
 		 return sqlSession.selectList("All.bpList", user_email); 
 	 }
 	 
+	 public List<AllVo> shopreviewList(){
+		 List<AllVo> allvo = sqlSession.selectList("All.shopreviewList");
+			System.out.println(allvo.size());
+			for (int i = 0; i < allvo.size(); i++) {
+				System.out.println(allvo.get(i));
+			}
+		return sqlSession.selectList("All.shopreviewList");
+	}
+	 
 }

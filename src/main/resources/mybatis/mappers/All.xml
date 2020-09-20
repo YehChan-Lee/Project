@@ -89,6 +89,13 @@
 		<collection property="NewsVo" resultMap="NewsResult"></collection>
 	</resultMap>
 	
+	<resultMap type="All" id="ShopReview">
+		<!-- <id property="ReviewVo.review_idx" column="REVIEW_IDX"/> -->		
+		<collection property="ShopVo" resultMap="ShopResult"></collection>
+		<collection property="ShopUser" resultMap="ShopUserResult"></collection>
+		<collection property="ReviewVo" resultMap="ReviewResult"></collection>
+	</resultMap>
+	
 	<select id="reserveList" resultMap="AllResult">
 		select * from reservation R
 			inner join shopUser U
@@ -140,6 +147,16 @@
     		inner join ShopUser U
         		on N.user_email=U.user_email
     		where N.is_admin='1'
+	</select>
+	
+	<select id="shopreviewList" resultMap="ShopReview">
+		SELECT R.review_idx,U.user_email, R.review_score,R.review FROM Review R
+	    INNER JOIN ShopUser U
+	        ON U.user_email=R.user_email
+	    INNER JOIN Shop S
+	        ON S.shop_id=R.shop_id
+	    WHERE R.shop_id = '456-45-45678'
+	    ORDER BY R.review_date ASC
 	</select>
 	
 </mapper>

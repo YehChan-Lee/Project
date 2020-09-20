@@ -186,13 +186,5 @@ public class ListController {
 		mav.setViewName("buisnessmypage/buisness_mypage_registration2");
 		return mav;
 	}
-	
-	@RequestMapping("/hello")
-	public ModelAndView hello(ModelAndView mav) {
-		System.out.println("/BabPool/hello");
-		mav.addObject("reviewList",reviewdao.reviewList() );
-		mav.setViewName("detail/detail_review");
-		return mav;
-	}
 
 }
