@@ -90,7 +90,7 @@
 	</resultMap>
 	
 	<resultMap type="All" id="ShopReview">
-		<!-- <id property="ReviewVo.review_idx" column="REVIEW_IDX"/> -->		
+		<id property="ReviewVo.review_idx" column="REVIEW_IDX"/>		
 		<collection property="ShopVo" resultMap="ShopResult"></collection>
 		<collection property="ShopUser" resultMap="ShopUserResult"></collection>
 		<collection property="ReviewVo" resultMap="ReviewResult"></collection>

@@ -1,3 +1,4 @@
+<%@page import="com.javaex.model.tmp.TestVo"%>
 <%@page import="com.javaex.model.AllVo"%>
 <%@page import="java.util.List"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
@@ -23,7 +24,6 @@
 <body>
 <%
 	List<AllVo> list = (List<AllVo>)request.getAttribute("reviewList");
-		AllVo vo = list.get(0);
 %>
 	<div id="review_wrap">
 		<form action="review_upload" method="post" id="form">
@@ -62,7 +62,7 @@
 				<a class="author" href=""> <span class="thumbnail"
 					style="background-image: url(<c:url value="${path}/res/image/user2.png"/>);"></span>
 					<div class="info">
-						<p class="name"><%=vo.getReviewVo().getUser_email()%></p>
+						<p class="name">${review.shopUser.user_email}</p>
 						<p class="stat">0 리뷰</p>
 					</div>
 				</a>
