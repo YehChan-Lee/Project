@@ -15,7 +15,7 @@
 		<div>
 			<span>검색 키워드</span> <select name="com_search" id="com_search">
 				<option>사업자 번호</option>
-				<option>아이디</option>
+				<option>대표자 명/option>
 				<option>이메일</option>
 				<option>가게 이름</option>
 				<option>가게 전화번호</option>
@@ -36,7 +36,7 @@
 						<th></th>
 						<th>NO.</th>
 						<th>사업자 번호</th>
-						<th>아이디</th>
+						<th>대표자 명</th>
 						<th>전화번호</th>
 						<th>이메일</th>
 						<th>가게 이름</th>

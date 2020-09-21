@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="<c:url value="${path}/res/css/jquery-ui.css"/>"/>
 </head>
 <body>
-<%@include file="../top_bar.jsp" %>
+<%@include file="../top_bar.jsp" %>n
 <!-- 마이페이지 -->
 
 <%

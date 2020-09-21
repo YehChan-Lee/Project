@@ -121,7 +121,11 @@ transform
 
 
 
+
+
 :translate
+
+
 
 
 
@@ -150,8 +154,12 @@ rotate
 
 
 
+
+
 (360
 deg
+
+
 
 
 
@@ -210,7 +218,7 @@ body, html {
 	display: block;
 	background-size: contain;
 	background-repeat: no-repeat;
-	margin: 5px 0 0 20px;
+	margin: 5px 0 0 30px;
 }
 
 #admin_scollbar>div>div {
@@ -260,7 +268,9 @@ body, html {
 .sc_btn>button:hover {
 	background: #ff8800;
 }
-
+#admin_scollbar {
+	height: 40px;
+}
 #admin_scollbar>div>div>div.sc_txt>div {
 	font-weight: bold;
 	color: red;
@@ -579,7 +589,9 @@ hr {
 button {
 	cursor: pointer;
 }
-
+#sec_admin_numerical1 > div.numer1_sear > button {
+	font-size: 11px;
+}
 .sec_home2 {
 	display: flex;
 	margin-top: 50px;
@@ -1265,6 +1277,7 @@ div.paging_com2>div:nth-child(1) {
 }
 
 #sec_admin_resSitu>div:nth-child(3)>span {
+	font-weight: bold;
 	margin-left: 10px;
 	padding-top: 3px;
 }
@@ -1371,6 +1384,10 @@ div.paging_com2>div:nth-child(1) {
 	margin: 10px;
 }
 
+.num1_tb_info {
+	margin-top: 30px;
+}
+
 #sec_admin_companyLi>div.paging_resSitu>div:nth-child(1) {
 	position: relative;
 	right: 390px;
@@ -1413,11 +1430,11 @@ div.paging_com2>div:nth-child(1) {
 	display: flex;
 }
 
-#sec_admin_numerical1>div:nth-child(1) > div {
+#sec_admin_numerical1>div:nth-child(1)>div {
 	cursor: pointer;
 }
 
-#sec_admin_numerical1>div>div {
+#sec_admin_numerical1>div:nth-child(1)>div {
 	padding: 6px 20px;
 	font-weight: bold;
 	border: 1px solid #c2c2c2;
@@ -1432,39 +1449,128 @@ div.paging_com2>div:nth-child(1) {
 	color: #3876c1;
 	border-bottom: 0;
 }
-.numerical1_cont > h4 {
+
+.numerical1_cont>h4,
+.numerical2_cont>h4,
+.numerical3_cont>h4 {
 	margin-top: 30px;
 	padding: 10px;
 	display: flex;
 	color: #747474;
 }
-.numerical1_cont > h4 > i {
+
+.numerical1_cont>h4>i, 
+.numerical2_cont>h4>i, 
+.numerical3_cont>h4>i {
 	margin-right: 5px;
 	padding: 3px;
 	color: white;
-    border: 1px solid #29568d;
-    background: #3876c1;
-    border-radius: 20%;
+	border: 1px solid #29568d;
+	background: #3876c1;
+	border-radius: 20%;
 }
-.numerical1_cont > h4 > p {
-    padding-top: 4px;
+
+.numerical1_cont>h4>p,
+.numerical2_cont>h4>p,
+.numerical3_cont>h4>p {
+	padding-top: 4px;
 }
-#num1_chart > div:nth-child(1) {
+
+#num1_chart>div:nth-child(1) {
 	border: 0;
 }
-#sec_admin_numerical1 > div.numer1_sear {
+
+#sec_admin_numerical1>div.numer1_sear {
 	text-align: end;
 }
-.num1_tb_info {
-	margin-top: 30px;
-} 
-.num1_tb_info > h4 {
-	margin-top: 30px;
-    padding: 10px;
-    display: flex;
-    color: #747474;
+
+#sec_admin_numerical2>div:nth-child(1) {
+	display: flex;
 }
-#sec_admin_numerical1 > div.numer1_sear > button {
+
+#sec_admin_numerical2>div:nth-child(1)>div {
+	cursor: pointer;
+}
+
+#sec_admin_numerical2>div:nth-child(1)>div {
+	padding: 6px 20px;
+	font-weight: bold;
+	border: 1px solid #c2c2c2;
+	margin-right: 3px;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	background: #e5e5e5;
+}
+
+#sec_admin_numerical2>div>div:nth-child(2) {
+	background: white;
+	color: #3876c1;
+	border-bottom: 0;
+}
+
+.numerical2_cont>h4 {
+	margin-top: 30px;
+	padding: 10px;
+	display: flex;
+	color: #747474;
+}
+
+.numerical2_cont>h4>i {
+	margin-right: 5px;
+	padding: 3px;
+	color: white;
+	border: 1px solid #29568d;
+	background: #3876c1;
+	border-radius: 20%;
+}
+
+.numerical2_cont>h4>p {
+	padding-top: 4px;
+}
+
+#sec_admin_numerical2>div.numer2_sear {
+	text-align: end;
+}
+
+#sec_admin_numerical2>div.numer2_sear>button {
 	font-size: 11px;
 }
 
+#num2_chart>div:nth-child(1) {
+	border: 0;
+}
+
+#sec_admin_numerical3>div:nth-child(1)>div {
+	padding: 6px 20px;
+	font-weight: bold;
+	border: 1px solid #c2c2c2;
+	margin-right: 3px;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	background: #e5e5e5;
+}
+
+#sec_admin_numerical3>div>div:nth-child(3) {
+	background: white;
+	color: #3876c1;
+	border-bottom: 0;
+}
+
+#sec_admin_numerical3>div:nth-child(1) {
+	display: flex;
+}
+
+.numer3_sear {
+	text-align: end;
+}
+#sec_admin_numerical3 > div.numer3_sear > button {
+	font-size: 11px;
+}
+#num3_chart {
+	margin-top: 30px;
+	position: relative;
+	left: 50px;
+}
+#sec_admin_numerical3 > div {
+	cursor:pointer;
+}

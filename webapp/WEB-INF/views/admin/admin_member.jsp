@@ -6,11 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="http://code.jquery.com/jquery.js"></script>
-<script src="<c:url value='${path}/res/js/jquery-ui1.js'/>"
-	type="text/javascript"></script>
-<script src="<c:url value='${path}/res/js/datepicker-ko.js'/>"
-	type="text/javascript"></script>
 <link rel="stylesheet"
 	href="<c:url value="${path}/res/css/jquery-ui1.css"/>" />
 </head>
