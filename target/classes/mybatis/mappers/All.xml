@@ -150,13 +150,13 @@
 	</select>
 	
 	<select id="shopreviewList" resultMap="ShopReview">
-		SELECT R.review_idx,U.user_email, R.review_score,R.review FROM Review R
+		SELECT R.review_idx,U.user_email,U.user_name,U.user_idx, R.review_score,R.review,R.review_photo FROM Review R
 	    INNER JOIN ShopUser U
 	        ON U.user_email=R.user_email
 	    INNER JOIN Shop S
 	        ON S.shop_id=R.shop_id
-	    WHERE R.shop_id = '456-45-45678'
-	    ORDER BY R.review_date ASC
+	    WHERE R.shop_id = #{shopId}
+	    ORDER BY R.review_date DESC
 	</select>
 	
 </mapper>
