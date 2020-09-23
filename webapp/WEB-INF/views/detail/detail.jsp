@@ -1,3 +1,5 @@
+<%@page import="com.javaex.model.ReservationVo"%>
+<%@page import="com.javaex.model.ShopUserVo"%>
 <%@page import="com.javaex.model.ShopVo"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -134,9 +136,13 @@
 				<div class="container">
 
 					<!-- Button to Open the Modal -->
+					<%if (session.getAttribute("sessionID") == null) { %>
+					<button type="button" class="btn btn-primary" onclick="loginPopUp()"
+					id="reservation_btn">예약 하기</button>
+						<% } else{ %>
 					<button type="button" class="btn btn-primary" data-toggle="modal"
-						data-target="#myModal" id="reservation_btn">예약 하기</button>
-
+					data-target="#myModal" id="reservation_btn">예약 하기</button>
+					<% } %>
 					<!-- The Modal -->
 					<div class="modal fade" id="myModal">
 						<div class="modal-dialog modal-dialog-centered">
@@ -150,11 +156,11 @@
 
 								<!-- Modal body -->
 								<div class="modal-body" id="modal-body">
-									<form action="" method="" class="a">
+									<form action="reservation" method="post" class="a">
 										<div class="shop_title_detail_div">가게 이름</div>
-										<input type="text" class="shop_title_detail" name="shop_title">
+										<input type="text" class="shop_title_detail" name="shop_title" value="<%=shopvo.getShop_title()%>" readonly="readonly">
 										<div class="res_date_detail_div">예약 날짜</div>
-										<select class="res_date_detail" name="res_date">
+										<select class="res_date_detail" name="res_year">
 											<option value="2020">2020
 											<option value="2021">2021
 											<option value="2022">2022
@@ -168,32 +174,31 @@
 											<option value="2030">2030
 										</select>
 										<div class="res_date_detail_div2">년</div>
-										<select class="res_date_detail2" name="res_date">
-											<option value="1">1
-											<option value="2">2
-											<option value="3">3
-											<option value="4">4
-											<option value="5">5
-											<option value="6">6
-											<option value="7">7
-											<option value="8">8
-											<option value="9">9
+										<select class="res_date_detail2" name="res_month">
+											<option value="01">1
+											<option value="02">2
+											<option value="03">3
+											<option value="04">4
+											<option value="05">5
+											<option value="06">6
+											<option value="07">7
+											<option value="08">8
+											<option value="09">9
 											<option value="10">10
 											<option value="11">11
 											<option value="12">12
 										</select>
 										<div class="res_date_detail_div3">월</div>
 										<select class="res_date_detail3" name="res_date">
-											<option value="0">0
-											<option value="1">1
-											<option value="2">2
-											<option value="3">3
-											<option value="4">4
-											<option value="5">5
-											<option value="6">6
-											<option value="7">7
-											<option value="8">8
-											<option value="9">9
+											<option value="01">1
+											<option value="02">2
+											<option value="03">3
+											<option value="04">4
+											<option value="05">5
+											<option value="06">6
+											<option value="07">7
+											<option value="08">8
+											<option value="09">9
 											<option value="10">10
 											<option value="11">11
 											<option value="12">12
@@ -219,17 +224,17 @@
 										</select>
 										<div class="res_date_detail_div4">일</div>
 										<div class="res_time_detail_div">예약 시간</div>
-										<select class="res_time_detail" name="res_date">
-											<option value="0">0
-											<option value="1">1
-											<option value="2">2
-											<option value="3">3
-											<option value="4">4
-											<option value="5">5
-											<option value="6">6
-											<option value="7">7
-											<option value="8">8
-											<option value="9">9
+										<select class="res_time_detail" name="res_hour">
+											<option value="00">0
+											<option value="01">1
+											<option value="02">2
+											<option value="03">3
+											<option value="04">4
+											<option value="05">5
+											<option value="06">6
+											<option value="07">7
+											<option value="08">8
+											<option value="09">9
 											<option value="10">10
 											<option value="11">11
 											<option value="12">12
@@ -246,7 +251,7 @@
 											<option value="23">23
 										</select>
 										<div class="res_time_detail_div2">시</div>
-										<select class="res_time_detail2" name="res_date">
+										<select class="res_time_detail2" name="res_min">
 											<option value="00">00
 											<option value="10">10
 											<option value="20">20
@@ -256,9 +261,10 @@
 										</select>
 										<div class="res_time_detail_div3">분</div>
 										<div class="res_customer_detail_div">예약 인원</div>
-										<input type="text" class="res_customer_detail"
-											name="res_customer">
+										<input type="text" class="res_customer_detail" name="res_customer">
 										<div class="res_customer_detail_div2">명</div>
+										<div class="rev_phone_div">예약자 핸드폰 번호</div>
+										<input type="text" class="rev_phone" name="rev_phone">
 										<input type="submit" value="예약하기" class="reservation_submit">
 									</form>
 								</div>
@@ -292,7 +298,7 @@
 							</div></li>
 						<li class="item"><a class="i_wrap" href="/timeline/336595">
 								<i class="image border_radius circle"
-								style="background-image: url(../pics/detail/lee.jpg)"></i>
+								style="background-image: url(<c:url value="${path}/res/image/lee.jpg"/>)"></i>
 						</a>
 							<div class="detail">
 								<div class="name">
@@ -305,7 +311,7 @@
 							</div></li>
 						<li class="item"><a class="i_wrap" href="/timeline/611090">
 								<i class="image border_radius circle"
-								style="background-image: url(../pics/detail/lee.jpg)"></i>
+								style="background-image: url(<c:url value="${path}/res/image/lee.jpg"/>)"></i>
 						</a>
 							<div class="detail">
 								<div class="name">
@@ -318,7 +324,7 @@
 							</div></li>
 						<li class="item"><a class="i_wrap" href="/timeline/537740">
 								<i class="image border_radius circle"
-								style="background-image: url(../pics/detail/lee.jpg)"></i>
+								style="background-image: url(<c:url value="${path}/res/image/lee.jpg"/>)"></i>
 						</a>
 							<div class="detail">
 								<div class="name">
@@ -331,7 +337,7 @@
 							</div></li>
 						<li class="item"><a class="i_wrap" href="/timeline/599857">
 								<i class="image border_radius circle"
-								style="background-image: url(../pics/detail/lee.jpg)"></i>
+								style="background-image: url(<c:url value="${path}/res/image/lee.jpg"/>)"></i>
 						</a>
 							<div class="detail">
 								<div class="name">
@@ -393,8 +399,6 @@
         	
             $("#content > ul > li > span").mouseover(function(){
             	$(this).css('cursor','pointer');
-            	console.log($(this).parent());
-            	console.dir($(this).parent());
             });
             
             
@@ -486,8 +490,7 @@
                      return alert('지도데이터를 불러올수 없습니다!')
                  }
 
-                 var result = response.result,
-                     items = result.items; 
+                 var result = response.result, items = result.items;
                  if(items.length == 0){
                     $("#map").click(function () {
                        alert('지도데이터를 불러올수 없습니다!')
@@ -513,7 +516,58 @@
              });
 
                  //지도관련 끝
-	});
+        
+		$('.reservation_submit').click(function(e) {
+			e.preventDefault();
+			var action = $('.a').attr("action");
+			
+			var form_data = {
+				
+					shop_id : "${shopOne.shop_id}",
+					res_customer : $(".res_customer_detail").val(),
+					shop_title : $(".shop_title_detail").val(),
+					rev_phone : $(".rev_phone").val(),
+					res_date : $(".res_date_detail").val() + "-" + $(".res_date_detail2").val() + "-" + 
+					$(".res_date_detail3").val() +" "+  $(".res_time_detail").val() + ":" + $(".res_time_detail2").val()
+					
+				};
+		
+			$.ajax({
+				type : "POST",
+				url : action,
+				data : form_data,
+				success : function(data) {
+				
+				},
+				error : function() {
+					
+				}
+		
+			});
+		});      
+}); 
+        //로그인 팝업 관련
+		function loginPopUp(){
+			$("#join_body").hide();
+			$("#join2_body").hide();
+			$("#idsearch_body").hide();
+			$("#passwordsearch_body").hide();
+
+			$("#login_body").show();
+			$("#popup_body").show();
+			$("#naverIdLogin").show();
+			$("#nav_shading.shading_bg").show();
+
+			$("#nav_btn").siblings().removeClass('focus');
+
+			$('#popup_body').css('width', 404 + 'px');
+			$('#popup_body').css('height', 554 + 'px');
+
+			$("#naverIdLogin").css('top', 0);
+
+			$('.popup_close').css('top', -90 + 'px');
+			$('.popup_close').css('left', 80 + '%'); 
+	    }
     </script>
  
 </body>

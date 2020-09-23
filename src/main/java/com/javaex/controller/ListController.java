@@ -2,6 +2,7 @@ package com.javaex.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.List;
@@ -22,6 +23,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.javaex.model.NoticeDao;
+import com.javaex.model.ReservationDao;
+import com.javaex.model.ReservationVo;
 import com.javaex.model.ReviewDao;
 import com.javaex.model.ReviewVo;
 import com.javaex.model.ShopDao;
@@ -43,6 +46,9 @@ public class ListController {
 
 	@Autowired
 	ReviewDao reviewdao;
+
+	@Autowired
+	ReservationDao resDao;
 	
 	String url = "D:\\LYC\\SpringGit\\Project\\webapp\\serverImg\\";
 	
@@ -96,14 +102,32 @@ public class ListController {
 		mav.addObject("shopList",
 				dao.shopSearch(request.getParameter("location"), request.getParameterValues("shop_addr"),
 						request.getParameterValues("food_type"), request.getParameter("string_search"),
-						request.getParameter("solt")));
+						request.getParameter("solt"), request.getParameter("price_list"),
+						request.getParameterValues("add_info"), request.getParameterValues("table_type"),
+						request.getParameterValues("alcohol_type"), request.getParameter("parking_available")));
 		mav.setViewName("list");
 		return mav;
 	}
 
 	@RequestMapping("/detail")
-	public ModelAndView detail(ModelAndView mav, HttpServletRequest request) {
+	public ModelAndView detail(ModelAndView mav, HttpServletRequest request, HttpSession session) {
 		System.out.println("/BabPool/detail");
+		String user_email = (String)session.getAttribute("sessionID");
+		String shop_idx = request.getParameter("shopidx");
+			if(user_email != null){
+				userDao.update_recentShop_shopIdx(user_email, shop_idx);
+				ShopUserVo user;
+				user = userDao.loginCheck(user_email);
+				if(user.getRecent_shop() != null){
+					ShopVo recent_shopList = dao.getAll_shopIdx(user.getRecent_shop());
+					session.setAttribute("shop_title", recent_shopList.getShop_title());
+					session.setAttribute("food_type", recent_shopList.getFood_type());
+					session.setAttribute("shop_addr", recent_shopList.getShop_addr());
+					session.setAttribute("shop_idx", recent_shopList.getShop_idx());
+				}
+			}
+		int shopId = Integer.parseInt(shop_idx);
+		mav.addObject("shopOne", dao.shopOne(shopId));
 		int shopIdx = Integer.parseInt(request.getParameter("shopidx"));
 		mav.addObject("shopOne", dao.shopOne(shopIdx));
 		mav.setViewName("detail/detail");
@@ -125,6 +149,17 @@ public class ListController {
 				response.getWriter().write("success");
 				session.setAttribute("is_owner", user.getIs_owner());
 				session.setAttribute("sessionID", user_email);
+				if(user.getRecent_shop() != null){
+					ShopVo recent_shopList = dao.getAll_shopIdx(user.getRecent_shop());
+					session.setAttribute("shop_title", recent_shopList.getShop_title());
+					session.setAttribute("food_type", recent_shopList.getFood_type());
+					session.setAttribute("shop_addr", recent_shopList.getShop_addr());
+					session.setAttribute("shop_idx", recent_shopList.getShop_idx());
+				}
+				
+				if (user.getIs_owner().equals("1")) {
+					session.setAttribute("shop_id", dao.getShopId(user_email));
+				}
 			} else {
 				response.getWriter().write("fail");
 			}
@@ -139,7 +174,7 @@ public class ListController {
 	@RequestMapping("/logout")
 	public ModelAndView logout(ModelAndView mav, HttpSession session) {
 		System.out.println("/BabPool/logout");
-		session.setAttribute("sessionID", null);
+		session.invalidate();
 		mav.setViewName("main");
 		return mav;
 	}
@@ -190,16 +225,6 @@ public class ListController {
 		mav.setViewName("detail/detail_info");
 		return mav;
 	}
-
-//	@RequestMapping("/detail2/photo.do")
-//	public ModelAndView detail_photo(ModelAndView mav,HttpServletRequest request) {
-//		System.out.println("/BabPool/detail_photo");
-//		int shop_idx = Integer.parseInt(request.getParameter("shopidx"));
-//		mav.addObject("shopOne",shopdao.shopOne(shop_idx));
-//		mav.setViewName("detail_photo");
-//		return mav;
-//	}
-
 	@RequestMapping("/buisness_update")
 	public ModelAndView buisnessmypage_update(ModelAndView mav, HttpServletRequest req) {
 		String shop_title = req.getParameter("shop_title");
@@ -212,12 +237,46 @@ public class ListController {
 		String shop_comment = req.getParameter("shop_comment");
 		String shop_phone = req.getParameter("shop_phone");
 		String[] shop_time = req.getParameterValues("shop_time");
-		String shop_addinfo = req.getParameter("shop_addinfo");
-		String shop_tb = req.getParameter("shop_tb");
-		String shop_alcohol = req.getParameter("shop_alcohol");
+		String[] shop_addinfoArr = req.getParameterValues("shop_addinfo");
+		String shop_addinfo = "";
+		String[] shop_tbArr = req.getParameterValues("shop_tb");
+		String shop_tb = "";
+		String[] shop_alcoholArr = req.getParameterValues("shop_alcohol");
+		String shop_alcohol = "";
 		String shop_car = req.getParameter("shop_car");
 		String shop_close = req.getParameter("shop_close");
 		String shop_photo = null;
+		String comma = "";
+
+		for (int i = 0; i < shop_alcoholArr.length; i++) {
+			if (i == 0) {
+				shop_alcohol += comma + shop_alcoholArr[i];
+				comma = ",";
+			} else {
+				shop_alcohol += comma + shop_alcoholArr[i];
+			}
+
+		}
+
+		for (int i = 0; i < shop_tbArr.length; i++) {
+			if (i == 0) {
+				comma = "";
+				shop_tb += comma + shop_tbArr[i];
+				comma = ",";
+			} else {
+				shop_tb += comma + shop_tbArr[i];
+			}
+		}
+
+		for (int i = 0; i < shop_addinfoArr.length; i++) {
+			if (i == 0) {
+				comma = "";
+				shop_addinfo += comma + shop_addinfoArr[i];
+				comma = ",";
+			} else {
+				shop_addinfo += comma + shop_addinfoArr[i];
+			}
+		}
 		ShopVo s = new ShopVo(shop_title, shop_id, shop_addr, shop_location, food_type, shop_tip, budget, shop_comment,
 				shop_phone, shop_time, shop_addinfo, shop_tb, shop_alcohol, shop_car, shop_close, shop_photo);
 		dao.updateShop(s);
@@ -310,4 +369,46 @@ public class ListController {
 		}
 	}
 
+	@RequestMapping("/reservation")
+	public ModelAndView Reservation(ModelAndView mav, HttpServletRequest req, HttpServletResponse res,
+			HttpSession session) throws ParseException {
+
+		String user_email = (String) session.getAttribute("sessionID");
+		String shop_title = req.getParameter("shop_title");
+		String res_date = req.getParameter("res_date");
+		int res_customer = Integer.parseInt(req.getParameter("res_customer"));
+		String shop_id = req.getParameter("shop_id");
+		String rev_phone = req.getParameter("rev_phone");
+		java.util.Date date = new java.util.Date();
+		java.sql.Date res_date2 = new java.sql.Date(date.getTime());
+		System.out.println(res_date);
+		System.out.println(user_email);
+		System.out.println(shop_title);
+		System.out.println(res_customer);
+		System.out.println(shop_id);
+		System.out.println(res_date2);
+		System.out.println(rev_phone);
+		ReservationVo resvo = new ReservationVo(user_email, shop_title, res_date2, res_customer, shop_id, null, null,
+				rev_phone);
+		resDao.insert_reservation(resvo);
+
+		return mav;
+	}
+	@RequestMapping("/alert")
+	public void Alert(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String shop_id = request.getParameter("shop_id");
+		String alert_new = "no";
+		List<ReservationVo> alert_list = resDao.getAll_shopId(shop_id);
+		if (alert_list != null) {
+			for (int i = 0; i < alert_list.size(); i++) {
+				if(alert_list.get(i).getAlert_new().equals("1")){
+				alert_new = "exist";
+				}
+			}
+			if(alert_new.equals("exist")){
+			resDao.updateAlertNew_shopId(shop_id);
+			}
+			response.getWriter().write(alert_new);
+		}
+	}
 }

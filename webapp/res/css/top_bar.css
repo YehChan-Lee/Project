@@ -485,7 +485,6 @@ div#wrap {
 	display: block;
 	padding: 10px;
 	margin: 0;
-	border-bottom: 1px solid #e3e3e3;
 	color: #444;
 	list-style-type: none;
 }
@@ -500,12 +499,45 @@ div#wrap {
 	background: #ffa500
 }
 
-#nav_recommend>ul.recent>p {
-	line-height: 169px;
-	text-align: center;
-	color: #323232;
-	font-size: 14px
+#nav_recommend>ul.recent>li>p {
+    line-height: 23px;
+    text-align: center;
+    color: #323232;
+    font-size: 14px;
+    font-weight: bold;
 }
+#nav_recommend > ul > p:NTH-CHILD(2) {
+	color: black;
+    height: 40px;
+    text-align: center;
+    position: relative;
+    top: 15px;
+    font-size: 13px;
+}
+#nav_recommend > ul > p:NTH-CHILD(3) {
+    color: black;
+    height: 40px;
+    text-align: center;
+    position: relative;
+    top: -5px;
+    font-size: 13px;
+}
+#nav_recommend>ul.recent>a:VISITED {
+   color: black;
+    text-decoration: none;
+}
+#nav_recommend>ul.recent>a:LINK {
+    color: black;
+    text-decoration: none;
+}
+#nav_recommend>ul.recent>a>li {
+    border: 2px solid;
+    margin: 1px;
+}
+#nav_recommend>ul.recent>a>li:HOVER {
+    background-color: ivory;
+}
+
 
 #nav_recommend>ul.recent>.title>div {
 	float: right;
@@ -1110,6 +1142,18 @@ position: relative;
 
 #nav_notice_list_content .item.blank>.message {
 	margin-top: 8px;
+}
+
+#nav_notice_list_content .item.blank>.message>a:VISITED {
+	color: black;
+    text-decoration: none;
+}
+#nav_notice_list_content .item.blank>.message>a:LINK {
+	color: black;
+    text-decoration: none;
+}
+#nav_notice_list_content .item.blank>.message>a:HOVER {
+	color: darkred;
 }
 
 #nav_notice_list_content .item.blank:hover {
