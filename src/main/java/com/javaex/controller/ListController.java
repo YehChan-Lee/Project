@@ -1,22 +1,31 @@
 package com.javaex.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
+import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.javaex.model.NoticeDao;
 import com.javaex.model.ReservationDao;
 import com.javaex.model.ReservationVo;
 import com.javaex.model.ReviewDao;
+import com.javaex.model.ReviewVo;
 import com.javaex.model.ShopDao;
 import com.javaex.model.ShopUserDao;
 import com.javaex.model.ShopUserVo;
@@ -39,6 +48,52 @@ public class ListController {
 
 	@Autowired
 	ReservationDao resDao;
+	
+	String url = "D:\\LYC\\SpringGit\\Project\\webapp\\serverImg\\";
+	
+	@RequestMapping("/review_upload")
+	public void test(ModelAndView mav, MultipartHttpServletRequest req, HttpServletResponse res,HttpSession session) throws IOException {
+		System.out.println("/BabPool/review_upload");
+		List<MultipartFile> fileList = req.getFiles("inputImage");// input file타입 파라미터
+		
+		double reviewScore = Double.parseDouble(req.getParameter("hidden_grade"));// 별점
+		String review = req.getParameter("review_area");// 리뷰내용
+		String shopId = req.getParameter("shopId");
+		req.setAttribute("shopId", shopId);
+		System.out.println("shopidx"+req.getParameter("shopidx") +"\n" + "shopId" + req.getParameter("shopId"));
+		String folder = "review\\";// 이미지 저장 경로
+		String user_email = (String) session.getAttribute("sessionID");
+		String path="";
+		String fileName = "";
+		for (MultipartFile mf : fileList) {
+			String originFileName = mf.getOriginalFilename(); // 원본 파일 명
+			fileName = "review"+reviewdao.reviewCnt(shopId) + shopId + originFileName;
+			String safeFile = url + folder + fileName;
+			try {
+				File file = new File(url);
+				if (!file.exists()) {
+					try {
+						file.mkdir(); // 폴더 생성합니다.
+						System.out.println("폴더가 생성되었습니다.");
+						mf.transferTo(new File(safeFile));
+					} catch (Exception e) {
+						e.getStackTrace();
+					}
+				} else {
+					mf.transferTo(new File(safeFile));
+				}
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			path+=fileName+"/";
+		}
+		System.out.println(path);
+		reviewdao.reviewUpload(new ReviewVo(0,shopId, user_email, reviewScore, review,path, 0, 0));
+		res.getWriter().write("success");
+		System.out.println("별점의 tmp : " + reviewScore + "\n" + "textarea : " + review);
+	}
 
 	@RequestMapping("/list")
 	public ModelAndView list(ModelAndView mav, HttpServletRequest request) {
@@ -52,7 +107,6 @@ public class ListController {
 		mav.setViewName("list");
 		return mav;
 	}
-
 	@RequestMapping("/review_upload")
 	public void test(HttpServletRequest req, HttpServletResponse response) throws IOException {
 		System.out.println("/BabPool/review_upload");
@@ -82,6 +136,8 @@ public class ListController {
 			}
 		int shopId = Integer.parseInt(shop_idx);
 		mav.addObject("shopOne", dao.shopOne(shopId));
+		int shopIdx = Integer.parseInt(request.getParameter("shopidx"));
+		mav.addObject("shopOne", dao.shopOne(shopIdx));
 		mav.setViewName("detail/detail");
 		return mav;
 	}
@@ -97,7 +153,6 @@ public class ListController {
 		ShopUserVo user;
 		if (userDao.loginCheck(user_email) != null) {
 			user = userDao.loginCheck(user_email);
-
 			if (user.getUser_pw().equals(password)) {
 				response.getWriter().write("success");
 				session.setAttribute("is_owner", user.getIs_owner());
@@ -178,17 +233,6 @@ public class ListController {
 		mav.setViewName("detail/detail_info");
 		return mav;
 	}
-
-	// @RequestMapping("/detail2/photo.do")
-	// public ModelAndView detail_photo(ModelAndView mav,HttpServletRequest
-	// request) {
-	// System.out.println("/BabPool/detail_photo");
-	// int shop_idx = Integer.parseInt(request.getParameter("shopidx"));
-	// mav.addObject("shopOne",shopdao.shopOne(shop_idx));
-	// mav.setViewName("detail_photo");
-	// return mav;
-	// }
-
 	@RequestMapping("/buisness_update")
 	public ModelAndView buisnessmypage_update(ModelAndView mav, HttpServletRequest req) {
 		String shop_title = req.getParameter("shop_title");
@@ -241,7 +285,6 @@ public class ListController {
 				shop_addinfo += comma + shop_addinfoArr[i];
 			}
 		}
-
 		ShopVo s = new ShopVo(shop_title, shop_id, shop_addr, shop_location, food_type, shop_tip, budget, shop_comment,
 				shop_phone, shop_time, shop_addinfo, shop_tb, shop_alcohol, shop_car, shop_close, shop_photo);
 		dao.updateShop(s);
@@ -256,6 +299,14 @@ public class ListController {
 		mav.addObject("shopOwnerList", dao.shopOwnerList((String) session.getAttribute("sessionID")));
 		mav.setViewName("buisnessmypage/buisness_mypage_registration2");
 		return mav;
+	}
+	@RequestMapping("/review/like")
+	public void reviewLike(HttpSession session) {
+		
+	}
+	@RequestMapping("/review/hate")
+	public void reviewHate(HttpSession session,HttpServletResponse res) {
+		
 	}
 
 	@RequestMapping("/reservation")

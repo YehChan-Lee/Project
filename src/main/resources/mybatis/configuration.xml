@@ -18,7 +18,6 @@
 		<typeAlias alias="Dibs" type="com.javaex.model.ShopDibsVo"></typeAlias>
 
 		<typeAlias alias="NewsVo" type="com.javaex.model.NewsVo"></typeAlias>
-		
 	</typeAliases>
 
 	<mappers>

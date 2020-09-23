@@ -2,13 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Review">	
-	<!-- <select id="reviewList" resultType="Review">
-		SELECT R.review_idx,U.user_email, R.review_score,R.review FROM Review R
-	    INNER JOIN ShopUser U
-	        ON U.user_email=R.user_email
-	    INNER JOIN Shop S
-	        ON S.shop_id=R.shop_id
-	    WHERE R.shop_id = '456-45-45678'
-	    ORDER BY R.review_date ASC
-	</select> -->
+	<select id="reviewCnt" resultType="HashMap">
+		select count(*)  as cnt from Review
+    		where shop_id = #{shopId}
+	</select>
+	
+	<insert id="reviewInsert" parameterType="reviewvo">
+		Insert into Review values(seq_review_idx.nextval,#{shop_id},#{user_email},${review_score},#{review},sysdate,0,0,#{review_photo})
+	</insert>
 </mapper>

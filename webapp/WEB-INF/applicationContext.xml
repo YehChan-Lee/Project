@@ -30,7 +30,8 @@
 	<!-- oracle datasource -->
 	<bean id="oracleDatasource"
 		class="oracle.jdbc.pool.OracleDataSource">
-		<property name="URL" value="jdbc:oracle:thin:@14.53.8.39:1525:XE" />
+		<property name="URL"
+			value="jdbc:oracle:thin:@14.53.8.39:1525:XE" />
 		<property name="user" value="BP" />
 		<property name="password" value="bob1234" />
 		<property name="connectionCachingEnabled" value="true" />
@@ -47,4 +48,6 @@
 		<constructor-arg index="0" ref="sqlSessionFactory"
 			name="sqlSessionFactory" />
 	</bean>
+
+	
 </beans>

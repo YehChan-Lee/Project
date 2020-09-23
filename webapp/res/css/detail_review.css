@@ -1,51 +1,32 @@
 @charset "UTF-8";
 
-*{
-	box-sizing: border-box;
-}
-
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
-	blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn,
-	em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var,
-	b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
-	table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas,
-	details, embed, figure, figcaption, footer, header, hgroup, menu, nav,
-	output, ruby, section, summary, time, mark, audio, video,button {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-	-webkit-font-smoothing: subpixel-antialiased !important;
-}
 hr{border-top: 1px solid lightgray;margin-top: 15px;}
 #review_wrap{
 	width : 730px;	
 }
 
-#review_write_wrap{
+#review_wrap #review_write_wrap{
 	padding : 30px;
-	border : 1px solid gray;
+	border: 1px solid #e8e8e8;
 }
-#review_title{
+#review_wrap #review_title{
 	color : #444;
 	font-size: 15px;
 	margin : 0 0 30px 0;
 }
-#list{
+#review_wrap #list{
 	list-style: none;
 }
-.item{
+#review_wrap .item{
 	width : 660px;
 	display: inline-block;
 	margin-bottom: 10px;
 }
-.item > div,textarea{
+#review_wrap .item > div,textarea{
 	display: inline-block;
 	float : left;
 }
-.item.text > textarea{
+#review_wrap .item.text > textarea{
 	overflow-y: auto;
     resize: none;
     width: 545px;
@@ -58,18 +39,19 @@ hr{border-top: 1px solid lightgray;margin-top: 15px;}
     box-sizing: border-box;
     display: inline-block;
 }
-li{
+#review_wrap li{
 	display: inline-block;
 }
-#star_score{
+#review_wrap #star_score{
 	width: 540px;
 	height : 23px;
+	padding : 0px;
 }
-#star_span{
+#review_wrap #star_span{
 	height: 100%;
 	display: inline-block;
 }
-#submit{
+#review_wrap #review_submit{
 	margin-top : 10px;
 	margin-bottom : 40px;
 	width : 730px;
@@ -81,7 +63,7 @@ li{
     border-radius: 4px;
     cursor: pointer;
 }
-.list_name{
+#review_wrap .list_name{
 	width : 105px;
 	height : 23px;
 	font-size: 13px;
@@ -89,34 +71,34 @@ li{
 	margin : 0;
 	line-height: 23px;
 }
-.title{
+#review_wrap .title{
 	font-size: 16px;
     font-weight: 600;
     color: #444;
 }
-#sort_wrap{
+#review_wrap #sort_wrap{
 	float: none;
     margin-bottom: 10px;
 }
-.sort_list{
+#review_wrap .sort_list{
 	float : right;
 	margin-bottom: 5px;
     font-size: 9pt;
     list-style: none;
 }
-.sort_list > li{
+#review_wrap .sort_list > li{
 	cursor: pointer;
     display: inline-block;
     padding: 0 5px;
     border-right: 1px solid #444;
 }
-.sort_list > li:last-child{
+#review_wrap .sort_list > li:last-child{
     border:none;
 }
-.author{
+#review_wrap .author{
 	display: block;	
 }
-.review{
+#review_wrap .review{
 	position: relative;
     width: 730px;
     padding: 30px 44px;
@@ -126,7 +108,7 @@ li{
     display: inline-block;
     box-sizing: border-box;
 }
-.thumbnail{
+#review_wrap .thumbnail{
 	display: inline-block;
 	width: 45px;
     height: 45px;
@@ -135,93 +117,93 @@ li{
     border-radius: 50%;
     margin-right: 13px;
 }
-.info{
+#review_wrap .info{
 	display: inline-block;
 	vertical-align: super;
 }
-a{
+#review_wrap a{
 	text-decoration: none;	
 }
-.name{
+#review_wrap .name{
 	color: #323232;
     font-weight: 600;
     margin-bottom: 3px;
     font-size: 13px;	
 }
-.stat{
+#review_wrap .stat{
 	font-size : 12px;
 	color : #828282;
 }
-.star_grade{
+#review_wrap .star_grade{
 	margin-bottom: 10px;
 	display: inline-block;
 	margin-top : 10px;
 }
-.star_grade > *{
+#review_wrap .star_grade > *{
 	float : left;	
 }
-.grade{
+#review_wrap .grade{
 	width: 580px;
 	height: 19px;
 }
-.text{
+#review_wrap .text{
 	clear : both;
 	font-size: 13px;
 	margin-bottom: 15px;
 	color : #323232;
 }
 
-.score,.comment{
+#review_wrap .score,.comment{
 	vertical-align: super;
 	font-size: 13px;
 }
-.image{
+#review_wrap .image{
 	background-size: cover;
 	background-position: center center;
 }
-.photo{
+#review_wrap .photo{
 	margin-bottom: 15px;
 	display: block;
 }
-.photo > button{
+#review_wrap .photo > button{
 	position: relative;
     width: 80px;
     height: 80px;
     margin-right: 6px;
 }
-.photo i{
+#review_wrap .photo i{
 	width: 100%;
 	height: 100%;
 	float : left;
 }
-.action i{
+#review_wrap .action i{
 	margin-right: 3px;
 }
-.action > button:hover{
+#review_wrap .action > button:hover{
 	cursor : pointer;
 	color : #f05e23;
 	border-color: #f05e23;
 }
-.far.fa-thumbs-up,.far.fa-thumbs-down,.far.fa-comment-dots{
+#review_wrap .far.fa-thumbs-up,.far.fa-thumbs-down,.far.fa-comment-dots{
 	font-size: 15px;
 }
-.action p:hover{
+#review_wrap .action p:hover{
 	border-right: 1px solid #f05e23;
 }
-.action p{
+#review_wrap .action p{
 	border-right: 1px solid #969696;
 	padding-right: 2px;
 }
-.action span{
+#review_wrap .action span{
 	margin-left : 3px;
 	font-size: 11px;
 }
-.action>button>*{
+#review_wrap .action>button>*{
 	display: inline-block;
     font-size: 11px;
     vertical-align: middle;
 }
-.action>button{
+#review_wrap .action>button{
 	line-height: 27px;
     padding: 0 3px;
     border: 1px solid #969696;
@@ -231,18 +213,18 @@ a{
     margin-right: 6px;
     font-size: 0;
 }	
-.write{
+#review_wrap .write{
 	margin-top : 15px;
 	display : inline-block;
 }
-form{
+#review_wrap form{
 	display: inline-block;
 }
-.write > *{
+#review_wrap .write > *{
 	display : inline-block;
 	float : left;
 }
-.write_area{
+#review_wrap.write_area{
 	margin-top: 5px;
 	width: 540px;
     height: 21px;
@@ -255,16 +237,16 @@ form{
     vertical-align: middle;
     padding: 5px 10px;
 }
-.grade_comment{
+#review_wrap.grade_comment{
 	display : inline-block;
 	vertical-align: super;
 	font-size: 13px;
 }
-.grade_score{
+#review_wrap .grade_score{
 	line-height: 24px;
 	margin-left : 5px;
 }
-.grade_comment{
+#review_wrap .grade_comment{
 	line-height: 25px;
 	margin-left : 5px;
 }
