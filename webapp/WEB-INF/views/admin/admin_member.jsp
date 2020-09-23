@@ -1,3 +1,5 @@
+<%@page import="com.javaex.model.AdminVo"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
@@ -74,19 +76,28 @@
 					<th>사업자여부</th>
 					<th>포인트</th>
 				</tr>
+				<%
+				List<AdminVo> Amember_list = (List<AdminVo>)request.getAttribute("Amember_list");
+				for(int i = 0; i< Amember_list.size(); i++){
+					AdminVo vo = Amember_list.get(i);
+					
+				%>
 				<tr>
 					<td><input type="checkbox" name="chk_sib" /></td>
-					<td>1</td>
-					<td>테스트</td>
-					<td>남자</td>
-					<td>2000-01-01</td>
-					<td>010-0000-0000</td>
-					<td>test@test.com</td>
-					<td>2000-12-31</td>
-					<td>가입</td>
-					<td>3000</td>
+					<td><%=vo.getShopUser().getUser_idx() %></td>
+					<td><%=vo.getShopUser().getUser_name() %></td>
+					<td><%=vo.getShopUser().getUser_gender() %></td>
+					<td><%=vo.getShopUser().getUser_birth() %></td>
+					<td><%=vo.getShopUser().getUser_phone() %></td>
+					<td><%=vo.getShopUser().getUser_email() %></td>
+					<td><%=vo.getShopUser().getSign_date() %></td>
+					<td><%=vo.getShopUser().getIs_owner() %></td>
+					<td><%=vo.getShopUser().getPoint() %></td>
 				</tr>
-				<tr>
+				<%
+				}
+				%>
+			<!-- 	<tr>
 					<td><input type="checkbox" name="chk_sib" /></td>
 					<td>2</td>
 					<td>테스트</td>
@@ -193,7 +204,7 @@
 					<td>2000-12-31</td>
 					<td>가입</td>
 					<td>3000</td>
-				</tr>
+				</tr> -->
 			</table>
 			<div class="paging_mem">
 				<div>

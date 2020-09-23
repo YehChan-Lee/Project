@@ -1,9 +1,9 @@
 .registration_form {
+	display: inline-block;
     position: relative;
-    width: 722px;
+    width: 760px;
     height: 1700px;
-    left: -148px;
-    top: -115px;
+    margin: 0;
 }
 
 .shop_registration {
@@ -14,17 +14,19 @@
 }
 
 .shop_name_span {
-	    position: relative;
-    top: 3px;
-    left: 82px;
+	position: relative;
+    float: left;
+    top: 0px;
     font-size: 16px;
     color: #444;
 }
 
 .shop_title {
+	clear: both;
     position: relative;
-    top: 34px;
-    left: 5px;
+    float: left;
+    top: 7px;
+    /* left: -78px; */
     width: 460px;
     height: 30px;
     border-radius: 10px;
@@ -32,17 +34,21 @@
 }
 
 .shop_addr_span {
-	    position: relative;
+	clear: both;
+    position: relative;
+    float: left;
     font-size: 16px;
-    top: 93px;
-    left: -469px;
+    top: 50px;
+    /* left: -469px; */
     color: #444;
 }
 
 .shop_addr {
-	position: relative;
-    top: 90px;
-    left: 5px;
+	clear: both;
+    position: relative;
+    float: left;
+    top: 55px;
+    /* left: 5px; */
     width: 460px;
     height: 30px;
     border-radius: 10px;
@@ -51,8 +57,9 @@
 
 .shop_addr2 {
 	position: relative;
-    top: 94px;
-    left: 43px;
+    float: left;
+    top: 60px;
+    /* left: 43px; */
     width: 460px;
     height: 30px;
     border-radius: 10px;
@@ -60,36 +67,44 @@
 }
 
 .shop_location_span {
-	    position: relative;
+	clear: both;
+    position: relative;
+    float: left;
     font-size: 16px;
-    top: 155px;
-    left: -429px;
+    top: 100px;
+    /* left: -429px; */
     color: #444;
 }
 
 .shop_location {
-	position: relative;
+	clear: both;
+    position: relative;
+    float: left;
     width: 466px;
     height: 34px;
     border-radius: 10px;
     border: 1px solid #BCBCBC;
-    top: 150px;
-    left: 52px;
+    top: 105px;
+    /* left: 52px; */
     font-size: 13px;
 }
 
 .shop_id_span {
-	    position: relative;
+	clear: both;
+    position: relative;
+    float: left;
     font-size: 16px;
     color: #444;
-    top: 215px;
-    left: -421px;
+    top: 145px;
+    /* left: -421px;*/
 }
 
 .shop_id {
-position: relative;
-    top: 211px;
-    left: 43px;
+    clear: both;
+    position: relative;
+    float: left;
+    top: 150px;
+    /* left: 43px; */
     width: 460px;
     height: 30px;
     border-radius: 10px;
@@ -97,271 +112,323 @@ position: relative;
 }
 
 .food_type_span {
-	    position: relative;
+    clear: both;
+    position: relative;
+    float: left;
     font-size: 16px;
     color: #444;
-    top: 270px;
-    left: -430px;
+    top: 190px;
+    /* left: -430px;*/
 }
 
 .food_type {
-position: relative;
+	clear: both;
+    position: relative;
+    float: left;
     width: 460px;
     height: 30px;
     border-radius: 10px;
     border: 1px solid #BCBCBC;
-    top: 267px;
-    left: 24px;
+    top: 195px;
+    /* left: 24px;*/
 }
 
 .budget_span {
-	position: relative;
+	clear: both;
+    position: relative;
+    float: left;
     font-size: 16px;
     color: #444;
-    top: 328px;
-    left: -449px;
+    top: 230px;
+    /* left: -449px;*/
 }
 
 .budget {
-position: relative;
+	position: relative;
+    float: left;
     width: 460px;
     height: 30px;
     border-radius: 10px;
     border: 1px solid #BCBCBC;
-    top: 324px;
-    left: 43px;
+    top: 235px;
+    /* left: 43px; */
+    clear: both;
 }
 
 .shop_tip_span {
-	position: relative;
+    clear: both;
+    position: relative;
+    float: left;
     font-size: 16px;
     color: #444;
-    top: 379px;
-    left: -429px;
+    top: 275px;
+    /* left: -429px;*/
 }
 
 .shop_tip {
     position: relative;
+    float: left;
     width: 460px;
     height: 200px;
     border-radius: 10px;
     border: 1px solid #BCBCBC;
-    top: 375px;
-    left: 43px;
+    top: 280px;
+    /* left: 43px; */
     text-align: top;
+    clear: both;
 }
 
 .shop_comment_span {
-	position: relative;
+    clear: both;
+    position: relative;
+    float: left;
     font-size: 16px;
     color: #444;
-    top: 425px;
-    left: -431px;
+    top: 320px;
+    /* left: -431px;*/
 }
 
 .shop_comment {
+    clear: both;
     position: relative;
+    float: left;
     width: 460px;
     height: 30px;
     border-radius: 10px;
     border: 1px solid #BCBCBC;
-    top: 427px;
-    left: 59px;
+    top: 325px;
+    /* left: 59px;*/
 }
 
 .shop_phone_span {
+    clear: both;
     position: relative;
+    float: left;
     font-size: 16px;
     color: #444;
-    top: 473px;
-    left: -414px;
+    top: 365px;
+    /* left: -414px;*/
 }
 
 .shop_phone {
-position: relative;
+	clear: both;
+    position: relative;
+    float: left;
     width: 460px;
     height: 30px;
     border-radius: 10px;
     border: 1px solid #BCBCBC;
-    top: 468px;
-    left: 107px;
+    top: 370px;
+    /* left: 107px;*/
 }
 
 .shop_time_span {
-	position: relative;
+    clear: both;
+    position: relative;
+    float: left;
     font-size: 16px;
     color: #444;
-    top: 520px;
-    left: -365px;
+    top: 420px;
+    /* left: -365px;*/
 }
 
 .shop_time1 {
-position: relative;
+    clear: both;
+    position: relative;
+    float: left;
     width: 70px;
     height: 34px;
     border-radius: 10px;
     border: 1px solid #BCBCBC;
-    top: 551px;
-    left: -472px;
+    top: 430px;
+    /* left: -472px;*/
 }
 
 .shop_time_span2 {
-position: relative;
+	position: relative;
+    float: left;
     font-size: 16px;
     color: #444;
-    top: 550px;
-    left: -469px;
+    top: 435px;
+    /* left: -469px;*/
 }
 .shop_time_span3 {
     position: relative;
+    float: left;
     font-size: 16px;
     color: #444;
-    top: 511px;
-    left: 92px;
+    top: 435px;
+    /* left: 92px;*/
 }
 .shop_time_span4 {
-	position: relative;
-
+    position: relative;
+    float: left;
     color: #444;
-    top: 512px;
-    left: 100px;
+    top: 427px;
+    /* left: 100px; */
     font-size: 25px;
 }
 .shop_time_span5 {
-	    position: relative;
+    position: relative;
+    float: left;
     font-size: 16px;
     color: #444;
-    top: 510px;
-    left: 105px;
+    top: 435px;
+    /* left: 105px;*/
 }
 .shop_time_span6 {
-	position: relative;
+    position: relative;
+    float: left;
     font-size: 16px;
     color: #444;
-    top: 510px;
-    left: 116px;
+    top: 435px;
+    /* left: 116px;*/
 }
 
 .shop_time2 {
-	position: relative;
+    position: relative;
+    float: left;
     width: 70px;
     height: 34px;
     border-radius: 10px;
     border: 1px solid #BCBCBC;
-    top: 510px;
-    left: 86px;
+    top: 430px;
+    /* left: 86px;*/
 }
 .shop_time3 {
-position: relative;
+    position: relative;
+    float: left;
     width: 70px;
     height: 34px;
     border-radius: 10px;
     border: 1px solid #BCBCBC;
-    top: 510px;
-    left: 104px;
+    top: 430px;
+    /* left: 104px;*/
 }
 .shop_time4 {
-position: relative;
+    position: relative;
+    float: left;
     width: 70px;
     height: 34px;
     border-radius: 10px;
     border: 1px solid #BCBCBC;
-    top: 510px;
-    left: 108px;
+    top: 430px;
+    /* left: 108px;*/
 }
 .shop_addinfo_span {
-   position: relative;
+    clear: both;
+    position: relative;
+    float: left;
     font-size: 16px;
     color: #444;
-    top: 584px;
-    left: -339px;
+    top: 475px;
+    /* left: -339px;*/
 }
 
 .shop_addinfo {
-	position: relative;
+    clear: both;
+    position: relative;
+    float: left;
     width: 460px;
     height: 30px;
     border-radius: 10px;
     border: 1px solid #BCBCBC;
-    top: 580px;
-    left: 70px;
+    top: 480px;
+    /* left: 70px;*/
 }
 
 .shop_tb_span {
-	    position: relative;
+	position: relative;
+    float: left;
     font-size: 16px;
     color: #444;
-    top: 645px;
-    left: -402px;
+    top: 520px;
+    /* left: -402px; */
+    clear: both;
 }
 
 .shop_tb {
-position: relative;
+	clear: both;
+    position: relative;
+    float: left;
     width: 466px;
     height: 34px;
     border-radius: 10px;
     border: 1px solid #BCBCBC;
-    top: 640px;
-    left: 43px;
+    top: 525px;
+    /* left: 43px; */
     font-size: 13px;
 }
 
 .shop_alcohol_span {
     position: relative;
+    float: left;
     font-size: 16px;
     color: #444;
-    top: 704px;
-    left: -429px;
+    top: 570px;
+    /* left: -429px; */
+    clear: both;
 }
 
 .shop_alcohol {
-	    position: relative;
+    position: relative;
+    float: left;
     width: 460px;
     height: 30px;
     border-radius: 10px;
     border: 1px solid #BCBCBC;
-    top: 698px;
-    left: 40px;
+    top: 575px;
+    /* left: 40px; */
+    clear: both;
 }
 
 .shop_car_span {
-	position: relative;
+clear: both;
+    position: relative;
+    float: left;
     font-size: 16px;
     color: #444;
-    top: 756px;
-    left: -431px;
+    top: 625px;
+    /* left: -431px;*/
 }
 
 .shop_car {
-	    position: relative;
+    clear: both;
+    position: relative;
+    float: left;
     width: 460px;
     height: 30px;
     border-radius: 10px;
     border: 1px solid #BCBCBC;
-    top: 749px;
-    left: 32px;
+    top: 630px;
+    /* left: 32px;*/
 }
 
 .shop_close_span {
-	    position: relative;
+	clear: both;
+    position: relative;
+    float: left;
     font-size: 16px;
     color: #444;
-    top: 817px;
-    left: -438px;
+    top: 680px;
+    /* left: -438px;*/
 }
 
 .shop_close {
-position: relative;
+    clear: both;
+    position: relative;
+    float: left;
     width: 460px;
     height: 30px;
     border-radius: 10px;
     border: 1px solid #BCBCBC;
-    top: 809px;
-    left: 51px;
+    top: 685px;
+    /* left: 51px;*/
 }
 
 .SHOP_PHOTO {
 	position: relative;
+	float: left;
 	top: 1000px;
 }
 
@@ -383,29 +450,35 @@ position: relative;
 }
 
 .shop_photo_span {
-	    position: relative;
-    top: 880px;
+	clear: both;
+    position: relative;
+    float: left;
+    top: 742px;
     color: #444;
     font-size: 16px;
-    left: -420px;
+    /* left: -420px;*/
 }
 
 .shop_photo {
-	position: relative;
-    top: 876px;
-    left: -100px;
+    position: relative;
+    float: left;
+    top: 741px;
+    /* left: -100px;*/
 }
 
 #image_container {
-	    position: relative;
+    position: relative;
+    float: left;
     width: 725px;
     height: 300px;
     top: 940px;
 }
 .buisness_submit {
-	    position: relative;
-    top: 860px;
-    left: 4px;
+	clear: both;
+    position: relative;
+    float: right;
+    top: 573px;
+    left: 75px;
     width: 100px;
     height: 50px;
     background-color: #ffa500;
@@ -413,4 +486,5 @@ position: relative;
     border-radius: 10px;
     color: white;
     font-weight: bolder;
+    line-height: 45px;
 }

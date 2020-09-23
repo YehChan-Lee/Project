@@ -1,13 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="Shop">
+<mapper namespace="ShopVo">
+	<!--  -->
+	<select id="pageList" resultType="ShopVo" parameterType="com.javaex.model.Criteria">
+		select shop_idx
+        , shop_reserve
+        , shop_review
+        , shop_view
+        , shop_title
+        , shop_location
+        , shop_score
+        , budget
+        , shop_comment
+		from (
+		    select shop_idx
+                    , shop_reserve
+                    , shop_review
+                    , shop_view
+                    , shop_title
+                    , shop_location
+                    , shop_score
+                    , budget
+                    , shop_comment,
+		            ROW_NUMBER() OVER (ORDER BY shop_idx DESC) as rNum
+		            from Shop) S
+		where rNum between #{rowStart} and #{rowEnd}
+		order by shop_idx ASC
+	</select>
+	
+	<select id="pageCount" resultType="int">
+		<![CDATA[
+		select count(shop_idx)
+		from Shop
+		where shop_idx>0
+		]]>
+	</select>
+	<!--  -->
 	<select id="shopList" resultType="ShopVo">
 		<![CDATA[SELECT * FROM Shop]]> 		
 	</select>
-<<<<<<< HEAD
-	
-=======
 		
 	<select id="shopSearch" resultType="ShopVo" parameterType="hashMap">
 		select * from Shop where 1=1
@@ -56,29 +88,17 @@
 
 	</select>
 
->>>>>>> 3cfb1ad5ada02fe4bd84ef55304a245d168aba95
 	<select id="shopOne" parameterType="int" resultType="ShopVo">
 	<!-- 가게정보 -->
 		<![CDATA[
 		SELECT * FROM Shop WHERE shop_idx=#{Shop_idx}
 		]]>		
 	</select>
-	
-<<<<<<< HEAD
-	<select id="cntShopReserve" resultType="int">
-=======
+
 	<select id="shopOwnerList" parameterType="String" resultType="ShopVo">
 		<!-- 가게정보 -->
 		<![CDATA[
 		SELECT * FROM Shop WHERE user_email=#{user_email}
-		]]>
-	</select>
-	
-	<select id="cntShopReserve" resultType="ShopVo">
->>>>>>> 3cfb1ad5ada02fe4bd84ef55304a245d168aba95
-		<![CDATA[
-			SELECT SUM(shop_reserve)
-			FROM Shop
 		]]>
 	</select>
 	

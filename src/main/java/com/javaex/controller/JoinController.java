@@ -10,6 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.javaex.model.AllDao;
 import com.javaex.model.NewsDao;
 import com.javaex.model.ReservationDao;
+import com.javaex.model.ReviewDao;
+import com.javaex.model.ReviewVo;
 import com.javaex.model.ShopDao;
 import com.javaex.model.ShopUserDao;
 
@@ -27,6 +29,9 @@ public class JoinController {
 	
 	@Autowired
 	AllDao alldao;
+	
+	@Autowired
+	ReviewDao reviewdao;
 	
 	
 	// 마이페이지
@@ -127,4 +132,19 @@ public class JoinController {
 		mav.setViewName("mypage/mypage_notice3");
 		return mav;
 	}
+	
+	@RequestMapping("/footer")
+	public ModelAndView footer_user(ModelAndView mav) {
+		System.out.println("/BabPool/footer_user");
+		System.out.println(alldao.footeruser());
+		System.out.println(reviewdao.footerreview());
+		System.out.println(reservedao.footerreserve());
+		
+		mav.addObject("footeruser", alldao.footeruser());
+		mav.addObject("footerreview", reviewdao.footerreview());
+		mav.addObject("footerreserve", reservedao.footerreserve());		
+		mav.setViewName("footer");
+		return mav;
+	}
+	
 }

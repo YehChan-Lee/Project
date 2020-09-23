@@ -41,12 +41,8 @@ public class HelloController {
 	public String signup() {
 		System.out.println("/BobPool/signup");
 		return "signup";
-<<<<<<< HEAD
 	}
-
-=======
-	}	
->>>>>>> 3cfb1ad5ada02fe4bd84ef55304a245d168aba95
+	
 	@RequestMapping("/mypage/review")
 	public String mypage_review() {
 		System.out.println("/BabPool/mypage/mypage_review");
@@ -62,11 +58,7 @@ public class HelloController {
 		System.out.println("/BabPool/mypage/mypage_review3");
 		return "mypage/mypage_review3";
 	}
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> 3cfb1ad5ada02fe4bd84ef55304a245d168aba95
 	@RequestMapping("/mypage/setting")
 	public String mypage_setting() {
 		System.out.println("/BabPool/mypage/mypage_setting");
@@ -112,16 +104,7 @@ public class HelloController {
 		System.out.println("/hellospring/menubar");
 		return "menubar";
 	}
-	@RequestMapping("/admin")
-	public String admin() {
-		System.out.println("/hellospring/admin/admin");
-		return "admin/admin";
-	}
-	@RequestMapping("/admin/admin_member")
-	public String admin_member() {
-		System.out.println("/hellospring/admin/admin_member");
-		return "admin/admin_member";
-	}
+
 	@RequestMapping("/admin/admin_company")
 	public String admin_company() {
 		System.out.println("/hellospring/admin/admin_company");

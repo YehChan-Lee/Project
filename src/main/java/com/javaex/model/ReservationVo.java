@@ -10,7 +10,7 @@ public class ReservationVo {
 	private Date res_date;		// 예약 날짜			NOT NULL
 	private int res_customer;	// 예약 인원			NOT NULL
 	private String shop_id;		// 사업자 번호(FK)		NOT NULL
-	private int reserve_idx;
+	private int reserve_idx;	// 인덱스				NOT NULL
 	
 	public ReservationVo() {}
 

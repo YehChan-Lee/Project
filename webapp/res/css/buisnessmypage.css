@@ -65,9 +65,10 @@ body, html{
 }
 #content_wrap>#content{
 	position: relative;
-	left: 470px;
-	width:730px;
-	padding-bottom: 120px;
+    left: 450px;
+    width: 910px;
+    padding-bottom: 150px;
+    display: inline-block;
 }
 #content_wrap>#content>ul{
 width: 100%;
@@ -80,27 +81,26 @@ width: 100%;
     border-radius: 0 0 5px 5px;
     margin-top: 16px;
     position: relative;
-    left: 100px;
 }
 #content_wrap>#content>ul .my_item{
 	border: 0px solid red;
     list-style: none;
-    width: 150px;
+    width: 283px;
     float: left;
     text-align: center;
     padding: 10px;
     font-size: 20px;
     position: relative;
-    left: 118px;
+    /* left: 118px; */
 }
 #my_tab a {
 	color: black;
 }
 #reservation{
 	border: 0px solid blue;
-	width: 100%;
-	text-align: right;
-	margin-left: 0;
+    width: 100%;
+    text-align: right;
+    margin-left: 0;
 }
 #reservation>#reserve_filter{
 	margin:5px 0;
@@ -118,13 +118,15 @@ width: 100%;
 	cursor: pointer;
 }
 #reservation>#contents_box{
-	    text-align: center;
+	box-sizing: border-box;
+    /* display: inline-block; */
+    text-align: center;
     background-color: #fff;
-    padding: 150px;
+    padding: 80px 0;
     font-size: 17px;
     border-radius: 5px;
-    position: relative;
-    left: 100px;
+    /* position: relative; */
+    height: 2000px;
 }
 /* mypage_notice */
 #my_notice, #bobpool_notice{

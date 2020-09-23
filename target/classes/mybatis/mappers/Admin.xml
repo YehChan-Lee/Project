@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="All">
+<mapper namespace="AdminVo">
 	<resultMap type="Reservation" id="ReservationResult">
 		<result property="reserve_idx" column="RESERVE_IDX"/>
 		<result property="user_email" column="USER_EMAIL"/>
@@ -79,11 +79,12 @@
 		<result property="is_admin" column="IS_ADMIN"/>	
 	</resultMap>
 	
-	<resultMap type="All" id="AllResult">
+	<resultMap type="AdminVo" id="AdminResult">
 		<id property="Reservation.reserve_idx" column="RESERVE_IDX"/>
 		<id property="ReviewVo.review_idx" column="REVIEW_IDX"/>
 		<id property="Dibs.dibs_idx" column="DIBS_IDX"/>			
 		<id property="NewsVo.news_idx" column="NEWS_IDX"/>			
+		<id property="ShopUser.user_idx" column="USER_IDX"/>			
 		<collection property="Reservation" resultMap="ReservationResult"></collection>
 		<collection property="ShopVo" resultMap="ShopResult"></collection>
 		<collection property="ShopUser" resultMap="ShopUserResult"></collection>
@@ -91,62 +92,20 @@
 		<collection property="Dibs" resultMap="DibsResult"></collection>
 		<collection property="NewsVo" resultMap="NewsResult"></collection>
 	</resultMap>
-	
-	<select id="reserveList" resultMap="AllResult">
-		select * from reservation R
-			inner join shopUser U
-				on U.user_email=R.user_email
-			inner join Shop S
-				on S.shop_title = R.shop_title
-			where R.user_email=#{user_email}
-            AND R.res_date>TO_CHAR(SYSDATE, 'yyyy-mm-dd')
+
+	<select id="Areview_list" resultMap="AdminResult">
+		select R.review_idx, R.review, U.user_name, R.review_date
+		from Review R
+		    join ShopUser U
+		    on R.user_email=U.user_email
+		order by R.review_idx DESC
+	</select>
+		
+	<select id="Amember_list" resultMap="AdminResult">
+		SELECT U.user_idx, U.user_name, u.user_gender, U.user_birth,
+				U.user_phone, U.user_email, U.sign_date, U.is_owner, U.POINT
+		FROM ShopUser U
+		order by u.sign_date DESC
 	</select>
 	
-	<select id="pastList" resultMap="AllResult">
-		select * from reservation R
-			inner join shopUser U
-				on U.user_email=R.user_email
-			inner join Shop S
-				on S.shop_title = R.shop_title
-			where R.user_email=#{user_email}
-            AND TO_CHAR(SYSDATE, 'yyyy-mm-dd')>R.res_date
-	</select>
-	
-	<select id="reviewList" resultMap="AllResult">
-		select * from review R
-		    inner join ShopUser U
-		        on R.user_email=U.user_email
-		    inner join Shop S
-		        on R.shop_id=S.shop_id
-	   		where R.user_email=#{user_email}
-	</select>
-	
- 	<select id="dibsList" resultMap="AllResult">
-		select * from ShopDibs D
-		    inner join ShopUser U
-		        on D.user_email=U.user_email
-		    inner join Shop S
-		        on D.shop_id=S.shop_id
-		    where D.user_email=#{user_email}
-	</select>
-	
- 	<select id="newsList" resultMap="AllResult">
-		select * from News N
-    		inner join ShopUser U
-        		on N.user_email=U.user_email
-    	where n.user_email=#{user_email}
-    	AND N.is_admin='0'
-	</select>
-	
- 	<select id="bpList" resultMap="AllResult">
-		select * from News N
-    		inner join ShopUser U
-        		on N.user_email=U.user_email
-    		where N.is_admin='1'
-	</select>
-	
-	<select id="footeruser" resultType="int">
-			select count(DISTINCT user_email) from ShopUser
-	</select>
-	
-</mapper>
+	</mapper>

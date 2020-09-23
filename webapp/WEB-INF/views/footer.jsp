@@ -5,11 +5,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>footer</title>
 <link rel="stylesheet" type="text/css" href="<c:url value="${path}/res/css/footer.css"/>"/>
 </head>
 <body>
 <!-- footer -->
+<%
+pageContext.getAttribute("footeruser");
+pageContext.getAttribute("footerreview");
+pageContext.getAttribute("footerreserve");
+%>
 <div id="footer_wrap">
 	<div id="download">
 	<span>밥풀 앱 다운로드</span>
@@ -31,19 +36,19 @@
 		</div>
 		
 		<div id="footer_count">
-		지금까지 총 0000000명의 사용자가 00000개의 정성스런 리뷰를 남기셨고,<br>
-		밥풀 예약 서비스를 이용하여 00000번의 식사를 하셨습니다.
+		지금까지 총${footeruser}명의 사용자가 ${footerreview}개의 정성스런 리뷰를 남기셨고,<br>
+		밥풀 예약 서비스를 이용하여 ${footerreserve}번의 식사를 하셨습니다.
 		</div>
 		
 		<div id="footer_explan">
-		(주) 밥풀 대표이사: 이예찬
+		(주) 밥풀 대표이사: 이예찬 | 박정석 | 서다슬 | 안승우 | 이준영 | 최희만
 		<span>|</span>
 		사업자등록번호: 1111111<br>
 		주소: 서울시 금천구 가산동
 		<span>|</span>
 		대표번호: 02-111-1111
 		<span>|</span>
-		이메일: Team1@bobpool.com				
+		이메일: Team1@babpool.com				
 		</div>
 		
 		<div id="info">

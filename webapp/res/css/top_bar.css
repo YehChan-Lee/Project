@@ -50,10 +50,10 @@ a:link {
 	text-decoration: none;
 }
 
-a:visited {
+/* a:visited {
 	color: white;
 	text-decoration: none;
-}
+} */
 
 a:hover {
 	color: white;

@@ -70,4 +70,10 @@ public class AllDao {
 		 return sqlSession.selectList("All.bpList", user_email); 
 	 }
 	 
+	 public int footeruser() {
+		int footeruser = sqlSession.selectOne("All.footeruser");
+		System.out.println(footeruser);
+		return sqlSession.selectOne("All.footeruser");
+	 }
+	 
 }

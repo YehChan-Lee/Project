@@ -17,8 +17,14 @@ public class NoticeDao {
 		this.sqlsession = sqlsession;
 	}
 	
-	public List<NoticeVo> noticeList(){
-		return sqlsession.selectList("Notice.noticeList");
+	// 목록 조회
+	public List<NoticeVo> pageList(Criteria cri){
+		System.out.println("NoticeDao");
+		return sqlsession.selectList("Notice.pageList", cri);
+	}
+	// 게시물 총 개수
+	public int pageCount() {
+		return sqlsession.selectOne("Notice.pageCount");
 	}
 	
 	public void insertNotice() {
@@ -32,4 +38,9 @@ public class NoticeDao {
 	public void deleteNotice() {
 		sqlsession.delete("Notice.noticeDelete");
 	}
+	
+	public int getNoticeCnt() {
+		return sqlsession.selectOne("Notice.getNoticeCnt");
+	}
+
 }

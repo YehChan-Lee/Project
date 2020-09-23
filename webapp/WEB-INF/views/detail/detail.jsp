@@ -11,17 +11,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>밥풀 - 카페/베이커리</title>
 
-<link rel="stylesheet" href="<c:url value='${path}/res/css/detail.css?ver=1'/>">
-<link rel="stylesheet" href="<c:url value='${path}/res/css/bootstrap.min.css'/>">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet"
+	href="<c:url value='${path}/res/css/detail.css?ver=1'/>">
+<link rel="stylesheet"
+	href="<c:url value='${path}/res/css/bootstrap.min.css'/>">
+<link
+	href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+	rel="stylesheet">
 
 <script src="http://code.jquery.com/jquery.js"></script>
 <script
-   src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
-   src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
-   src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
 <%@include file="../top_bar.jsp"%>
@@ -31,9 +35,9 @@
 	<div id="container">
 		<%
 			ShopVo shopvo = (ShopVo) request.getAttribute("shopOne");
-		
-			pageContext.setAttribute("star", shopvo.getShop_score());
-			pageContext.setAttribute("shopidx", shopvo.getShop_idx());
+
+		pageContext.setAttribute("star", shopvo.getShop_score());
+		pageContext.setAttribute("shopidx", shopvo.getShop_idx());
 		%>
 
 		<!-- 상단에 배너가 있는 레이아웃 -->
@@ -134,147 +138,147 @@
 			<div id="sidebar_wrap" class="detail">
 				<div class="container">
 
-               <!-- Button to Open the Modal -->
-               <button type="button" class="btn btn-primary" data-toggle="modal"
-                  data-target="#myModal" id="reservation_btn">예약 하기</button>
+					<!-- Button to Open the Modal -->
+					<button type="button" class="btn btn-primary" data-toggle="modal"
+						data-target="#myModal" id="reservation_btn">예약 하기</button>
 
-               <!-- The Modal -->
-               <div class="modal fade" id="myModal">
-                  <div class="modal-dialog modal-dialog-centered">
-                     <div class="modal-content">
+					<!-- The Modal -->
+					<div class="modal fade" id="myModal">
+						<div class="modal-dialog modal-dialog-centered">
+							<div class="modal-content">
 
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                           <h4 class="modal-title">예약하기</h4>
-                           <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
+								<!-- Modal Header -->
+								<div class="modal-header">
+									<h4 class="modal-title">예약하기</h4>
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+								</div>
 
-                        <!-- Modal body -->
-                        <div class="modal-body" id="modal-body">
-                           <form action="" method="" class="a">
-                              <div class="shop_title_detail_div">가게 이름</div>
-                              <input type="text" class="shop_title_detail" name="shop_title">
-                              <div class="res_date_detail_div">예약 날짜</div>
-                              <select class="res_date_detail" name="res_date">
-                                 <option value="2020">2020
-                                 <option value="2021">2021
-                                 <option value="2022">2022
-                                 <option value="2023">2023
-                                 <option value="2024">2024
-                                 <option value="2025">2025
-                                 <option value="2026">2026
-                                 <option value="2027">2027
-                                 <option value="2028">2028
-                                 <option value="2029">2029
-                                 <option value="2030">2030
-                              </select>
-                              <div class="res_date_detail_div2">년</div>
-                              <select class="res_date_detail2" name="res_date">
-                                 <option value="1">1
-                                 <option value="2">2
-                                 <option value="3">3
-                                 <option value="4">4
-                                 <option value="5">5
-                                 <option value="6">6
-                                 <option value="7">7
-                                 <option value="8">8
-                                 <option value="9">9
-                                 <option value="10">10
-                                 <option value="11">11
-                                 <option value="12">12
-                              </select>
-                              <div class="res_date_detail_div3">월</div>
-                              <select class="res_date_detail3" name="res_date">
-                                 <option value="0">0
-                                 <option value="1">1
-                                 <option value="2">2
-                                 <option value="3">3
-                                 <option value="4">4
-                                 <option value="5">5
-                                 <option value="6">6
-                                 <option value="7">7
-                                 <option value="8">8
-                                 <option value="9">9
-                                 <option value="10">10
-                                 <option value="11">11
-                                 <option value="12">12
-                                 <option value="13">13
-                                 <option value="14">14
-                                 <option value="15">15
-                                 <option value="16">16
-                                 <option value="17">17
-                                 <option value="18">18
-                                 <option value="19">19
-                                 <option value="20">20
-                                 <option value="21">21
-                                 <option value="22">22
-                                 <option value="23">23
-                                 <option value="23">24
-                                 <option value="23">25
-                                 <option value="23">26
-                                 <option value="23">27
-                                 <option value="23">28
-                                 <option value="23">29
-                                 <option value="23">30
-                                 <option value="23">31
-                              </select>
-                              <div class="res_date_detail_div4">일</div>
-                              <div class="res_time_detail_div">예약 시간</div>
-                              <select class="res_time_detail" name="res_date">
-                                 <option value="0">0
-                                 <option value="1">1
-                                 <option value="2">2
-                                 <option value="3">3
-                                 <option value="4">4
-                                 <option value="5">5
-                                 <option value="6">6
-                                 <option value="7">7
-                                 <option value="8">8
-                                 <option value="9">9
-                                 <option value="10">10
-                                 <option value="11">11
-                                 <option value="12">12
-                                 <option value="13">13
-                                 <option value="14">14
-                                 <option value="15">15
-                                 <option value="16">16
-                                 <option value="17">17
-                                 <option value="18">18
-                                 <option value="19">19
-                                 <option value="20">20
-                                 <option value="21">21
-                                 <option value="22">22
-                                 <option value="23">23
-                              </select>
-                              <div class="res_time_detail_div2">시</div>
-                              <select class="res_time_detail2" name="res_date">
-                                 <option value="00">00
-                                 <option value="10">10
-                                 <option value="20">20
-                                 <option value="30">30
-                                 <option value="40">40
-                                 <option value="50">50
-                              </select>
-                              <div class="res_time_detail_div3">분</div>
-                              <div class="res_customer_detail_div">예약 인원</div>
-                              <input type="text" class="res_customer_detail"
-                                 name="res_customer">
-                              <div class="res_customer_detail_div2">명</div>
-                              <input type="submit" value="예약하기" class="reservation_submit">
-                           </form>
-                        </div>
+								<!-- Modal body -->
+								<div class="modal-body" id="modal-body">
+									<form action="" method="" class="a">
+										<div class="shop_title_detail_div">가게 이름</div>
+										<input type="text" class="shop_title_detail" name="shop_title">
+										<div class="res_date_detail_div">예약 날짜</div>
+										<select class="res_date_detail" name="res_date">
+											<option value="2020">2020
+											<option value="2021">2021
+											<option value="2022">2022
+											<option value="2023">2023
+											<option value="2024">2024
+											<option value="2025">2025
+											<option value="2026">2026
+											<option value="2027">2027
+											<option value="2028">2028
+											<option value="2029">2029
+											<option value="2030">2030
+										</select>
+										<div class="res_date_detail_div2">년</div>
+										<select class="res_date_detail2" name="res_date">
+											<option value="1">1
+											<option value="2">2
+											<option value="3">3
+											<option value="4">4
+											<option value="5">5
+											<option value="6">6
+											<option value="7">7
+											<option value="8">8
+											<option value="9">9
+											<option value="10">10
+											<option value="11">11
+											<option value="12">12
+										</select>
+										<div class="res_date_detail_div3">월</div>
+										<select class="res_date_detail3" name="res_date">
+											<option value="0">0
+											<option value="1">1
+											<option value="2">2
+											<option value="3">3
+											<option value="4">4
+											<option value="5">5
+											<option value="6">6
+											<option value="7">7
+											<option value="8">8
+											<option value="9">9
+											<option value="10">10
+											<option value="11">11
+											<option value="12">12
+											<option value="13">13
+											<option value="14">14
+											<option value="15">15
+											<option value="16">16
+											<option value="17">17
+											<option value="18">18
+											<option value="19">19
+											<option value="20">20
+											<option value="21">21
+											<option value="22">22
+											<option value="23">23
+											<option value="23">24
+											<option value="23">25
+											<option value="23">26
+											<option value="23">27
+											<option value="23">28
+											<option value="23">29
+											<option value="23">30
+											<option value="23">31
+										</select>
+										<div class="res_date_detail_div4">일</div>
+										<div class="res_time_detail_div">예약 시간</div>
+										<select class="res_time_detail" name="res_date">
+											<option value="0">0
+											<option value="1">1
+											<option value="2">2
+											<option value="3">3
+											<option value="4">4
+											<option value="5">5
+											<option value="6">6
+											<option value="7">7
+											<option value="8">8
+											<option value="9">9
+											<option value="10">10
+											<option value="11">11
+											<option value="12">12
+											<option value="13">13
+											<option value="14">14
+											<option value="15">15
+											<option value="16">16
+											<option value="17">17
+											<option value="18">18
+											<option value="19">19
+											<option value="20">20
+											<option value="21">21
+											<option value="22">22
+											<option value="23">23
+										</select>
+										<div class="res_time_detail_div2">시</div>
+										<select class="res_time_detail2" name="res_date">
+											<option value="00">00
+											<option value="10">10
+											<option value="20">20
+											<option value="30">30
+											<option value="40">40
+											<option value="50">50
+										</select>
+										<div class="res_time_detail_div3">분</div>
+										<div class="res_customer_detail_div">예약 인원</div>
+										<input type="text" class="res_customer_detail"
+											name="res_customer">
+										<div class="res_customer_detail_div2">명</div>
+										<input type="submit" value="예약하기" class="reservation_submit">
+									</form>
+								</div>
 
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                           <button type="button" class="btn btn-secondary"
-                              data-dismiss="modal">Close</button>
-                        </div>
+								<!-- Modal footer -->
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary"
+										data-dismiss="modal">Close</button>
+								</div>
 
-                     </div>
-                  </div>
-               </div>
+							</div>
+						</div>
+					</div>
 
-            </div>
+				</div>
 				<div id="editor_recommend_restaurant" class="sidebar">
 					<div class="title">추천 리뷰어</div>
 					<ul class="list">
@@ -380,8 +384,6 @@
             		$("#import").load("detail/photo.do")
             		$("#import").show();
             	}
-<<<<<<< HEAD
-=======
 				else if($("#content > ul > .item.selected")[0] == $("#review")[0]){
 					$("#naverMap").hide();
 					$("#import").unload();
@@ -399,9 +401,8 @@
             		$("#import").unload();
             		$("#naverMap").show();
             	} 
->>>>>>> 3cfb1ad5ada02fe4bd84ef55304a245d168aba95
             }
-            
+
             //지도 관련
 $.getScript('https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=cyozvucbzs', function(){
 	var cityhall = new naver.maps.LatLng(37.5666805, 126.9784147),
@@ -424,17 +425,17 @@ $.getScript('https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=cyozvu
     '</div>'
 ].join('');
 
-var infowindow = new naver.maps.InfoWindow({
-content: contentString
-});
-
-naver.maps.Event.addListener(marker, "click", function(e) {
-if (infowindow.getMap()) {
-    infowindow.close();
-} else {
-    infowindow.open(map, marker);
-}
-}); 
+	var infowindow = new naver.maps.InfoWindow({
+	content: contentString
+	});
+	
+	naver.maps.Event.addListener(marker, "click", function(e) {
+	if (infowindow.getMap()) {
+	    infowindow.close();
+	} else {
+	    infowindow.open(map, marker);
+	}
+	}); 
 
 			});
         //지도관련 끝

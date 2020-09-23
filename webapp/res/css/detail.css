@@ -25,6 +25,7 @@ i_wrap background{
     background-repeat: no-repeat;
     filter: blur(3px);
     z-index: 1;
+    margin-top: 58px;
 }
 #banner.restaurant_detail .film {
     position: absolute;
@@ -33,13 +34,14 @@ i_wrap background{
     background-color: black;
     opacity: 50%;
     z-index: 2;
+    margin-top: 58px;
 }
 
 #banner.restaurant_detail>.inner_wrap{
     display:block;
     width:970px;
     height:100%;
-    margin:0 auto
+    margin:87px auto 0;
 }
 #banner.restaurant_detail>.inner_wrap>.inner{
     position:relative;
@@ -154,7 +156,7 @@ i_wrap background{
 #content_wrap{
     position:relative;
     width:970px;
-    margin:20px auto 150px
+    margin:10px auto 250px;
 }
 #content{
     float:left;
@@ -162,11 +164,16 @@ i_wrap background{
     width:730px
 }
 #content>.tab{
-    width:716px;
-    padding:0 6px;
-    border:1px solid #e3e3e3;
-    border-top:2px solid #f05e23;
-    background:#fff
+    width: 100%;
+    border-top: 2px solid #ffa500;
+    border-bottom: 1px solid #e3e3e3;
+    overflow: hidden;
+    display: inline-block;
+    padding-inline-start: 0;
+    background-color: #fff;
+    border-radius: 0 0 5px 5px;
+    margin-top: 16px;
+    background: #fff;
 }
 #content>.tab>.item{
     float:left;
@@ -187,14 +194,14 @@ i_wrap background{
 }
 
 #sidebar_wrap{
-	top: -40px;
+	top: -46px;
     float:right;
     position:relative;
     width:220px;
    /*  z-index: 4; */
 }
 #sidebar_wrap>.sidebar{
-    margin-top:20px;
+    margin-top:10px;
     padding:10px;
     border:1px solid #e3e3e3;
     border-top:2px solid #f05e23;

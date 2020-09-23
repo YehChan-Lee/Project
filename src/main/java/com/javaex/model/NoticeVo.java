@@ -2,7 +2,7 @@ package com.javaex.model;
 
 import java.sql.Date;
 
-public class NoticeVo {
+public class NoticeVo{
 	private String notice_title;	// 공지사항 제목		NOT NULL
 	private Date notice_date;		// 공지사항 작성 날짜	NOT NULL
 	private String notice_content;	// 공지사항 내용		NOT NULL

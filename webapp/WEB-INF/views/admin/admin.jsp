@@ -1,3 +1,5 @@
+<%@page import="com.javaex.model.AdminVo"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
@@ -147,15 +149,23 @@
 							<th>등록일</th>
 						</tr>
 						<tr>
+						<%
+						List<AdminVo> Areview_list = (List<AdminVo>)request.getAttribute("Areview_list");
+						for(int i = 0; i< Areview_list.size(); i++){
+							AdminVo vo = Areview_list.get(i);
+							
+							%>
 							<td><input type="radio" name="sec_home1_ckb"
 								id="sec_home1_ckb"></td>
-							<td>1</td>
-							<td>맛있어요~</td>
-							<td>먹어보니 맛집이네유? 추천이에유!</td>
-							<td>테스트계정임</td>
-							<td>2020.09.02</td>
+							<td><%=vo.getReviewVo().getReview_idx() %></td>
+							<td><%=vo.getReviewVo().getReview() %></td>
+							<td><%=vo.getShopUser().getUser_name() %></td>
+							<td><%=vo.getReviewVo().getReview_date() %></td>
 						</tr>
-						<tr>
+						<%
+						}
+						%>
+						<!-- <tr>
 							<td><input type="radio" name="sec_home1_ckb"
 								id="sec_home1_ckb"></td>
 							<td>2</td>
@@ -235,7 +245,7 @@
 							<td>먹어보니 맛집이네유? 추천이에유!</td>
 							<td>테스트계정임</td>
 							<td>2020.09.02</td>
-						</tr>
+						</tr> -->
 					</table>
 					<div class="paging">
 						<a href="#" class="bt"><i class="fas fa-angle-double-left"></i></a>
