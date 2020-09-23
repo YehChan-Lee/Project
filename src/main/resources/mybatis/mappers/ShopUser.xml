@@ -2,48 +2,53 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="ShopUser">
-   
-   <select id="getUser" parameterType="String" resultType="ShopUser">
-      select * from ShopUser where USER_EMAIL=#{user_email}     
-   </select>
-   
-   <insert id="signUp" parameterType="ShopUser">
-      <![CDATA[insert into ShopUser 
-      VALUES(#{user_email},#{user_pw},#{user_name},#{user_gender},#{user_birth},#{user_phone},#{is_owner},sysdate,#{point}) ]]> 
-   </insert>
-   
-   <select id="shopUserList" resultType="ShopUser">
-      <![CDATA[SELECT * FROM ShopUser]]>       
-   </select>
-
-   <select id="cntShopUser" resultType="int">
-      <!-- 사업자 제외 -->
-      <![CDATA[
-         SELECT COUNT(CASE WHEN is_owner=0 THEN 1 END)
-         FROM ShopUser
-      ]]>
-   </select>
-   
-   <insert id="shopuserInsert">
-      <![CDATA[
-      INSERT INTO ShopUser(user_email, user_pw, user_name, user_gender,
-                     user_birth, user_phone, is_owner, sign_date, point)
-      VALUES(#{user_email}, #{user_pw}, #{user_name}, #{user_gender},
-            #{user_birth}, #{user_phone}, #{is_owner}, #{sign_date}, #{point})
-      ]]>
-   </insert>
-   
-   <update id="shopuserUpdate">
-      <![CDATA[
-      UPDATE ShopUser set user_pw=#{user_pw}, user_phone=#{user_phone}
-      WHERE user_email=#{user_email}
-      ]]>   
-   </update>
-   
-   <delete id="shopuserDelete">
-      <![CDATA[
-      DELETE ShopUser WHERE user_email=#{user_email}
-      ]]>   
-   </delete>
+	<select id="getUser" parameterType="String" resultType="ShopUser">
+		<![CDATA[select * from ShopUser where USER_EMAIL=#{user_email} ]]> 		
+	</select>
+	
+	<insert id="signUp" parameterType="ShopUser">
+		<![CDATA[insert into ShopUser VALUES(#{user_email},#{user_pw},#{user_name},#{user_gender},#{user_birth},#{user_phone},#{is_owner},sysdate,#{point}) ]]> 
+	</insert>
+	
+	<select id="shopUserList" resultType="ShopUser">
+		<![CDATA[SELECT * FROM ShopUser]]> 		
+	</select>
+		
+	<select id="cntShopUser" resultType="ShopUser">
+		<!-- 사업자 제외 -->
+		<![CDATA[
+			SELECT COUNT(CASE WHEN is_owner=0 THEN 1 END)
+			FROM ShopUser
+		]]>
+	</select>
+	
+	<insert id="shopuserInsert">
+		<![CDATA[
+		INSERT INTO ShopUser(user_email, user_pw, user_name, user_gender,
+							user_birth, user_phone, is_owner, sign_date, point)
+		VALUES(#{user_email}, #{user_pw}, #{user_name}, #{user_gender},
+				#{user_birth}, #{user_phone}, #{is_owner}, #{sign_date}, #{point})
+		]]>
+	</insert>
+	
+	<update id="shopuserUpdate">
+		<![CDATA[
+		UPDATE ShopUser set user_pw=#{user_pw}, user_phone=#{user_phone}
+		WHERE user_email=#{user_email}
+		]]>	
+	</update>
+	
+	<update id="update_recentShop_user_email" parameterType="hashMap">
+		<![CDATA[
+		UPDATE ShopUser set recent_shop=#{shop_idx}
+		WHERE user_email=#{user_email}
+		]]>	
+	</update>
+	
+	<delete id="shopuserDelete">
+		<![CDATA[
+		DELETE ShopUser WHERE user_email=#{user_email}
+		]]>	
+	</delete>
 	
 </mapper>

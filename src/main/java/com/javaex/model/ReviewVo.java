@@ -4,11 +4,12 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
+@Component
 public class ReviewVo {
 	private int review_idx;			// 리뷰 인덱스(PK)		NOT NULL
 	private String shop_id;			// 사업자 번호(FK)		NOT NULL
 	private String user_email;		// 사용자 이메일(FK)		NOT NULL
-	private int review_score;		// 별점				NOT NULL
+	private double review_score;		// 별점				NOT NULL
 	private String review;			// 리뷰				NULL
 	private String review_photo;	// 리뷰 사진			NULL
 	private Date review_date;		// 리뷰 날짜			NOT NULL
@@ -17,7 +18,20 @@ public class ReviewVo {
 	
 	public ReviewVo() {}
 
-	public ReviewVo(int review_idx, String shop_id, String user_email, int review_score, String review,
+	public ReviewVo(int review_idx, String shop_id, String user_email, double review_score, String review,
+			String review_photo, int like_review, int hate_review) {
+		this.review_idx = review_idx;
+		this.shop_id = shop_id;
+		this.user_email = user_email;
+		this.review_score = review_score;
+		this.review = review;
+		this.review_photo = review_photo;
+		this.like_review = like_review;
+		this.hate_review = hate_review;
+	}
+	
+
+	public ReviewVo(int review_idx, String shop_id, String user_email, double review_score, String review,
 			String review_photo, Date review_date, int like_review, int hate_review) {
 		this.review_idx = review_idx;
 		this.shop_id = shop_id;
@@ -54,11 +68,11 @@ public class ReviewVo {
 		this.user_email = user_email;
 	}
 
-	public int getReview_score() {
+	public double getReview_score() {
 		return review_score;
 	}
 
-	public void setReview_score(int review_score) {
+	public void setReview_score(double review_score) {
 		this.review_score = review_score;
 	}
 
@@ -109,4 +123,5 @@ public class ReviewVo {
 				+ ", review_date=" + review_date + ", like_review=" + like_review + ", hate_review=" + hate_review
 				+ "]";
 	}
+	
 }

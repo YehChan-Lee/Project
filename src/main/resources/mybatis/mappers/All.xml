@@ -62,7 +62,6 @@
 		<result property="review_date" column="REVIEW_DATE"/>	
 		<result property="like_review" column="LIKE_REVIEW"/>	
 		<result property="hate_review" column="HATE_REVIEW"/>	
-		<result property="review_title" column="REVIEW_TITLE"/>	
 	</resultMap>
 	
  	<resultMap type="Dibs" id="DibsResult">
@@ -90,6 +89,13 @@
 		<collection property="ReviewVo" resultMap="ReviewResult"></collection>
 		<collection property="Dibs" resultMap="DibsResult"></collection>
 		<collection property="NewsVo" resultMap="NewsResult"></collection>
+	</resultMap>
+	
+	<resultMap type="All" id="ShopReview">
+		<id property="ReviewVo.review_idx" column="REVIEW_IDX"/>		
+		<collection property="ShopVo" resultMap="ShopResult"></collection>
+		<collection property="ShopUser" resultMap="ShopUserResult"></collection>
+		<collection property="ReviewVo" resultMap="ReviewResult"></collection>
 	</resultMap>
 	
 	<select id="reserveList" resultMap="AllResult">
@@ -144,9 +150,20 @@
         		on N.user_email=U.user_email
     		where N.is_admin='1'
 	</select>
-	
+
 	<select id="footeruser" resultType="int">
-			select count(DISTINCT user_email) from ShopUser
+		select count(DISTINCT user_email) from ShopUser
+	</select>
+			
+
+	<select id="shopreviewList" resultMap="ShopReview">
+		SELECT R.review_idx,U.user_email,U.user_name,U.user_idx, R.review_score,R.review,R.review_photo,R.like_review,R.hate_review FROM Review R
+	    INNER JOIN ShopUser U
+	        ON U.user_email=R.user_email
+	    INNER JOIN Shop S
+	        ON S.shop_id=R.shop_id
+	    WHERE R.shop_id = #{shopId}
+	    ORDER BY R.review_date DESC
 	</select>
 	
 </mapper>

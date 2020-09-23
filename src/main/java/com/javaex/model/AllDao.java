@@ -69,11 +69,19 @@ public class AllDao {
 		 }
 		 return sqlSession.selectList("All.bpList", user_email); 
 	 }
-	 
+
 	 public int footeruser() {
 		int footeruser = sqlSession.selectOne("All.footeruser");
 		System.out.println(footeruser);
 		return sqlSession.selectOne("All.footeruser");
 	 }
+	 public List<AllVo> shopreviewList(String shopId){
+		 List<AllVo> allvo = sqlSession.selectList("All.shopreviewList",shopId);
+			System.out.println(allvo.size());
+			for (int i = 0; i < allvo.size(); i++) {
+				System.out.println(allvo.get(i));
+			}
+		return sqlSession.selectList("All.shopreviewList",shopId);
+	}
 	 
 }

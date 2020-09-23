@@ -1,5 +1,6 @@
+<%@page import="com.javaex.model.ReservationVo"%>
+<%@page import="com.javaex.model.ShopUserVo"%>
 <%@page import="com.javaex.model.ShopVo"%>
-<%@page import="java.util.List"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -11,21 +12,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>밥풀 - 카페/베이커리</title>
 
-<link rel="stylesheet"
-	href="<c:url value='${path}/res/css/detail.css?ver=1'/>">
-<link rel="stylesheet"
-	href="<c:url value='${path}/res/css/bootstrap.min.css'/>">
-<link
-	href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
-	rel="stylesheet">
+<link rel="stylesheet" href="<c:url value='${path}/res/css/detail.css?ver=1'/>">
+<link rel="stylesheet" href="<c:url value='${path}/res/css/bootstrap.min.css'/>">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
 
 <script src="http://code.jquery.com/jquery.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
 </head>
 
 <%@include file="../top_bar.jsp"%>
@@ -35,9 +32,9 @@
 	<div id="container">
 		<%
 			ShopVo shopvo = (ShopVo) request.getAttribute("shopOne");
-
-		pageContext.setAttribute("star", shopvo.getShop_score());
-		pageContext.setAttribute("shopidx", shopvo.getShop_idx());
+			pageContext.setAttribute("id", session.getAttribute("sessionID"));
+			pageContext.setAttribute("star", shopvo.getShop_score());
+			pageContext.setAttribute("shopidx", shopvo.getShop_idx());
 		%>
 
 		<!-- 상단에 배너가 있는 레이아웃 -->
@@ -139,9 +136,13 @@
 				<div class="container">
 
 					<!-- Button to Open the Modal -->
+					<%if (session.getAttribute("sessionID") == null) { %>
+					<button type="button" class="btn btn-primary" onclick="loginPopUp()"
+					id="reservation_btn">예약 하기</button>
+						<% } else{ %>
 					<button type="button" class="btn btn-primary" data-toggle="modal"
-						data-target="#myModal" id="reservation_btn">예약 하기</button>
-
+					data-target="#myModal" id="reservation_btn">예약 하기</button>
+					<% } %>
 					<!-- The Modal -->
 					<div class="modal fade" id="myModal">
 						<div class="modal-dialog modal-dialog-centered">
@@ -155,11 +156,11 @@
 
 								<!-- Modal body -->
 								<div class="modal-body" id="modal-body">
-									<form action="" method="" class="a">
+									<form action="reservation" method="post" class="a">
 										<div class="shop_title_detail_div">가게 이름</div>
-										<input type="text" class="shop_title_detail" name="shop_title">
+										<input type="text" class="shop_title_detail" name="shop_title" value="<%=shopvo.getShop_title()%>" readonly="readonly">
 										<div class="res_date_detail_div">예약 날짜</div>
-										<select class="res_date_detail" name="res_date">
+										<select class="res_date_detail" name="res_year">
 											<option value="2020">2020
 											<option value="2021">2021
 											<option value="2022">2022
@@ -173,32 +174,31 @@
 											<option value="2030">2030
 										</select>
 										<div class="res_date_detail_div2">년</div>
-										<select class="res_date_detail2" name="res_date">
-											<option value="1">1
-											<option value="2">2
-											<option value="3">3
-											<option value="4">4
-											<option value="5">5
-											<option value="6">6
-											<option value="7">7
-											<option value="8">8
-											<option value="9">9
+										<select class="res_date_detail2" name="res_month">
+											<option value="01">1
+											<option value="02">2
+											<option value="03">3
+											<option value="04">4
+											<option value="05">5
+											<option value="06">6
+											<option value="07">7
+											<option value="08">8
+											<option value="09">9
 											<option value="10">10
 											<option value="11">11
 											<option value="12">12
 										</select>
 										<div class="res_date_detail_div3">월</div>
 										<select class="res_date_detail3" name="res_date">
-											<option value="0">0
-											<option value="1">1
-											<option value="2">2
-											<option value="3">3
-											<option value="4">4
-											<option value="5">5
-											<option value="6">6
-											<option value="7">7
-											<option value="8">8
-											<option value="9">9
+											<option value="01">1
+											<option value="02">2
+											<option value="03">3
+											<option value="04">4
+											<option value="05">5
+											<option value="06">6
+											<option value="07">7
+											<option value="08">8
+											<option value="09">9
 											<option value="10">10
 											<option value="11">11
 											<option value="12">12
@@ -224,17 +224,17 @@
 										</select>
 										<div class="res_date_detail_div4">일</div>
 										<div class="res_time_detail_div">예약 시간</div>
-										<select class="res_time_detail" name="res_date">
-											<option value="0">0
-											<option value="1">1
-											<option value="2">2
-											<option value="3">3
-											<option value="4">4
-											<option value="5">5
-											<option value="6">6
-											<option value="7">7
-											<option value="8">8
-											<option value="9">9
+										<select class="res_time_detail" name="res_hour">
+											<option value="00">0
+											<option value="01">1
+											<option value="02">2
+											<option value="03">3
+											<option value="04">4
+											<option value="05">5
+											<option value="06">6
+											<option value="07">7
+											<option value="08">8
+											<option value="09">9
 											<option value="10">10
 											<option value="11">11
 											<option value="12">12
@@ -251,7 +251,7 @@
 											<option value="23">23
 										</select>
 										<div class="res_time_detail_div2">시</div>
-										<select class="res_time_detail2" name="res_date">
+										<select class="res_time_detail2" name="res_min">
 											<option value="00">00
 											<option value="10">10
 											<option value="20">20
@@ -261,9 +261,10 @@
 										</select>
 										<div class="res_time_detail_div3">분</div>
 										<div class="res_customer_detail_div">예약 인원</div>
-										<input type="text" class="res_customer_detail"
-											name="res_customer">
+										<input type="text" class="res_customer_detail" name="res_customer">
 										<div class="res_customer_detail_div2">명</div>
+										<div class="rev_phone_div">예약자 핸드폰 번호</div>
+										<input type="text" class="rev_phone" name="rev_phone">
 										<input type="submit" value="예약하기" class="reservation_submit">
 									</form>
 								</div>
@@ -297,7 +298,7 @@
 							</div></li>
 						<li class="item"><a class="i_wrap" href="/timeline/336595">
 								<i class="image border_radius circle"
-								style="background-image: url(../pics/detail/lee.jpg)"></i>
+								style="background-image: url(<c:url value="${path}/res/image/lee.jpg"/>)"></i>
 						</a>
 							<div class="detail">
 								<div class="name">
@@ -310,7 +311,7 @@
 							</div></li>
 						<li class="item"><a class="i_wrap" href="/timeline/611090">
 								<i class="image border_radius circle"
-								style="background-image: url(../pics/detail/lee.jpg)"></i>
+								style="background-image: url(<c:url value="${path}/res/image/lee.jpg"/>)"></i>
 						</a>
 							<div class="detail">
 								<div class="name">
@@ -323,7 +324,7 @@
 							</div></li>
 						<li class="item"><a class="i_wrap" href="/timeline/537740">
 								<i class="image border_radius circle"
-								style="background-image: url(../pics/detail/lee.jpg)"></i>
+								style="background-image: url(<c:url value="${path}/res/image/lee.jpg"/>)"></i>
 						</a>
 							<div class="detail">
 								<div class="name">
@@ -336,7 +337,7 @@
 							</div></li>
 						<li class="item"><a class="i_wrap" href="/timeline/599857">
 								<i class="image border_radius circle"
-								style="background-image: url(../pics/detail/lee.jpg)"></i>
+								style="background-image: url(<c:url value="${path}/res/image/lee.jpg"/>)"></i>
 						</a>
 							<div class="detail">
 								<div class="name">
@@ -353,12 +354,51 @@
 		</div>
 	</div>
 	<%@include file="../footer.jsp"%>
+	<script type="text/javascript"src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=cyozvucbzs&submodules=geocoder"></script>
+
 	<script>
-        $(document).ready(function(){     		
+        $(document).ready(function(){  
+        	$('.action > button').click(function () {
+        		var tmp = '${id}';
+    			if( tmp = null){
+    				$("#join_body").hide();
+    				$("#join2_body").hide();
+    				$("#idsearch_body").hide();
+    				$("#passwordsearch_body").hide();
+
+    				$("#login_body").show();
+    				$("#popup_body").show();
+    				$("#naverIdLogin").show();
+    				$("#nav_shading.shading_bg").show();
+
+    				$("#nav_btn").siblings().removeClass('focus');
+
+    				$('#popup_body').css('width', 404 + 'px');
+    				$('#popup_body').css('height', 554 + 'px');
+
+    				$("#naverIdLogin").css('top', 0);
+
+    				$('.popup_close').css('top', -90 + 'px');
+    				$('.popup_close').css('left', 80 + '%');
+    			}else{
+    				alert("로그인되어있슴")
+    			}
+    		})
+        	
+        	$("#star_score").rateYo({
+    			rating : ${shopOne.shop_score},
+    			starWidth: "23px",
+    			halfStar: true,
+    			readOnly: true,
+    			onInit: function (rating, rateYoInstance) {
+    				/* mk_comment(rating,"#grade_comment${review.shopUser.user_idx}","#grade_score${review.shopUser.user_idx}");
+    				$("#grade${review.shopUser.user_idx}").rateYo("option", "readOnly", true); */
+    			},
+    			starSvg : '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>'
+    		});        	
+        	
             $("#content > ul > li > span").mouseover(function(){
             	$(this).css('cursor','pointer');
-            	console.log($(this).parent());
-            	console.dir($(this).parent());
             });
             
             
@@ -368,7 +408,9 @@
             	loadPage();
             });
             
-            $("#import").load("detail/info.do", {"shopidx" : ${shopidx}});
+            $("#import").load("detail/info.do", {
+            	"shopidx" : ${shopidx}
+            });
             
             function loadPage(){
             	
@@ -387,8 +429,13 @@
 				else if($("#content > ul > .item.selected")[0] == $("#review")[0]){
 					$("#naverMap").hide();
 					$("#import").unload();
-            		$("#import").load("detail/review.do")
+            		$("#import").load("detail/review.do",{
+            			"shopidx" : ${shopidx},
+            			"shopId" : "${shopOne.shop_id}"
+            		});
+            		$.getScript("<c:url value='${path}/res/js/jquery.magnific-popup.js'/>");
             		$("#import").show();
+            		
             	}
             	else if($("#content > ul > .item.selected")[0] == $("#menu")[0]){
             		$("#naverMap").hide();
@@ -402,44 +449,126 @@
             		$("#naverMap").show();
             	} 
             }
-
+            
             //지도 관련
-$.getScript('https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=cyozvucbzs', function(){
-	var cityhall = new naver.maps.LatLng(37.5666805, 126.9784147),
-    map = new naver.maps.Map('naverMap', {
-        center: cityhall,
-        zoom: 15
-    }),
-    marker = new naver.maps.Marker({
-        map: map,
-        position: cityhall,
-    });
+            var shop_addr = "${shopOne.shop_addr}".substring(0,"${shopOne.shop_addr}".indexOf("|"))
+            if(shop_addr == ""){
+               shop_addr = "${shopOne.shop_addr}"
+                   contentString = [
+                       '<div class="marker_tooltip">',
+                       '   <h3>${shopOne.shop_title}</h3>',
+                       '   <p><i1>'+shop_addr+'</i1>',
+                       '       <img src="<c:url value='${path}/res/image/walkerhill1.jpg'/>" width="100" height="100"  /><br/>',
+                       '       <i2>${shopOne.shop_phone} | ${shopOne.shop_time} | ${shopOne.shop_close}<br/></i2>',
+                       '   </p>',
+                       '</div>'
+                      ].join('');
+            }else{
+                contentString = [
+                    '<div class="marker_tooltip">',
+                    '   <h3>${shopOne.shop_title}</h3>',
+                    '   <p><i1>'+shop_addr+'<br>'+"${shopOne.shop_addr}".substring("${shopOne.shop_addr}".indexOf("|")+1)+'<br/></i1>',
+                    '       <img src="<c:url value='${path}/res/image/walkerhill1.jpg'/>" width="100" height="100"  /><br/>',
+                    '       <i2>${shopOne.shop_phone} | ${shopOne.shop_time} | ${shopOne.shop_close}<br/></i2>',
+                    '   </p>',
+                    '</div>'
+                   ].join('');
+            }
+            var shop_position = new naver.maps.LatLng(37.5666805, 126.9784147),
+             map = new naver.maps.Map('naverMap', {
+                 center: shop_position,
+                 zoom: 15
+             }),
+             marker = new naver.maps.Marker({
+                 map: map,
+                 position: shop_position,
+             });
+             naver.maps.Service.geocode({
+                 address: shop_addr
+             }, function(status, response) {
+                 if (status !== naver.maps.Service.Status.OK) {
+                     return alert('지도데이터를 불러올수 없습니다!')
+                 }
 
- 		var contentString = [
-    '<div class="iw_inner">',
-    '   <h3>${shopOne.shop_title}</h3>',
-    '   <p>${shopOne.shop_addr}<br/>',
-    '       <img src="<c:url value='${path}/res/image/walkerhill1.jpg'/>" width="55" height="55" alt="서울시청" class="thumb" /><br />',
-    '       ${shopOne.shop_phone} | ${shopOne.shop_time} | ${shopOne.shop_close}<br/>',
-    '   </p>',
-    '</div>'
-].join('');
+                 var result = response.result, items = result.items;
+                 if(items.length == 0){
+                    $("#map").click(function () {
+                       alert('지도데이터를 불러올수 없습니다!')
+                  })
+                 }else{
+                 shop_position = new naver.maps.LatLng(items[0].point.y, items[0].point.x)
+                 map.setCenter(shop_position)
+                 map.setZoom(15)
+                 marker.setPosition(shop_position)
+                 marker.setMap(map)
+                var infowindow = new naver.maps.InfoWindow({
+                   content: contentString
+                   });
+                   
+                   naver.maps.Event.addListener(marker, "click", function(e) {
+                   if (infowindow.getMap()) {
+                       infowindow.close();
+                   } else {
+                       infowindow.open(map, marker);
+                   }
+                   }); 
+                 }
+             });
 
-	var infowindow = new naver.maps.InfoWindow({
-	content: contentString
-	});
-	
-	naver.maps.Event.addListener(marker, "click", function(e) {
-	if (infowindow.getMap()) {
-	    infowindow.close();
-	} else {
-	    infowindow.open(map, marker);
-	}
-	}); 
-
+                 //지도관련 끝
+        
+		$('.reservation_submit').click(function(e) {
+			e.preventDefault();
+			var action = $('.a').attr("action");
+			
+			var form_data = {
+				
+					shop_id : "${shopOne.shop_id}",
+					res_customer : $(".res_customer_detail").val(),
+					shop_title : $(".shop_title_detail").val(),
+					rev_phone : $(".rev_phone").val(),
+					res_date : $(".res_date_detail").val() + "-" + $(".res_date_detail2").val() + "-" + 
+					$(".res_date_detail3").val() +" "+  $(".res_time_detail").val() + ":" + $(".res_time_detail2").val()
+					
+				};
+		
+			$.ajax({
+				type : "POST",
+				url : action,
+				data : form_data,
+				success : function(data) {
+				
+				},
+				error : function() {
+					
+				}
+		
 			});
-        //지도관련 끝
-});
+		});      
+}); 
+        //로그인 팝업 관련
+		function loginPopUp(){
+			$("#join_body").hide();
+			$("#join2_body").hide();
+			$("#idsearch_body").hide();
+			$("#passwordsearch_body").hide();
+
+			$("#login_body").show();
+			$("#popup_body").show();
+			$("#naverIdLogin").show();
+			$("#nav_shading.shading_bg").show();
+
+			$("#nav_btn").siblings().removeClass('focus');
+
+			$('#popup_body').css('width', 404 + 'px');
+			$('#popup_body').css('height', 554 + 'px');
+
+			$("#naverIdLogin").css('top', 0);
+
+			$('.popup_close').css('top', -90 + 'px');
+			$('.popup_close').css('left', 80 + '%'); 
+	    }
     </script>
+ 
 </body>
 </html>

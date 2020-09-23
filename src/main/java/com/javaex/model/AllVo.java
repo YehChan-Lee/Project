@@ -1,15 +1,22 @@
 package com.javaex.model;
 
 public class AllVo {
+	private ReviewVo ReviewVo;
 	private ReservationVo Reservation;
 	private ShopVo ShopVo;
 	private ShopUserVo ShopUser;
-	private ReviewVo ReviewVo;
 	private MenuVO menu;
 	private ShopDibsVo Dibs;
 	private NewsVo NewsVo;
 	
 	public AllVo() {}
+	public ReviewVo getReviewVo() {
+		return ReviewVo;
+	}
+
+	public void setReviewVo(ReviewVo reviewVo) {
+		ReviewVo = reviewVo;
+	}
 
 	public ReservationVo getReservation() {
 		return Reservation;
@@ -23,6 +30,8 @@ public class AllVo {
 		return ShopVo;
 	}
 
+
+
 	public void setShopVo(ShopVo shopVo) {
 		ShopVo = shopVo;
 	}
@@ -33,14 +42,6 @@ public class AllVo {
 
 	public void setShopUser(ShopUserVo shopUser) {
 		ShopUser = shopUser;
-	}
-	
-	public ReviewVo getReviewVo() {
-		return ReviewVo;
-	}
-
-	public void setReviewVo(ReviewVo review) {
-		this.ReviewVo = review;
 	}
 
 	public MenuVO getMenu() {
@@ -69,7 +70,7 @@ public class AllVo {
 
 	@Override
 	public String toString() {
-		return "AllVo [Reservation=" + Reservation + ", ShopVo=" + ShopVo + ", ShopUser=" + ShopUser + ", ReviewVo="
+		return "AllVo[Reservation=" + Reservation + ", ShopVo=" + ShopVo + ", ShopUser=" + ShopUser + ", ReviewVo="
 				+ ReviewVo + ", menu=" + menu + ", Dibs=" + Dibs + ", NewsVo=" + NewsVo + "]";
 	}
 

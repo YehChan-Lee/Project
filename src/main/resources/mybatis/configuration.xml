@@ -17,7 +17,11 @@
 		
 		<typeAlias alias="Dibs" type="com.javaex.model.ShopDibsVo"></typeAlias>
 
-		<typeAlias alias="NewsVo" type="com.javaex.model.NewsVo"></typeAlias>
+		<typeAlias alias="NewsVo" type="com.javaex.model.NewsVo"></typeAlias>		
+
+		<typeAlias alias="ReviewLikeVo" type="com.javaex.model.ReviewLikeVo"></typeAlias>	
+			
+		<typeAlias alias="ReviewHateVo" type="com.javaex.model.ReviewHateVo"></typeAlias>		
 		
 		<typeAlias alias="AdminVo" type="com.javaex.model.AdminVo"></typeAlias>
 		

@@ -21,7 +21,7 @@
         <div id="banner" class="image " style="background-image:url(https://c2.poing.co.kr/banner/MjAxOTAx/15474478485c3c2e28c949a.png)">
             <div class="title_wrap">
                 <div class="title">
-                   	 인기 지역별		
+                   	주요 지역별		
                 </div>
             </div>
                 <div class="subtitle"></div>
@@ -30,7 +30,7 @@
 
     <div id="content_wrap">
         <div class="section">
-            <div class="title">인기 지역별</div>
+            <div class="title">주요 지역별</div>
                 <div class="body">
 
                     <div class="content">

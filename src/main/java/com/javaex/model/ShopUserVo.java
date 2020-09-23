@@ -4,6 +4,7 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
+@Component(value="ShopUser")
 public class ShopUserVo {
 	private String user_email;		// 사용자 이메일(PK)	NOT NULL
 	private String user_pw;			// 사용자 비밀번호 		NOT NULL
@@ -16,6 +17,7 @@ public class ShopUserVo {
 	private int point;				// 포인트				NULL
 	private String user_photo;		// 사용자 사진			NULL
 	private int user_idx;			// 사용자 번호			NOT NULL
+	private String recent_shop;		// 최근본 매장의 사업자ID	NULL
 	
 	public ShopUserVo() {}	
 
@@ -122,11 +124,21 @@ public class ShopUserVo {
 		this.user_idx = user_idx;
 	}
 
+	public String getRecent_shop() {
+		return recent_shop;
+	}
+
+	public void setRecent_shop(String recent_shop) {
+		this.recent_shop = recent_shop;
+	}
+
 	@Override
 	public String toString() {
 		return "ShopUserVo [user_email=" + user_email + ", user_pw=" + user_pw + ", user_name=" + user_name
 				+ ", user_gender=" + user_gender + ", user_birth=" + user_birth + ", user_phone=" + user_phone
-				+ ", isOwner=" + is_owner + ", sign_date=" + sign_date + ", point=" + point 
-				+ ", user_photo=" + user_photo + ", user_idx=" + user_idx + "]";
+				+ ", is_owner=" + is_owner + ", sign_date=" + sign_date + ", point=" + point + ", user_photo="
+				+ user_photo + ", user_idx=" + user_idx + ", recent_shop=" + recent_shop + "]";
 	}
+
+	
 }

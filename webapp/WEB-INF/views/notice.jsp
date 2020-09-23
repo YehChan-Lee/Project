@@ -48,7 +48,6 @@
 	    	<li>
 	    	<a href="notice${pageMaker.makeQuery(pageMaker.startPage - 1)}">&laquo;</a></li>
 	    </c:if> 
-	
 	    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
 	    	<li id="_page" class="${pageMaker.cri.page == idx? 'active':''}">
 	    	<a href="notice${pageMaker.makeQuery(idx)}">${idx}</a></li>
@@ -65,7 +64,6 @@
 		<input type="hidden" id="amount" name="amount" value="${pageMaker.cri.perPageNum}">
 	</form> --%>
 	<!-- pagination{e} -->
-
 <%@include file="footer.jsp" %>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script>

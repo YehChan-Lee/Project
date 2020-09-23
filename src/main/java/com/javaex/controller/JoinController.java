@@ -1,17 +1,25 @@
 package com.javaex.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.javaex.model.AllDao;
 import com.javaex.model.NewsDao;
-import com.javaex.model.ReservationDao;
 import com.javaex.model.ReviewDao;
-import com.javaex.model.ReviewVo;
+import com.javaex.model.ReservationDao;
 import com.javaex.model.ShopDao;
 import com.javaex.model.ShopUserDao;
 
@@ -146,5 +154,22 @@ public class JoinController {
 		mav.setViewName("footer");
 		return mav;
 	}
+	
+	@RequestMapping("/detail/review.do")
+	public ModelAndView hello(ModelAndView mav,HttpSession session,HttpServletRequest req) {
+		System.out.println("/BabPool/review.do");
+		String shopId = req.getParameter("shopId");
+		String user_email = (String)session.getAttribute("sessionID");
+		System.out.println("review : " + shopId + user_email);
+		mav.addObject("reviewList",alldao.shopreviewList(shopId));
+		if(user_email != null) {
+			mav.addObject("likeList",reviewdao.likeList(user_email,shopId));
+			mav.addObject("hateList",reviewdao.hateList(user_email,shopId));
+		}
+		mav.addObject("shopId",shopId);
+		mav.setViewName("detail/detail_review");
+		return mav;
+	}
+	
 	
 }

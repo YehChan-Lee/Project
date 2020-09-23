@@ -8,7 +8,6 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="${path}/res/css/detail_photo.css?ver=1"/>" />
-	<script src="http://code.jquery.com/jquery.js"></script>
 </head>
 <body>
 	<div id="wrapper">
