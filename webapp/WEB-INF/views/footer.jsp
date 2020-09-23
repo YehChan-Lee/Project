@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="<c:url value="${path}/res/css/footer.css"/>" />
+<link rel="stylesheet" href="<c:url value='${path}/res/css/detail_review.css'/>">
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 <script type="text/javascript" src="http://malsup.github.com/jquery.form.js"></script>
  

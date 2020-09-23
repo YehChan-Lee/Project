@@ -8,24 +8,27 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="<c:url value='${path}/res/css/detail_review.css'/>">
-<link rel="stylesheet" href="<c:url value='${path}/res/css/magnific-popup.css'/>">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+
+<link rel="stylesheet"
+	href="<c:url value='${path}/res/css/magnific-popup.css'/>">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
 
 </head>
 <body>
+<%pageContext.setAttribute("sessionid", session.getAttribute("sessionID")); %>
 	<div id="review_wrap">
-		<form action="review_upload" method="post" id="review_upload" enctype="multipart/form-data">
+		<form action="review_upload" method="post" id="review_upload"
+			enctype="multipart/form-data">
 			<div id="review_write_wrap">
 				<div id="review_title">리뷰 쓰기</div>
 				<ul id="list">
 					<li id="list_grade" class="item">
 						<div class="list_name">별점</div>
 						<div id="star_score">
-							<span id="star_span" style="padding: 0;vertical-align: super"></span> <span
-								class="score"></span> <span class="comment"></span>
-						</div>
-						<input type="hidden" id="hidden_grade" name="hidden_grade" />
+							<span id="star_span" style="padding: 0; vertical-align: super"></span>
+							<span class="score"></span> <span class="comment"></span>
+						</div> <input type="hidden" id="hidden_grade" name="hidden_grade" />
 					</li>
 					<li id="list_text" class="item text">
 						<div class="list_name">리뷰</div> <textarea name="review_area"
@@ -34,7 +37,8 @@
 					</li>
 					<li id="list_photo" class="item">
 						<div class="list_name">사진 등록</div> <input type="file"
-						name="inputImage" accept="image/png,image/jpeg,image/jpg" multiple="multiple" />
+						name="inputImage" accept="image/png,image/jpeg,image/jpg"
+						multiple="multiple" />
 					</li>
 				</ul>
 			</div>
@@ -68,29 +72,33 @@
 					</div>
 					<div class="text">${review.reviewVo.review}</div>
 					<div class="photo">
-						<c:forTokens items="${review.reviewVo.review_photo}" var="img" delims="/">
-							<a href="<c:url value='${path}/serverImg/review/${img}'/>" title="Picture"><img src="<c:url value='${path}/serverImg/review/${img}'/>"
-								width="75" height="75"></a> 
+						<c:forTokens items="${review.reviewVo.review_photo}" var="img"
+							delims="/">
+							<a href="<c:url value='${path}/serverImg/review/${img}'/>"
+								title="Picture"><img
+								src="<c:url value='${path}/serverImg/review/${img}'/>"
+								width="75" height="75"></a>
 						</c:forTokens>
 					</div>
-					
+
 					<div class="action">
-						<form action="review/like">
+						<input type="hidden" name="like_form"
+							value="${review.reviewVo.review_idx}" />
 						<button class="like" id="review_like${review.reviewVo.review_idx}">
 							<i class="far fa-thumbs-up"></i>
 							<p>좋아요</p>
-							<span>0</span>
+							<span>${review.reviewVo.like_review}</span>
 						</button>
-						</form>
-						<form action="review/hate" id="review_hate${review.reviewVo.review_idx}">
-						<button class="hate">
+
+						<input type="hidden" name="hate_form"
+							value="${review.reviewVo.review_idx}" />
+						<button class="hate" id="review_hate${review.reviewVo.review_idx}">
 							<i class="far fa-thumbs-down"></i>
 							<p>싫어요</p>
-							<span>0</span>
+							<span>${review.reviewVo.hate_review}</span>
 						</button>
-						</form>
 					</div>
-					
+
 				</div>
 			</c:forEach>
 
@@ -109,6 +117,19 @@
 </body>
 <script>
 	var cur_rating = 0;	
+	var id = '${sessionid}';
+	
+	if(id != null){
+		<c:forEach items="${likeList}" var="obj" >
+			$('#review_like${obj.review_idx}').attr("style","color:#f05e23;border-color:#f05e23;").children("p").attr("style", "border-color:#f05e23");
+		</c:forEach>
+	
+		<c:forEach items="${hateList}" var="obj" >
+			$('#review_hate${obj.review_idx}').attr("style","color:#f05e23;border-color:#f05e23;").children("p").attr("style", "border-color:#f05e23");
+		</c:forEach>	
+	}
+	
+	
 	
 	function mk_comment(currentIndex,div,score) {
 		$(score).text(currentIndex + "점");
@@ -199,29 +220,87 @@
 			}
 		}
 	});
-	<c:forEach items="${reviewList}" var="review">
-	$("#review_like${review.reviewVo.review_idx}").click(function () {
-		$.ajax({
-			type : "POST",
-			url : "review/like",
-			data : form_data,
-			dataType : "json",
-			async : false,
-			success : function(data) {
-				
-			},
-			error : function() {
-				alert("에러발생");
-			}
-
+	<c:forEach items="${reviewList}" var="review">	
+		$("#review_like${review.reviewVo.review_idx}").click(function () {
+			$.ajax({
+				type : "POST",
+				url : "review/like",
+				dataType : "json",
+				data: {
+					reviewIdx : ${review.reviewVo.review_idx},
+					shopId : "${shopId}"
+				},
+				success:function(data) {
+					if(data.isLike == "true"){
+						alert("이미 좋아요를 누르셨습니다.");
+					}else if(data.isLike == "false"){
+						$('#review_like${review.reviewVo.review_idx}').children("span").replaceWith("<span>"+data.like+"</span>");
+						$('#review_like${review.reviewVo.review_idx}').attr("style","color:#f05e23;border-color:#f05e23;").children("p").attr("style", "border-color:#f05e23");
+					}else if(data.islogin == "false"){
+						idcheck();
+					}					
+				},
+				error : function() {
+					alert("에러발생");
+				}
+	
+			});
 		});
-	})
+		</c:forEach>
+		<c:forEach items="${reviewList}" var="review">	
+		$("#review_hate${review.reviewVo.review_idx}").click(function () {			
+			$.ajax({
+				type : "POST",
+				url : "review/hate",
+				dataType : "json",
+				data: {
+					reviewIdx : ${review.reviewVo.review_idx},
+					shopId : "${shopId}"
+				},
+				success : function(data) {
+					if(data.isHate == "true"){
+						alert("이미 싫어요를 누르셨습니다.");
+					}else if(data.isHate == "false"){
+						$('#review_hate${review.reviewVo.review_idx}').children("span").replaceWith("<span>"+data.hate+"</span>");
+						$('#review_hate${review.reviewVo.review_idx}').attr("style","color:#f05e23;border-color:#f05e23;").children("p").attr("style", "border-color:#f05e23");
+					}else if(data.islogin == "false"){
+						/* alert("로그인 후 시도하세요"); */
+						idcheck();					
+					}	
+					
+				},
+				error : function() {
+					alert("에러발생");
+				}
+	
+			});			
+		});
 	</c:forEach>
 	$(".action > button").hover(function() {
 		$(this).children("p").attr("border-color", "#f05e23");
 	});
-	$('.like').click(function(){
-		console.log($(this).parent("div").children("input").val());
-	});
+	function idcheck(){
+		$("#join_body").hide();
+		$("#join2_body").hide();
+		$("#idsearch_body").hide();
+		$("#passwordsearch_body").hide();
+
+		$("#login_body").show();
+		$("#popup_body").show();
+		$("#naverIdLogin").show();
+		$("#nav_shading.shading_bg").show();
+
+		$("#nav_btn").siblings().removeClass('focus');
+
+		$('#popup_body').css('width', 404 + 'px');
+		$('#popup_body').css('height', 554 + 'px');
+
+		$("#naverIdLogin").css('top', 0);
+
+		$('.popup_close').css('top', -90 + 'px');
+		$('.popup_close').css('left', 80 + '%');
+	}
+	
+	
 </script>
 </html>

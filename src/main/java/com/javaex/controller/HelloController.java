@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HelloController {
-
 	@RequestMapping("/location")
 	public String location() {
 		System.out.println("/BabPool/location");

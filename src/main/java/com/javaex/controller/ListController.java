@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -281,18 +283,86 @@ public class ListController {
 
 	@RequestMapping("/buisnessmypage/registration2")
 	public ModelAndView registration2(ModelAndView mav, HttpSession session) {
-
+		
 		mav.addObject("shopOwnerList", dao.shopOwnerList((String) session.getAttribute("sessionID")));
 		mav.setViewName("buisnessmypage/buisness_mypage_registration2");
 		return mav;
 	}
 	@RequestMapping("/review/like")
-	public void reviewLike(HttpSession session) {
+	public void reviewLike(HttpSession session,HttpServletResponse res,HttpServletRequest req) throws IOException {
+		System.out.println("/review/like");
+		String user_email = (String)session.getAttribute("sessionID");
+		if(user_email == null) {
+			JSONObject jobj = new JSONObject();
+			jobj.put("islogin","false");
+			String jsonstr = jobj.toString();
+			res.getWriter().write(jsonstr);
+			return;
+		}
+		int review_idx = Integer.parseInt(req.getParameter("reviewIdx"));
+		String shopId = req.getParameter("shopId");
+//		System.out.println("review_idx : " + review_idx);
+//		System.out.println("shopId : " + shopId);
 		
+		//해당 리뷰에 현재 로그인자가 좋아요를 눌렀는지부터 판별시작
+		if(reviewdao.reviewlikeCheck(user_email, review_idx) != null) {
+			//좋아요 해제
+			System.out.println("좋아요 했는데 또 누름");
+			//like에 해당 리뷰에 현재 ID가 있으면 테이블에서 삭제 후 like count를 리턴
+			//해당 리뷰의 좋아요 갯수 감소
+			JSONObject jobj = new JSONObject();
+			jobj.put("isLike","true");
+			String jsonstr = jobj.toString();
+			res.getWriter().write(jsonstr);
+			
+		}else {
+			//좋아요 누름
+			System.out.println("좋아요 누름");
+			//like에 해당 리뷰에 현재 ID가 없으면 테이블에 추가 후 like count 리턴
+			reviewdao.likeAdd(user_email, review_idx,shopId);
+			reviewdao.likeReload(review_idx,reviewdao.likeCnt(review_idx));
+			String cnt = reviewdao.likeCnt(review_idx)+"";
+			//해당 리뷰의 좋아요 갯수 입력
+			JSONObject jobj = new JSONObject();
+			jobj.put("isLike","false");
+			jobj.put("like",cnt);
+			String jsonstr = jobj.toString();
+			System.out.println(jsonstr);
+			res.getWriter().write(jsonstr);
+		}
 	}
 	@RequestMapping("/review/hate")
-	public void reviewHate(HttpSession session,HttpServletResponse res) {
+	public void reviewHate(HttpSession session,HttpServletResponse res,HttpServletRequest req) throws IOException {
+		System.out.println("/review/hate");
+		String user_email = (String)session.getAttribute("sessionID");
+		if(user_email == null) {
+			JSONObject jobj = new JSONObject();
+			jobj.put("islogin","false");
+			String jsonstr = jobj.toString();
+			res.getWriter().write(jsonstr);
+			return;
+		}
+		int review_idx = Integer.parseInt(req.getParameter("reviewIdx"));
+		String shopId = req.getParameter("shopId");
 		
+		if(reviewdao.reviewhateCheck(user_email, review_idx) != null) {
+			System.out.println("싫어요 했는데 또 누름");
+			JSONObject jobj = new JSONObject();
+			jobj.put("isHate","true");
+			String jsonstr = jobj.toString();
+			res.getWriter().write(jsonstr);
+			
+		}else {
+			System.out.println("싫어요 누름");
+			reviewdao.hateAdd(user_email, review_idx,shopId);
+			reviewdao.hateReload(review_idx,reviewdao.hateCnt(review_idx));
+			String cnt = reviewdao.hateCnt(review_idx)+"";
+			JSONObject jobj = new JSONObject();
+			jobj.put("isHate","false");
+			jobj.put("hate",cnt);
+			String jsonstr = jobj.toString();
+			res.getWriter().write(jsonstr);
+		}
 	}
 
 	@RequestMapping("/reservation")

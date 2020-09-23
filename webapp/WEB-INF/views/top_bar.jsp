@@ -17,6 +17,7 @@
 	charset="utf-8"></script>
 </head>
 <body>
+
 	<!-- body wrap -->
 	<div id="wrap" class="">
 		<!-- header -->
@@ -575,7 +576,7 @@
 				data : form_data,
 				success : function(data) {
 					if (data == "success") {
-				     	window.location.href = "main"
+						location.reload();
 					}else if(data == "admin"){
 						window.location.href = "admin"
 					}else {
@@ -871,8 +872,8 @@
 			$('.popup_close').css('top', -90 + 'px');
 			$('.popup_close').css('left', 80 + '%');
 
-		});
-
+		});	
+		
 		//회원가입 팝업
 		$(".nav_join").click(function() {
 
