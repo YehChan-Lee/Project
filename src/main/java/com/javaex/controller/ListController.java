@@ -3,20 +3,15 @@ package com.javaex.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
-import java.io.InputStream;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -106,15 +101,6 @@ public class ListController {
 						request.getParameterValues("alcohol_type"), request.getParameter("parking_available")));
 		mav.setViewName("list");
 		return mav;
-	}
-	@RequestMapping("/review_upload")
-	public void test(HttpServletRequest req, HttpServletResponse response) throws IOException {
-		System.out.println("/BabPool/review_upload");
-		String tmp = req.getParameter("star_span");
-		String tmp2 = req.getParameter("review_area");
-		response.getWriter().write("success");
-
-		System.out.println("별점의 tmp : " + tmp + "\n" + "textarea : " + tmp2);
 	}
 
 	@RequestMapping("/detail")
