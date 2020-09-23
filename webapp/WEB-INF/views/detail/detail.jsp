@@ -30,7 +30,7 @@
 	<div id="container">
 		<%
 			ShopVo shopvo = (ShopVo) request.getAttribute("shopOne");
-
+			pageContext.setAttribute("id", session.getAttribute("sessionID"));
 			pageContext.setAttribute("star", shopvo.getShop_score());
 			pageContext.setAttribute("shopidx", shopvo.getShop_idx());
 		%>
@@ -351,7 +351,34 @@
 	<script type="text/javascript"src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=cyozvucbzs&submodules=geocoder"></script>
 
 	<script>
-        $(document).ready(function(){             	
+        $(document).ready(function(){  
+        	$('.action > button').click(function () {
+        		var tmp = '${id}';
+    			if( tmp = null){
+    				$("#join_body").hide();
+    				$("#join2_body").hide();
+    				$("#idsearch_body").hide();
+    				$("#passwordsearch_body").hide();
+
+    				$("#login_body").show();
+    				$("#popup_body").show();
+    				$("#naverIdLogin").show();
+    				$("#nav_shading.shading_bg").show();
+
+    				$("#nav_btn").siblings().removeClass('focus');
+
+    				$('#popup_body').css('width', 404 + 'px');
+    				$('#popup_body').css('height', 554 + 'px');
+
+    				$("#naverIdLogin").css('top', 0);
+
+    				$('.popup_close').css('top', -90 + 'px');
+    				$('.popup_close').css('left', 80 + '%');
+    			}else{
+    				alert("로그인되어있슴")
+    			}
+    		})
+        	
         	$("#star_score").rateYo({
     			rating : ${shopOne.shop_score},
     			starWidth: "23px",

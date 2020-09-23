@@ -179,7 +179,7 @@ hr{border-top: 1px solid lightgray;margin-top: 15px;}
 #review_wrap .action i{
 	margin-right: 3px;
 }
-#review_wrap .action > button:hover{
+#review_wrap .action  button:hover{
 	cursor : pointer;
 	color : #f05e23;
 	border-color: #f05e23;
@@ -198,12 +198,12 @@ hr{border-top: 1px solid lightgray;margin-top: 15px;}
 	margin-left : 3px;
 	font-size: 11px;
 }
-#review_wrap .action>button>*{
+#review_wrap .action button>*{
 	display: inline-block;
     font-size: 11px;
     vertical-align: middle;
 }
-#review_wrap .action>button{
+#review_wrap .action button{
 	line-height: 27px;
     padding: 0 3px;
     border: 1px solid #969696;

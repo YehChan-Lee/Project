@@ -123,4 +123,5 @@ public class ReviewVo {
 				+ ", review_date=" + review_date + ", like_review=" + like_review + ", hate_review=" + hate_review
 				+ "]";
 	}
+	
 }

@@ -18,8 +18,11 @@
 		<typeAlias alias="Dibs" type="com.javaex.model.ShopDibsVo"></typeAlias>
 
 		<typeAlias alias="NewsVo" type="com.javaex.model.NewsVo"></typeAlias>		
-	</typeAliases>
 
+		<typeAlias alias="ReviewLikeVo" type="com.javaex.model.ReviewLikeVo"></typeAlias>	
+			
+		<typeAlias alias="ReviewHateVo" type="com.javaex.model.ReviewHateVo"></typeAlias>		
+	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/mappers/ShopUser.xml" />
 		<mapper resource="mybatis/mappers/Notice.xml" />
