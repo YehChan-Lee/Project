@@ -5,10 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HelloController {
-	/*
-	 * @RequestMapping("/hello") public String hello() {
-	 * System.out.println("/BabPool/hello"); return "detail/detail_review"; }
-	 */
 
 	@RequestMapping("/location")
 	public String location() {
@@ -20,6 +16,11 @@ public class HelloController {
 	public String food() {
 		System.out.println("/BabPool/food");
 		return "food_list";
+	}
+	@RequestMapping("/hashTag")
+	public String hashTag() {
+		System.out.println("/BabPool/hashTag");
+		return "hashTag_list";
 	}
 
 	@RequestMapping("/detail/photo.do")
@@ -207,5 +208,4 @@ public class HelloController {
 		System.out.println("/hellospring/admin/admin_notice_modify");
 		return "admin/admin_notice_modify";
 	}
-
 }

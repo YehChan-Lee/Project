@@ -3,4 +3,20 @@
 
 <mapper namespace="Reservation">
 
+	<select id="getAll_shopId" parameterType="String" resultType="Reservation">
+	<![CDATA[select * from RESERVATION where SHOP_ID=#{shop_id} ]]> 	
+	</select>
+
+ <insert id="insertReservation" parameterType="Reservation">
+      <![CDATA[
+      INSERT INTO "BP"."RESERVATION" (USER_EMAIL, SHOP_TITLE, RES_DATE, RES_CUSTOMER, SHOP_ID,RESERVE_IDX,REV_PHONE) VALUES (#{user_email},#{shop_title},#{res_date},#{res_customer},#{shop_id},SEQ_RESERVE_IDX.NEXTVAL,#{rev_phone})
+      ]]>
+   </insert>
+   
+   <update id="updateAlertNew_shopId" parameterType="String">
+   <![CDATA[
+   UPDATE RESERVATION SET ALERT_NEW = '0' WHERE SHOP_ID = #{shop_id}
+   ]]>
+   </update>
+   
 </mapper>
