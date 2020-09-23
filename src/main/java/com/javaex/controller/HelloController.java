@@ -21,6 +21,11 @@ public class HelloController {
 		System.out.println("/BabPool/food");
 		return "food_list";
 	}
+	@RequestMapping("/hashTag")
+	public String hashTag() {
+		System.out.println("/BabPool/hashTag");
+		return "hashTag_list";
+	}
 	@RequestMapping("/detail/photo.do")
 	public String detail_photo() {
 		System.out.println("/BabPool/detail");
@@ -182,5 +187,4 @@ public class HelloController {
 		System.out.println("/hellospring/admin/admin_notice_modify");
 		return "admin/admin_notice_modify";
 	}
-
 }

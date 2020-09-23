@@ -8,18 +8,18 @@ a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,c
     left:0;
 }
 i_wrap background{
-	width : 100%;
-	height : 400px;
+   width : 100%;
+   height : 400px;
 }
 #banner_wrap{
-	margin-top : 58px;
-	width : 100%;
+   margin-top : 58px;
+   width : 100%;
 }
 #banner.restaurant_detail>.i_wrap{
     width:100%;
     height:100%;
 }
-#banner.restaurant_detail>.i_wrap img{	
+#banner.restaurant_detail>.i_wrap img{   
     width: 100%;
     height: 400px;
     background-repeat: no-repeat;
@@ -103,13 +103,13 @@ i_wrap background{
     font-size: 20px;
 }
 #shop_score{
-	float: left;
+   float: left;
     padding: 10px;
     font-size: 23px;
 }
 #star_score{
-	float:left;
-	padding-top : 5px;
+   float:left;
+   padding-top : 5px;
 }
 #banner.restaurant_detail>.inner_wrap>.inner>.info_list>.item.editor_comment>.name{
     display:block;
@@ -187,7 +187,7 @@ i_wrap background{
 }
 
 #sidebar_wrap{
-	top: -40px;
+   top: -40px;
     float:right;
     position:relative;
     width:220px;
@@ -359,14 +359,15 @@ i.icon.star.large.even.active{background-position:-314px -41px}
 .PoingSlider>.slice{position:absolute;display:block;}
 
 #detail_content {
-	position: relative;
-	width: 730px;
-	border: 0px solid red;
-	margin: 0;
-	padding: 0;
-	z-index:5;
-	display: inline-block;
+   position: relative;
+   width: 730px;
+   border: 0px solid red;
+   margin: 0;
+   padding: 0;
+   z-index:5;
+   display: inline-block;
 }
+
 /* 지도관련 */
 #naverMap{
    display: none;
@@ -547,10 +548,25 @@ position: relative !important;
     width: 17px;
     color: #444;
 }
-
+.rev_phone_div {
+	    position: relative !important;
+    top: -58px;
+    left: 80px;
+    width: 140px;
+    color: #444;
+}
+.rev_phone {
+	position: relative !important;
+    top: -54px !important;
+    left: 80px;
+    width: 271px;
+    height: 30px;
+    border: 1px solid #BCBCBC;
+    border-radius: 10px;
+}
 .reservation_submit {
-       position: relative;
-    top: -25px;
+   position: relative;
+    top: -26px;
     left: 79px;
     height: 40px;
     width: 300px;
@@ -559,6 +575,7 @@ position: relative !important;
     color: white;
     font-weight: bolder;
     border-radius: 10px;
+    cursor: pointer;
 }
 #reservation_btn {
       position: relative !important;

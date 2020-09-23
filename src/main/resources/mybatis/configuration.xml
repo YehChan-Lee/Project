@@ -19,7 +19,6 @@
 
 		<typeAlias alias="NewsVo" type="com.javaex.model.NewsVo"></typeAlias>
 		
-		<typeAlias alias="Test" type="com.javaex.model.tmp.TestVo"></typeAlias>
 	</typeAliases>
 
 	<mappers>

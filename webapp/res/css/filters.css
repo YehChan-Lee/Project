@@ -374,21 +374,21 @@ section_liquor */
 }
 
 /*서브 메뉴 라디오 박스*/
-li>input[type="radio"] {
+#filter_sidebar li>input[type="radio"] {
 	display: none;
 }
 
-li>input[type="radio"] {
+#filter_sidebar li>input[type="radio"] {
 	position: relative;
 	top: 6px;
 	display: none;
 }
 
-li>label {
+#filter_sidebar li>label {
 	cursor: pointer;
 }
 
-li>input[type="radio"]+label:before {
+#filter_sidebar li>input[type="radio"]+label:before {
 	border: #d6d6d6 solid 1px;
 	position: relative;
 	left: 1px;
@@ -405,7 +405,7 @@ li>input[type="radio"]+label:before {
 		rgba(255, 255, 255, .8);
 }
 
-li>input[type=radio]:checked+label:before {
+#filter_sidebar li>input[type=radio]:checked+label:before {
 	left: 1px;
 	content: '';
 	display: inline-block;
@@ -424,7 +424,7 @@ li>input[type=radio]:checked+label:before {
 }
 
 /* 서브 메뉴 체크박스*/
-li>input[type="checkbox"] {
+#filter_sidebar li>input[type="checkbox"] {
 	display: none;
 }
 
@@ -437,7 +437,7 @@ li>input[type="checkbox"] {
 	width: 180px;
 }
 
-li>input[type="checkbox"] {
+#filter_sidebar li>input[type="checkbox"] {
 	position: relative;
 	top: 6px;
 	display: none;
@@ -450,7 +450,7 @@ li>label {
 	cursor: pointer;
 }
 
-li>input[type="checkbox"]+label:before {
+#filter_sidebar li>input[type="checkbox"]+label:before {
 	border: #d6d6d6 solid 1px;
 	position: relative;
 	left: 1px;
@@ -467,7 +467,7 @@ li>input[type="checkbox"]+label:before {
 		rgba(255, 255, 255, .8);
 }
 
-li>input[type=checkbox]:checked+label:before {
+#filter_sidebar li>input[type=checkbox]:checked+label:before {
 	content: '\2714';
 	display: inline-block;
 	width: 14px;

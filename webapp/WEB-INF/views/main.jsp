@@ -39,7 +39,6 @@
 		integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 		crossorigin="anonymous">
 	<%@ include file="top_bar.jsp"%>
-
 	<div id="main">
 		<div id="main_slider">
 			<br> <br> <br> <br>
@@ -48,7 +47,7 @@
 				<h2 class="v-story-tt" data-aos="fade-up"></h2>
 				<div class="v-story-slider" data-aos="fade-up">
 					<div class="slider-item">
-						<a href="#" class="block">
+						<a href="list" class="block">
 							<div class="img-box block">
 								<img src="<c:url value="${path}/res/image/main/hotelfood.jpg"/>">
 
@@ -59,14 +58,14 @@
 							</div>
 						</a>
 						<div class="v-story-desc-list">
-							<p class="v-story-desc-tt">DINING TICKET</p>
+							<p class="v-story-desc-tt">모든 음식점</p>
 							<p class="v-story-desc">
-								여름엔 호텔! <br>호텔은 여름!
+								등록된 음식점<br>전체보기
 							</p>
 						</div>
 					</div>
 					<div class="slider-item">
-						<a href="#" class="block">
+						<a href="list?solt=4" class="block">
 							<div class="img-box">
 								<img
 									src="<c:url value="${path}/res/image/main/restaurant.jpg"/>">
@@ -77,16 +76,16 @@
 							</div>
 						</a>
 						<div class="v-story-desc-list">
-							<p class="v-story-desc-tt">예약수 TOP20</p>
+							<p class="v-story-desc-tt">예약수 TOP12</p>
 							<p class="v-story-desc">
-								믿고 예약하는<br> 20곳의 레스토랑
+								믿고 예약하는<br> 12곳의 가게
 							</p>
 						</div>
 					</div>
 					<div class="slider-item">
-						<a href="#" class="block">
+						<a href="list?string_search=%23혼밥" class="block">
 							<div class="img-box">
-								<img src="<c:url value="${path}/res/image/main/ramen.jpg"/>">
+								<img src="<c:url value="${path}/res/image/main/3.png"/>">
 							</div>
 							<div class="discover">
 								<span class="discover-btn block"></span> <span
@@ -94,16 +93,16 @@
 							</div>
 						</a>
 						<div class="v-story-desc-list">
-							<p class="v-story-desc-tt">DINING TICKET</p>
+							<p class="v-story-desc-tt">해시태그</p>
 							<p class="v-story-desc">
-								매일 먹어도 좋은 <br>라멘
+								혼자먹어도 맛있는 <br>#혼밥
 							</p>
 						</div>
 					</div>
 					<div class="slider-item">
-						<a href="#" class="block">
+						<a href="list?food_type=한식" class="block">
 							<div class="img-box">
-								<img src="<c:url value="${path}/res/image/main/dining.jpg"/>">
+								<img src="<c:url value="${path}/res/image/main/4.jpg"/>">
 							</div>
 							<div class="discover">
 								<span class="discover-btn block"></span> <span
@@ -111,9 +110,9 @@
 							</div>
 						</a>
 						<div class="v-story-desc-list">
-							<p class="v-story-desc-tt">CONTEMPORARY DINING</p>
+							<p class="v-story-desc-tt">음식종류</p>
 							<p class="v-story-desc">
-								셰프의 섬세한 터치 <br> 창의적인 다이닝
+								한국인이라면<br>한식
 							</p>
 						</div>
 					</div>
