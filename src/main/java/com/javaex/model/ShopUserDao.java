@@ -25,4 +25,5 @@ public class ShopUserDao {
 	public ShopUserVo getUser(String user_email) {
 		return sqlSession.selectOne("ShopUser.getUser", user_email);
 	}
+	
 }

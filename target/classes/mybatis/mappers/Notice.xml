@@ -6,6 +6,21 @@
 		<![CDATA[SELECT * FROM Notice]]> 		
 	</select>
 	
+	<select id="getNoticeList" resultType="Notice">
+	<![CDATA[
+		SELECT *
+			FROM(SELECT /*+INDEX_DESC(Notice seq_notice_idx) */
+						rownum nt_row, notice_idx, notice_title, notice_date, notice_content 
+					from Notice where rownum <= #{pageNum} * #{amount})
+			where nt_row > (#{pageNum}-1) * #{amount}
+			ORDER BY notice_idx DESC
+	]]>
+	</select>
+	
+	<select id="getNoticeCnt" resultType="int">
+		select count(*) from Notice
+	</select>
+		
 	<insert id="noticeInsert">
 		<![CDATA[
 	

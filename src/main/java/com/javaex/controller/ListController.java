@@ -1,7 +1,7 @@
 package com.javaex.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,11 +10,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.javaex.model.NoticeDao;
+import com.javaex.model.NoticeVo;
+import com.javaex.model.PageMaker;
+import com.javaex.model.PagingCriteria;
+import com.javaex.model.ReservationDao;
 import com.javaex.model.ReviewDao;
 import com.javaex.model.ShopDao;
 import com.javaex.model.ShopUserDao;
@@ -34,7 +36,11 @@ public class ListController {
 	NoticeDao noticedao;
 	
 	@Autowired
+	ReservationDao reservedao;
+	
+	@Autowired
 	ReviewDao reviewdao;
+	
 
 	@RequestMapping("/list")
 	public ModelAndView list(ModelAndView mav, HttpServletRequest request) {
@@ -111,6 +117,7 @@ public class ListController {
 		int joinType = Integer.parseInt(req.getParameter("join_type"));
 		
 		if(joinType == 1) {
+			userDao.signUp(new ShopUserVo(email, pw, name, gender, birth, phone, "0", null, 0, null, 0));
 			userDao.signUp(new ShopUserVo(email, pw, name, gender, birth, phone, "0", null, 0, null,0));
 		}else {
 			String buisnessNumber = req.getParameter("buisness_number");
@@ -120,6 +127,7 @@ public class ListController {
 			String buisnessFoodType = req.getParameter("buisness_food_type");
 			
 			System.out.println(buisnessNumber + " " + buisnessName + " " + buisnessAddress + " " + buisnessAddressEtc + " " + buisnessFoodType);
+			userDao.signUp(new ShopUserVo(email, pw, name, gender, birth, phone, "1", null, 0, null, 0));
 			userDao.signUp(new ShopUserVo(email, pw, name, gender, birth, phone, "1", null, 0, null,0));
 		}		
 		mav.setViewName("main");		
@@ -128,12 +136,20 @@ public class ListController {
 	
 	// 공지사항
 	@RequestMapping("/notice")
-	public ModelAndView notice(ModelAndView mav) {
+	public ModelAndView notice(ModelAndView mav, PagingCriteria cri){
 		System.out.println("/BabPool/notice => Notice_Page");
-		mav.addObject("Notice", noticedao.noticeList());
+		
+		List<NoticeVo> noticeList = noticedao.noticeList(cri);
+		
+		int total = noticedao.getNoticeCnt();
+		
+		// 정보 저장
+		mav.addObject("noticeList", noticeList);
+		mav.addObject("paging", new PageMaker(cri, total));
 		mav.setViewName("notice");
 		return mav;
 	}
+	
 	@RequestMapping("/detail/info.do")
 	public ModelAndView detail_info(ModelAndView mav,HttpServletRequest request) {
 		System.out.println("/BabPool/detail_info");
@@ -190,7 +206,6 @@ public class ListController {
 	@RequestMapping("/hello")
 	public ModelAndView hello(ModelAndView mav) {
 		System.out.println("/BabPool/hello");
-		mav.addObject("reviewList",reviewdao.reviewList() );
 		mav.setViewName("detail/detail_review");
 		return mav;
 	}

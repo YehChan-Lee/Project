@@ -1,3 +1,5 @@
+<%@page import="com.javaex.model.AdminVo"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -15,7 +17,7 @@
 		<div>
 			<span>검색 키워드</span> <select name="com_search" id="com_search">
 				<option>사업자 번호</option>
-				<option>대표자 명/option>
+				<option>대표자 명</option>
 				<option>이메일</option>
 				<option>가게 이름</option>
 				<option>가게 전화번호</option>
@@ -48,23 +50,32 @@
 						<th>운영시간</th>
 						<th>주차기능</th>
 					</tr>
+					<%
+						List<AdminVo> Acompany_list = (List<AdminVo>)request.getAttribute("Acompany_list");
+						for(int i = 0; i< Acompany_list.size(); i++){
+							AdminVo vo = Acompany_list.get(i);
+					
+					%>
 					<tr>
 						<td><input type="checkbox" name="company_sib" /></td>
-						<td>1</td>
-						<td>123-12-12345</td>
-						<td>testID</td>
-						<td>010-0000-0000</td>
-						<td>test@test.com</td>
-						<td>가게 이름</td>
-						<td>02-1234-1234</td>
-						<td>금천구 어딘가에~</td>
-						<td>2020-01-01</td>
-						<td>1234</td>
-						<td>5.0</td>
-						<td>00:00~24:00</td>
-						<td>주차 가능</td>
+						<td><%=vo.getShopVo().getShop_idx()%></td>
+						<td><%=vo.getShopVo().getShop_id()%></td>
+						<td><%=vo.getShopUser().getUser_name() %></td>
+						<td><%=vo.getShopUser().getUser_phone() %></td>
+						<td><%=vo.getShopUser().getUser_email() %></td>
+						<td><%=vo.getShopVo().getShop_title() %></td>
+						<td><%=vo.getShopVo().getShop_phone() %></td>
+						<td><%=vo.getShopVo().getShop_addr() %></td>
+						<td><%=vo.getShopVo().getShop_date() %></td>
+						<td><%=vo.getShopVo().getShop_view() %></td>
+						<td><%=vo.getShopVo().getShop_score() %></td>
+						<td><%=vo.getShopVo().getShop_time() %></td>
+						<td><%=vo.getShopVo().getShop_car() %></td>
 					</tr>
-					<tr>
+					<%
+						}
+					%>
+					<!-- <tr>
 						<td><input type="checkbox" name="company_sib" /></td>
 						<td>2</td>
 						<td>123-12-12345</td>
@@ -207,7 +218,7 @@
 						<td>5.0</td>
 						<td>00:00~24:00</td>
 						<td>주차 가능</td>
-					</tr>
+					</tr> -->
 				</table>
 			</div>
 			<div class="paging_com">

@@ -17,8 +17,8 @@ public class NoticeDao {
 		this.sqlsession = sqlsession;
 	}
 	
-	public List<NoticeVo> noticeList(){
-		return sqlsession.selectList("Notice.noticeList");
+	public List<NoticeVo> noticeList(PagingCriteria paging){
+		return sqlsession.selectList("Notice.getNoticeList", paging);
 	}
 	
 	public void insertNotice() {
@@ -32,4 +32,9 @@ public class NoticeDao {
 	public void deleteNotice() {
 		sqlsession.delete("Notice.noticeDelete");
 	}
+	
+	public int getNoticeCnt() {
+		return sqlsession.selectOne("Notice.getNoticeCnt");
+	}
+
 }

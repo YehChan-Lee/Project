@@ -18,6 +18,11 @@
 		<typeAlias alias="Dibs" type="com.javaex.model.ShopDibsVo"></typeAlias>
 
 		<typeAlias alias="NewsVo" type="com.javaex.model.NewsVo"></typeAlias>
+		
+		<typeAlias alias="AdminVo" type="com.javaex.model.AdminVo"></typeAlias>
+
+		<typeAlias alias="ReserveOrder" type="com.javaex.model.ReserveOrderVo"></typeAlias>
+		
 	</typeAliases>
 
 	<mappers>
@@ -29,5 +34,7 @@
 		<mapper resource="mybatis/mappers/Review.xml" />
  		<mapper resource="mybatis/mappers/Dibs.xml" />
  		<mapper resource="mybatis/mappers/News.xml" />
+ 		<mapper resource="mybatis/mappers/Admin.xml" />
+ 		<mapper resource="mybatis/mappers/ReserveOrder.xml" />
 	</mappers>
 </configuration>

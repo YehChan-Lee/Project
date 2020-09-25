@@ -59,7 +59,7 @@
 		SELECT * FROM Shop WHERE shop_idx=#{Shop_idx}
 		]]>		
 	</select>
-	
+
 	<select id="shopOwnerList" parameterType="String" resultType="ShopVo">
 		<!-- 가게정보 -->
 		<![CDATA[
