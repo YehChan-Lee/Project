@@ -4,7 +4,7 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
-@Component(value="ShopUser")
+@Component
 public class ShopUserVo {
 	private String user_email;		// 사용자 이메일(PK)	NOT NULL
 	private String user_pw;			// 사용자 비밀번호 		NOT NULL

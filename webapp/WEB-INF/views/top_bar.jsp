@@ -1,5 +1,4 @@
 <%@page import="com.javaex.model.ShopVo"%>
-<%@page import="com.javaex.controller.ListController"%>
 <%@page import="java.util.List"%>
 <%@page import="com.javaex.model.ReservationVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"

@@ -194,7 +194,7 @@
 						같은곳을 소개합니다</div>
 					<hr class="epicureandiv3hr">
 					<div class="epicureandiv3div3">
-						<a href="">더보기 ></a>
+						<a href="list?string_search=%23조용한">더보기 ></a>
 					</div>
 				</div>
 			</div>
@@ -211,7 +211,7 @@
 					</div>
 					<hr class="epicureandiv3hr">
 					<div class="epicureandiv3div3">
-						<a href="">더보기 ></a>
+						<a href="list?string_search=%23매운">더보기 ></a>
 					</div>
 				</div>
 			</div>
@@ -227,7 +227,7 @@
 					<div class="epicureandiv3div2">지역에 따라 다른 특성을 가진 일본 라멘.</div>
 					<hr class="epicureandiv3hr">
 					<div class="epicureandiv3div3">
-						<a href="">더보기 ></a>
+						<a href="list?string_search=%23라멘">더보기 ></a>
 					</div>
 				</div>
 			</div>
@@ -239,12 +239,12 @@
 						class="epicureandiv2img">
 				</div>
 				<div class="epicureandiv3">
-					<div class="epicureandiv3div">일본 우동의 매력</div>
-					<div class="epicureandiv3div2">지역마다 각기 다른 매력을 가진 일본 우동. 관서지방과
-						관동지방의 우동을 소개합니다.</div>
+					<div class="epicureandiv3div">우동의 매력</div>
+					<div class="epicureandiv3div2">지역마다 각기 다른 매력을 가진 우동. 각지의 맛있는 
+					우동을 소개합니다.</div>
 					<hr class="epicureandiv3hr">
 					<div class="epicureandiv3div3">
-						<a href="">더보기 ></a>
+						<a href="list?string_search=%23우동">더보기 ></a>
 					</div>
 				</div>
 			</div>
@@ -261,7 +261,7 @@
 						마시며, 즐기다!</div>
 					<hr class="epicureandiv3hr">
 					<div class="epicureandiv3div3">
-						<a href="">더보기 ></a>
+						<a href="list?string_search=%23중국집">더보기 ></a>
 					</div>
 				</div>
 			</div>
@@ -278,7 +278,7 @@
 						좋은 레스토랑</div>
 					<hr class="epicureandiv3hr">
 					<div class="epicureandiv3div3">
-						<a href="">더보기 ></a>
+						<a href="list?string_search=%23레스토랑">더보기 ></a>
 					</div>
 				</div>
 			</div>
@@ -295,7 +295,7 @@
 						징키스칸을 만나다.</div>
 					<hr class="epicureandiv3hr">
 					<div class="epicureandiv3div3">
-						<a href="">더보기 ></a>
+						<a href="list?string_search=%23뜨거운">더보기 ></a>
 					</div>
 				</div>
 			</div>
@@ -312,7 +312,7 @@
 						샌드위치. 세계의 다양한 샌드위치를 만나볼까요?</div>
 					<hr class="epicureandiv3hr">
 					<div class="epicureandiv3div3">
-						<a href="">더보기 ></a>
+						<a href="list?string_search=%23샌드위치">더보기 ></a>
 					</div>
 				</div>
 			</div>
@@ -329,7 +329,7 @@
 						이색 보양식.</div>
 					<hr class="epicureandiv3hr">
 					<div class="epicureandiv3div3">
-						<a href="">더보기 ></a>
+						<a href="list?string_search=%23보양식">더보기 ></a>
 					</div>
 				</div>
 			</div>
