@@ -11,7 +11,7 @@
 		<result property="shop_id" column="SHOP_ID"/>	
 	</resultMap>
 
-	<resultMap type="ShopUser" id="ShopUserResult">
+	<resultMap type="ShopUserVo" id="ShopUserResult">
 		<result property="user_email" column="USER_EMAIL"/>
 		<result property="user_pw" column="USER_PW"/>
 		<result property="user_name" column="USER_NAME"/>
@@ -83,7 +83,7 @@
 		<id property="NewsVo.news_idx" column="NEWS_IDX"/>			
 		<collection property="Reservation" resultMap="ReservationResult"></collection>
 		<collection property="ShopVo" resultMap="ShopResult"></collection>
-		<collection property="ShopUser" resultMap="ShopUserResult"></collection>
+		<collection property="ShopUserVo" resultMap="ShopUserResult"></collection>
 		<collection property="ReviewVo" resultMap="ReviewResult"></collection>
 		<collection property="Dibs" resultMap="DibsResult"></collection>
 		<collection property="NewsVo" resultMap="NewsResult"></collection>
@@ -92,7 +92,7 @@
 	<resultMap type="All" id="ShopReview">
 		<id property="ReviewVo.review_idx" column="REVIEW_IDX"/>		
 		<collection property="ShopVo" resultMap="ShopResult"></collection>
-		<collection property="ShopUser" resultMap="ShopUserResult"></collection>
+		<collection property="ShopUserVo" resultMap="ShopUserResult"></collection>
 		<collection property="ReviewVo" resultMap="ReviewResult"></collection>
 	</resultMap>
 	
@@ -150,13 +150,23 @@
 	</select>
 	
 	<select id="shopreviewList" resultMap="ShopReview">
-		SELECT R.review_idx,U.user_email,U.user_name,U.user_idx, R.review_score,R.review,R.review_photo,R.like_review,R.hate_review FROM Review R
+		SELECT R.review_idx,U.user_email,U.user_name,U.user_idx,U.review_cnt, R.review_score,R.review,R.review_photo,R.like_review,R.hate_review FROM Review R
 	    INNER JOIN ShopUser U
 	        ON U.user_email=R.user_email
 	    INNER JOIN Shop S
 	        ON S.shop_id=R.shop_id
 	    WHERE R.shop_id = #{shopId}
 	    ORDER BY R.review_date DESC
+	</select>
+	
+	<select id="popreviewList" resultMap="ShopReview">
+		SELECT R.review_idx,U.user_email,U.user_name,U.user_idx,U.review_cnt, R.review_score,R.review,R.review_photo,R.like_review,R.hate_review FROM Review R
+	    INNER JOIN ShopUser U
+	        ON U.user_email=R.user_email
+	    INNER JOIN Shop S
+	        ON S.shop_id=R.shop_id
+	    WHERE R.shop_id = #{shopId}
+	    ORDER BY R.like_review DESC
 	</select>
 	
 </mapper>

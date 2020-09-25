@@ -7,6 +7,17 @@
 		select count(*)  as cnt from Review
     		where shop_id = #{shopId}
 	</select>
+	
+	<!--해당 ID의 리뷰 총 갯수  -->
+	<select id="idReviewCnt" resultType="HashMap">
+		select count(*)  as cnt from Review
+    		where user_email = #{userEmail}
+	</select>
+	
+	<!-- 가게의 리뷰갯수 갱신  -->
+	<update id="cntReload" parameterType="hashMap">
+		update Shop set shop_review=${reviewCnt} where shop_id=#{shopId}
+	</update>
 	<!--로그인한 ID의 해당 가게의 좋아요 누른 리스트 -->
 	<select id="likeList" resultType="ReviewLikeVo">
 		select Review_idx from Review_like
@@ -66,4 +77,18 @@
 	<update id="hate_up" parameterType="hashMap">
 		update review set hate_review=${cnt} where review_idx=${reviewIdx}
 	</update>
+	
+	<!--좋아요 삭제  -->
+	<delete id="delLike" parameterType="hashMap">
+		delete from Review_Like where review_idx=#{delIdx}
+	</delete>
+	<!--싫어요 삭제  -->
+	<delete id="delHate" parameterType="hashMap">
+		delete from Review_Hate where review_idx=#{delIdx}
+	</delete>
+	
+	<!--리뷰 삭제  -->
+	<delete id="delReview" parameterType="hashMap">
+		delete from Review where review_idx=${delIdx}
+	</delete>
 </mapper>

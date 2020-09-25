@@ -14,6 +14,7 @@
 
 <link rel="stylesheet" href="<c:url value='${path}/res/css/detail.css?ver=1'/>">
 <link rel="stylesheet" href="<c:url value='${path}/res/css/bootstrap.min.css'/>">
+
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
 
@@ -355,7 +356,7 @@
 	</div>
 	<%@include file="../footer.jsp"%>
 	<script type="text/javascript"src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=cyozvucbzs&submodules=geocoder"></script>
-
+	
 	<script>
         $(document).ready(function(){  
         	$('.action > button').click(function () {
@@ -440,7 +441,9 @@
             	else if($("#content > ul > .item.selected")[0] == $("#menu")[0]){
             		$("#naverMap").hide();
             		$("#import").unload();
-            		$("#import").load("detail/menu.do")
+            		$("#import").load("detail/menu.do",{
+            			"shopId" : "${shopOne.shop_id}"
+            		})
             		$("#import").show();
             	}
             	else if($("#content > ul > .item.selected")[0] == $("#map")[0]){
@@ -568,7 +571,7 @@
 			$('.popup_close').css('top', -90 + 'px');
 			$('.popup_close').css('left', 80 + '%'); 
 	    }
-    </script>
- 
+    </script> 
 </body>
+
 </html>

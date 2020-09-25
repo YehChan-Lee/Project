@@ -1,22 +1,18 @@
 package com.javaex.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.javaex.model.AllDao;
+import com.javaex.model.AllVo;
 import com.javaex.model.ReservationDao;
 import com.javaex.model.ReviewDao;
 import com.javaex.model.ShopDao;
@@ -87,18 +83,7 @@ public class JoinController {
 		mav.setViewName("mypage/mypage_reservation3");
 		return mav;
 	}
-	
-//	@RequestMapping("/mypage/review")
-//	public ModelAndView mypage_review(ModelAndView mav, HttpSession session) {
-//		System.out.println("/BabPool/mypage/review");
-//		String user_email = (String)session.getAttribute("sessionID");
-//		mav.addObject("reviewList", alldao.reviewList(user_email));
-//		mav.addObject("getUser", userDao.getUser(user_email));
-//		mav.addObject("shopList", dao.shopList());
-//		mav.setViewName("mypage/mypage_review2");
-//		return mav;
-//	}
-	
+		
 	@RequestMapping("/mypage/dibs")
 	public ModelAndView mypage_dibs(ModelAndView mav, HttpSession session) {
 		System.out.println("/BabPool/mypage/dibs");
@@ -145,7 +130,11 @@ public class JoinController {
 		String shopId = req.getParameter("shopId");
 		String user_email = (String)session.getAttribute("sessionID");
 		System.out.println("review : " + shopId + user_email);
-		mav.addObject("reviewList",alldao.shopreviewList(shopId));
+		List<AllVo> list = alldao.shopreviewList(shopId,"new");
+		for(int i=0;i<list.size();i++) {
+			System.out.println(list.get(i));
+		}
+		mav.addObject("reviewList",alldao.shopreviewList(shopId,"new"));
 		if(user_email != null) {
 			mav.addObject("likeList",reviewdao.likeList(user_email,shopId));
 			mav.addObject("hateList",reviewdao.hateList(user_email,shopId));

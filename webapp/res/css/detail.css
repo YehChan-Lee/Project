@@ -159,7 +159,8 @@ i_wrap background{
 #content{
     float:left;
     position:relative;
-    width:730px
+    width:730px;
+    background-color: white;
 }
 #content>.tab{
     width:716px;

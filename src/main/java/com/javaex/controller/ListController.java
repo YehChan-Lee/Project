@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.javaex.model.AllDao;
 import com.javaex.model.NoticeDao;
 import com.javaex.model.ReservationDao;
 import com.javaex.model.ReservationVo;
@@ -49,26 +50,37 @@ public class ListController {
 
 	@Autowired
 	ReservationDao resDao;
-	
+
+	@Autowired
+	AllDao alldao;
+
 	String url = "D:\\LYC\\SpringGit\\Project\\webapp\\serverImg\\";
-	
+
 	@RequestMapping("/review_upload")
-	public void test(ModelAndView mav, MultipartHttpServletRequest req, HttpServletResponse res,HttpSession session) throws IOException {
+	public void test(ModelAndView mav, MultipartHttpServletRequest req, HttpServletResponse res, HttpSession session)
+			throws IOException {
 		System.out.println("/BabPool/review_upload");
+		String user_email = (String) session.getAttribute("sessionID");
+		if (user_email == null) {
+			res.getWriter().write("notLogin");
+			return;
+		}
+		if (req.getParameter("hidden_grade").equals("") || req.getParameter("review_area").equals("")) {
+			res.getWriter().write("reviewinput");
+			return;
+		}
+
 		List<MultipartFile> fileList = req.getFiles("inputImage");// input file타입 파라미터
-		
 		double reviewScore = Double.parseDouble(req.getParameter("hidden_grade"));// 별점
 		String review = req.getParameter("review_area");// 리뷰내용
 		String shopId = req.getParameter("shopId");
 		req.setAttribute("shopId", shopId);
-		System.out.println("shopidx"+req.getParameter("shopidx") +"\n" + "shopId" + req.getParameter("shopId"));
 		String folder = "review\\";// 이미지 저장 경로
-		String user_email = (String) session.getAttribute("sessionID");
-		String path="";
+		String path = "";
 		String fileName = "";
 		for (MultipartFile mf : fileList) {
 			String originFileName = mf.getOriginalFilename(); // 원본 파일 명
-			fileName = "review"+reviewdao.reviewCnt(shopId) + shopId + originFileName;
+			fileName = "review" + reviewdao.reviewCnt(shopId) + shopId + originFileName;
 			String safeFile = url + folder + fileName;
 			try {
 				File file = new File(url);
@@ -88,10 +100,12 @@ public class ListController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			path+=fileName+"/";
+			path += fileName + "/";
 		}
-		System.out.println(path);
-		reviewdao.reviewUpload(new ReviewVo(0,shopId, user_email, reviewScore, review,path, 0, 0));
+		reviewdao.reviewUpload(new ReviewVo(0, shopId, user_email, reviewScore, review, path, 0, 0));
+		dao.reviewCntReload(shopId,reviewdao.reviewCnt(shopId));
+		
+		userDao.reviewCntUpload(user_email);
 		res.getWriter().write("success");
 		System.out.println("별점의 tmp : " + reviewScore + "\n" + "textarea : " + review);
 	}
@@ -112,24 +126,29 @@ public class ListController {
 	@RequestMapping("/detail")
 	public ModelAndView detail(ModelAndView mav, HttpServletRequest request, HttpSession session) {
 		System.out.println("/BabPool/detail");
-		String user_email = (String)session.getAttribute("sessionID");
+		String user_email = (String) session.getAttribute("sessionID");
 		String shop_idx = request.getParameter("shopidx");
-			if(user_email != null){
-				userDao.update_recentShop_shopIdx(user_email, shop_idx);
-				ShopUserVo user;
-				user = userDao.loginCheck(user_email);
-				if(user.getRecent_shop() != null){
-					ShopVo recent_shopList = dao.getAll_shopIdx(user.getRecent_shop());
-					session.setAttribute("shop_title", recent_shopList.getShop_title());
-					session.setAttribute("food_type", recent_shopList.getFood_type());
-					session.setAttribute("shop_addr", recent_shopList.getShop_addr());
-					session.setAttribute("shop_idx", recent_shopList.getShop_idx());
-				}
+		
+		if (user_email != null) {
+			userDao.update_recentShop_shopIdx(user_email, shop_idx);
+			ShopUserVo user;
+			user = userDao.loginCheck(user_email);
+			if (user.getRecent_shop() != null) {
+				ShopVo recent_shopList = dao.getAll_shopIdx(user.getRecent_shop());
+				session.setAttribute("shop_title", recent_shopList.getShop_title());
+				session.setAttribute("food_type", recent_shopList.getFood_type());
+				session.setAttribute("shop_addr", recent_shopList.getShop_addr());
+				session.setAttribute("shop_idx", recent_shopList.getShop_idx());
 			}
-		int shopId = Integer.parseInt(shop_idx);
-		mav.addObject("shopOne", dao.shopOne(shopId));
+		}
 		int shopIdx = Integer.parseInt(request.getParameter("shopidx"));
-		mav.addObject("shopOne", dao.shopOne(shopIdx));
+		//cnt 가져오기위한 먼저 shop 호출
+		ShopVo shop = dao.shopOne(shopIdx);
+		String ShopId = shop.getShop_id();
+		//cnt 증가후 다시 shop 호출
+		dao.viewUp(ShopId);
+		shop = dao.shopOne(shopIdx);
+		mav.addObject("shopOne", shop);
 		mav.setViewName("detail/detail");
 		return mav;
 	}
@@ -149,14 +168,14 @@ public class ListController {
 				response.getWriter().write("success");
 				session.setAttribute("is_owner", user.getIs_owner());
 				session.setAttribute("sessionID", user_email);
-				if(user.getRecent_shop() != null){
+				if (user.getRecent_shop() != null) {
 					ShopVo recent_shopList = dao.getAll_shopIdx(user.getRecent_shop());
 					session.setAttribute("shop_title", recent_shopList.getShop_title());
 					session.setAttribute("food_type", recent_shopList.getFood_type());
 					session.setAttribute("shop_addr", recent_shopList.getShop_addr());
 					session.setAttribute("shop_idx", recent_shopList.getShop_idx());
 				}
-				
+
 				if (user.getIs_owner().equals("1")) {
 					session.setAttribute("shop_id", dao.getShopId(user_email));
 				}
@@ -192,7 +211,7 @@ public class ListController {
 		int joinType = Integer.parseInt(req.getParameter("join_type"));
 
 		if (joinType == 1) {
-			userDao.signUp(new ShopUserVo(email, pw, name, gender, birth, phone, "0", null, 0, null, 0));
+			userDao.signUp(new ShopUserVo(email, pw, name, gender, birth, phone, "0", null, 0, null, 0,0));
 		} else {
 			String buisnessNumber = req.getParameter("buisness_number");
 			String buisnessName = req.getParameter("buisness_name");
@@ -202,7 +221,7 @@ public class ListController {
 
 			System.out.println(buisnessNumber + " " + buisnessName + " " + buisnessAddress + " " + buisnessAddressEtc
 					+ " " + buisnessFoodType);
-			userDao.signUp(new ShopUserVo(email, pw, name, gender, birth, phone, "1", null, 0, null, 0));
+			userDao.signUp(new ShopUserVo(email, pw, name, gender, birth, phone, "1", null, 0, null, 0,0));
 		}
 		mav.setViewName("main");
 		return mav;
@@ -225,6 +244,14 @@ public class ListController {
 		mav.setViewName("detail/detail_info");
 		return mav;
 	}
+	@RequestMapping("/detail/menu.do")
+	public ModelAndView detail_menu(ModelAndView mav , HttpServletRequest req) {
+		String shopId = req.getParameter("shopId");
+		mav.addObject("shopMenu",dao.getMenu(shopId));
+		mav.setViewName("detail/detail_menu");
+		return mav;
+	}
+
 	@RequestMapping("/buisness_update")
 	public ModelAndView buisnessmypage_update(ModelAndView mav, HttpServletRequest req) {
 		String shop_title = req.getParameter("shop_title");
@@ -287,18 +314,19 @@ public class ListController {
 
 	@RequestMapping("/buisnessmypage/registration2")
 	public ModelAndView registration2(ModelAndView mav, HttpSession session) {
-		
+
 		mav.addObject("shopOwnerList", dao.shopOwnerList((String) session.getAttribute("sessionID")));
 		mav.setViewName("buisnessmypage/buisness_mypage_registration2");
 		return mav;
 	}
+
 	@RequestMapping("/review/like")
-	public void reviewLike(HttpSession session,HttpServletResponse res,HttpServletRequest req) throws IOException {
+	public void reviewLike(HttpSession session, HttpServletResponse res, HttpServletRequest req) throws IOException {
 		System.out.println("/review/like");
-		String user_email = (String)session.getAttribute("sessionID");
-		if(user_email == null) {
+		String user_email = (String) session.getAttribute("sessionID");
+		if (user_email == null) {
 			JSONObject jobj = new JSONObject();
-			jobj.put("islogin","false");
+			jobj.put("islogin", "false");
 			String jsonstr = jobj.toString();
 			res.getWriter().write(jsonstr);
 			return;
@@ -306,64 +334,65 @@ public class ListController {
 		int review_idx = Integer.parseInt(req.getParameter("reviewIdx"));
 		String shopId = req.getParameter("shopId");
 //		System.out.println("review_idx : " + review_idx);
-//		System.out.println("shopId : " + shopId);
-		
-		//해당 리뷰에 현재 로그인자가 좋아요를 눌렀는지부터 판별시작
-		if(reviewdao.reviewlikeCheck(user_email, review_idx) != null) {
-			//좋아요 해제
+		System.out.println("reviewlike ==> shopId : " + shopId);
+
+		// 해당 리뷰에 현재 로그인자가 좋아요를 눌렀는지부터 판별시작
+		if (reviewdao.reviewlikeCheck(user_email, review_idx) != null) {
+			// 좋아요 해제
 			System.out.println("좋아요 했는데 또 누름");
-			//like에 해당 리뷰에 현재 ID가 있으면 테이블에서 삭제 후 like count를 리턴
-			//해당 리뷰의 좋아요 갯수 감소
+			// like에 해당 리뷰에 현재 ID가 있으면 테이블에서 삭제 후 like count를 리턴
+			// 해당 리뷰의 좋아요 갯수 감소
 			JSONObject jobj = new JSONObject();
-			jobj.put("isLike","true");
+			jobj.put("isLike", "true");
 			String jsonstr = jobj.toString();
 			res.getWriter().write(jsonstr);
-			
-		}else {
-			//좋아요 누름
+
+		} else {
+			// 좋아요 누름
 			System.out.println("좋아요 누름");
-			//like에 해당 리뷰에 현재 ID가 없으면 테이블에 추가 후 like count 리턴
-			reviewdao.likeAdd(user_email, review_idx,shopId);
-			reviewdao.likeReload(review_idx,reviewdao.likeCnt(review_idx));
-			String cnt = reviewdao.likeCnt(review_idx)+"";
-			//해당 리뷰의 좋아요 갯수 입력
+			// like에 해당 리뷰에 현재 ID가 없으면 테이블에 추가 후 like count 리턴
+			reviewdao.likeAdd(user_email, review_idx, shopId);
+			reviewdao.likeReload(review_idx, reviewdao.likeCnt(review_idx));
+			String cnt = reviewdao.likeCnt(review_idx) + "";
+			// 해당 리뷰의 좋아요 갯수 입력
 			JSONObject jobj = new JSONObject();
-			jobj.put("isLike","false");
-			jobj.put("like",cnt);
+			jobj.put("isLike", "false");
+			jobj.put("like", cnt);
 			String jsonstr = jobj.toString();
 			System.out.println(jsonstr);
 			res.getWriter().write(jsonstr);
 		}
 	}
+
 	@RequestMapping("/review/hate")
-	public void reviewHate(HttpSession session,HttpServletResponse res,HttpServletRequest req) throws IOException {
+	public void reviewHate(HttpSession session, HttpServletResponse res, HttpServletRequest req) throws IOException {
 		System.out.println("/review/hate");
-		String user_email = (String)session.getAttribute("sessionID");
-		if(user_email == null) {
+		String user_email = (String) session.getAttribute("sessionID");
+		if (user_email == null) {
 			JSONObject jobj = new JSONObject();
-			jobj.put("islogin","false");
+			jobj.put("islogin", "false");
 			String jsonstr = jobj.toString();
 			res.getWriter().write(jsonstr);
 			return;
 		}
 		int review_idx = Integer.parseInt(req.getParameter("reviewIdx"));
 		String shopId = req.getParameter("shopId");
-		
-		if(reviewdao.reviewhateCheck(user_email, review_idx) != null) {
+
+		if (reviewdao.reviewhateCheck(user_email, review_idx) != null) {
 			System.out.println("싫어요 했는데 또 누름");
 			JSONObject jobj = new JSONObject();
-			jobj.put("isHate","true");
+			jobj.put("isHate", "true");
 			String jsonstr = jobj.toString();
 			res.getWriter().write(jsonstr);
-			
-		}else {
+
+		} else {
 			System.out.println("싫어요 누름");
-			reviewdao.hateAdd(user_email, review_idx,shopId);
-			reviewdao.hateReload(review_idx,reviewdao.hateCnt(review_idx));
-			String cnt = reviewdao.hateCnt(review_idx)+"";
+			reviewdao.hateAdd(user_email, review_idx, shopId);
+			reviewdao.hateReload(review_idx, reviewdao.hateCnt(review_idx));
+			String cnt = reviewdao.hateCnt(review_idx) + "";
 			JSONObject jobj = new JSONObject();
-			jobj.put("isHate","false");
-			jobj.put("hate",cnt);
+			jobj.put("isHate", "false");
+			jobj.put("hate", cnt);
 			String jsonstr = jobj.toString();
 			res.getWriter().write(jsonstr);
 		}
@@ -394,6 +423,7 @@ public class ListController {
 
 		return mav;
 	}
+
 	@RequestMapping("/alert")
 	public void Alert(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String shop_id = request.getParameter("shop_id");
@@ -401,14 +431,60 @@ public class ListController {
 		List<ReservationVo> alert_list = resDao.getAll_shopId(shop_id);
 		if (alert_list != null) {
 			for (int i = 0; i < alert_list.size(); i++) {
-				if(alert_list.get(i).getAlert_new().equals("1")){
-				alert_new = "exist";
+				if (alert_list.get(i).getAlert_new().equals("1")) {
+					alert_new = "exist";
 				}
 			}
-			if(alert_new.equals("exist")){
-			resDao.updateAlertNew_shopId(shop_id);
+			if (alert_new.equals("exist")) {
+				resDao.updateAlertNew_shopId(shop_id);
 			}
 			response.getWriter().write(alert_new);
 		}
+	}
+
+	@RequestMapping("detail/reviewList")
+	public ModelAndView reviewList(ModelAndView mav, HttpSession session, HttpServletRequest req) {
+		String shopId = req.getParameter("shopId");
+		String user_email = (String) session.getAttribute("sessionID");
+		String sort = req.getParameter("sort");
+		System.out.println("sort" + sort);
+		if (user_email != null) {
+			mav.addObject("likeList", reviewdao.likeList(user_email, shopId));
+			mav.addObject("hateList", reviewdao.hateList(user_email, shopId));
+		}
+		if (sort.equals("new")) {
+			mav.addObject("reviewList", alldao.shopreviewList(shopId,"new"));
+		} else if (sort.equals("popular")) {
+			mav.addObject("reviewList", alldao.shopreviewList(shopId,"popular"));
+		} else {
+			mav.addObject("reviewList", alldao.shopreviewList(shopId,"new"));
+		}
+		mav.setViewName("detail/detail_reviewList");
+		return mav;
+	}
+	@RequestMapping("review/del")
+	public void reviewDel(HttpSession session,HttpServletRequest req,HttpServletResponse res) throws IOException {
+		System.out.println("review/del");
+		String user_email = (String)session.getAttribute("sessionID");
+		if(user_email == null) {
+			res.getWriter().write("nologin");
+			return;
+		}
+		String delEmail = req.getParameter("delEmail");
+		int delIdx = Integer.parseInt(req.getParameter("delIdx"));
+		System.out.println(delIdx + "//" + delEmail);
+		
+		if(delEmail.equals(user_email)) {
+			//리뷰삭제
+			reviewdao.delReview(delIdx);
+			res.getWriter().write("success");
+			return;
+		}else {
+			//리뷰삭제 불가
+			res.getWriter().write("delFail");
+			return;
+		}
+		
+		
 	}
 }
