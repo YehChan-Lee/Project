@@ -1,4 +1,3 @@
-
 <%@page import="com.javaex.model.ShopVo"%>
 <%@page import="com.javaex.controller.ListController"%>
 <%@page import="java.util.List"%>
@@ -314,15 +313,15 @@
 
 						<!-- recommend section -->
 						<div id="nav_recommend" class="border_radius soft">
-							<!-- 							<ul class="keyword">
-								<li class="title">인기 검색어</li>
-								<li class="item" id="search1"><i class="icon number1"></i>
-									<span class="area">스시</span></li>
-								<li class="item" id="search2"><i class="icon number2"></i>
-									<span class="area">한식</span></li>
-								<li class="item" id="search3"><i class="icon number3"></i>
-									<span class="area">수도권</span></li>
-							</ul> -->
+							<li class="title">인기 검색어</li>
+							<li class="item" id="search1"><i class="icon number1"></i> <span
+								class="area">스시</span></li>
+							<li class="item" id="search2"><i class="icon number2"></i> <span
+								class="area">한식</span></li>
+							<li class="item" id="search3"><i class="icon number3"></i> <span
+								class="area">수도권</span></li>
+							</ul>
+							-->
 							<ul class="recent">
 								<li class="title">최근 본 매장</li>
 								<%
@@ -525,14 +524,16 @@
 			<input type="text" class="pwsearch_name" placeholder="  Email">
 			<input type="text" class="email_number">
 			<button class="email_number_submit" onclick="passclick2();">인증</button>
-				<div class="finddiv2" onclick="passclick();">비밀번호 찾기</div>
-			
-			
-				<input type="text" class="repassword" name="repassword"  placeholder="  비밀번호 입력"> 
-				<input type="text" class="repassword2" name="repassword2" placeholder="  비밀번호 확인"> 
-				<input type="submit" class="repassword_submit" value="비밀번호 재설정" onclick="password_update();">
-			
-		
+			<div class="finddiv2" onclick="passclick();">비밀번호 찾기</div>
+
+
+			<input type="text" class="repassword" name="repassword"
+				placeholder="  비밀번호 입력"> <input type="text"
+				class="repassword2" name="repassword2" placeholder="  비밀번호 확인">
+			<input type="submit" class="repassword_submit" value="비밀번호 재설정"
+				onclick="password_update();">
+
+
 		</div>
 
 	</div>
@@ -704,8 +705,8 @@
 				data : form_data,
 				success : function(data) {
 					if (data == "success") {
-						window.location.href = "main"
-					} else if (data == "admin") {
+						location.reload();
+					}else if(data == "admin"){
 						window.location.href = "admin"
 					} else {
 						alert("로그인 또는 비밀번호를 잘못 입력하였습니다");
@@ -717,50 +718,42 @@
 
 			});
 		});
-
 		//알림기능 관련
-		if (window.Notification) {
-			Notification.requestPermission();
-		}
-		function notify() {
-			if (Notification.permission !== 'granted') {
-				alert('알림기능을 허용 해주세요');
-			} else {
-				var notification = new Notification('새로운 알림이 존재합니다!', {
-					icon : '<c:url value="${path}/res/image/babpoolR4.png"/>',
-					body : '예약건이 추가되었습니다',
-				});
-
-				/*                 notification.onclick = function () {
-				 window.location.href = "main"
-				 }; */
-				$("#nav_notice>img").attr("src",
-						'<c:url value="${path}/res/image/bell2.png"/>');
-				$('.message').html(
-						'<a href="buisnessmypage">새로운 예약건이 존재합니다!</a>');
-			}
-		}
-		if ("${shop_id}" != "") {
-			setInterval(function() {
-				alert1();
-			}, 5000)
-		}
-		function alert1() {
-			$.ajax({
-				type : "POST",
-				url : "alert",
-				data : {
-					shop_id : "${shop_id}"
-				},
-				success : function(data) {
-					if (data == "exist") {
-						notify();
-					}
-				}
-			});
-		}
-		//알림기능 관련 끝
-
+  		if (window.Notification) {
+            Notification.requestPermission();
+        }
+        function notify() {
+            if (Notification.permission !== 'granted') {
+                alert('알림기능을 허용 해주세요');
+            }
+            else {
+                var notification = new Notification('새로운 알림이 존재합니다!', {
+                    icon: '<c:url value="${path}/res/image/babpoolR4.png"/>',
+                    body: '예약건이 추가되었습니다',
+                });
+                $("#nav_notice>img").attr("src", '<c:url value="${path}/res/image/bell2.png"/>');
+                $('.message').html('<a href="buisnessmypage">새로운 예약건이 존재합니다!</a>');
+            }
+        } 
+          if ("${shop_id}" != "") {
+  			setInterval(function(){
+  				alert1();
+          	},5000)  
+        } 
+          function alert1() {
+      		$.ajax({
+    			type : "POST",
+    			url : "alert",
+    			data : {shop_id : "${shop_id}"},
+    			success : function(data) {
+    				if (data == "exist") {
+    					notify();
+    				}
+    			}
+    		});
+		}  
+        //알림기능 관련 끝
+        
 		var auto_complete_cursor = 0;
 		/* search box */
 		var query = {
@@ -888,15 +881,6 @@
 			e.stopPropagation();
 		});
 
-		/* 		$("#search1").click(function() {
-		 $("input[type=text][name=string_search]").val("스시");
-		 });
-		 $("#search2").click(function() {
-		 $("input[type=text][name=string_search]").val("한식");
-		 });
-		 $("#search3").click(function() {
-		 $("input[type=text][name=string_search]").val("수도권");
-		 }); */
 
 		// 지역 체크시 글자 바꾸기
 		$("#nav_area>.box>.neighborhood input").change(
@@ -1032,8 +1016,8 @@
 			$('.popup_close').css('top', -90 + 'px');
 			$('.popup_close').css('left', 80 + '%');
 
-		});
-
+		});	
+		
 		//회원가입 팝업
 		$(".nav_join").click(function() {
 
@@ -1149,11 +1133,10 @@
 					$("#nav_notice_list").toggle();
 					$("#nav_notice_list").addClass('focus').siblings()
 							.removeClass('focus');
-					$("#nav_notice>img").attr("src",
-							'<c:url value="${path}/res/image/bell.png"/>');
-					setTimeout(function() {
+					$("#nav_notice>img").attr("src", '<c:url value="${path}/res/image/bell.png"/>');
+					setTimeout(function () {
 						$('.message').text('내 소식이 없습니다.');
-					}, 5000);
+		            }, 5000);
 					e.stopPropagation();
 				}).on('click', '#nav_notice', function(e) {
 			e.stopPropagation();
@@ -1228,8 +1211,7 @@
 
 		/* 설정정보를 초기화하고 연동을 준비 */
 		naverLogin.init();
-
-		_
+		
 	</script>
 
 </body>

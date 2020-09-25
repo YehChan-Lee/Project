@@ -423,7 +423,7 @@
 				<div class="categorydiv2">음식 종류별</div>
 			</div>
 
-			<div class="categorydiv" onclick ="window.location.href='';">
+			<div class="categorydiv" onclick ="window.location.href='hashTag';">
 				<img src="<c:url value="${path}/res/image/main_content/around.jpg"/>">
 				<div class="categorydiv2">해시태그</div>
 			</div>

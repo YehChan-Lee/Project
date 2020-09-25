@@ -36,6 +36,8 @@
 			SHOP_LOCATION like '%' || #{string_search} || '%'
 			or
 			FOOD_TYPE like '%' || #{string_search} || '%'
+			or
+			SHOP_TIP like '%' || #{string_search} || '%'
 			)
 		</if>
 		
@@ -79,6 +81,10 @@
 			and SHOP_CAR = #{parking_available}
 		</if>
 		
+		<if test="hash_tag != null">
+			and
+				HASH_TAG like '%' || #{hash_tag} || '%'
+		</if>		
 		<if test="solt != null">
 			<if test='solt == "1"'>
 				order by SHOP_SCORE DESC
@@ -88,6 +94,12 @@
 			</if>
 			<if test='solt == "3"'>
 				order by SHOP_VIEW DESC
+			</if>
+			<if test='solt == "4"'>
+			<![CDATA[
+				and rownum <= 12
+				order by SHOP_RESERVE DESC
+				]]>	
 			</if>
 		</if>
 		

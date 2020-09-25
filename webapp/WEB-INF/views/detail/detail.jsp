@@ -1,7 +1,6 @@
 <%@page import="com.javaex.model.ReservationVo"%>
 <%@page import="com.javaex.model.ShopUserVo"%>
 <%@page import="com.javaex.model.ShopVo"%>
-<%@page import="java.util.List"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -13,21 +12,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>밥풀 - 카페/베이커리</title>
 
-<link rel="stylesheet"
-	href="<c:url value='${path}/res/css/detail.css?ver=1'/>">
-<link rel="stylesheet"
-	href="<c:url value='${path}/res/css/bootstrap.min.css'/>">
-<link
-	href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
-	rel="stylesheet">
+<link rel="stylesheet" href="<c:url value='${path}/res/css/detail.css?ver=1'/>">
+<link rel="stylesheet" href="<c:url value='${path}/res/css/bootstrap.min.css'/>">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
 
 <script src="http://code.jquery.com/jquery.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
 </head>
 
 <%@include file="../top_bar.jsp"%>
@@ -37,13 +32,10 @@
 	<div id="container">
 		<%
 			ShopVo shopvo = (ShopVo) request.getAttribute("shopOne");
-
-		pageContext.setAttribute("star", shopvo.getShop_score());
-		pageContext.setAttribute("shopidx", shopvo.getShop_idx());
-		
-			
-		    
-		%>
+			pageContext.setAttribute("id", session.getAttribute("sessionID"));
+			pageContext.setAttribute("star", shopvo.getShop_score());
+			pageContext.setAttribute("shopidx", shopvo.getShop_idx());
+			%>
 
 		<!-- 상단에 배너가 있는 레이아웃 -->
 		<div id="banner_wrap">
@@ -144,9 +136,13 @@
 				<div class="container">
 
 					<!-- Button to Open the Modal -->
+					<%if (session.getAttribute("sessionID") == null) { %>
+					<button type="button" class="btn btn-primary" onclick="loginPopUp()"
+					id="reservation_btn">예약 하기</button>
+						<% } else{ %>
 					<button type="button" class="btn btn-primary" data-toggle="modal"
-						data-target="#myModal" id="reservation_btn">예약 하기</button>
-
+					data-target="#myModal" id="reservation_btn">예약 하기</button>
+					<% } %>
 					<!-- The Modal -->
 					<div class="modal fade" id="myModal">
 						<div class="modal-dialog modal-dialog-centered">
@@ -302,7 +298,7 @@
 							</div></li>
 						<li class="item"><a class="i_wrap" href="/timeline/336595">
 								<i class="image border_radius circle"
-								style="background-image: url(../pics/detail/lee.jpg)"></i>
+								style="background-image: url(<c:url value="${path}/res/image/lee.jpg"/>)"></i>
 						</a>
 							<div class="detail">
 								<div class="name">
@@ -315,7 +311,7 @@
 							</div></li>
 						<li class="item"><a class="i_wrap" href="/timeline/611090">
 								<i class="image border_radius circle"
-								style="background-image: url(../pics/detail/lee.jpg)"></i>
+								style="background-image: url(<c:url value="${path}/res/image/lee.jpg"/>)"></i>
 						</a>
 							<div class="detail">
 								<div class="name">
@@ -328,7 +324,7 @@
 							</div></li>
 						<li class="item"><a class="i_wrap" href="/timeline/537740">
 								<i class="image border_radius circle"
-								style="background-image: url(../pics/detail/lee.jpg)"></i>
+								style="background-image: url(<c:url value="${path}/res/image/lee.jpg"/>)"></i>
 						</a>
 							<div class="detail">
 								<div class="name">
@@ -341,7 +337,7 @@
 							</div></li>
 						<li class="item"><a class="i_wrap" href="/timeline/599857">
 								<i class="image border_radius circle"
-								style="background-image: url(../pics/detail/lee.jpg)"></i>
+								style="background-image: url(<c:url value="${path}/res/image/lee.jpg"/>)"></i>
 						</a>
 							<div class="detail">
 								<div class="name">
@@ -358,13 +354,51 @@
 		</div>
 	</div>
 	<%@include file="../footer.jsp"%>
-	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=cyozvucbzs&submodules=geocoder"></script>
+	<script type="text/javascript"src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=cyozvucbzs&submodules=geocoder"></script>
+
 	<script>
-        $(document).ready(function(){     		
+        $(document).ready(function(){  
+        	$('.action > button').click(function () {
+        		var tmp = '${id}';
+    			if( tmp = null){
+    				$("#join_body").hide();
+    				$("#join2_body").hide();
+    				$("#idsearch_body").hide();
+    				$("#passwordsearch_body").hide();
+
+    				$("#login_body").show();
+    				$("#popup_body").show();
+    				$("#naverIdLogin").show();
+    				$("#nav_shading.shading_bg").show();
+
+    				$("#nav_btn").siblings().removeClass('focus');
+
+    				$('#popup_body').css('width', 404 + 'px');
+    				$('#popup_body').css('height', 554 + 'px');
+
+    				$("#naverIdLogin").css('top', 0);
+
+    				$('.popup_close').css('top', -90 + 'px');
+    				$('.popup_close').css('left', 80 + '%');
+    			}else{
+    				alert("로그인되어있슴")
+    			}
+    		})
+        	
+        	$("#star_score").rateYo({
+    			rating : ${shopOne.shop_score},
+    			starWidth: "23px",
+    			halfStar: true,
+    			readOnly: true,
+    			onInit: function (rating, rateYoInstance) {
+    				/* mk_comment(rating,"#grade_comment${review.shopUser.user_idx}","#grade_score${review.shopUser.user_idx}");
+    				$("#grade${review.shopUser.user_idx}").rateYo("option", "readOnly", true); */
+    			},
+    			starSvg : '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>'
+    		});        	
+        	
             $("#content > ul > li > span").mouseover(function(){
             	$(this).css('cursor','pointer');
-            	console.log($(this).parent());
-            	console.dir($(this).parent());
             });
             
             
@@ -374,7 +408,9 @@
             	loadPage();
             });
             
-            $("#import").load("detail/info.do", {"shopidx" : ${shopidx}});
+            $("#import").load("detail/info.do", {
+            	"shopidx" : ${shopidx}
+            });
             
             function loadPage(){
             	
@@ -393,8 +429,13 @@
 				else if($("#content > ul > .item.selected")[0] == $("#review")[0]){
 					$("#naverMap").hide();
 					$("#import").unload();
-            		$("#import").load("detail/review.do")
+            		$("#import").load("detail/review.do",{
+            			"shopidx" : ${shopidx},
+            			"shopId" : "${shopOne.shop_id}"
+            		});
+            		$.getScript("<c:url value='${path}/res/js/jquery.magnific-popup.js'/>");
             		$("#import").show();
+            		
             	}
             	else if($("#content > ul > .item.selected")[0] == $("#menu")[0]){
             		$("#naverMap").hide();
@@ -449,8 +490,7 @@
                      return alert('지도데이터를 불러올수 없습니다!')
                  }
 
-                 var result = response.result,
-                     items = result.items; 
+                 var result = response.result, items = result.items;
                  if(items.length == 0){
                     $("#map").click(function () {
                        alert('지도데이터를 불러올수 없습니다!')
@@ -504,12 +544,32 @@
 				}
 		
 			});
-		});
-        
-        
-});
-         
-     
+		});      
+}); 
+        //로그인 팝업 관련
+		function loginPopUp(){
+			$("#join_body").hide();
+			$("#join2_body").hide();
+			$("#idsearch_body").hide();
+			$("#passwordsearch_body").hide();
+
+			$("#login_body").show();
+			$("#popup_body").show();
+			$("#naverIdLogin").show();
+			$("#nav_shading.shading_bg").show();
+
+			$("#nav_btn").siblings().removeClass('focus');
+
+			$('#popup_body').css('width', 404 + 'px');
+			$('#popup_body').css('height', 554 + 'px');
+
+			$("#naverIdLogin").css('top', 0);
+
+			$('.popup_close').css('top', -90 + 'px');
+			$('.popup_close').css('left', 80 + '%'); 
+	    }
+>>>>>>> branch 'master' of https://github.com/wnsdud8139/Project.git
     </script>
+ 
 </body>
 </html>

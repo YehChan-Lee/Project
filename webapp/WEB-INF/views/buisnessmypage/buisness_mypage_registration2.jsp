@@ -172,9 +172,6 @@
 		<input type="checkbox" class="shop_addinfo2" name="shop_addinfo" value="24시간 영업을 하는"><span class="shop_addinfo_label12">24시간 영업을 하는</span>
 		</div>
 		
-		
-		
-		
 		<span class="shop_photo_span">가게 이미지</span>
 		<input type="file" class="shop_photo" id="image" name="shop_photo"  value="shop_photo"  accept="image/gif,image/jpeg,image/png" onchange="setThumbnail(event)" multiple="multiple"/>
 		

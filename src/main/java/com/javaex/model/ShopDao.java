@@ -29,14 +29,13 @@ public class ShopDao {
 		map.put("location", location);
 		map.put("shop_addrArr", shop_addrArr);
 		map.put("food_typeArr", food_typeArr);
-	      if(string_search != null){
-	          if(string_search.indexOf('#') == -1){
-	          map.put("string_search", string_search);
-	          } else{
-	          map.put("hash_tag", string_search);
-	          }
-	       }
-		
+		if(string_search != null){
+			if(string_search.indexOf('#') == -1){
+			map.put("string_search", string_search);
+			} else{
+			map.put("hash_tag", string_search);
+			}
+		}
 		map.put("solt", solt);
 		map.put("price_list", price_list);
 		if(add_infoArr != null){

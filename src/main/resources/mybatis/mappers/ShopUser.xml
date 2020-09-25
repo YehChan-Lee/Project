@@ -38,15 +38,14 @@
 		WHERE user_email=#{user_email}
 		]]>
 	</update>
-
-	<update id="update_recentShop_user_email"
-		parameterType="hashMap">
+	
+	<update id="update_recentShop_user_email" parameterType="hashMap">
 		<![CDATA[
 		UPDATE ShopUser set recent_shop=#{shop_idx}
 		WHERE user_email=#{user_email}
-		]]>
+		]]>	
 	</update>
-
+	
 	<delete id="shopuserDelete">
 		<![CDATA[
 		DELETE ShopUser WHERE user_email=#{user_email}

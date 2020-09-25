@@ -416,6 +416,7 @@
 }
 
 .shop_addinfo_label2 {
+
 	    position: relative;
     top: 1391px;
     left: 325px;
@@ -504,6 +505,7 @@ position: relative;
     font-size: 16px;
     color: #444;
 }
+
 .shop_tb1 {
 clear: both;
     position: relative;
@@ -598,7 +600,7 @@ clear: both;
 }
 
 .shop_alcohol1 {
-	    position: relative;
+	position: relative;
     float: left;
     width: 22px;
     height: 20px;
@@ -809,7 +811,6 @@ clear: both;
 }
 
 .shop_photo_span {
-  
     clear: both;
     position: relative;
     float: left;
