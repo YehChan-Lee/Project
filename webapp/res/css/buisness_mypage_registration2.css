@@ -1,9 +1,9 @@
 .registration_form {
-    position: relative;
-    width: 722px;
-    height: 1700px;
-    left: -148px;
-    top: -115px;
+	display: inline-block;
+	position: relative;
+	width: 808px;
+	height: 1700px;
+	margin: 0;
 }
 
 .shop_registration {
@@ -14,354 +14,780 @@
 }
 
 .shop_name_span {
-	    position: relative;
-    top: 3px;
-    left: 82px;
-    font-size: 16px;
-    color: #444;
+	position: relative;
+	float: left;
+	top: 0px;
+	font-size: 16px;
+	color: #444;
+	left: 172px;
 }
 
 .shop_title {
-    position: relative;
-    top: 34px;
-    left: 5px;
-    width: 460px;
-    height: 30px;
-    border-radius: 10px;
-    border: 1px solid #BCBCBC;
+	clear: both;
+	position: relative;
+	float: left;
+	top: 7px;
+	left: 172px;
+	width: 460px;
+	height: 30px;
+	border-radius: 10px;
+	border: 1px solid #BCBCBC;
 }
 
 .shop_addr_span {
-	    position: relative;
-    font-size: 16px;
-    top: 93px;
-    left: -469px;
-    color: #444;
+	clear: both;
+	position: relative;
+	float: left;
+	font-size: 16px;
+	top: 50px;
+	left: 172px;
+	color: #444;
 }
 
 .shop_addr {
+	clear: both;
 	position: relative;
-    top: 90px;
-    left: 5px;
-    width: 460px;
-    height: 30px;
-    border-radius: 10px;
-    border: 1px solid #BCBCBC;
+	float: left;
+	top: 55px;
+	left: 172px;
+	width: 460px;
+	height: 30px;
+	border-radius: 10px;
+	border: 1px solid #BCBCBC;
 }
 
 .shop_addr2 {
 	position: relative;
-    top: 94px;
-    left: 43px;
-    width: 460px;
-    height: 30px;
-    border-radius: 10px;
-    border: 1px solid #BCBCBC;
+	float: left;
+	top: 60px;
+	left: 172px;
+	width: 460px;
+	height: 30px;
+	border-radius: 10px;
+	border: 1px solid #BCBCBC;
 }
 
 .shop_location_span {
-	    position: relative;
-    font-size: 16px;
-    top: 155px;
-    left: -429px;
-    color: #444;
+	clear: both;
+	position: relative;
+	float: left;
+	font-size: 16px;
+	top: 100px;
+	left: 172px;
+	color: #444;
 }
 
 .shop_location {
+	clear: both;
 	position: relative;
-    width: 466px;
-    height: 34px;
-    border-radius: 10px;
-    border: 1px solid #BCBCBC;
-    top: 150px;
-    left: 52px;
-    font-size: 13px;
+	float: left;
+	width: 466px;
+	height: 34px;
+	border-radius: 10px;
+	border: 1px solid #BCBCBC;
+	top: 105px;
+	left: 172px;
+	font-size: 13px;
 }
 
 .shop_id_span {
-	    position: relative;
-    font-size: 16px;
-    color: #444;
-    top: 215px;
-    left: -421px;
+	clear: both;
+	position: relative;
+	float: left;
+	font-size: 16px;
+	color: #444;
+	top: 145px;
+	left: 172px;
 }
 
 .shop_id {
-position: relative;
-    top: 211px;
-    left: 43px;
-    width: 460px;
-    height: 30px;
-    border-radius: 10px;
-    border: 1px solid #BCBCBC;
+	clear: both;
+	position: relative;
+	float: left;
+	top: 150px;
+	left: 172px;
+	width: 460px;
+	height: 30px;
+	border-radius: 10px;
+	border: 1px solid #BCBCBC;
 }
 
 .food_type_span {
-	    position: relative;
-    font-size: 16px;
-    color: #444;
-    top: 270px;
-    left: -430px;
+	clear: both;
+	position: relative;
+	float: left;
+	font-size: 16px;
+	color: #444;
+	top: 190px;
+	left: 172px;
 }
 
 .food_type {
-position: relative;
-    width: 460px;
-    height: 30px;
-    border-radius: 10px;
-    border: 1px solid #BCBCBC;
-    top: 267px;
-    left: 24px;
+	clear: both;
+	position: relative;
+	float: left;
+	width: 460px;
+	height: 30px;
+	border-radius: 10px;
+	border: 1px solid #BCBCBC;
+	top: 195px;
+	left: 172px;
 }
 
 .budget_span {
+	clear: both;
 	position: relative;
-    font-size: 16px;
-    color: #444;
-    top: 328px;
-    left: -449px;
+	float: left;
+	font-size: 16px;
+	color: #444;
+	top: 230px;
+	left: 172px;
 }
 
-.budget {
-position: relative;
-    width: 460px;
-    height: 30px;
+.budget1 {
+	position: relative;
+    float: left;
+    width: 22px;
+    height: 20px;
     border-radius: 10px;
     border: 1px solid #BCBCBC;
-    top: 324px;
-    left: 43px;
+    top: 236px;
+    left: 172px;
+    clear: both;
+}
+
+.budget2 {
+	position: relative;
+    float: left;
+    width: 22px;
+    height: 20px;
+    border-radius: 10px;
+    border: 1px solid #BCBCBC;
+    top: 217px;
+    left: 291px;
+    clear: both;
+}
+
+.budget3 {
+	    position: relative;
+    float: left;
+    width: 22px;
+    height: 20px;
+    border-radius: 10px;
+    border: 1px solid #BCBCBC;
+    top: 198px;
+    left: 401px;
+    clear: both;
+}
+
+.budget4 {
+	    position: relative;
+    float: left;
+    width: 22px;
+    height: 20px;
+    border-radius: 10px;
+    border: 1px solid #BCBCBC;
+    top: 178px;
+    left: 515px;
+    clear: both;
+}
+
+.budget_label1 {
+	position: relative;
+    top: 562px;
+    left: -270px;
+}
+
+.budget_label2 {
+    position: relative;
+    top: 562px;
+    left: -239px;
+}
+
+.budget_label3 {
+	position: relative;
+    top: 562px;
+    left: -203px;
+}
+
+.budget_label4 {
+	position: relative;
+    top: 562px;
+    left: -172px;
 }
 
 .shop_tip_span {
+	clear: both;
 	position: relative;
-    font-size: 16px;
-    color: #444;
-    top: 379px;
-    left: -429px;
+	float: left;
+	font-size: 16px;
+	color: #444;
+	top: 245px;
+	left: 172px;
 }
 
 .shop_tip {
-    position: relative;
-    width: 460px;
-    height: 200px;
-    border-radius: 10px;
-    border: 1px solid #BCBCBC;
-    top: 375px;
-    left: 43px;
-    text-align: top;
+	position: relative;
+	float: left;
+	width: 460px;
+	height: 200px;
+	border-radius: 10px;
+	border: 1px solid #BCBCBC;
+	top: 255px;
+	left: 172px;
+	clear: both;
 }
 
 .shop_comment_span {
+	clear: both;
 	position: relative;
-    font-size: 16px;
-    color: #444;
-    top: 425px;
-    left: -431px;
+	float: left;
+	font-size: 16px;
+	color: #444;
+	top: 320px;
+	left: 172px;
 }
 
 .shop_comment {
-    position: relative;
-    width: 460px;
-    height: 30px;
-    border-radius: 10px;
-    border: 1px solid #BCBCBC;
-    top: 427px;
-    left: 59px;
+	clear: both;
+	position: relative;
+	float: left;
+	width: 460px;
+	height: 30px;
+	border-radius: 10px;
+	border: 1px solid #BCBCBC;
+	top: 325px;
+	left: 172px;
 }
 
 .shop_phone_span {
-    position: relative;
-    font-size: 16px;
-    color: #444;
-    top: 473px;
-    left: -414px;
+	clear: both;
+	position: relative;
+	float: left;
+	font-size: 16px;
+	color: #444;
+	top: 365px;
+	left: 172px;
 }
 
 .shop_phone {
-position: relative;
-    width: 460px;
-    height: 30px;
-    border-radius: 10px;
-    border: 1px solid #BCBCBC;
-    top: 468px;
-    left: 107px;
+	clear: both;
+	position: relative;
+	float: left;
+	width: 460px;
+	height: 30px;
+	border-radius: 10px;
+	border: 1px solid #BCBCBC;
+	top: 370px;
+	left: 172px;
 }
 
 .shop_time_span {
+	clear: both;
 	position: relative;
-    font-size: 16px;
-    color: #444;
-    top: 520px;
-    left: -365px;
+	float: left;
+	font-size: 16px;
+	color: #444;
+	top: 420px;
+	left: 172px;
 }
 
 .shop_time1 {
-position: relative;
-    width: 70px;
-    height: 34px;
-    border-radius: 10px;
-    border: 1px solid #BCBCBC;
-    top: 551px;
-    left: -472px;
+	clear: both;
+	position: relative;
+	float: left;
+	width: 70px;
+	height: 34px;
+	border-radius: 10px;
+	border: 1px solid #BCBCBC;
+	top: 430px;
+	left: 172px;
 }
 
 .shop_time_span2 {
-position: relative;
-    font-size: 16px;
-    color: #444;
-    top: 550px;
-    left: -469px;
+	position: relative;
+	float: left;
+	font-size: 16px;
+	color: #444;
+	top: 435px;
+	left: 181px;
 }
+
 .shop_time_span3 {
-    position: relative;
-    font-size: 16px;
-    color: #444;
-    top: 511px;
-    left: 92px;
+	position: relative;
+	float: left;
+	font-size: 16px;
+	color: #444;
+	top: 435px;
+	left: 195px;
 }
+
 .shop_time_span4 {
 	position: relative;
+	float: left;
+	color: #444;
+	top: 427px;
+	left: 210px;
+	font-size: 25px;
+}
 
-    color: #444;
-    top: 512px;
-    left: 100px;
-    font-size: 25px;
-}
 .shop_time_span5 {
-	    position: relative;
-    font-size: 16px;
-    color: #444;
-    top: 510px;
-    left: 105px;
+	position: relative;
+	float: left;
+	font-size: 16px;
+	color: #444;
+	top: 435px;
+	left: 243px;
 }
+
 .shop_time_span6 {
 	position: relative;
-    font-size: 16px;
-    color: #444;
-    top: 510px;
-    left: 116px;
+	float: left;
+	font-size: 16px;
+	color: #444;
+	top: 435px;
+	left: 272px;
 }
 
 .shop_time2 {
 	position: relative;
-    width: 70px;
-    height: 34px;
-    border-radius: 10px;
-    border: 1px solid #BCBCBC;
-    top: 510px;
-    left: 86px;
+	float: left;
+	width: 70px;
+	height: 34px;
+	border-radius: 10px;
+	border: 1px solid #BCBCBC;
+	top: 430px;
+	left: 190px;
 }
+
 .shop_time3 {
-position: relative;
-    width: 70px;
-    height: 34px;
-    border-radius: 10px;
-    border: 1px solid #BCBCBC;
-    top: 510px;
-    left: 104px;
-}
-.shop_time4 {
-position: relative;
-    width: 70px;
-    height: 34px;
-    border-radius: 10px;
-    border: 1px solid #BCBCBC;
-    top: 510px;
-    left: 108px;
-}
-.shop_addinfo_span {
-   position: relative;
-    font-size: 16px;
-    color: #444;
-    top: 584px;
-    left: -339px;
-}
-
-.shop_addinfo {
 	position: relative;
-    width: 460px;
-    height: 30px;
-    border-radius: 10px;
-    border: 1px solid #BCBCBC;
-    top: 580px;
-    left: 70px;
+	float: left;
+	width: 70px;
+	height: 34px;
+	border-radius: 10px;
+	border: 1px solid #BCBCBC;
+	top: 430px;
+	left: 232px;
 }
 
-.shop_tb_span {
+.shop_time4 {
+	position: relative;
+	float: left;
+	width: 70px;
+	height: 34px;
+	border-radius: 10px;
+	border: 1px solid #BCBCBC;
+	top: 430px;
+	left: 259px;
+}
+
+.shop_addinfo_span {
+	clear: both;
+	position: relative;
+	float: left;
+	font-size: 16px;
+	color: #444;
+	top: 496px;
+	left: 172px;
+}
+
+.shop_addinfo_div {
+	width: 300px;
+}
+
+.shop_addinfo1 {
+	position: relative;
+	float: left;
+	width: 22px;
+	height: 20px;
+	border-radius: 10px;
+	border: 1px solid #BCBCBC;
+	top: 511px;
+	left: 170px;
+	clear: both;
+	margin-top: 10px;
+}
+
+.shop_addinfo_label1 {
+	position: relative;
+    top: 1415px;
+    left: 137px;
+}
+
+.shop_addinfo_label2 {
 	    position: relative;
+    top: 1391px;
+    left: 325px;
+}
+
+.shop_addinfo_label3 {
+	    position: relative;
+    top: 1398px;
+    left: 82px;
+}
+
+.shop_addinfo_label4 {
+	    position: relative;
+    top: 1374px;
+    left: 370px;
+}
+
+.shop_addinfo_label5 {
+	    position: relative;
+    top: 1381px;
+    left: 90px;
+}
+
+.shop_addinfo_label6 {
+position: relative;
+    top: 985px;
+    left: 359px;
+}
+
+.shop_addinfo_label7 {
+    position: relative;
+    top: 993px;
+    left: 114px;
+}
+
+.shop_addinfo_label8 {
+        position: relative;
+    top: 968px;
+    left: 387px;
+}
+
+.shop_addinfo_label9 {
+	position: relative;
+    top: 975px;
+    left: 99px;
+}
+
+.shop_addinfo_label10 {
+	position: relative;
+    top: 951px;
+    left: 381px;
+}
+
+.shop_addinfo_label11 {
+       position: relative;
+    top: 959px;
+    left: 112px;
+}
+
+.shop_addinfo_label12 {
+    position: relative;
+    top: 934px;
+    left: 367px;
+}
+
+.shop_addinfo2 {
+    position: relative;
+    float: left;
+    width: 22px;
+    height: 20px;
+    border-radius: 10px;
+    border: 1px solid #BCBCBC;
+    top: 509px;
+    left: 422px;
+    clear: both;
+    margin-top: -17px;
+}
+.shop_addinfo_div > span {
+	display: inline-block;
+}
+
+.shop_tb_p {
+	    position: relative;
+    top: 1221px;
+    left: -401px;
     font-size: 16px;
     color: #444;
-    top: 645px;
-    left: -402px;
 }
-
-.shop_tb {
-position: relative;
-    width: 466px;
-    height: 34px;
+.shop_tb1 {
+clear: both;
+    position: relative;
+    float: left;
     border-radius: 10px;
     border: 1px solid #BCBCBC;
-    top: 640px;
-    left: 43px;
+    top: 486px;
+    left: 172px;
+    width: 22px;
+    height: 20px;
     font-size: 13px;
+}
+
+.shop_tb2 {
+	    clear: both;
+    position: relative;
+    float: left;
+    border-radius: 10px;
+    border: 1px solid #BCBCBC;
+    top: 466px;
+    left: 287px;
+    font-size: 13px;
+    width: 22px;
+    height: 20px;
+}
+
+.shop_tb3 {
+	    clear: both;
+    position: relative;
+    float: left;
+    border-radius: 10px;
+    border: 1px solid #BCBCBC;
+    top: 446px;
+    left: 406px;
+    font-size: 13px;
+    width: 22px;
+    height: 20px;
+}
+
+.shop_tb4 {
+    clear: both;
+    position: relative;
+    float: left;
+    border-radius: 10px;
+    border: 1px solid #BCBCBC;
+    left: 530px;
+    top: 426px;
+    font-size: 13px;
+    width: 22px;
+    height: 20px;
+}
+
+.shop_tb_label1 {
+       position: relative;
+    top: 1211px;
+    left: -273px;
+}
+
+.shop_tb_label2 {
+   position: relative;
+    top: 1211px;
+    left: -237px;
+}
+
+.shop_tb_label3 {
+       position: relative;
+    top: 1211px;
+    left: -197px;
+    display: inline-block;
+}
+
+.shop_tb_label4 {
+       position: relative;
+    top: 1212px;
+    left: -168px;
+}
+
+.shop_alcohol_div {
+	position: relative;
+	left: 175px;
+	top: -98px;
 }
 
 .shop_alcohol_span {
     position: relative;
+    float: left;
     font-size: 16px;
     color: #444;
-    top: 704px;
-    left: -429px;
+    top: 468px;
+    left: 172px;
+    clear: both;
 }
 
-.shop_alcohol {
+.shop_alcohol1 {
 	    position: relative;
-    width: 460px;
-    height: 30px;
+    float: left;
+    width: 22px;
+    height: 20px;
     border-radius: 10px;
     border: 1px solid #BCBCBC;
-    top: 698px;
-    left: 40px;
+    top: 570px;
+    left: -3px;
+    clear: both;
+}
+
+.shop_alcohol2 {
+	    position: relative;
+    float: left;
+    width: 22px;
+    height: 20px;
+    border-radius: 10px;
+    border: 1px solid #BCBCBC;
+    top: 550px;
+    left: 120px;
+    clear: both;
+}
+
+.shop_alcohol3 {
+	position: relative;
+    float: left;
+    width: 22px;
+    height: 20px;
+    border-radius: 10px;
+    border: 1px solid #BCBCBC;
+    top: 530px;
+    left: 241px;
+    clear: both;
+}
+
+.shop_alcohol4 {
+    position: relative;
+    float: left;
+    width: 22px;
+    height: 20px;
+    border-radius: 10px;
+    border: 1px solid #BCBCBC;
+    top: 510px;
+    left: 368px;
+    clear: both;
+}
+
+.shop_alcohol5 {
+	    position: relative;
+    float: left;
+    width: 22px;
+    height: 20px;
+    border-radius: 10px;
+    border: 1px solid #BCBCBC;
+    top: 515px;
+    left: -3px;
+    clear: both;
+}
+
+.shop_alcohol6 {
+	position: relative;
+    float: left;
+    width: 22px;
+    height: 20px;
+    border-radius: 10px;
+    border: 1px solid #BCBCBC;
+    top: 495px;
+    left: 120px;
+    clear: both;
+}
+
+.shop_alcohol7 {
+	    position: relative;
+    float: left;
+    width: 22px;
+    height: 20px;
+    border-radius: 10px;
+    border: 1px solid #BCBCBC;
+    top: 475px;
+    left: 241px;
+    clear: both;
+}
+
+.shop_alcohol8 {
+    position: relative;
+    float: left;
+    width: 22px;
+    height: 20px;
+    border-radius: 10px;
+    border: 1px solid #BCBCBC;
+    top: 455px;
+    left: 368px;
+    clear: both;
+}
+
+.shop_alcohol_label1 {
+	position: relative;
+    top: 1366px;
+    left: -440px;
+}
+
+.shop_alcohol_label2 {
+	    position: relative;
+    top: 1367px;
+    left: -354px;
+}
+
+.shop_alcohol_label3 {
+	    position: relative;
+    top: 1367px;
+    left: -271px;
+}
+
+.shop_alcohol_label4 {
+	position: relative;
+    top: 1367px;
+    left: -204px;
+}
+
+.shop_alcohol_label5 {
+    position: relative;
+    top: 1391px;
+    left: -629px;
+}
+
+.shop_alcohol_label6 {
+	position: relative;
+    top: 1391px;
+    left: -542px;
+}
+
+.shop_alcohol_label7 {
+    position: relative;
+    top: 1391px;
+    left: -460px;
+}
+
+.shop_alcohol_label8 {
+	position: relative;
+    top: 1358px;
+    left: -206px;
 }
 
 .shop_car_span {
+	clear: both;
 	position: relative;
-    font-size: 16px;
-    color: #444;
-    top: 756px;
-    left: -431px;
+	float: left;
+	font-size: 16px;
+	color: #444;
+	top: 404px;
+	left: 172px;
 }
 
 .shop_car {
-	    position: relative;
-    width: 460px;
-    height: 30px;
-    border-radius: 10px;
-    border: 1px solid #BCBCBC;
-    top: 749px;
-    left: 32px;
+	clear: both;
+	position: relative;
+	float: left;
+	width: 466px;
+	height: 34px;
+	border-radius: 10px;
+	border: 1px solid #BCBCBC;
+	top: 409px;
+	left: 172px;
 }
 
 .shop_close_span {
-	    position: relative;
-    font-size: 16px;
-    color: #444;
-    top: 817px;
-    left: -438px;
+	clear: both;
+	position: relative;
+	float: left;
+	font-size: 16px;
+	color: #444;
+	top: 448px;
+	left: 172px;
 }
 
 .shop_close {
-position: relative;
-    width: 460px;
-    height: 30px;
-    border-radius: 10px;
-    border: 1px solid #BCBCBC;
-    top: 809px;
-    left: 51px;
+	clear: both;
+	position: relative;
+	float: left;
+	width: 460px;
+	height: 30px;
+	border-radius: 10px;
+	border: 1px solid #BCBCBC;
+	top: 453px;
+	left: 172px;
 }
 
 .SHOP_PHOTO {
 	position: relative;
+	float: left;
 	top: 1000px;
 }
 
@@ -383,29 +809,38 @@ position: relative;
 }
 
 .shop_photo_span {
-	    position: relative;
-    top: 880px;
+  
+    clear: both;
+    position: relative;
+    float: left;
+    top: 615px;
     color: #444;
-    font-size: 16px;
-    left: -420px;
+    left: 174px;
+
 }
 
 .shop_photo {
-	position: relative;
-    top: 876px;
-    left: -100px;
+   position: relative;
+    float: left;
+    top: 656px;
+    left: 85px;
 }
 
 #image_container {
-	    position: relative;
-    width: 725px;
-    height: 300px;
-    top: 940px;
+    position: relative;
+    float: left;
+    width: 400px;
+    height: 200px;
+    top: 679px;
+    left: -117px;
 }
+
 .buisness_submit {
-	    position: relative;
-    top: 860px;
-    left: 4px;
+clear: both;
+    position: relative;
+    float: right;
+    top: 754px;
+    left: -5px;
     width: 100px;
     height: 50px;
     background-color: #ffa500;
@@ -413,4 +848,58 @@ position: relative;
     border-radius: 10px;
     color: white;
     font-weight: bolder;
+    line-height: 45px;
+}
+.shop_menu {
+    clear: both;
+    position: relative;
+    float: left;
+    top: 1952px;
+    color: #444;
+    left: 259px;
+}
+#menu_add {
+	    position: relative !important;
+    top: 246px;
+    left: -149px;
+}
+.food_name_div {
+	    position: relative;
+    left: 114px;
+    width: 70px;
+}
+.food_price_div {
+position: relative;
+    top: -23px;
+    width: 50px;
+    left: 332px;
+}
+.food_info_div {
+    position: relative;
+    left: 531px;
+    top: -47px;
+    width: 75px;
+}
+.food_name {
+	position: relative;
+	top: -35px;
+}
+.food_price {
+	position: relative;
+	top: -35px;
+}
+.food_info {
+	position: relative;
+	top: -35px;
+}
+.food_add_submit {
+	    position: relative !important;
+    top: -35px;
+    left: 25px;
+    background: #6c757d;
+    border: 0px;
+    border-radius: 5px;
+    color: white;
+    width: 58px;
+    height: 31px;
 }

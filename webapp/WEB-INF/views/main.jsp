@@ -39,7 +39,6 @@
 		integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 		crossorigin="anonymous">
 	<%@ include file="top_bar.jsp"%>
-
 	<div id="main">
 		<div id="main_slider">
 			<br> <br> <br> <br>

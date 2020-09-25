@@ -7,6 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
 	href="<c:url value="${path}/res/css/buisness_mypage_registration2.css?ver=1"/>" />
 </head>
@@ -38,8 +42,11 @@
 		<span class="food_type_span">음식 종류</span>
 		<input type="text" class="food_type" name="food_type" value="<%=shoplist.getFood_type()%>">
 		<span class="budget_span">예산</span>
-		<input type="text" class="budget" name="budget" value="<%=shoplist.getBudget()%>">
-		<span class="shop_tip_span">가게 설명</span>
+		 <label class="budget_label1">5만원 미만</label><input type="radio" class="budget1" name="budget" value="5만원 미만">
+		<label class="budget_label2">5-10만원</label><input type="radio" class="budget2" name="budget" value="5-10만원">
+		<label class="budget_label3">10-16만원</label><input type="radio" class="budget3" name="budget" value="10-16만원">
+		<label class="budget_label4">16만원 이상</label><input type="radio" class="budget4" name="budget" value="16만원 이상">
+		 <span class="shop_tip_span">가게 설명</span>
 		<textarea class="shop_tip" style="resize: none" name="shop_tip" value="<%=shoplist.getShop_tip()%>"></textarea>
 		<span class="shop_comment_span">한줄 설명</span>
 		<input type="text" class="shop_comment" name="shop_comment" value="<%=shoplist.getShop_comment()%>">
@@ -120,31 +127,100 @@
 		</select>
 		<span class="shop_time_span6">분</span>
 		
-		<span class="shop_addinfo_span">가게 부가정보</span>
-		<input type="text" class="shop_addinfo" name="shop_addinfo" value="<%=shoplist.getShop_addinfo()%>">
-		<span class="shop_tb_span">가게 테이블 종류</span>
-		<select class="shop_tb" name="shop_tb" value="<%=shoplist.getShop_tb()%>">
-			<option class="buisness_option" value="바 테이블">바 테이블
-			<option value="홀 테이블">홀 테이블
-			<option value="좌식 테이블">좌식 테이블
-		</select>
+		
+		
+		
+		<p class="shop_tb_p">가게 테이블 종류</p>
+		<label class="shop_tb_label1">바 테이블</label><input type="checkbox" class="shop_tb1" name="shop_tb" value="바 테이블">
+		<label class="shop_tb_label2">홀 테이블</label><input type="checkbox" class="shop_tb2" name="shop_tb" value="홀 테이블">
+		<label class="shop_tb_label3">좌식 테이블</label><input type="checkbox" class="shop_tb3" name="shop_tb" value="좌식 테이블">
+		<label class="shop_tb_label4">룸 테이블</label><input type="checkbox" class="shop_tb4" name="shop_tb" value="룸 테이블">
+		
+	
 		<span class="shop_alcohol_span">가게 주류</span>
-		<input type="text" class="shop_alcohol" name="shop_alcohol" value="<%=shoplist.getShop_alcohol()%>">
+		<div class="shop_alcohol_div">
+		<label class="shop_alcohol_label1">소주</label><input type="checkbox" class="shop_alcohol1" name="shop_alcohol" value="소주">
+		<label class="shop_alcohol_label2">맥주</label><input type="checkbox" class="shop_alcohol2" name="shop_alcohol" value="맥주">
+		<label class="shop_alcohol_label3">전통주</label><input type="checkbox" class="shop_alcohol3" name="shop_alcohol" value="전통주">
+		<label class="shop_alcohol_label4">일본술</label><input type="checkbox" class="shop_alcohol4" name="shop_alcohol" value="일본술">
+		<label class="shop_alcohol_label5">양주</label><input type="checkbox" class="shop_alcohol5" name="shop_alcohol" value="양주">
+		<label class="shop_alcohol_label6">와인</label><input type="checkbox" class="shop_alcohol6" name="shop_alcohol" value="와인">
+		<label class="shop_alcohol_label7">고량주</label><input type="checkbox" class="shop_alcohol7" name="shop_alcohol" value="고량주">
+		<label class="shop_alcohol_label8">칵테일</label><input type="checkbox" class="shop_alcohol8" name="shop_alcohol" value="칵테일">
+		</div>
 		<span class="shop_car_span">주차기능</span>
-		<input type="text" class="shop_car" name="shop_car" value="<%=shoplist.getShop_car()%>">
+		<select class="shop_car" name="shop_car">
+			<option class="car_option" value="1">주차기능 있음
+			<option value="0">주차기능 없음
+		</select>
 		<span class="shop_close_span">휴무일</span>
 		<input type="text" class="shop_close" name="shop_close" value="<%=shoplist.getShop_close()%>">
+		
+		<div class="shop_addinfo_div">
+		<span class="shop_addinfo_span">가게 부가정보</span>
+		<input type="checkbox" class="shop_addinfo1" name="shop_addinfo" value="늦은 저녁에도 영업을 하는"><span class="shop_addinfo_label1">늦은 저녁에도 영업을 하는</span>
+		<input type="checkbox" class="shop_addinfo2" name="shop_addinfo" value="단체석이 있는"><span class="shop_addinfo_label2">단체석이 있는</span>
+		<input type="checkbox" class="shop_addinfo1" name="shop_addinfo" value="데이트 하기 좋은"><span class="shop_addinfo_label3">데이트 하기 좋은</span>
+		<input type="checkbox" class="shop_addinfo2" name="shop_addinfo" value="비지니스 미팅에 어울리는"><span class="shop_addinfo_label4">비지니스 미팅에 어울리는</span>
+		<input type="checkbox" class="shop_addinfo1" name="shop_addinfo" value="룸이 준비되어 있는"><span class="shop_addinfo_label5">룸이 준비되어 있는</span> 
+		<input type="checkbox" class="shop_addinfo2" name="shop_addinfo" value="런치 메뉴가 있는"><span class="shop_addinfo_label6">런치 메뉴가 있는</span>
+		<input type="checkbox" class="shop_addinfo1" name="shop_addinfo" value="브런치 메뉴가 있는"><span class="shop_addinfo_label7">브런치 메뉴가 있는</span>
+		<input type="checkbox" class="shop_addinfo2" name="shop_addinfo" value="야외 테라스 자리가 있는"><span class="shop_addinfo_label8">야외 테라스 자리가 있는</span> 
+		<input type="checkbox" class="shop_addinfo1" name="shop_addinfo" value="전문 소믈리에가 있는"><span class="shop_addinfo_label9">전문 소믈리에가 있는</span>
+		<input type="checkbox" class="shop_addinfo2" name="shop_addinfo" value="베이비 시트가 준비되어 있는"><span class="shop_addinfo_label10">베이비 시트가 준비되어 있는</span>
+		<input type="checkbox" class="shop_addinfo1" name="shop_addinfo" value="코르키지가 가능한"> <span class="shop_addinfo_label11">코르키지가 가능한</span>
+		<input type="checkbox" class="shop_addinfo2" name="shop_addinfo" value="24시간 영업을 하는"><span class="shop_addinfo_label12">24시간 영업을 하는</span>
+		</div>
+		
+		
+		
 		
 		<span class="shop_photo_span">가게 이미지</span>
 		<input type="file" class="shop_photo" id="image" name="shop_photo"  value="shop_photo"  accept="image/gif,image/jpeg,image/png" onchange="setThumbnail(event)" multiple="multiple"/>
 		
 		<div id="image_container"></div>
 
+
 		<!-- <input type="submit" class="buisness_submit" value="수정"> -->
 		<a href="javascript:%20modify()" class="buisness_submit" >수정</a>
 	</form>
-
-<script> function setThumbnail(event) { 
+<span class="shop_menu">메뉴추가</span>
+ <button type="button" class="btn btn-primary" id="menu_add" data-toggle="modal" data-target="#myModal">
+   	메뉴 추가
+  </button>
+ <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Heading</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+        	
+        	<div class="food_name_div">음식이름</div><div class="food_price_div">가격</div><div class="food_info_div">음식설명</div>
+        		<input type="text" class="food_name" name="food_name">
+        		<input type="text" class="food_price" name="food_price">
+        		<input type="text" class="food_info" name="food_info">
+        		<input type="submit" class="food_add_submit" value="추가" onclick="menuadd();">
+        	
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>
+<script> 
+function setThumbnail(event) { 
 	for (var image of event.target.files) { 
 		var reader = new FileReader(); 
 		reader.onload = function(event) { 
@@ -165,6 +241,10 @@ function modify() {
 	$(".registration_form").submit();
 	
 }
+
+
+}
+
 	</script>
 
 

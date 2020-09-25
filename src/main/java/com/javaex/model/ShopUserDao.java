@@ -1,5 +1,8 @@
 package com.javaex.model;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,7 +25,24 @@ public class ShopUserDao {
 		sqlSession.insert("ShopUser.signUp",user);
 	}
 	
+	public void update_recentShop_shopIdx(String user_email, String shop_idx) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("user_email", user_email);
+		map.put("shop_idx", shop_idx);
+		sqlSession.update("ShopUser.update_recentShop_user_email", map);
+	}
+	
 	public ShopUserVo getUser(String user_email) {
 		return sqlSession.selectOne("ShopUser.getUser", user_email);
+	}
+	public String selectemail(HashMap<String, Object> map) {
+		return sqlSession.selectOne("ShopUser.selectemail",map);
+	}
+	public List<String> searchemail() {
+		return sqlSession.selectList("ShopUser.searchEmail");
+	}
+	
+	public void updatepassword(HashMap<String, Object> map) {
+		sqlSession.update("ShopUser.passwordupdate", map);
 	}
 }

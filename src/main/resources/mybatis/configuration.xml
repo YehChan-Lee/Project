@@ -19,7 +19,7 @@
 
 		<typeAlias alias="NewsVo" type="com.javaex.model.NewsVo"></typeAlias>
 		
-		<typeAlias alias="Test" type="com.javaex.model.tmp.TestVo"></typeAlias>
+		
 	</typeAliases>
 
 	<mappers>
@@ -31,5 +31,6 @@
 		<mapper resource="mybatis/mappers/Review.xml" />
  		<mapper resource="mybatis/mappers/Dibs.xml" />
  		<mapper resource="mybatis/mappers/News.xml" />
+ 		
 	</mappers>
 </configuration>

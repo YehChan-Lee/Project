@@ -1,4 +1,3 @@
-<%@page import="com.javaex.model.tmp.TestVo"%>
 <%@page import="com.javaex.model.AllVo"%>
 <%@page import="java.util.List"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>

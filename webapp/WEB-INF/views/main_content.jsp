@@ -425,7 +425,7 @@
 
 			<div class="categorydiv" onclick ="window.location.href='';">
 				<img src="<c:url value="${path}/res/image/main_content/around.jpg"/>">
-				<div class="categorydiv2">주변 음식점</div>
+				<div class="categorydiv2">해시태그</div>
 			</div>
 
 		</div>
