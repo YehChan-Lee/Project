@@ -36,8 +36,6 @@
 			SHOP_LOCATION like '%' || #{string_search} || '%'
 			or
 			FOOD_TYPE like '%' || #{string_search} || '%'
-			or
-			SHOP_TIP like '%' || #{string_search} || '%'
 			)
 		</if>
 		
