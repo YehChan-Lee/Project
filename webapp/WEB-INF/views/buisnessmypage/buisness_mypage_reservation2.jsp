@@ -27,7 +27,7 @@
 		<%List<ReservationVo> reservationvoArr = (List<ReservationVo>)request.getAttribute("reservation"); %>
 			<thead>
 				<tr>
-					<th>가게 이름</th>
+					<th>예약자 이름</th>
 					<th>예약 인원</th>
 					<th>예약 날짜</th>
 					<th>예약자 전화번호</th>
@@ -38,7 +38,7 @@
 				for (int i=0; i < reservationvoArr.size(); i++) { 
 			%>
 				<tr>
-					<td><%=reservationvoArr.get(i).getShop_title() %></td>
+					<td><%=reservationvoArr.get(i).getRes_name() %></td>
 					<td><%=reservationvoArr.get(i).getRes_customer() %></td>
 					<td><%=reservationvoArr.get(i).getRes_date() %></td>
 					<td><%=reservationvoArr.get(i).getRev_phone() %></td>

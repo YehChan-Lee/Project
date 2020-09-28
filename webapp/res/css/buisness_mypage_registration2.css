@@ -904,3 +904,21 @@ position: relative;
     width: 58px;
     height: 31px;
 }
+.food_id {
+	display: none !important;
+}
+.menu_delete_button {
+	
+	background: #6c757d;
+    border: 0px;
+    border-radius: 5px;
+    color: white;
+    width: 58px;
+    height: 31px;
+}
+.menu_delete_div {
+	
+}
+#table2 {
+	
+}

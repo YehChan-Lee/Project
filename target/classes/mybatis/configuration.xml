@@ -3,25 +3,31 @@
 <configuration>
 	<!-- Mybatis 환경설정 -->
 	<typeAliases>
-		<typeAlias alias="ShopUser"	type="com.javaex.model.ShopUserVo"></typeAlias>
+		<typeAlias alias="ShopUserVo"
+			type="com.javaex.model.ShopUserVo"></typeAlias>
 
 		<typeAlias alias="Notice" type="com.javaex.model.NoticeVo"></typeAlias>
 
 		<typeAlias alias="ShopVo" type="com.javaex.model.ShopVo"></typeAlias>
 
-		<typeAlias alias="Reservation" type="com.javaex.model.ReservationVo"></typeAlias>
+		<typeAlias alias="Reservation"
+			type="com.javaex.model.ReservationVo"></typeAlias>
 
 		<typeAlias alias="All" type="com.javaex.model.AllVo"></typeAlias>
-		
+
 		<typeAlias alias="ReviewVo" type="com.javaex.model.ReviewVo"></typeAlias>
-		
+
 		<typeAlias alias="Dibs" type="com.javaex.model.ShopDibsVo"></typeAlias>
+		<typeAlias alias="NewsVo" type="com.javaex.model.NewsVo"></typeAlias>
 
-		<typeAlias alias="NewsVo" type="com.javaex.model.NewsVo"></typeAlias>		
+		<typeAlias alias="ReviewLikeVo"
+			type="com.javaex.model.ReviewLikeVo"></typeAlias>
 
-		<typeAlias alias="ReviewLikeVo" type="com.javaex.model.ReviewLikeVo"></typeAlias>	
+		<typeAlias alias="ReviewHateVo"
+			type="com.javaex.model.ReviewHateVo"></typeAlias>
 			
-		<typeAlias alias="ReviewHateVo" type="com.javaex.model.ReviewHateVo"></typeAlias>		
+			<typeAlias alias="MenuVO"
+			type="com.javaex.model.MenuVO"></typeAlias>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/mappers/ShopUser.xml" />
@@ -30,7 +36,9 @@
 		<mapper resource="mybatis/mappers/Reservation.xml" />
 		<mapper resource="mybatis/mappers/All.xml" />
 		<mapper resource="mybatis/mappers/Review.xml" />
- 		<mapper resource="mybatis/mappers/Dibs.xml" />
- 		<mapper resource="mybatis/mappers/News.xml" />
+		<mapper resource="mybatis/mappers/Dibs.xml" />
+		<mapper resource="mybatis/mappers/News.xml" />
+		<mapper resource="mybatis/mappers/Menu.xml" />
+
 	</mappers>
 </configuration>

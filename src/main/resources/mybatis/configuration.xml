@@ -3,7 +3,7 @@
 <configuration>
 	<!-- Mybatis 환경설정 -->
 	<typeAliases>
-		<typeAlias alias="ShopUser"
+		<typeAlias alias="ShopUserVo"
 			type="com.javaex.model.ShopUserVo"></typeAlias>
 
 		<typeAlias alias="Notice" type="com.javaex.model.NoticeVo"></typeAlias>
@@ -25,6 +25,9 @@
 
 		<typeAlias alias="ReviewHateVo"
 			type="com.javaex.model.ReviewHateVo"></typeAlias>
+			
+			<typeAlias alias="MenuVO"
+			type="com.javaex.model.MenuVO"></typeAlias>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/mappers/ShopUser.xml" />
@@ -35,6 +38,7 @@
 		<mapper resource="mybatis/mappers/Review.xml" />
 		<mapper resource="mybatis/mappers/Dibs.xml" />
 		<mapper resource="mybatis/mappers/News.xml" />
+		<mapper resource="mybatis/mappers/Menu.xml" />
 
 	</mappers>
 </configuration>

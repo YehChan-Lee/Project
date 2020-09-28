@@ -4,7 +4,7 @@ public class AllVo {
 	private ReviewVo ReviewVo;
 	private ReservationVo Reservation;
 	private ShopVo ShopVo;
-	private ShopUserVo ShopUser;
+	private ShopUserVo ShopUserVo;
 	private MenuVO menu;
 	private ShopDibsVo Dibs;
 	private NewsVo NewsVo;
@@ -37,11 +37,11 @@ public class AllVo {
 	}
 
 	public ShopUserVo getShopUser() {
-		return ShopUser;
+		return ShopUserVo;
 	}
 
 	public void setShopUser(ShopUserVo shopUser) {
-		ShopUser = shopUser;
+		ShopUserVo = shopUser;
 	}
 
 	public MenuVO getMenu() {
@@ -70,7 +70,7 @@ public class AllVo {
 
 	@Override
 	public String toString() {
-		return "AllVo[Reservation=" + Reservation + ", ShopVo=" + ShopVo + ", ShopUser=" + ShopUser + ", ReviewVo="
+		return "AllVo[Reservation=" + Reservation + ", ShopVo=" + ShopVo + ", ShopUser=" + ShopUserVo + ", ReviewVo="
 				+ ReviewVo + ", menu=" + menu + ", Dibs=" + Dibs + ", NewsVo=" + NewsVo + "]";
 	}
 

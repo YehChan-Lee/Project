@@ -3,33 +3,23 @@ package com.javaex.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
-<<<<<<< HEAD
 import java.util.HashMap;
-=======
-import java.io.InputStream;
-import java.io.PrintWriter;
->>>>>>> branch 'master' of https://github.com/wnsdud8139/Project.git
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.io.FileUtils;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-<<<<<<< HEAD
-=======
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
->>>>>>> branch 'master' of https://github.com/wnsdud8139/Project.git
 import org.springframework.web.servlet.ModelAndView;
 
-
+import com.javaex.model.MenuDao;
+import com.javaex.model.MenuVO;
 import com.javaex.model.NoticeDao;
 import com.javaex.model.ReservationDao;
 import com.javaex.model.ReservationVo;
@@ -42,9 +32,11 @@ import com.javaex.model.ShopVo;
 
 @Controller
 public class ListController {
-	String number;
 	
-
+	//String number;
+	
+	@Autowired
+	MenuDao menudao;
 	
 	@Autowired
 	ShopDao dao;
@@ -153,7 +145,7 @@ public class ListController {
 		String user_email = request.getParameter("user_id");
 		String password = request.getParameter("user_pw");
 
-		ShopUserVo user;
+		ShopUserVo user = userDao.loginCheck(user_email);
 		if (userDao.loginCheck(user_email) != null) {
 			if (user.getUser_pw().equals(password)) {
 				response.getWriter().write("success");
@@ -296,6 +288,9 @@ public class ListController {
 	@RequestMapping("/buisnessmypage/registration2")
 	public ModelAndView registration2(ModelAndView mav, HttpSession session) {
 		mav.addObject("shopOwnerList", dao.shopOwnerList((String) session.getAttribute("sessionID")));
+		System.out.println("/reservation2");
+		String shop_id = (String)session.getAttribute("shop_id");
+		mav.addObject("menu", menudao.MenuOne(shop_id));
 		mav.setViewName("buisnessmypage/buisness_mypage_registration2");
 		return mav;
 	}
@@ -378,7 +373,7 @@ public class ListController {
 
 	@RequestMapping("/reservation")
 	public ModelAndView Reservation(ModelAndView mav, HttpServletRequest req, HttpServletResponse res,
-			HttpSession session) throws ParseException {
+			HttpSession session,HttpServletResponse response) throws ParseException, IOException {
 
 		String user_email = (String) session.getAttribute("sessionID");
 		String shop_title = req.getParameter("shop_title");
@@ -388,6 +383,8 @@ public class ListController {
 		String rev_phone = req.getParameter("rev_phone");
 		java.util.Date date = new java.util.Date();
 		java.sql.Date res_date2 = new java.sql.Date(date.getTime());
+		String res_name = req.getParameter("res_name");
+		String state = "fail";
 		System.out.println(res_date);
 		System.out.println(user_email);
 		System.out.println(shop_title);
@@ -395,9 +392,18 @@ public class ListController {
 		System.out.println(shop_id);
 		System.out.println(res_date2);
 		System.out.println(rev_phone);
+		System.out.println(res_name);
 		ReservationVo resvo = new ReservationVo(user_email, shop_title, res_date2, res_customer, shop_id, null, null,
-				rev_phone);
-		resDao.insert_reservation(resvo);
+				rev_phone, res_name);
+		
+		
+		if (rev_phone.equals("")) {
+			response.getWriter().write(state);
+		} else {
+			state = "success";
+			response.getWriter().write(state);
+			resDao.insert_reservation(resvo);
+		}
 
 		return mav;
 	}
@@ -465,8 +471,8 @@ public class ListController {
 			for(int i =0 ;i < user_email.size();i++) {
 				if(user_email.get(i).equals(pwsearch_email)) {
 					state = "success";
-					number = "1234";
-					response.getWriter().write(number);
+				
+					response.getWriter().write("1234");
 					return;
 				}
 			}
@@ -483,7 +489,7 @@ public class ListController {
 		String email_number =  req.getParameter("email_number");
 		String state = "fail";
 		
-		if(email_number.equals(number)) {
+		if(email_number.equals("1234")) {
 			state = "success";
 			response.getWriter().write(state);
 		}
@@ -512,6 +518,33 @@ public class ListController {
 	
 	
 	}
+	@RequestMapping("/menu_insert")
+	public void menu_insert(ModelAndView mav,HttpServletRequest req,HttpServletResponse response
+			) throws IOException {
+
+		System.out.println("/menu_insert");
+		String shop_id = req.getParameter("shop_id");
+		String food_name = req.getParameter("food_name");
+		String food_price = req.getParameter("food_price");
+		String food_info = req.getParameter("food_info");
+		System.out.println(shop_id);
+		System.out.println(food_name);
+		System.out.println(food_price);
+		System.out.println(food_info);
+		if(food_name.equals("")) {
+			response.getWriter().write("fail");
+		} else if (food_price.equals("")){
+			response.getWriter().write("fail2");
+		} else if (food_info.equals("")) {
+			response.getWriter().write("fail3");
+		} else {
+			response.getWriter().write("success");
+			MenuVO menuvo = new MenuVO(shop_id, food_name, food_price, food_info);
+			menudao.insert_menu(menuvo);
+		}		
+	}
+	
+
 	
 }
 
