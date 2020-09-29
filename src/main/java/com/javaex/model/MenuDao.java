@@ -26,5 +26,8 @@ public class MenuDao {
 		 return sqlSession.selectList("Menu.MenuOne", shop_id);
 	 }
 	 
+	 public void DeleteMenu(HashMap<String, Object> map) {
+		 sqlSession.delete("Menu.MenuDelete", map);
+	 }
 	
 }

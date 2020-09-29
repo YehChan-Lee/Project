@@ -249,8 +249,10 @@
 					</form>
 
 					<table class="table table-hover" id="table2">
-					
-				<%List<MenuVO> menulist = (List<MenuVO>)request.getAttribute("menu"); %>
+
+						<%
+							List<MenuVO> menulist = (List<MenuVO>) request.getAttribute("menu");
+						%>
 						<div>내가 등록한 메뉴</div>
 						<thead>
 							<tr>
@@ -262,17 +264,18 @@
 						</thead>
 						<tbody>
 							<%
-							for (int i=0; i<menulist.size(); i++) {			
+								for (int i = 0; i < menulist.size(); i++) {
 							%>
-							
+
 							<tr class="menu_list_hover">
-								<td name="food_name"><%=menulist.get(i).getFood_name() %></td>
-								<td name="food_price"><%=menulist.get(i).getFood_price() %></td>
-								<td name="food_info"><%=menulist.get(i).getFood_info() %></td>
-								<td></td>
+								<td name="food_name"><%=menulist.get(i).getFood_name()%></td>
+								<td name="food_price"><%=menulist.get(i).getFood_price()%></td>
+								<td name="food_info"><%=menulist.get(i).getFood_info()%></td>
+								<td><button class="menu_delete_button"
+										onclick="menu_delete()">삭제</button></td>
 							</tr>
 							<%
-							}
+								}
 							%>
 						</tbody>
 					</table>
@@ -289,19 +292,44 @@
 
 	<script> 
 	
-	 	$('.menu_list_hover').hover(function () {
+function menu_delete() {
+	$.ajax({
+		type : "POST",
+		url : "menu_delete",
+		data : {
+			pwsearch_email : $(".pwsearch_name").val(),
+			repassword :  $(".repassword").val(),
+			repassword2 : $(".repassword2").val()
+		},
+		success : function(data) {
+			if (data == "success") {
+				alert("변경완료");
+				window.location.reload()
+			} else if (data == "fail") {
+				alert("두 비밀번호가 일치하지 않습니다")
+				$(".repassword").val("");
+				$(".repassword2").val("");
+			}
+		},
+		error : function() {
+		}
+	});
+}
+	
+	 	/* $('.menu_list_hover').hover(function () {
 			var tag = "<button class='menu_delete_button'>삭제</button>";
 			$(this).find(':nth-child(4)').append(tag);
 		}, function() {
 			$('.menu_delete_button').remove();
-		})
+		}) */
 		
-		$('.menu_delete_button').on("click",function() {
-			var food_name2 = $(this).parent().children().eq(0).text();
+		
+			/* var food_name2 = $(this).parent().children().eq(0).text();
 			if(confirm("음식이름 : "+food_name2+"을 삭제하시겠습니까")) {
 				$(location).attr("href","/foodDelete?food_name=" + food_name2);
-			}
-		});
+			} */
+			
+		
 		
 		//$('.menu_list_hover').mouseleave(function () {
 		//	$('.menu_delete_button').css('display', 'none');

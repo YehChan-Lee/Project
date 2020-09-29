@@ -17,11 +17,11 @@
 		]]>
 	</select>
 	
-	<!-- 
-	<delete id="MenuDelete" parameterType="hashMap">
+	 
+ 	<delete id="MenuDelete">
 	<![CDATA[
 	DELETE MENU WHERE food_name = #{food_name} and shop_id = #{shop_id}
 	]]>
-	</delete> -->
+	</delete> 
 </mapper>
         
