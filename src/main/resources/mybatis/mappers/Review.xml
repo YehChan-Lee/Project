@@ -51,20 +51,16 @@
     		where review_idx = #{reviewIdx} and user_email = #{email} 
 	</select>
 	
+	<!-- footer 리뷰 갯수 -->
 	<select id="footerreview" resultType="int">
 		select count(*) from Review
 	</select>
+	
 	<!--싫어요 누른갯수  -->
 	<select id="hateCnt" resultType="hashMap">
 		select count(*)  as cnt from Review_Hate
     		where review_idx = #{reviewIdx}
     </select>
-	<!--싫어요 누른갯수  -->
-	<select id="hateCnt" resultType="hashMap">
-		select count(*)  as cnt from Review_Hate
-    		where review_idx = #{reviewIdx}
-	</select>
-	
 
 	<!--싫어요 테이블에 데이터 추가  -->
 	<insert id="hateAdd" parameterType="hashMap">

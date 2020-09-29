@@ -34,5 +34,18 @@ public class ShopUserDao {
 	public ShopUserVo getUser(String user_email) {
 		return sqlSession.selectOne("ShopUser.getUser", user_email);
 	}
+	// 마이페이지 정보수정
+	public void Update_shopuser(String user_name, String user_email) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("user_name", user_name);
+		map.put("user_email", user_email);
+		sqlSession.update("ShopUser.Update_shopuser", map);		
+	}
+	public void Update_phone(String user_phone, String user_email) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("user_phone", user_phone);
+		map.put("user_email", user_email);
+		sqlSession.update("ShopUser.Update_phone", map);
+	}
 	
 }

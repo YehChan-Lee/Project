@@ -35,7 +35,13 @@ public class ShopUserVo {
 		this.user_photo = user_photo;
 		this.user_idx = user_idx;
 	}
-
+	
+	public ShopUserVo(String user_email, String user_name, String user_phone) {
+		this.user_email = user_email;
+		this.user_name = user_name;
+		this.user_phone = user_phone;
+	}
+	
 	public String getUser_email() {
 		return user_email;
 	}

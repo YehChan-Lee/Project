@@ -18,13 +18,10 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
 .detail_wrap{
 	width: 730px;
 	border : 1px solid #f3f3f3;
-	padding : 20px 10px;
+	padding : 0;
 	box-sizing: border-box;
 	color : #444;
 	clear: both;
-	background: #fff;
-	margin-top: 10px;
-	border-radius: 5px;
 }
 .tip_content{
 	margin-bottom: 30px;	

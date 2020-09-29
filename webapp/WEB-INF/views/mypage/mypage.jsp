@@ -50,7 +50,7 @@ List<AllVo> dibsList = (ArrayList<AllVo>)request.getAttribute("dibsList");
 						<div id="user_name">
 							<span>${getUser.user_name}</span>
 						</div>
-						<div class="point">POINT</div>
+						<div class="point">${getUser.point} BP</div>
 					</div>
 					<div id="situation">
 						<a href="">예약 <%=reserveList.size() %></a>
@@ -66,7 +66,7 @@ List<AllVo> dibsList = (ArrayList<AllVo>)request.getAttribute("dibsList");
 	<div id="nav_shading" class="shading_bg scroll_enable"></div>
 	<div id="content" class="mypage">
 		<ul id="my_tab">
-			<li id="my_reserv" class="my_item selected">예약</li>			
+			<li id="my_reserv" class="my_item active">예약</li>			
 			<li id="my_review" class="my_item">리뷰</li>
 			<li id="my_dibs" class="my_item">찜</li>
 			<li id="my_notice" class="my_item">소식</li>
@@ -81,13 +81,57 @@ List<AllVo> dibsList = (ArrayList<AllVo>)request.getAttribute("dibsList");
 		<div id="datepicker"></div>
 	</div>
 </div>
-
 	<script>
 	  $(function() {
 		  
 		  mypage_change();
 		  
-         //모든 datepicker에 대한 공통 옵션 설정
+		  var enableDays = ['2020-09-28', '2020-09-27', '2020-08-27'];
+          console.log(enableDays);
+          function enableAllTheseDays(date) {
+            var fDate = $.datepicker.formatDate('yy-mm-dd', date);
+            var result = [false, ""];
+            $.each(enableDays, function(k, d) {
+              if (fDate === d) {
+                result = [true, "black"];
+              }
+            });
+            return result;
+          }
+          
+		  $("#datepicker2").datepicker({
+		         showOn : "both", // 버튼과 텍스트 필드 모두 캘린더를 보여준다.
+		         /* buttonImage: "res/image/admin/calendar.png", // 버튼 이미지 */
+		         buttonImage : "res/image/admin/calendar.png", // 버튼 이미지
+		         buttonImageOnly : true, // 버튼에 있는 이미지만 표시한다.
+		         changeMonth : true, // 월을 바꿀수 있는 셀렉트 박스를 표시한다.
+		         changeYear : true, // 년을 바꿀 수 있는 셀렉트 박스를 표시한다.
+		         minDate : '-100y', // 현재날짜로부터 100년이전까지 년을 표시한다.
+		         maxDate : '0',
+		         nextText : '다음 달', // next 아이콘의 툴팁.
+		         prevText : '이전 달', // prev 아이콘의 툴팁.
+		         numberOfMonths : [1, 1
+		         ], // 한번에 얼마나 많은 월을 표시할것인가. [2,3] 일 경우, 2(행) x 3(열) = 6개의 월을 표시한다.
+		         //stepMonths: 3, // next, prev 버튼을 클릭했을때 얼마나 많은 월을 이동하여 표시하는가. 
+		         /* yearRange: 'c-100:c+10', // 년도 선택 셀렉트박스를 현재 년도에서 이전, 이후로 얼마의 범위를 표시할것인가. */
+		         yearRange : 'c-30:c+0', // 년도 선택 셀렉트박스를 현재 년도에서 이전, 이후로 얼마의 범위를 표시할것인가.
+		         showButtonPanel : true, // 캘린더 하단에 버튼 패널을 표시한다.
+		         gotoCurrent: true,
+		         currentText : '오늘 날짜', // 오늘 날짜로 이동하는 버튼 패널
+		         closeText : '닫기', // 닫기 버튼 패널
+		         dateFormat : "yy-mm-dd", // 텍스트 필드에 입력되는 날짜 형식.
+		         /* showAnim: "slide", //애니메이션을 적용한다. */
+		         showMonthAfterYear : true, // 월, 년순의 셀렉트 박스를 년,월 순으로 바꿔준다. 
+		         dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+		         dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+		         dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], // 요일의 한글 형식.
+		         monthNamesShort : ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'
+		         ],
+		          beforeShowDay: enableAllTheseDays
+		      // 월의 한글 형식.
+
+		      });
+         /* //모든 datepicker에 대한 공통 옵션 설정
          $.datepicker.setDefaults({
              dateFormat: 'yy-mm-dd' //Input Display Format 변경
              ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
@@ -99,13 +143,13 @@ List<AllVo> dibsList = (ArrayList<AllVo>)request.getAttribute("dibsList");
              ,buttonImageOnly: true //기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
              ,buttonText: "선택" //버튼에 마우스 갖다 댔을 때 표시되는 텍스트                
              ,yearSuffix: "년" //달력의 년도 부분 뒤에 붙는 텍스트
-             ,monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'] //달력의 월 부분 텍스트
+             ,monthNamesShort: ['01','02','03','04','05','06','07','08','09','10','11','12'] //달력의 월 부분 텍스트
              ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip 텍스트
              ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 부분 텍스트
              ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
              ,minDate: "-1Y" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
              ,maxDate: "+1Y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)                    
-         });
+         }); */
 
          //input을 datepicker로 선언
          $("#datepicker").datepicker();                    
@@ -117,37 +161,37 @@ List<AllVo> dibsList = (ArrayList<AllVo>)request.getAttribute("dibsList");
                  var i_offset = jQuery(input).offset();      // 클릭된 input의 위치값 체크
                  setTimeout(function(){
                     jQuery("#ui-datepicker-div").css({"left":i_offset});
-
                    // datepicker의 div의 포지션을 강제로 클릭한 input 위취로 이동시킨다.
-
                  })
               }
          })
-         
+
+         $(".active").css("color", "#ffa500");
          $("#my_tab>.my_item").mouseenter(function(){
         	$(this).css("cursor","pointer");
          });
          
          $("#my_tab>.my_item").on("click", function(){
-        	$(this).addClass("selected").siblings().removeClass("selected");
-        	
+        	$(".my_item").css("color", "#000");
+        	$(this).addClass("active").siblings().removeClass("active");
+        	$(".active").css("color", "#ffa500");
         	mypage_change();
          });
          
          function mypage_change() {
-        	 if($("#my_tab>.selected")[0] == $("#my_reserv")[0]) {
+        	 if($("#my_tab>.active")[0] == $("#my_reserv")[0]) {
         		 $("#mypage_import").load("mypage/reservation");
         	 }
-        	 else if($("#my_tab>.selected")[0] == $("#my_review")[0]) {
+        	 else if($("#my_tab>.active")[0] == $("#my_review")[0]) {
         		 $("#mypage_import").load("mypage/review");
         	 }
-         	 else if($("#my_tab>.selected")[0] == $("#my_dibs")[0]) {
+         	 else if($("#my_tab>.active")[0] == $("#my_dibs")[0]) {
         		 $("#mypage_import").load("mypage/dibs");
         	 }
-        	 else if($("#my_tab>.selected")[0] == $("#my_notice")[0]) {
+        	 else if($("#my_tab>.active")[0] == $("#my_notice")[0]) {
         		 $("#mypage_import").load("mypage/notice");
         	 }
-        	 else if($("#my_tab>.selected")[0] == $("#my_setting")[0]) {
+        	 else if($("#my_tab>.active")[0] == $("#my_setting")[0]) {
         		 $("#mypage_import").load("mypage/setting");
         	 } 
          }

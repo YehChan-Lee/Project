@@ -368,8 +368,8 @@
 					</div>
 					<div id="nav_notice_list" class="border_radius soft">
 						<div id="nav_notice_list_tab">
-							소식 <span> <span> <span id="nav_mynews_btn">내 소식</span>
-							</span> <span> <span id="nav_news_btn">밥풀 알림</span>
+							소식 <span> <span> <span id="nav_mynews_btn" onclick="location.href='http://localhost:8088/BabPool/mypage'">내 소식</span>
+							</span> <span> <span id="nav_news_btn" onclick="location.href='http://localhost:8088/BabPool/mypage'">밥풀 알림</span>
 							</span>
 							</span>
 						</div>
@@ -386,7 +386,7 @@
 								</div>
 								<div id="nav_news_list"></div>
 							</div>
-							<div id="nav_notice_list_all">모든 소식보기</div>
+							<div id="nav_notice_list_all" onclick="location.href='http://localhost:8088/BabPool/mypage'">모든 소식보기</div>
 						</div>
 					</div>
 

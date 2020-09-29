@@ -20,9 +20,9 @@ public class ReviewDao {
 	}
 	
 	public int footerreview() {
-		int footerreview = sqlsession.selectOne("ReviewVo.footerreview");
+		int footerreview = sqlsession.selectOne("Review.footerreview");
 		System.out.println(footerreview);
-		return sqlsession.selectOne("ReviewVo.footerreview");
+		return sqlsession.selectOne("Review.footerreview");
 	 }
 
 	public int reviewCnt(String shop_id) {
@@ -90,7 +90,6 @@ public class ReviewDao {
 		map.put("reviewIdx", review_idx);
 		map.put("cnt", likeCnt);		
 		sqlsession.update("Review.hate_up",map);
-		
 	}
 
 	public int hateCnt(int review_idx) {

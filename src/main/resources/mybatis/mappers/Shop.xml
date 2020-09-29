@@ -3,30 +3,16 @@
 
 <mapper namespace="ShopVo">
 	<!--  -->
-	<select id="pageList" resultType="ShopVo" parameterType="com.javaex.model.Criteria">
-		select shop_idx
-        , shop_reserve
-        , shop_review
-        , shop_view
-        , shop_title
-        , shop_location
-        , shop_score
-        , budget
-        , shop_comment
+	<select id="pageList" resultType="ShopVo">
+		select shop_idx, shop_reserve, shop_review, shop_view, shop_title
+			, shop_location, shop_score, budget, shop_comment
 		from (
-		    select shop_idx
-                    , shop_reserve
-                    , shop_review
-                    , shop_view
-                    , shop_title
-                    , shop_location
-                    , shop_score
-                    , budget
-                    , shop_comment,
+		    select shop_idx, shop_reserve, shop_review, shop_view
+                    , shop_title, shop_location, shop_score, budget, shop_comment,
 		            ROW_NUMBER() OVER (ORDER BY shop_idx DESC) as rNum
 		            from Shop) S
 		where rNum between #{rowStart} and #{rowEnd}
-		order by shop_idx ASC
+		order by rNum ASC
 	</select>
 	
 	<select id="pageCount" resultType="int">

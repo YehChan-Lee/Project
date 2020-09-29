@@ -22,9 +22,9 @@ public class ShopDao {
 		return sqlsession.selectList("ShopVo.shopList");
 	}
 	// 가게 리스트 출력
-	public List<ShopVo> pageList(Criteria cri){
+	public List<ShopVo> pageList(){
 		System.out.println("shopList page");
-		return sqlsession.selectList("ShopVo.pageList", cri);
+		return sqlsession.selectList("ShopVo.pageList");
 	}
 	// shop 총 개수
 	public int pageCount() {
@@ -131,11 +131,11 @@ public class ShopDao {
 	}
 	
 	public ShopVo getAll_shopIdx(String shop_idx){
-		return sqlsession.selectOne("Shop.getAll_shopIdx", shop_idx);
+		return sqlsession.selectOne("ShopVo.getAll_shopIdx", shop_idx);
 	}
 	
 	public String getShopId(String user_email){
-		return sqlsession.selectOne("Shop.getShopId", user_email);
+		return sqlsession.selectOne("ShopVo.getShopId", user_email);
 	}
 	
 	public ShopVo cntShopReserve(){
@@ -152,6 +152,6 @@ public class ShopDao {
 	
 	
 	public void deleteShop() {
-		sqlsession.delete("Shop.shopDelete");
+		sqlsession.delete("ShopVo.shopDelete");
 	}
 }

@@ -52,66 +52,67 @@
 			</ul>
 		</div>
 		<div class="review_list">
-			<c:forEach items="${reviewList}" var="review">
-				<div class="review">
-					<a class="author" href=""> <span class="thumbnail"
-						style="background-image: url(<c:url value="${path}/res/image/user2.png"/>);"></span>
-						<div class="info">
-							<p class="name">${review.shopUser.user_name}</p>
-							<p class="stat">0 리뷰</p>
+		<c:choose>
+			<c:when test="${!empty reviewList}">
+				<c:forEach items="${reviewList}" var="review">
+					<div class="review">
+						<a class="author" href=""> <span class="thumbnail"
+							style="background-image: url(<c:url value="${path}/res/image/user2.png"/>);"></span>
+							<div class="info">
+								<p class="name">${review.shopUser.user_name}</p>
+								<p class="stat">0 리뷰</p>
+							</div>
+						</a>
+						<hr />
+						<div class="star_grade">
+							<div class="grade" id="grade${review.reviewVo.review_idx}"
+								style="padding: 0;"></div>
+							<div class="grade_score"
+								id="grade_score${review.reviewVo.review_idx}"></div>
+							<div class="grade_comment"
+								id="grade_comment${review.reviewVo.review_idx}"></div>
 						</div>
-					</a>
-					<hr />
-					<div class="star_grade">
-						<div class="grade" id="grade${review.reviewVo.review_idx}"
-							style="padding: 0;"></div>
-						<div class="grade_score"
-							id="grade_score${review.reviewVo.review_idx}"></div>
-						<div class="grade_comment"
-							id="grade_comment${review.reviewVo.review_idx}"></div>
+						<div class="text">${review.reviewVo.review}</div>
+						<div class="photo">
+							<c:forTokens items="${review.reviewVo.review_photo}" var="img"
+								delims="/">
+								<a href="<c:url value='${path}/serverImg/review/${img}'/>"
+									title="Picture"><img
+									src="<c:url value='${path}/serverImg/review/${img}'/>"
+									width="75" height="75"></a>
+							</c:forTokens>
+						</div>
+	
+						<div class="action">
+							<input type="hidden" name="like_form"
+								value="${review.reviewVo.review_idx}" />
+							<button class="like" id="review_like${review.reviewVo.review_idx}">
+								<i class="far fa-thumbs-up"></i>
+								<p>좋아요</p>
+								<span>${review.reviewVo.like_review}</span>
+							</button>
+	
+							<input type="hidden" name="hate_form"
+								value="${review.reviewVo.review_idx}" />
+							<button class="hate" id="review_hate${review.reviewVo.review_idx}">
+								<i class="far fa-thumbs-down"></i>
+								<p>싫어요</p>
+								<span>${review.reviewVo.hate_review}</span>
+							</button>
+						</div>
+	
 					</div>
-					<div class="text">${review.reviewVo.review}</div>
-					<div class="photo">
-						<c:forTokens items="${review.reviewVo.review_photo}" var="img"
-							delims="/">
-							<a href="<c:url value='${path}/serverImg/review/${img}'/>"
-								title="Picture"><img
-								src="<c:url value='${path}/serverImg/review/${img}'/>"
-								width="75" height="75"></a>
-						</c:forTokens>
-					</div>
-
-					<div class="action">
-						<input type="hidden" name="like_form"
-							value="${review.reviewVo.review_idx}" />
-						<button class="like" id="review_like${review.reviewVo.review_idx}">
-							<i class="far fa-thumbs-up"></i>
-							<p>좋아요</p>
-							<span>${review.reviewVo.like_review}</span>
-						</button>
-
-						<input type="hidden" name="hate_form"
-							value="${review.reviewVo.review_idx}" />
-						<button class="hate" id="review_hate${review.reviewVo.review_idx}">
-							<i class="far fa-thumbs-down"></i>
-							<p>싫어요</p>
-							<span>${review.reviewVo.hate_review}</span>
-						</button>
-					</div>
-
-				</div>
-			</c:forEach>
-
+				</c:forEach>
+			</c:when>
+			
+			<c:otherwise>
 			<div class="review">
-				<a class="author" href=""> <span class="thumbnail"
-					style="background-image: url(<c:url value="${path}/res/image/user2.png"/>);"></span>
-					<div class="info">
-						<p class="name">홍길동</p>
-						<p class="stat">0 팔로워</p>
-					</div>
-
-				</a>
+				<div class="info no_name">
+						등록된 리뷰가 없습니다
+				</div>
 			</div>
+			</c:otherwise>
+		</c:choose>
 		</div>
 	</div>
 </body>

@@ -3,28 +3,14 @@
 
 <mapper namespace="Notice">	
 	<select id="noticeList" resultType="Notice">
-		<![CDATA[SELECT * FROM Notice]]> 		
+		<![CDATA[SELECT * FROM Notice
+			order by rownum DESC]]> 		
 	</select>
 	
-	<!--  -->
-	<select id="pageList" resultType="Notice" parameterType="com.javaex.model.Criteria">
-		select notice_idx, notice_title, notice_content, notice_date
-		from (
-		    select notice_idx, notice_title, notice_content, notice_date,
-		            ROW_NUMBER() OVER (ORDER BY notice_idx DESC) as rNum
-		            from Notice) N
-		where rNum between #{rowStart} and #{rowEnd}
-		order by notice_idx DESC
-	</select>
-	
-	<select id="pageCount" resultType="int">
-		select count(notice_idx)
-		from Notice
-		where notice_idx>0
-	</select>
-	<!--  -->
 	<select id="getNoticeCnt" resultType="int">
+		<![CDATA[
 		select count(*) from Notice
+		]]> 
 	</select>
 		
 	<insert id="noticeInsert">

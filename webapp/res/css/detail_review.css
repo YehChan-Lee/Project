@@ -250,3 +250,7 @@ hr{border-top: 1px solid lightgray;margin-top: 15px;}
 	line-height: 25px;
 	margin-left : 5px;
 }
+#review_wrap .no_name{
+	color: #323232;
+    font-weight: 600;
+}

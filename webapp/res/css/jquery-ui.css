@@ -6,6 +6,15 @@
 
 /* Layout helpers
 ----------------------------------*/
+/* weekend color */
+.ui-datepicker-calendar>tbody>tr>td:first-child>a{
+	background-image: none; 
+	color: red !important; 
+}
+.ui-datepicker-calendar>tbody>tr>td:last-child>a{
+	background-image: none; 
+	color: blue !important; 
+}
 .ui-helper-hidden {
 	display: none;
 }
@@ -386,6 +395,12 @@ button.ui-button::-moz-focus-inner {
 	text-align: center;
 	font-weight: bold;
 	border: 0;
+}
+.ui-datepicker th:first-child>span{
+	color:red !important;
+}
+.ui-datepicker th:last-child>span{
+	color:blue !important;
 }
 .ui-datepicker td {
 	border: 0;

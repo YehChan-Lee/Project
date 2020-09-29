@@ -14,7 +14,7 @@
 		<![CDATA[SELECT * FROM ShopUser]]> 		
 	</select>
 		
-	<select id="cntShopUser" resultType="ShopUser">
+	<select id="cntShopUser" resultType="int">
 		<!-- 사업자 제외 -->
 		<![CDATA[
 			SELECT COUNT(CASE WHEN is_owner=0 THEN 1 END)
@@ -30,22 +30,28 @@
 				#{user_birth}, #{user_phone}, #{is_owner}, #{sign_date}, #{point})
 		]]>
 	</insert>
-	
-	<update id="shopuserUpdate">
-		<![CDATA[
-		UPDATE ShopUser set user_pw=#{user_pw}, user_phone=#{user_phone}
-		WHERE user_email=#{user_email}
-		]]>	
+	<!-- 회원정보 수정 -->
+	<update id="Update_shopuser" parameterType="hashMap">
+		UPDATE ShopUser set
+				user_name=#{user_name}
+		WHERE
+			user_email=#{user_email}
+	</update>
+	<update id="Update_phone" parameterType="hashMap">
+		UPDATE ShopUser set
+				user_phone=#{user_phone}
+		WHERE
+			user_email=#{user_email}
 	</update>
 	
-	<update id="update_recentShop_user_email" parameterType="hashMap">
+	<update id="update_recentShop_user_email">
 		<![CDATA[
 		UPDATE ShopUser set recent_shop=#{shop_idx}
 		WHERE user_email=#{user_email}
 		]]>	
 	</update>
 	
-	<delete id="shopuserDelete">
+	<delete id="Delete_shopuser" parameterType="hashMap">
 		<![CDATA[
 		DELETE ShopUser WHERE user_email=#{user_email}
 		]]>	

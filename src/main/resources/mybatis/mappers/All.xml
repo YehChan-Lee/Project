@@ -100,14 +100,14 @@
 	
 	<select id="reserveList" resultMap="AllResult">
 		select * from reservation R
-			inner join shopUser U
-				on U.user_email=R.user_email
-			inner join Shop S
-				on S.shop_title = R.shop_title
-			where R.user_email=#{user_email}
+         inner join shopUser U
+            on U.user_email=R.user_email
+         inner join Shop S
+            on S.shop_title = R.shop_title
+         where R.user_email=#{user_email}
             AND R.res_date>TO_CHAR(SYSDATE, 'yyyy-mm-dd')
 	</select>
-	
+		
 	<select id="pastList" resultMap="AllResult">
 		select * from reservation R
 			inner join shopUser U
@@ -151,10 +151,10 @@
     		where N.is_admin='1'
 	</select>
 
+	<!-- footer 사용자 -->
 	<select id="footeruser" resultType="int">
 		select count(DISTINCT user_email) from ShopUser
-	</select>
-			
+	</select>	
 
 	<select id="shopreviewList" resultMap="ShopReview">
 		SELECT R.review_idx,U.user_email,U.user_name,U.user_idx, R.review_score,R.review,R.review_photo,R.like_review,R.hate_review FROM Review R

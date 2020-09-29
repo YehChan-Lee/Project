@@ -18,9 +18,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.javaex.model.Criteria;
+import com.javaex.model.AllDao;
 import com.javaex.model.NoticeDao;
-import com.javaex.model.PageMaker;
+import com.javaex.model.PageNavigator;
 import com.javaex.model.ReservationDao;
 import com.javaex.model.ReservationVo;
 import com.javaex.model.ReviewDao;
@@ -45,11 +45,23 @@ public class ListController {
 	@Autowired
 	ReviewDao reviewdao;
 	
+	@Autowired
+	AllDao alldao;
 
 	@Autowired
 	ReservationDao resDao;
 	
 	String url = "D:\\LYC\\SpringGit\\Project\\webapp\\serverImg\\";
+	
+	@RequestMapping("/main")
+	public ModelAndView main(ModelAndView mav, HttpSession session) {
+		System.out.println("/BabPool/main");
+		session.setAttribute("footeruser", alldao.footeruser());
+		session.setAttribute("footerreview", reviewdao.footerreview());
+		session.setAttribute("footerreserve", resDao.footerreserve());
+		mav.setViewName("main");
+		return mav;
+	}
 	
 	@RequestMapping("/review_upload")
 	public void test(ModelAndView mav, MultipartHttpServletRequest req, HttpServletResponse res,HttpSession session) throws IOException {
@@ -96,20 +108,13 @@ public class ListController {
 	}
 
 	@RequestMapping("/list")
-	public ModelAndView list(ModelAndView mav, HttpServletRequest request, Criteria cri) {
+	public ModelAndView list(ModelAndView mav, HttpServletRequest request) {
 		System.out.println("/BabPool/list");
 		mav.addObject("shoplist",dao.shopSearch(request.getParameter("location"), request.getParameterValues("shop_addr"),
                 request.getParameterValues("food_type"), request.getParameter("string_search"),
                 request.getParameter("solt"), request.getParameter("price_list"),
                 request.getParameterValues("add_info"), request.getParameterValues("table_type"),
                 request.getParameterValues("alcohol_type"), request.getParameter("parking_available")));
-		mav.addObject("pageList", dao.pageList(cri));
-		
-		PageMaker pageMakerlist = new PageMaker();
-		pageMakerlist.setCri(cri);
-		pageMakerlist.setTotalCount(noticedao.pageCount());
-		
-		mav.addObject("pageMakerlist", pageMakerlist);
 		mav.setViewName("list");
 		return mav;
 	}
@@ -160,7 +165,6 @@ public class ListController {
 					session.setAttribute("shop_addr", recent_shopList.getShop_addr());
 					session.setAttribute("shop_idx", recent_shopList.getShop_idx());
 				}
-				
 				if (user.getIs_owner().equals("1")) {
 					session.setAttribute("shop_id", dao.getShopId(user_email));
 				}
@@ -212,16 +216,31 @@ public class ListController {
 	}
 
 	@RequestMapping("/notice")
-	public ModelAndView pageList(ModelAndView mav, Criteria cri) {
+	public ModelAndView pageList(ModelAndView mav, HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		System.out.println("/BabPool/notice");
-		mav.addObject("pageList", noticedao.pageList(cri));
 		
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(noticedao.pageCount());
-		
-		mav.addObject("pageMaker", pageMaker);
-		mav.setViewName("notice");
+		String isClick = (String)req.getParameter("pageclick");
+		System.out.println("first="+isClick);
+		int pagenum = Integer.parseInt(req.getParameter("page"));
+		if(isClick != null) {
+			String state = req.getParameter("state");
+			if(state.equals("increse")) {
+				mav.addObject("pagination", noticedao.increse(Integer.parseInt(isClick)));
+			} else {
+				mav.addObject("pagination", noticedao.decrease(Integer.parseInt(isClick)));				
+			}
+			mav.addObject("pagenum",pagenum);
+			mav.addObject("noticeList", noticedao.noticeList(pagenum));
+			resp.getWriter().write("success");
+			mav.setViewName("notice");
+		} else {
+			mav.addObject("pagenum",pagenum);
+			System.out.println("else="+pagenum);
+			mav.addObject("noticeList", noticedao.noticeList(pagenum));
+			mav.addObject("pagination", noticedao.pagination());
+			System.out.println("isClick=null"+noticedao.pagination());
+			mav.setViewName("notice");
+		}
 		return mav;
 	}
 	

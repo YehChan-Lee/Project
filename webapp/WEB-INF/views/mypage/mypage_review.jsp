@@ -29,15 +29,17 @@ $(document).ready(function(){
 		$(this).addClass("selected").siblings().removeClass("selected");
 		
 		mypage_change();
+
 	 });
 	 
 	 function mypage_change() {
+		 
 		 if($("#rever>.selected")[0] == $("#star_review")[0]) {
 			 $("#contents_box").load("mypage/review3");
 		 }
-		 else if($("#my_tab>.selected")[0] == $("#my_review")[0]) {
+		 else /* if($("#rever>.selected")[0] == $("#my_review")[0]) */ {
 			 $("#contents_box").load("mypage/review2");
-		 }
+		 } 
 	 }
 });
 </script>

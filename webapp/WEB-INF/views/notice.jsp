@@ -1,3 +1,5 @@
+<%@page import="java.util.Map"%>
+<%@page import="com.javaex.model.NoticeVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
@@ -11,6 +13,7 @@
 </head>
 <body>
 <%@include file="top_bar.jsp" %>
+
 <!-- 공지사항 -->
 <div id="notice_banner">
 	<img src="<c:url value="${path}/res/image/notice.png"/>"/>
@@ -19,8 +22,8 @@
 <h1 class="notice_title">공지사항</h1>
 	<ul id="notice_list">
 	<c:choose>
-		<c:when test="${!empty pageList}">
-			<c:forEach items="${pageList}" var="notice">
+		<c:when test="${!empty noticeList}">
+			<c:forEach items="${noticeList}" var="notice">
 				<li class="notice_open">
 					<div class="notice_title">
 						${notice.notice_title}
@@ -37,67 +40,99 @@
 			</c:forEach>
 		</c:when>
 		<c:otherwise>
-			<div>등록된 글이 없습니다.</div>
+			<div id="no_notice">등록된 글이 없습니다.</div>
 		</c:otherwise>
 	</c:choose>
 	</ul>
 	<!-- pagination{s} -->
-	<div id="page_btn">
+	<div id="container">
 	  <ul id="pagination">
-	    <c:if test="${pageMaker.prev}">
-	    	<li>
-	    	<a href="notice${pageMaker.makeQuery(pageMaker.startPage - 1)}">&laquo;</a></li>
-	    </c:if> 
-	    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-	    	<li id="_page" class="${pageMaker.cri.page == idx? 'active':''}">
-	    	<a href="notice${pageMaker.makeQuery(idx)}">${idx}</a></li>
-	    </c:forEach>
-	
-	    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-	    	<li><a href="notice${pageMaker.makeQuery(pageMaker.endPage + 1)}">&raquo;</a></li>
-	    </c:if> 
+	  	<li class="page-item"><a class="page-link" href="/BabPool/notice?page=1">&laquo;</a></li>
+	  	<li id="precli" class="page-item"><a class="page-link" href="">&lsaquo;</a></li>
+  		<c:forEach begin="${pagination.begin}" end="${pagination.end}" var="idx">
+		    <li id="first" class="page-item" value="${idx}">
+		    <a class="page-link" href="/BabPool/notice?page=${idx}">${idx}</a></li>
+    	</c:forEach>
+	    <li id="nextcli" class="page-item"><a class="page-link" href="">&rsaquo;</a></li>
+	    <li class="page-item"><a class="page-link" href="/BabPool/notice?page=${noticeList}">&raquo;</a></li>
 	  </ul>
 	</div>
-	<!-- UriComponents 안쓸 경우 -->
-	<%-- <form id="pagingFrm" name="pagingForm">
-		<input type="hidden" id="pageNum" name="pageNum" value="${pageMaker.cri.page}">
-		<input type="hidden" id="amount" name="amount" value="${pageMaker.cri.perPageNum}">
-	</form> --%>
 	<!-- pagination{e} -->
 <%@include file="footer.jsp" %>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script>
 
-$(document).ready(function(){
+$(document).ready(function(){	
+	$("#notice_list>.notice_open").click(function(e){		
+		if($(this).children(".notice_body").css("display") == "none") {
+			
+			$(".notice_body").hide();
+			$("#notice_list>.notice_open").children(".notice_title").children("span").children("img").attr('src', '<c:url value="${path}/res/image/down.png"/>');
+			
+			$(this).children(".notice_body").show();
+			$(this).children(".notice_title").children("span").children("img").attr('src', '<c:url value="${path}/res/image/up.png"/>');
+		}
+		else {
+			$(this).children(".notice_body").hide();
+			$(this).children(".notice_title").children("span").children("img").attr('src', '<c:url value="${path}/res/image/down.png"/>');
+		}
+			e.stopPropagation();
+		});
 	
-$("#notice_list>.notice_open").click(function(e){		
-	if($(this).children(".notice_body").css("display") == "none") {
-		
-		$(".notice_body").hide();
-		$("#notice_list>.notice_open").children(".notice_title").children("span").children("img").attr('src', '<c:url value="${path}/res/image/down.png"/>');
-		
-		$(this).children(".notice_body").show();
-		$(this).children(".notice_title").children("span").children("img").attr('src', '<c:url value="${path}/res/image/up.png"/>');
-	}
-	else {
-		$(this).children(".notice_body").hide();
-		$(this).children(".notice_title").children("span").children("img").attr('src', '<c:url value="${path}/res/image/down.png"/>');
-	}
-	e.stopPropagation();
-	});
-	
-	$(".active").css("background-color", "#ffa500").css("font-weight","600").children().css("color","#fff");
-	
-/* 	$("#pagination li a").on("click", function(event){
-		event.preventDefault();
-		
-		var targetPage = $(this).attr("href");
-		var listPageForm = $("pagingFrm");
-		pagingFrm.find("[name='page']").val(targetPage);
-		pagingFrm.attr("action","/notice").attr("method", "get");
-		pagingFrm.submit();
-	}) */
+	/* function Request(){
+	       var requestParam ="";
+	       
+	      //getParameter function
+	      this.getParameter = function(param){
+	           //현재 주소를 decoding
+	           var url = unescape(location.href); 
+	           //파라미터만 자르고, 다시 &그분자를 잘라서 배열에 넣는다. 
+	           var paramArr = (url.substring(url.indexOf("?")+1,url.length)).split("&"); 
+	           
+	           for(var i = 0 ; i < paramArr.length ; i++){
+	              var temp = paramArr[i].split("="); //파라미터 변수명을 담음
+	           
+	              if(temp[0].toUpperCase() == param.toUpperCase()){
+	                // 변수명과 일치할 경우 데이터 삽입
+	                requestParam = paramArr[i].split("=")[1]; 
+	                break;
+	              }
+	           }
+	           return requestParam;
+	       }
+	   }
 
+	   // Request 객체 생성
+	   var request = new Request();
+	   // test 라는 파라메터 값을 얻기
+	   var pageNo = parseInt(request.getParameter("page"));
+
+	   console.log(pageNo);
+	   
+	   changeNo();
+	   
+	   function changeNo(){
+	      if(pageNo < 10) {
+	         var pageNoEdit1 = pageNo + 2;
+	         $("#pagination li:nth-child("+pageNoEdit1+")").addClass("lifirst").siblings().removeClass("lifirst");
+	      } else {
+	         var pageNoEdit2 = (pageNo % 10) + 2;
+	         $("#pagination li:nth-child("+pageNoEdit2+")").addClass("lifirst").siblings().removeClass("lifirst");
+	      }
+	      $(".lifirst").css("background-color", "#ffa500").css("font-weight","600").children().css("color","#fff");
+	   } */
+	
+	var nextpage = $("#first").val() + 10;
+	var prepage = $("#first").val();
+	/* if(prepage<=10){
+		prepage=10;
+	} */
+	$("#nextcli").on("click", function(){
+		$(this).children("a").attr("href", "/BabPool/notice?pageclick=${pagination.begin}&&state=increse&&page="+nextpage);
+	});
+	$("#precli").on("click", function(){
+		$(this).children("a").attr("href", "/BabPool/notice?pageclick=${pagination.begin}&&state=decrease&&page="+prepage);
+	});
 });
 </script>
 </body>

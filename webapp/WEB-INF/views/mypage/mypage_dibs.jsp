@@ -25,6 +25,14 @@
 	</div>
 	<%
 	   List<AllVo> dibsList = (ArrayList<AllVo>)request.getAttribute("dibsList"); 
+		if(dibsList.size()==0){
+	%>
+	<div id="message">
+	예약이 없습니다.<br>
+	지금 레스토랑에 예약해보시겠어요?
+	</div>
+	<%
+		}
 	%>
          <%            
             for(int i=0;i<dibsList.size();i++){
@@ -56,11 +64,11 @@
                <div class="review_btn">
                   <a class="review_a" href="detail?shopidx= <%=vo.getShopVo().getShop_idx() %>">리뷰 쓰기</a>
                </div>
-            </div>
+            </div>            
             <%
-               }else{ 
-            %>
-            <div class="shop_medium">
+               } else{
+           	%>
+           <div class="shop_medium">
                <div class="list_img" style="background-image: url(<c:url value="${path}/res/image/default.png"/>)">
                   <a class="img_a" href="detail?shopidx=<%=vo.getShopVo().getShop_idx() %>" style="background-image: url(<c:url value="${path}/res/image/default.png"/>)">
                      <div class="img_top">
@@ -88,8 +96,7 @@
             <%
                }
             }
-            %>             
-         </div>
+            %>
 </div>
 
 <script>

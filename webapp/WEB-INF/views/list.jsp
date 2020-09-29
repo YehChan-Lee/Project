@@ -22,13 +22,6 @@
 </head>
 <body>
 	<%@include file="top_bar.jsp"%>
-	
-<%-- 	<%
-		List<ShopVo> shoplist = (ArrayList<ShopVo>) request.getAttribute("shopList");
-		List<ShopVo> pageList = (ArrayList<ShopVo>) request.getAttribute("pageList");
-		int pageMaker = (int)request.getAttribute("pageMakerlist");
-	%> --%>
-	<!--리스트 베너 시작  -->
 	<div id="list_banner"
 		style="background : url(<c:url value='${path}/res/image/list_banner.png'/>)">
 		<div id="banner_wrap">
@@ -62,14 +55,9 @@
 
 			<!--상점 목록 시작  -->
 			<div id="shop_list">
-				<%-- <%
-					for (int i = 0; i < pageList.size(); i++) {
-						ShopVo shopvo = pageList.get(i);
-						if ((i + 1) % 3 == 1) {
-				%> --%>
 			<c:forEach items="${pageList}" var="shopvo">
 				<c:choose>
-				<c:when test="${!empty pageList && shopvo.shop_idx % 3 == 0}">
+				<c:when test="${!empty pageList && shopvo.shop_idx % 3 == 2}">
 				<div class="shop_first">
 					<div class="list_img">
 						<a class="img_a" href="detail?shopidx=${shopvo.shop_idx}"
@@ -87,8 +75,8 @@
 					</div>
 					<div class="shop_desc">
 						<div class="shop_star">
-							<span class="star_span" id="shop_tmp${shopvo.shop_idx}" style="padding:0;display: inline-block;"></span><span
-								class="shop_score">${shopvo.shop_score}점</span>
+							<span class="star_span" id="shop_tmp${shopvo.shop_idx}" style="padding:0;display: inline-block;"></span>
+							<span class="shop_score">${shopvo.shop_score}점</span>
 						</div>
 						<div class="shop_budget">${shopvo.budget}</div>
 						<div class="shop_comment">${shopvo.shop_comment}</div>
@@ -121,8 +109,8 @@
 					</div>
 					<div class="shop_desc">
 						<div class="shop_star">
-							<span class="star_span" id="shop_tmp${shopvo.shop_idx}" style="padding:0;display: inline-block;"></span><span
-								class="shop_score">${shopvo.shop_score}점</span>
+							<span class="star_span" id="shop_tmp${shopvo.shop_idx}" style="padding:0;display: inline-block;"></span>
+							<span class="shop_score">${shopvo.shop_score}점</span>
 						</div>
 						<div class="shop_budget">${shopvo.budget}</div>
 						<div class="shop_comment">${shopvo.shop_comment}</div>
@@ -135,10 +123,6 @@
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
-				<%-- <%
-					}
-				}
-				%> --%>
 			</div>
 			<%@include file="menubar.jsp"%>
 		</div>
@@ -175,14 +159,14 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 <script>
       <c:forEach items="${pageList}" var="shop">
-      $("#shop_tmp${shopvo.shop_idx}").rateYo({
-    	  
+      $("#shop_tmp${shop.shop_idx}").rateYo({
+
   		rating :  ${shop.shop_score},
   		starWidth: "20px",
   	    halfStar: true,
   	  	readOnly: true,
   		starSvg : '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>'
-  		});  
+  		});
       </c:forEach>
       
       $(".active").css("background-color", "#ffa500").css("font-weight","600").children().css("color","#fff");
