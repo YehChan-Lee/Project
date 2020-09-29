@@ -11,13 +11,13 @@ public class ReservationVo {
    private String reserve_idx;      // 예약 번호      		NULL
    private String alert_new;      // 알림 확인여부      NOT NULL default 1
    private String rev_phone;      // 예약한 사용자 전화번호      NOT NULL
-   
+   private String res_name;
    
    public ReservationVo() {}
 
 
 public ReservationVo(String user_email, String shop_title, Date res_date, int res_customer, String shop_id,
-		String reserve_idx, String alert_new, String rev_phone) {
+		String reserve_idx, String alert_new, String rev_phone, String res_name) {
 	super();
 	this.user_email = user_email;
 	this.shop_title = shop_title;
@@ -27,6 +27,7 @@ public ReservationVo(String user_email, String shop_title, Date res_date, int re
 	this.reserve_idx = reserve_idx;
 	this.alert_new = alert_new;
 	this.rev_phone = rev_phone;
+	this.res_name = res_name;
 }
 
 
@@ -37,6 +38,17 @@ public String getUser_email() {
 
 public void setUser_email(String user_email) {
 	this.user_email = user_email;
+}
+
+
+
+public String getRes_name() {
+	return res_name;
+}
+
+
+public void setRes_name(String res_name) {
+	this.res_name = res_name;
 }
 
 

@@ -36,6 +36,8 @@
 			SHOP_LOCATION like '%' || #{string_search} || '%'
 			or
 			FOOD_TYPE like '%' || #{string_search} || '%'
+			or
+			SHOP_TIP like '%' || #{string_search} || '%'
 			)
 		</if>
 		
@@ -82,8 +84,7 @@
 		<if test="hash_tag != null">
 			and
 				HASH_TAG like '%' || #{hash_tag} || '%'
-		</if>
-		
+		</if>		
 		<if test="solt != null">
 			<if test='solt == "1"'>
 				order by SHOP_SCORE DESC
@@ -100,6 +101,11 @@
 				order by SHOP_RESERVE DESC
 				]]>	
 			</if>
+		</if>
+		
+		<if test="hash_tag != null">
+			and
+				HASH_TAG like '%' || #{hash_tag} || '%'
 		</if>
 
 	</select>
@@ -168,6 +174,7 @@
 		DELETE Shop WHERE shop_id=#{shop_id}
 		]]>
 	</delete>
+	
 	<!-- 조회수 증가 -->
 	<update id="viewUp" parameterType="hashMap">
 		update Shop set shop_view = ${cnt} where shop_id = #{shopId}

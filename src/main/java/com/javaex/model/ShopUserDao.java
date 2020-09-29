@@ -1,6 +1,7 @@
 package com.javaex.model;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,17 @@ public class ShopUserDao {
 	
 	public ShopUserVo getUser(String user_email) {
 		return sqlSession.selectOne("ShopUserVo.getUser", user_email);
+	}
+	public String selectemail(HashMap<String, Object> map) {
+		return sqlSession.selectOne("ShopUserVo.selectemail",map);
+	}
+	public List<String> searchemail() {
+		return sqlSession.selectList("ShopUserVo.searchEmail");
+	}
+	
+	public void updatepassword(HashMap<String, Object> map) {
+		sqlSession.update("ShopUserVo.passwordupdate", map);
+		
 	}
 	
 	public void reviewCntUpload(String user_email) {

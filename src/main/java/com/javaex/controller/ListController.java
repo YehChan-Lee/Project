@@ -3,6 +3,7 @@ package com.javaex.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.javaex.model.MenuDao;
+import com.javaex.model.MenuVo;
 import com.javaex.model.AllDao;
 import com.javaex.model.NoticeDao;
 import com.javaex.model.ReservationDao;
@@ -32,7 +35,12 @@ import com.javaex.model.ShopVo;
 
 @Controller
 public class ListController {
-
+	
+	//String number;
+	
+	@Autowired
+	MenuDao menudao;
+	
 	@Autowired
 	ShopDao dao;
 
@@ -223,9 +231,8 @@ public class ListController {
 		String user_email = request.getParameter("user_id");
 		String password = request.getParameter("user_pw");
 
-		ShopUserVo user;
+		ShopUserVo user = userDao.loginCheck(user_email);
 		if (userDao.loginCheck(user_email) != null) {
-			user = userDao.loginCheck(user_email);
 			if (user.getUser_pw().equals(password)) {
 				response.getWriter().write("success");
 				session.setAttribute("is_owner", user.getIs_owner());
@@ -344,9 +351,7 @@ public class ListController {
 			} else {
 				shop_alcohol += comma + shop_alcoholArr[i];
 			}
-
 		}
-
 		for (int i = 0; i < shop_tbArr.length; i++) {
 			if (i == 0) {
 				comma = "";
@@ -356,7 +361,6 @@ public class ListController {
 				shop_tb += comma + shop_tbArr[i];
 			}
 		}
-
 		for (int i = 0; i < shop_addinfoArr.length; i++) {
 			if (i == 0) {
 				comma = "";
@@ -366,6 +370,7 @@ public class ListController {
 				shop_addinfo += comma + shop_addinfoArr[i];
 			}
 		}
+
 		ShopVo s = new ShopVo(shop_title, shop_id, shop_addr, shop_location, food_type, shop_tip, budget, shop_comment,
 				shop_phone, shop_time, shop_addinfo, shop_tb, shop_alcohol, shop_car, shop_close, shop_photo);
 		dao.updateShop(s);
@@ -376,8 +381,10 @@ public class ListController {
 
 	@RequestMapping("/buisnessmypage/registration2")
 	public ModelAndView registration2(ModelAndView mav, HttpSession session) {
-
 		mav.addObject("shopOwnerList", dao.shopOwnerList((String) session.getAttribute("sessionID")));
+		System.out.println("/reservation2");
+		String shop_id = (String)session.getAttribute("shop_id");
+		mav.addObject("menu", menudao.MenuOne(shop_id));
 		mav.setViewName("buisnessmypage/buisness_mypage_registration2");
 		return mav;
 	}
@@ -461,8 +468,8 @@ public class ListController {
 	}
 
 	@RequestMapping("/reservation")
-	public ModelAndView Reservation(ModelAndView mav, HttpServletRequest req, HttpServletResponse res,
-			HttpSession session) throws ParseException {
+	public ModelAndView Reservation(ModelAndView mav, HttpServletRequest req,
+			HttpSession session,HttpServletResponse response) throws ParseException, IOException {
 		String user_email = (String) session.getAttribute("sessionID");
 		String shop_title = req.getParameter("shop_title");
 		int res_customer = Integer.parseInt(req.getParameter("res_customer"));
@@ -470,9 +477,20 @@ public class ListController {
 		String rev_phone = req.getParameter("rev_phone");
 		java.util.Date date = new java.util.Date();
 		java.sql.Date res_date2 = new java.sql.Date(date.getTime());
+		String res_name = req.getParameter("res_name");
+		String state = "fail";
 		ReservationVo resvo = new ReservationVo(user_email, shop_title, res_date2, res_customer, shop_id, null, null,
-				rev_phone);
-		resDao.insert_reservation(resvo);
+				rev_phone, res_name);
+		
+		
+		if (rev_phone.equals("")) {
+			response.getWriter().write(state);
+		} else {
+			state = "success";
+			response.getWriter().write(state);
+			resDao.insert_reservation(resvo);
+		}
+
 		dao.reserveCntUp(dao.getReservCnt(shop_id), shop_id);
 		return mav;
 	}
@@ -495,6 +513,124 @@ public class ListController {
 		}
 	}
 
+	@RequestMapping("/buisnessmypage/reservation2")
+	public ModelAndView reservation2(ModelAndView mav, HttpServletRequest req,HttpSession session) {
+		System.out.println("/reservation2");
+		String a = (String)session.getAttribute("shop_id");
+		mav.addObject("reservation", resDao.reservationOne(a));
+		List <ReservationVo> aa = resDao.reservationOne(a);
+		for(int i=0; i<aa.size(); i++) {
+			System.out.println(aa.get(i).getUser_email());
+		}
+		mav.setViewName("buisnessmypage/buisness_mypage_reservation2");
+		return mav;
+	}
+	
+	@RequestMapping("/idSearch")
+	public void findemail(HttpServletRequest req,  HttpServletResponse response) throws IOException {
+		System.out.println("/idSearch");
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		String find_email =  req.getParameter("find_email");
+		String find_phone =  req.getParameter("find_phone");
+		map.put("user_name", find_email);
+		map.put("user_phone", find_phone);
+		
+	
+		String user_email = userDao.selectemail(map);
+		if(user_email == null) {
+			response.getWriter().write("fail");
+		}else {
+			response.getWriter().write(user_email);
+		}
+	}
+	
+	
+	@RequestMapping("/pwSearch")
+	public void pwSearch(HttpServletRequest req,  HttpServletResponse response) throws IOException {
+		System.out.println("/pwSearch");
+		String pwsearch_email =  req.getParameter("pwsearch_email");
+		String state = "fail";
+		
+		List<String> user_email = userDao.searchemail();
+		if(user_email == null) {
+			response.getWriter().write(state);
+		}else {
+			for(int i =0 ;i < user_email.size();i++) {
+				if(user_email.get(i).equals(pwsearch_email)) {
+					state = "success";
+				
+					response.getWriter().write("1234");
+					return;
+				}
+			}
+			if(state.equals("fail")) {
+				response.getWriter().write(state);
+			}
+			
+		}
+	}
+	
+	@RequestMapping("/pwSearch2")
+	public void pwSearch2(HttpServletRequest req,  HttpServletResponse response) throws IOException {
+		System.out.println("/pwSearch2");
+		String email_number =  req.getParameter("email_number");
+		String state = "fail";
+		
+		if(email_number.equals("1234")) {
+			state = "success";
+			response.getWriter().write(state);
+		}
+		else if(state.equals("fail")) {
+			response.getWriter().write(state);
+		}
+		
+	}
+	
+	@RequestMapping("/pwupdate")
+	public void pwupdate(HttpServletRequest req,  HttpServletResponse response) throws IOException {
+		System.out.println("/pwupdate");
+		String pwsearch_email = req.getParameter("pwsearch_email");
+		String repassword = req.getParameter("repassword");
+		String repassword2 = req.getParameter("repassword2");
+		
+		if (repassword.equals(repassword2)) {
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("user_email", pwsearch_email);
+			map.put("user_pw", repassword);
+			userDao.updatepassword(map);
+			response.getWriter().write("success");
+		} else {
+			response.getWriter().write("fail");
+		}
+	
+	
+	}
+	@RequestMapping("/menu_insert")
+	public void menu_insert(ModelAndView mav,HttpServletRequest req,HttpServletResponse response
+			) throws IOException {
+
+		System.out.println("/menu_insert");
+		String shop_id = req.getParameter("shop_id");
+		String food_name = req.getParameter("food_name");
+		String food_price = req.getParameter("food_price");
+		String food_info = req.getParameter("food_info");
+		System.out.println(shop_id);
+		System.out.println(food_name);
+		System.out.println(food_price);
+		System.out.println(food_info);
+		if(food_name.equals("")) {
+			response.getWriter().write("fail");
+		} else if (food_price.equals("")){
+			response.getWriter().write("fail2");
+		} else if (food_info.equals("")) {
+			response.getWriter().write("fail3");
+		} else {
+			response.getWriter().write("success");
+			MenuVo menuvo = new MenuVo(shop_id, food_name, food_price, food_info);
+			menudao.insert_menu(menuvo);
+		}		
+	}
+	
 	@RequestMapping("detail/reviewList")
 	public ModelAndView reviewList(ModelAndView mav, HttpSession session, HttpServletRequest req) {
 		String shopId = req.getParameter("shopId");
@@ -541,3 +677,4 @@ public class ListController {
 
 	}
 }
+

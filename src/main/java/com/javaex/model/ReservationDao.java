@@ -32,4 +32,8 @@ public class ReservationDao {
    public void insert_reservation(ReservationVo vo) {
       sqlSession.insert("Reservation.insertReservation", vo);
    }
+   public List<ReservationVo> reservationOne(String shop_id){
+		return sqlSession.selectList("Reservation.reservationOne", shop_id);
+	}
+
 }

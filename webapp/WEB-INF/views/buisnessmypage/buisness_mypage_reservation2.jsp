@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="com.javaex.model.ReservationVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
@@ -18,97 +20,32 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
+
 	<div class="container">
 
 		<table class="table table-hover">
+		<%List<ReservationVo> reservationvoArr = (List<ReservationVo>)request.getAttribute("reservation"); %>
 			<thead>
 				<tr>
-					<th>이메일</th>
-					<th>전화번호</th>
-					<th>예약인원</th>
-					<th>예약날짜</th>
+					<th>예약자 이름</th>
+					<th>예약 인원</th>
+					<th>예약 날짜</th>
+					<th>예약자 전화번호</th>
 				</tr>
 			</thead>
 			<tbody>
+			<% 
+				for (int i=0; i < reservationvoArr.size(); i++) { 
+			%>
 				<tr>
-					<td>John</td>
-					<td>Doe</td>
-					<td>a</td>
-					<td>a</td>
+					<td><%=reservationvoArr.get(i).getRes_name() %></td>
+					<td><%=reservationvoArr.get(i).getRes_customer() %></td>
+					<td><%=reservationvoArr.get(i).getRes_date() %></td>
+					<td><%=reservationvoArr.get(i).getRev_phone() %></td>
 				</tr>
-				<tr>
-					<td>Mary</td>
-					<td>Moe</td>
-					<td>a</td>
-					<td>a</td>
-					
-				</tr>
-				<tr>
-					<td>July</td>
-					<td>Dooley</td>
-					<td>a</td>
-					<td>a</td>
-				</tr>
-				<tr>
-					<td>July</td>
-					<td>Dooley</td>
-					<td>a</td>
-					<td>a</td>
-				</tr>
-				<tr>
-					<td>July</td>
-					<td>Dooley</td>
-					<td>a</td>
-					<td>a</td>
-				</tr>
-				<tr>
-					<td>July</td>
-					<td>Dooley</td>
-				<td>a</td>
-					<td>a</td>
-				</tr>
-				<tr>
-					<td>July</td>
-					<td>Dooley</td>
-					<td>a</td>
-					<td>a</td>
-				</tr>
-				<tr>
-					<td>July</td>
-					<td>Dooley</td>
-				<td>a</td>
-					<td>a</td>
-				</tr>
-				<tr>
-					<td>July</td>
-					<td>Dooley</td>
-				<td>a</td>
-					<td>a</td>
-				</tr>
-				<tr>
-					<td>July</td>
-					<td>Dooley</td>
-						<td>a</td>
-					<td>a</td>
-				</tr>
-				<tr>
-					<td>July</td>
-					<td>Dooley</td>
-					<td>a</td>
-					<td>a</td>
-				</tr>
-				<tr>
-					<td>July</td>
-					<td>Dooley</td>
-					<td>a</td>
-					<td>a</td>
-				</tr>
-				<tr>
-					<td>July</td>
-					<td>Dooley</td>
-						<td>a</td>
-					<td>a</td>
-				</tr>
+				<%
+				}
+				%>
 			</tbody>
 		</table>
 	</div>

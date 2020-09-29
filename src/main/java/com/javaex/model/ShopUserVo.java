@@ -37,6 +37,10 @@ public class ShopUserVo {
 		this.user_idx = user_idx;
 		this.review_cnt = review_cnt;
 	}
+	
+	public ShopUserVo(String user_pw) {
+		this.user_pw = user_pw;
+	}
 
 	public String getUser_email() {
 		return user_email;
@@ -150,8 +154,6 @@ public class ShopUserVo {
 				+ user_photo + ", user_idx=" + user_idx + ", recent_shop=" + recent_shop + ", review_cnt=" + review_cnt
 				+ "]";
 	}
-
-	
 
 	
 }

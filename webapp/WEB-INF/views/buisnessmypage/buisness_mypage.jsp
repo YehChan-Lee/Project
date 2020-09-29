@@ -15,7 +15,7 @@
 <%@include file="../top_bar.jsp" %>
 <!-- 마이페이지 -->
 
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+ <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.4.0/"/></script>
 <link rel="stylesheet" href="<c:url value="${path}/res/css/jquery-ui.css"/>"/>

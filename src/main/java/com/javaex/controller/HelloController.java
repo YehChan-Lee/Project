@@ -95,12 +95,7 @@ public class HelloController {
 		return "buisnessmypage/buisness_mypage_reservation";
 	}
 
-	@RequestMapping("/buisnessmypage/reservation2")
-	public String reservation2() {
-		System.out.println("/reservation2");
-		return "buisnessmypage/buisness_mypage_reservation2";
-	}
-
+	
 	@RequestMapping("/buisnessmypage/setting")
 	public String buisnesssetting() {
 		System.out.println("/setting");

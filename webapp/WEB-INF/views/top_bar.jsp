@@ -312,30 +312,38 @@
 
 						<!-- recommend section -->
 						<div id="nav_recommend" class="border_radius soft">
-<!-- 							<ul class="keyword">
-								<li class="title">인기 검색어</li>
-								<li class="item" id="search1"><i class="icon number1"></i>
-									<span class="area">스시</span></li>
-								<li class="item" id="search2"><i class="icon number2"></i>
-									<span class="area">한식</span></li>
-								<li class="item" id="search3"><i class="icon number3"></i>
-									<span class="area">수도권</span></li>
-							</ul> -->
+							<li class="title">인기 검색어</li>
+							<li class="item" id="search1"><i class="icon number1"></i> <span
+								class="area">스시</span></li>
+							<li class="item" id="search2"><i class="icon number2"></i> <span
+								class="area">한식</span></li>
+							<li class="item" id="search3"><i class="icon number3"></i> <span
+								class="area">수도권</span></li>
+							</ul>
+							-->
 							<ul class="recent">
 								<li class="title">최근 본 매장</li>
-								<% if (session.getAttribute("sessionID") == null) {%>
+								<%
+									if (session.getAttribute("sessionID") == null) {
+								%>
 								<p style="height: 58px">로그인 시 최근 본 매장이 표시됩니다</p>
 								<p>해시태그를 통해서도 검색 가능합니다</p>
-								<% } else if(session.getAttribute("shop_title") == null){ %>
+								<%
+									} else if (session.getAttribute("shop_title") == null) {
+								%>
 								<p>최근 본 매장이 없습니다</p>
 								<p>해시태그를 통해 검색해 보세요!</p>
-								<%} else { %>
+								<%
+									} else {
+								%>
 								<a href="detail?shopidx=<%=session.getAttribute("shop_idx")%>"><li>
-								<p><%=session.getAttribute("shop_title")%></p>
-								<p><%=session.getAttribute("food_type")%></p>
-								<p><%=session.getAttribute("shop_addr")%></p>
+										<p><%=session.getAttribute("shop_title")%></p>
+										<p><%=session.getAttribute("food_type")%></p>
+										<p><%=session.getAttribute("shop_addr")%></p>
 								</li></a>
-								<% } %>
+								<%
+									}
+								%>
 							</ul>
 						</div>
 
@@ -348,7 +356,7 @@
 				<!-- account section 로그인 전-->
 				<%
 					if (session.getAttribute("sessionID") == null) {
-						pageContext.setAttribute("shop_id", "");
+					pageContext.setAttribute("shop_id", "");
 				%>
 				<div id="nav_account">
 					<div id="nav_guest">
@@ -394,18 +402,16 @@
 						<%
 							if (session.getAttribute("is_owner").equals("0")) {
 						%>
-						<a href="mypage">
-						<img src="<c:url value="${path}/res/image/user2.png"/>"
-							height="32px">
-							</a> 
+						<a href="mypage"> <img
+							src="<c:url value="${path}/res/image/user2.png"/>" height="32px">
+						</a>
 						<%
 							} else {
-								pageContext.setAttribute("shop_id", session.getAttribute("shop_id"));
+						pageContext.setAttribute("shop_id", session.getAttribute("shop_id"));
 						%>
-						<a href="buisnessmypage">
-						<img src="<c:url value="${path}/res/image/user2.png"/>"
-							height="32px">
-							</a>
+						<a href="buisnessmypage"> <img
+							src="<c:url value="${path}/res/image/user2.png"/>" height="32px">
+						</a>
 						<%
 							}
 						%>
@@ -491,18 +497,20 @@
 			</div>
 		</div>
 		<!-- 아이디 찾기 -->
-		<div id="idsearch_body">
-			<img src="<c:url value="${path}/res/image/close.jpg"/>"
-				class="popup_close" />
-			<h2 class="idsearchh2">아이디 찾기</h2>
-			<hr id="idsearch_hr">
-			<div class="idsearch_body_span">밥풀ID 찾기를 위한 개인정보를 입력해주세요</div>
-			<div class="idsearch_body_span2">이름</div>
-			<input type="text" class="idsearch_name">
-			<div class="idsearch_body_span3">핸드폰 번호</div>
-			<input type="text" class="idsearch_phone">
-			<div class="finddiv">아이디 찾기</div>
-		</div>
+		<form action="findemail" method="post">
+			<div id="idsearch_body">
+				<img src="<c:url value="${path}/res/image/close.jpg"/>"
+					class="popup_close" />
+				<h2 class="idsearchh2">아이디 찾기</h2>
+				<hr id="idsearch_hr">
+				<div class="idsearch_body_span">밥풀ID 찾기를 위한 개인정보를 입력해주세요</div>
+				<div class="idsearch_body_span2">이름</div>
+				<input type="text" class="idsearch_name" name="find_email">
+				<div class="idsearch_body_span3">핸드폰 번호</div>
+				<input type="text" class="idsearch_phone" name="find_phone">
+				<input type="submit" class="finddiv" value="아이디 찾기">
+			</div>
+		</form>
 		<!-- 비밀번호 찾기 -->
 		<div id="passwordsearch_body">
 			<img src="<c:url value="${path}/res/image/close.jpg"/>"
@@ -511,8 +519,20 @@
 			<hr id="idsearch_hr">
 			<div class="pwsearch_body_span">가입하신 계정의 이메일을 입력해주세요.</div>
 			<div class="pwsearch_body_span2">임의로 설정된 새로운 비밀번호가 메일로 전송됩니다</div>
+			<div class="repassword_span">비밀번호를 재설정 해주세요</div>
 			<input type="text" class="pwsearch_name" placeholder="  Email">
-			<div class="finddiv2">비밀번호 찾기</div>
+			<input type="text" class="email_number">
+			<button class="email_number_submit" onclick="passclick2();">인증</button>
+			<div class="finddiv2" onclick="passclick();">비밀번호 찾기</div>
+
+
+			<input type="text" class="repassword" name="repassword"
+				placeholder="  비밀번호 입력"> <input type="text"
+				class="repassword2" name="repassword2" placeholder="  비밀번호 확인">
+			<input type="submit" class="repassword_submit" value="비밀번호 재설정"
+				onclick="password_update();">
+
+
 		</div>
 
 	</div>
@@ -531,6 +551,114 @@
 
 	<script src="http://code.jquery.com/jquery.js"></script>
 	<script>
+		// 아이디 찾기 
+		$('.finddiv').click(function(e) {
+			idSearch()
+			e.preventDefault();
+			//console.log($(".idsearch_name").val(), $(".idsearch_phone").val())
+		});
+
+		function password_update() {
+			$.ajax({
+				type : "POST",
+				url : "pwupdate",
+				data : {
+					pwsearch_email : $(".pwsearch_name").val(),
+					repassword :  $(".repassword").val(),
+					repassword2 : $(".repassword2").val()
+				},
+				success : function(data) {
+					if (data == "success") {
+						alert("변경완료");
+						window.location.reload()
+					} else if (data == "fail") {
+						alert("두 비밀번호가 일치하지 않습니다")
+						$(".repassword").val("");
+						$(".repassword2").val("");
+					}
+				},
+				error : function() {
+				}
+			});
+		}
+		
+		function passclick2() {
+			$.ajax({
+				type : "POST",
+				url : "pwSearch2",
+				data : {
+					email_number : $(".email_number").val()
+				},
+				success : function(data) {
+					if (data == "fail") {
+						alert("인증번호가 다릅니다")
+					} else {
+						alert("인증에 성공하였습니다");
+
+						$('.pwsearch_body_span').css('display', 'none');
+						$('.pwsearch_body_span2').css('display', 'none');
+						$('.pwsearch_name').css('display', 'none');
+						$('.email_number').css('display', 'none');
+						$('.email_number_submit').css('display', 'none');
+						$('.repassword_span').css('display', 'inline-block');
+						$('.repassword').css('display', 'inline-block');
+						$('.repassword2').css('display', 'inline-block');
+						$('.repassword_submit').css('display', 'inline-block');
+						
+					}
+				},
+				error : function() {
+				}
+			});
+		}
+
+		function passclick() {
+			$.ajax({
+				type : "POST",
+				url : "pwSearch",
+				data : {
+					pwsearch_email : $(".pwsearch_name").val()
+				},
+				success : function(data) {
+					if (data == "fail") {
+						alert("입력된 정보로 가입하신 아이디가 없습니다.")
+					} else {
+						$('.email_number').css('display', 'inline-block');
+						$('.email_number_submit')
+								.css('display', 'inline-block');
+						$('.finddiv2').css('display', 'none');
+				
+						alert("인증번호는 : " + data)
+					}
+				},
+				error : function() {
+				}
+			});
+		}
+
+		function idSearch() {
+			var form_data = {
+				find_email : $(".idsearch_name").val(),
+				find_phone : $(".idsearch_phone").val()
+			};
+			$.ajax({
+				type : "POST",
+				url : "idSearch",
+				data : form_data,
+				success : function(data) {
+					if (data == "fail") {
+						alert("입력된 정보로 가입하신 아이디가 없습니다.")
+					} else {
+						alert("회원님의 아이디는 : " + data)
+					}
+				},
+				error : function() {
+
+				}
+
+			});
+		}
+
 		var lastSearchRequest = 0;
 		var loadingTimeout = null;
 		/* var auto_complete_cursor = 0; */
@@ -579,7 +707,7 @@
 						location.reload();
 					}else if(data == "admin"){
 						window.location.href = "admin"
-					}else {
+					} else {
 						alert("ID 또는 비밀번호를 잘못 입력하였습니다");
 					}
 				},
@@ -638,10 +766,22 @@
 			$("#nav_genre>.box").hide();
 			$("#nav_search>#nav_recommend").hide();
 			$("#popup_body").hide();
+			$('.repassword_span').css('display', 'none');
+			$('.repassword').css('display', 'none');
+			$('.repassword2').css('display', 'none');
+			$('.repassword_submit').css('display', 'none');
+			$('.email_number_submit').css('display', 'none');
+			$('.email_number').css('display', 'none');
+			$('.email_number_submit').css('display', 'none');
+			$('.pwsearch_body_span').css('display', 'inline-block');
+			$('.pwsearch_body_span2').css('display', 'inline-block');
+			$('.pwsearch_name').css('display', 'inline-block');
+			$('.finddiv2').css('display', 'inline-block');
 			$("#nav_btn").siblings().removeClass('focus');
 			$(".section_price").siblings().removeClass('is-open');
 			$(".filters_popup").hide();
 			$('#nav_wrap').css('z-index', 100);
+			$(".pwsearch_name").val("");
 			e.stopPropagation();
 			/* auto_complete_cursor = -1; */
 		});
@@ -740,15 +880,6 @@
 			e.stopPropagation();
 		});
 
-/* 		$("#search1").click(function() {
-			$("input[type=text][name=string_search]").val("스시");
-		});
-		$("#search2").click(function() {
-			$("input[type=text][name=string_search]").val("한식");
-		});
-		$("#search3").click(function() {
-			$("input[type=text][name=string_search]").val("수도권");
-		}); */
 
 		// 지역 체크시 글자 바꾸기
 		$("#nav_area>.box>.neighborhood input").change(
@@ -846,7 +977,19 @@
 			$("#nav_genre>.box").hide();
 			$("#nav_search>#nav_recommend").hide();
 			$("#popup_body").hide();
+			$('.repassword_span').css('display', 'none');
+			$('.repassword').css('display', 'none');
+			$('.repassword2').css('display', 'none');
+			$('.repassword_submit').css('display', 'none');
+			$('.email_number_submit').css('display', 'none');
+			$('.email_number').css('display', 'none');
+			$('.email_number_submit').css('display', 'none');
+			$('.pwsearch_body_span').css('display', 'inline-block');
+			$('.pwsearch_body_span2').css('display', 'inline-block');
+			$('.pwsearch_name').css('display', 'inline-block');
+			$('.finddiv2').css('display', 'inline-block');
 			$("#nav_btn").siblings().removeClass('focus');
+			$(".pwsearch_name").val("");
 		});
 
 		//로그인 팝업
@@ -928,7 +1071,7 @@
 			$("#join2_body").hide();
 			$("#naverIdLogin").hide();
 			$("#passwordsearch_body").hide();
-
+			$("#password_reset_body").hide();
 			$("#idsearch_body").show();
 			$("#popup_body").show();
 			$("#nav_shading.shading_bg").show();
