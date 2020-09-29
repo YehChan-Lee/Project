@@ -1198,7 +1198,7 @@
 		//네이버 로그인 API 관련
 		var naverLogin = new naver.LoginWithNaverId({
 			clientId : "9N2m3BOpk_HOvgVlJP0X",
-			callbackUrl : "http://localhost:8088/hellospring/main",
+			callbackUrl : "http://localhost:8088/BabPool/main",
 			isPopup : false, /* 팝업을 통한 연동처리 여부 */
 			loginButton : {
 				color : "green",
@@ -1210,6 +1210,18 @@
 
 		/* 설정정보를 초기화하고 연동을 준비 */
 		naverLogin.init();
+		
+		 var naver_id_login = new naver_id_login("9N2m3BOpk_HOvgVlJP0X", "http://localhost:8088/BabPool/main");
+		  // 접근 토큰 값 출력
+		  alert(naver_id_login.oauthParams.access_token);
+		  // 네이버 사용자 프로필 조회
+		  naver_id_login.get_naver_userprofile("naverSignInCallback()");
+		  // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
+		  function naverSignInCallback() {
+		    alert(naver_id_login.getProfileData('email'));
+		    alert(naver_id_login.getProfileData('nickname'));
+		    alert(naver_id_login.getProfileData('age'));
+		  }
 		
 	</script>
 

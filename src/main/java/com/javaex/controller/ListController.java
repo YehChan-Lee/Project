@@ -62,7 +62,7 @@ public class ListController {
 	@Autowired
 	ShopDibsDao dibdao;
 
-	String url = "D:\\LYC\\SpringGit\\Project\\webapp\\serverImg\\";
+	String url = "C:\\Users\\Kosmo_23\\Desktop\\백업\\Project\\webapp\\serverImg\\";
 	
 	@RequestMapping("/main")
 	public ModelAndView main(ModelAndView mav) {
@@ -90,6 +90,7 @@ public class ListController {
 		String review = req.getParameter("review_area");// 리뷰내용
 		String shopId = req.getParameter("shopId");
 		req.setAttribute("shopId", shopId);
+		
 		String folder = "review\\";// 이미지 저장 경로
 		String path = "";
 		String fileName = "";
@@ -674,6 +675,19 @@ public class ListController {
 			res.getWriter().write("delFail");
 			return;
 		}
+
+	}
+	
+	@RequestMapping("/menu_delete")
+	public void menu_delete(ModelAndView mav,HttpServletRequest req,HttpServletResponse response
+			) throws IOException {
+		System.out.println("/menu_delete");
+		String food_name = req.getParameter("food_name");
+		String shop_id = req.getParameter("shop_id");
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("food_name", food_name);
+		map.put("shop_id", shop_id);
+		menudao.DeleteMenu(map);
 
 	}
 }

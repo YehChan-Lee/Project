@@ -18,14 +18,16 @@
 	</select>
 	
 	 
- 	<delete id="MenuDelete">
+ 	<delete id="MenuDelete" parameterType="hashMap">
 	<![CDATA[
 	DELETE MENU WHERE food_name = #{food_name} and shop_id = #{shop_id}
 	]]>
 	</delete> 
 	
 	<select id="getMenu" resultType="MenuVo">
+	<![CDATA[
 		select * from Menu where shop_id=#{shopId}
+		]]>
 	</select>
 </mapper>
         
