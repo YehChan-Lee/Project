@@ -462,7 +462,9 @@
             	else if($("#content > ul > .item.selected")[0] == $("#menu")[0]){
             		$("#naverMap").hide();
             		$("#import").unload();
-            		$("#import").load("detail/menu.do")
+            		$("#import").load("detail/menu.do",{
+            			"shopId" : "${shopOne.shop_id}"
+            		})
             		$("#import").show();
             	}
             	else if($("#content > ul > .item.selected")[0] == $("#map")[0]){

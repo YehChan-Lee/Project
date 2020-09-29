@@ -111,4 +111,14 @@ public class ReviewDao {
 		return sqlsession.selectList("Review.hateList",map);
 	}
 
+	public void delReview(int delIdx) {
+		//리뷰삭제시 관련데이터 전부 삭제
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("delIdx",delIdx);
+		System.out.println("delReview : " + delIdx);
+		sqlsession.delete("Review.delLike",map);
+		sqlsession.delete("Review.delHate",map);
+		sqlsession.delete("Review.delReview",map);		
+	}	
+
 }

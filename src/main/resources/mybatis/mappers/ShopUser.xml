@@ -40,10 +40,8 @@
 	</update>
 	
 	<update id="update_recentShop_user_email" parameterType="hashMap">
-		<![CDATA[
 		UPDATE ShopUser set recent_shop=#{shop_idx}
 		WHERE user_email=#{user_email}
-		]]>	
 	</update>
 	
 	<delete id="shopuserDelete">
@@ -71,4 +69,10 @@
    ]]>
 	</update>
 
+	<!-- 리뷰 업로드시 해당 계정의 리뷰 카운트 증가  -->
+	<update id="reviewCntUpload" parameterType="hashMap">
+		UPDATE ShopUser set review_cnt=${cnt}
+		WHERE user_email=#{userEmail}
+	</update>
+	
 </mapper>

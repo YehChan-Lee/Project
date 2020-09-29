@@ -9,8 +9,7 @@
 <head>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript"
-	src="<c:url value="${path}/res/js/jquery.star-rating-svg.js"/>"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 
 
 <script
@@ -19,14 +18,14 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
 
 
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="${path}/res/css/main_content.css?ver=3"/>" />
-<link rel="stylesheet" type="text/css"
-	href="<c:url value="${path}/res/css/star-rating-svg.css?ver=1"/>" />
 </head>
 <body>
 	<div class="benefit">
@@ -194,7 +193,7 @@
 						같은곳을 소개합니다</div>
 					<hr class="epicureandiv3hr">
 					<div class="epicureandiv3div3">
-						<a href="">더보기 ></a>
+						<a href="list?string_search=%23조용한">더보기 ></a>
 					</div>
 				</div>
 			</div>
@@ -211,7 +210,7 @@
 					</div>
 					<hr class="epicureandiv3hr">
 					<div class="epicureandiv3div3">
-						<a href="">더보기 ></a>
+						<a href="list?string_search=%23매운">더보기 ></a>
 					</div>
 				</div>
 			</div>
@@ -227,7 +226,7 @@
 					<div class="epicureandiv3div2">지역에 따라 다른 특성을 가진 일본 라멘.</div>
 					<hr class="epicureandiv3hr">
 					<div class="epicureandiv3div3">
-						<a href="">더보기 ></a>
+						<a href="list?string_search=%23라멘">더보기 ></a>
 					</div>
 				</div>
 			</div>
@@ -239,12 +238,12 @@
 						class="epicureandiv2img">
 				</div>
 				<div class="epicureandiv3">
-					<div class="epicureandiv3div">일본 우동의 매력</div>
-					<div class="epicureandiv3div2">지역마다 각기 다른 매력을 가진 일본 우동. 관서지방과
-						관동지방의 우동을 소개합니다.</div>
+					<div class="epicureandiv3div">우동의 매력</div>
+					<div class="epicureandiv3div2">지역마다 각기 다른 매력을 가진 우동. 각지의 맛있는 
+					우동을 소개합니다.</div>
 					<hr class="epicureandiv3hr">
 					<div class="epicureandiv3div3">
-						<a href="">더보기 ></a>
+						<a href="list?string_search=%23우동">더보기 ></a>
 					</div>
 				</div>
 			</div>
@@ -261,7 +260,7 @@
 						마시며, 즐기다!</div>
 					<hr class="epicureandiv3hr">
 					<div class="epicureandiv3div3">
-						<a href="">더보기 ></a>
+						<a href="list?string_search=%23중국집">더보기 ></a>
 					</div>
 				</div>
 			</div>
@@ -278,7 +277,7 @@
 						좋은 레스토랑</div>
 					<hr class="epicureandiv3hr">
 					<div class="epicureandiv3div3">
-						<a href="">더보기 ></a>
+						<a href="list?string_search=%23레스토랑">더보기 ></a>
 					</div>
 				</div>
 			</div>
@@ -295,7 +294,7 @@
 						징키스칸을 만나다.</div>
 					<hr class="epicureandiv3hr">
 					<div class="epicureandiv3div3">
-						<a href="">더보기 ></a>
+						<a href="list?string_search=%23뜨거운">더보기 ></a>
 					</div>
 				</div>
 			</div>
@@ -312,7 +311,7 @@
 						샌드위치. 세계의 다양한 샌드위치를 만나볼까요?</div>
 					<hr class="epicureandiv3hr">
 					<div class="epicureandiv3div3">
-						<a href="">더보기 ></a>
+						<a href="list?string_search=%23샌드위치">더보기 ></a>
 					</div>
 				</div>
 			</div>
@@ -329,7 +328,7 @@
 						이색 보양식.</div>
 					<hr class="epicureandiv3hr">
 					<div class="epicureandiv3div3">
-						<a href="">더보기 ></a>
+						<a href="list?string_search=%23보양식">더보기 ></a>
 					</div>
 				</div>
 			</div>
@@ -647,16 +646,14 @@
 		infinite : true,
 		slidesToShow : 4,
 		slidesToScroll : 4
-	});
-
-	$(".infostar").starRating({
-		starSize : 20,
-		initialRating : 3,
-		starShape : 'rounded',
-		useGradient : false,
-		activeColor : '#ff0000',
-		strokeWidth : 5,
-		readOnly : true
-	});
+	});	
+	
+    $(".infostar").rateYo({  	  
+		rating :  3,
+		starWidth: "20px",
+	    halfStar: true,
+	  	readOnly: true,
+		starSvg : '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>'
+		});  
 </script>
 </html>

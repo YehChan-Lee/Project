@@ -1,5 +1,4 @@
 <%@page import="com.javaex.model.ShopVo"%>
-<%@page import="com.javaex.controller.ListController"%>
 <%@page import="java.util.List"%>
 <%@page import="com.javaex.model.ReservationVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -709,7 +708,7 @@
 					}else if(data == "admin"){
 						window.location.href = "admin"
 					} else {
-						alert("로그인 또는 비밀번호를 잘못 입력하였습니다");
+						alert("ID 또는 비밀번호를 잘못 입력하였습니다");
 					}
 				},
 				error : function() {

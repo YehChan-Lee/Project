@@ -1,4 +1,4 @@
-<%@page import="com.javaex.model.MenuVO"%>
+<%@page import="com.javaex.model.MenuVo"%>
 <%@page import="java.util.List"%>
 <%@page import="com.javaex.model.ShopVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -251,7 +251,7 @@
 					<table class="table table-hover" id="table2">
 
 						<%
-							List<MenuVO> menulist = (List<MenuVO>) request.getAttribute("menu");
+							List<MenuVo> menulist = (List<MenuVo>) request.getAttribute("menu");
 						%>
 						<div>내가 등록한 메뉴</div>
 						<thead>

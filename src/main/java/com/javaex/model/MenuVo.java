@@ -1,14 +1,17 @@
 package com.javaex.model;
 
-public class MenuVO {
+import org.springframework.stereotype.Component;
+
+@Component
+public class MenuVo {
 	private String shop_id;		// 사업자 번호(FK)	NOT NULL
 	private String food_name;	// 음식 이름		NOT NULL
 	private String food_price;	// 음식 가격		NOT NULL
 	private String food_info;	// 음식 설명		NULL
 	
-	public MenuVO() {}
+	public MenuVo() {}
 
-	public MenuVO(String shop_id, String food_name, String food_price, String food_info) {
+	public MenuVo(String shop_id, String food_name, String food_price, String food_info) {
 		this.shop_id = shop_id;
 		this.food_name = food_name;
 		this.food_price = food_price;

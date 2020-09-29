@@ -227,3 +227,11 @@ body {
 	display: block;	
 	line-height: 28px;
 }
+#paging {
+	width : 730px;
+	display: flex;
+	justify-content: center;
+}
+#paging > a{
+	margin : 0px 3px;
+}

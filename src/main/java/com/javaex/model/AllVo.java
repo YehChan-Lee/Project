@@ -5,7 +5,7 @@ public class AllVo {
 	private ReservationVo Reservation;
 	private ShopVo ShopVo;
 	private ShopUserVo ShopUserVo;
-	private MenuVO menu;
+	private MenuVo menu;
 	private ShopDibsVo Dibs;
 	private NewsVo NewsVo;
 	
@@ -44,11 +44,11 @@ public class AllVo {
 		ShopUserVo = shopUser;
 	}
 
-	public MenuVO getMenu() {
+	public MenuVo getMenu() {
 		return menu;
 	}
 
-	public void setMenu(MenuVO menu) {
+	public void setMenu(MenuVo menu) {
 		this.menu = menu;
 	}
 

@@ -22,7 +22,10 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
 	box-sizing: border-box;
 	color : #444;
 	clear: both;
+	background-color: white;
 }
+
+
 .tip_content{
 	margin-bottom: 30px;	
 }

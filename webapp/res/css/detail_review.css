@@ -2,7 +2,10 @@
 
 hr{border-top: 1px solid lightgray;margin-top: 15px;}
 #review_wrap{
-	width : 730px;	
+	width : 730px;		
+}
+#review_write_wrap{
+	background-color: white;
 }
 
 #review_wrap #review_write_wrap{
@@ -96,7 +99,7 @@ hr{border-top: 1px solid lightgray;margin-top: 15px;}
     border:none;
 }
 #review_wrap .author{
-	display: block;	
+	display: inline-block;	
 }
 #review_wrap .review{
 	position: relative;
@@ -249,4 +252,11 @@ hr{border-top: 1px solid lightgray;margin-top: 15px;}
 #review_wrap .grade_comment{
 	line-height: 25px;
 	margin-left : 5px;
+}
+.del > i{
+	float : right;
+ 	cursor: pointer;
+}
+.jq-ry-container{
+	padding: 0;
 }

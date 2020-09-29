@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="Shop">
+<mapper namespace="ShopVo">
 	<select id="shopList" resultType="ShopVo">
 		<![CDATA[SELECT * FROM Shop]]> 		
 	</select>
@@ -175,5 +175,22 @@
 		]]>
 	</delete>
 	
+	<!-- 조회수 증가 -->
+	<update id="viewUp" parameterType="hashMap">
+		update Shop set shop_view = ${cnt} where shop_id = #{shopId}
+	</update>
+	<!-- 뷰 카운트 리턴 -->
+	<select id="viewCnt" parameterType="hashMap" resultType="hashMap">
+		select shop_view as cnt from Shop where shop_id=#{shopId} 
+	</select>
 	
+	<!-- 예약 카운트 갱신 -->
+	<update id="reserveCntUp" parameterType="hashMap">
+		update Shop set shop_reserve = ${cnt} where shop_id = #{shopId}
+	</update>
+	
+	<!-- 예약 카운트 리턴 -->
+	<select id="getReservCnt" parameterType="String" resultType="hashMap">
+		select count(*) as cnt from Reservation where shop_id=#{shop_id} 
+	</select>
 </mapper>

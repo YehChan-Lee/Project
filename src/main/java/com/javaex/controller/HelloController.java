@@ -5,6 +5,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HelloController {
+	
+	@RequestMapping("/")
+	public String welcom() {
+		System.out.println("/BabPool/home");
+		return "test/test";
+	}
+	
 	@RequestMapping("/location")
 	public String location() {
 		System.out.println("/BabPool/location");
@@ -32,12 +39,6 @@ public class HelloController {
 	public String home() {
 		System.out.println("/BabPool/home");
 		return "home";
-	}
-
-	@RequestMapping("/main")
-	public String main() {
-		System.out.println("/BabPool/main");
-		return "main";
 	}
 
 	@RequestMapping("/signup")

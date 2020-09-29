@@ -44,5 +44,19 @@ public class ShopUserDao {
 	
 	public void updatepassword(HashMap<String, Object> map) {
 		sqlSession.update("ShopUserVo.passwordupdate", map);
+		
+	}
+	
+	public void reviewCntUpload(String user_email) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		
+		
+		map.put("userEmail",user_email);
+		result = sqlSession.selectOne("Review.idReviewCnt",map);
+		int cnt = Integer.parseInt(String.valueOf(result.get("CNT")));
+		map.put("cnt",cnt);
+		System.out.println("오류테스트 :" + map);
+		sqlSession.update("ShopUserVo.reviewCntUpload",map);		
 	}
 }

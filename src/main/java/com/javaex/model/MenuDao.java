@@ -18,11 +18,11 @@ public class MenuDao {
 		this.sqlSession = sqlsession;
 	}
 	
-	 public void insert_menu(MenuVO vo) {
+	 public void insert_menu(MenuVo vo) {
 	      sqlSession.insert("Menu.menuinsert", vo);
 	   }
 	 
-	 public List<MenuVO> MenuOne(String shop_id) {
+	 public List<MenuVo> MenuOne(String shop_id) {
 		 return sqlSession.selectList("Menu.MenuOne", shop_id);
 	 }
 	 

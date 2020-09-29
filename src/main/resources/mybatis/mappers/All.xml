@@ -23,6 +23,7 @@
 		<result property="point" column="POINT"/>
 		<result property="user_photo" column="USER_PHOTO"/>
 		<result property="user_idx" column="USER_IDX"/>
+		<result property="review_cnt" column="REVIEW_CNT"/>
 	</resultMap>
 	
 	<resultMap type="ShopVo" id="ShopResult">
@@ -150,13 +151,23 @@
 	</select>
 	
 	<select id="shopreviewList" resultMap="ShopReview">
-		SELECT R.review_idx,U.user_email,U.user_name,U.user_idx, R.review_score,R.review,R.review_photo,R.like_review,R.hate_review FROM Review R
+		SELECT R.review_idx,U.user_email,U.user_name,U.user_idx,U.review_cnt, R.review_score,R.review,R.review_photo,R.like_review,R.hate_review FROM Review R
 	    INNER JOIN ShopUser U
 	        ON U.user_email=R.user_email
 	    INNER JOIN Shop S
 	        ON S.shop_id=R.shop_id
 	    WHERE R.shop_id = #{shopId}
 	    ORDER BY R.review_date DESC
+	</select>
+	
+	<select id="popreviewList" resultMap="ShopReview">
+		SELECT R.review_idx,U.user_email,U.user_name,U.user_idx,U.review_cnt, R.review_score,R.review,R.review_photo,R.like_review,R.hate_review FROM Review R
+	    INNER JOIN ShopUser U
+	        ON U.user_email=R.user_email
+	    INNER JOIN Shop S
+	        ON S.shop_id=R.shop_id
+	    WHERE R.shop_id = #{shopId}
+	    ORDER BY R.like_review DESC
 	</select>
 	
 </mapper>

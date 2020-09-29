@@ -19,7 +19,7 @@ public class ShopDao {
 	}
 	
 	public List<ShopVo> shopList(){
-		return sqlsession.selectList("Shop.shopList");
+		return sqlsession.selectList("ShopVo.shopList");
 	}
 	
 	public List<ShopVo> shopSearch(String location, String[] shop_addrArr, String[] food_typeArr,
@@ -111,69 +111,79 @@ public class ShopDao {
 		}
 		map.put("alcohol_typeArr", alcohol_typeArr);
 		map.put("parking_available", parking_available);
-		return sqlsession.selectList("Shop.shopSearch", map);
+		return sqlsession.selectList("ShopVo.shopSearch", map);
 	}
 	
 	public ShopVo shopOwnerList(String user_email){
-		return sqlsession.selectOne("Shop.shopOwnerList", user_email);
+		return sqlsession.selectOne("ShopVo.shopOwnerList", user_email);
 	}
 	
 	public ShopVo shopOne(int shop_idx){
-		return sqlsession.selectOne("Shop.shopOne", shop_idx);
+		return sqlsession.selectOne("ShopVo.shopOne", shop_idx);
 	}
 	
 	public ShopVo getAll_shopIdx(String shop_idx){
-		return sqlsession.selectOne("Shop.getAll_shopIdx", shop_idx);
+		return sqlsession.selectOne("ShopVo.getAll_shopIdx", shop_idx);
 	}
 	
 	public String getShopId(String user_email){
-		return sqlsession.selectOne("Shop.getShopId", user_email);
+		return sqlsession.selectOne("ShopVo.getShopId", user_email);
 	}
 	
 	public ShopVo cntShopReserve(){
-		return sqlsession.selectOne("Shop.cntShopReserve");
+		return sqlsession.selectOne("ShopVo.cntShopReserve");
 	}
 	
 	public void insertShop() {
-		sqlsession.insert("Shop.shopInsert");
+		sqlsession.insert("ShopVo.shopInsert");
 	}
 	
 	public void updateShop(ShopVo shopVo) {
-		sqlsession.update("Shop.shopUpdate", shopVo);
+		sqlsession.update("ShopVo.shopUpdate", shopVo);
 	}
 	
 	
 	public void deleteShop() {
-		sqlsession.delete("Shop.shopDelete");
+		sqlsession.delete("ShopVo.shopDelete");
 	}
-	
-//	public ShopVo shopTopDetail(String shop_id){
-//		ShopVo shopvo = null;
-//		for(int i = 0; i<sqlsession.selectList("Shop.shopTopDetail").size(); i++) {
-//			if(sqlsession.selectList("Shop.shopTopDetail").get(i).)
-//		}
-//		return 
-//	}
-	
-//	List<ShopVo> list = new ArrayList<ShopVo>();
-//	{
-//		for(int i=1;i<=12;i++) {
-//			ShopVo shop = new ShopVo("가게이름"+i, "가게위치"+i, i*10, 10+i, 100*i, i, Math.round(Math.random()*50)/10, true, "5만원 미만(2인 기준)", "대충 맛이 있을거라는 내용"+i);
-//			list.add(shop);
-//		}		
-//	}
-//	
-//	public ArrayList<ShopVo> shopList(){
-//		return list;
-//	}
-//	public ShopVo shopOne(int shopId) {
-//		ShopVo vo = null;
-//		
-//		for(int i=0;i<list.size();i++) {
-//			if(list.get(i).getShopIdx() == shopId) {
-//				vo = list.get(i);
-//			}
-//		}				
-//		return vo;
-//	}
+	public void viewUp(String shopId) {
+		HashMap<String,Object> map = new HashMap<String, Object>();
+		int cnt = 0;
+		
+		map.put("shopId",shopId);
+		System.out.println("viewUp : "+sqlsession.selectOne("ShopVo.viewCnt",map));
+		HashMap<String,Object> result = sqlsession.selectOne("ShopVo.viewCnt",map);
+		cnt = Integer.parseInt(String.valueOf(result.get("CNT")));
+		map.put("cnt",cnt+1);
+		sqlsession.update("ShopVo.viewUp",map);
+	}
+
+	public List<MenuVo> getMenu(String shopId) {
+		HashMap<String,Object> map = new HashMap<String, Object>();
+		map.put("shopId",shopId);
+		return sqlsession.selectList("MenuVo.getMenu",map);
+	}
+
+	public void reviewCntReload(String shopId,int reviewCnt) {
+		HashMap<String,Object> map = new HashMap<String, Object>();
+		map.put("shopId",shopId);
+		map.put("reviewCnt",reviewCnt);
+		sqlsession.update("Review.cntReload",map);
+		
+	}
+	//예약 등록시 가게 예약카운트 증가	
+	public void reserveCntUp(int cnt,String shop_id) {
+		HashMap<String,Object> map = new HashMap<String, Object>();
+		map.put("cnt",cnt);
+		map.put("shopId",shop_id);
+		sqlsession.update("ShopVo.reserveCntUp",map);		
+	}
+
+	public int getReservCnt(String shop_id) {
+		int cnt = 0;
+		HashMap<String,Object> map = sqlsession.selectOne("ShopVo.getReservCnt",shop_id);
+		cnt = Integer.parseInt(String.valueOf(map.get("CNT")));
+		return cnt;
+	}
+
 }

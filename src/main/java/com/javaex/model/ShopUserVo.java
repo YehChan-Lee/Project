@@ -4,7 +4,7 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
-@Component(value="ShopUserVo")
+@Component
 public class ShopUserVo {
 	private String user_email;		// 사용자 이메일(PK)	NOT NULL
 	private String user_pw;			// 사용자 비밀번호 		NOT NULL
@@ -18,11 +18,12 @@ public class ShopUserVo {
 	private String user_photo;		// 사용자 사진			NULL
 	private int user_idx;			// 사용자 번호			NOT NULL
 	private String recent_shop;		// 최근본 매장의 사업자ID	NULL
+	private int review_cnt; 		// 리뷰 갯수 			NULL
 	
 	public ShopUserVo() {}	
 
 	public ShopUserVo(String user_email, String user_pw, String user_name, String user_gender, String user_birth,
-			String user_phone, String is_owner, Date sign_date, int point, String user_photo, int user_idx) {
+			String user_phone, String is_owner, Date sign_date, int point, String user_photo, int user_idx,int review_cnt) {
 		this.user_email = user_email;
 		this.user_pw = user_pw;
 		this.user_name = user_name;
@@ -34,6 +35,7 @@ public class ShopUserVo {
 		this.point = point;
 		this.user_photo = user_photo;
 		this.user_idx = user_idx;
+		this.review_cnt = review_cnt;
 	}
 	
 	public ShopUserVo(String user_pw) {
@@ -136,12 +138,21 @@ public class ShopUserVo {
 		this.recent_shop = recent_shop;
 	}
 
+	public int getReview_cnt() {
+		return review_cnt;
+	}
+
+	public void setReview_cnt(int review_cnt) {
+		this.review_cnt = review_cnt;
+	}
+
 	@Override
 	public String toString() {
 		return "ShopUserVo [user_email=" + user_email + ", user_pw=" + user_pw + ", user_name=" + user_name
 				+ ", user_gender=" + user_gender + ", user_birth=" + user_birth + ", user_phone=" + user_phone
 				+ ", is_owner=" + is_owner + ", sign_date=" + sign_date + ", point=" + point + ", user_photo="
-				+ user_photo + ", user_idx=" + user_idx + ", recent_shop=" + recent_shop + "]";
+				+ user_photo + ", user_idx=" + user_idx + ", recent_shop=" + recent_shop + ", review_cnt=" + review_cnt
+				+ "]";
 	}
 
 	
