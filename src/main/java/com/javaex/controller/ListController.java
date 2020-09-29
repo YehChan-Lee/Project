@@ -3,13 +3,13 @@ package com.javaex.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.io.FileUtils;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +25,7 @@ import com.javaex.model.ReservationVo;
 import com.javaex.model.ReviewDao;
 import com.javaex.model.ReviewVo;
 import com.javaex.model.ShopDao;
+import com.javaex.model.ShopDibsDao;
 import com.javaex.model.ShopUserDao;
 import com.javaex.model.ShopUserVo;
 import com.javaex.model.ShopVo;
@@ -50,7 +51,17 @@ public class ListController {
 	@Autowired
 	AllDao alldao;
 
+	@Autowired
+	ShopDibsDao dibdao;
+
 	String url = "D:\\LYC\\SpringGit\\Project\\webapp\\serverImg\\";
+	
+	@RequestMapping("/main")
+	public ModelAndView main(ModelAndView mav) {
+		System.out.println("/BabPool/main");
+		mav.setViewName("main");
+		return mav;
+	}
 
 	@RequestMapping("/review_upload")
 	public void test(ModelAndView mav, MultipartHttpServletRequest req, HttpServletResponse res, HttpSession session)
@@ -99,24 +110,79 @@ public class ListController {
 			path += fileName + "/";
 		}
 		reviewdao.reviewUpload(new ReviewVo(0, shopId, user_email, reviewScore, review, path, 0, 0));
-		dao.reviewCntReload(shopId,reviewdao.reviewCnt(shopId));
-		
+		dao.reviewCntReload(shopId, reviewdao.reviewCnt(shopId));
+
 		userDao.reviewCntUpload(user_email);
 		res.getWriter().write("success");
-		System.out.println("별점의 tmp : " + reviewScore + "\n" + "textarea : " + review);
 	}
 
 	@RequestMapping("/list")
-	public ModelAndView list(ModelAndView mav, HttpServletRequest request) {
+	public ModelAndView list(ModelAndView mav, HttpServletRequest request, HttpSession session) {
 		System.out.println("/BabPool/list");
-		mav.addObject("shopList",
-				dao.shopSearch(request.getParameter("location"), request.getParameterValues("shop_addr"),
-						request.getParameterValues("food_type"), request.getParameter("string_search"),
-						request.getParameter("solt"), request.getParameter("price_list"),
-						request.getParameterValues("add_info"), request.getParameterValues("table_type"),
-						request.getParameterValues("alcohol_type"), request.getParameter("parking_available")));
+		List<ShopVo> list = dao.shopSearch(request.getParameter("location"), request.getParameterValues("shop_addr"),
+				request.getParameterValues("food_type"), request.getParameter("string_search"),
+				request.getParameter("solt"), request.getParameter("price_list"),
+				request.getParameterValues("add_info"), request.getParameterValues("table_type"),
+				request.getParameterValues("alcohol_type"), request.getParameter("parking_available"));
+
+		List<ShopVo> seclist = new ArrayList<ShopVo>();
+		int pagenum = 1;
+		if (request.getParameter("page") != null) {
+			pagenum = Integer.parseInt(request.getParameter("page"));
+		} else {
+			pagenum = 1;
+		}
+		// 해당 페이지 리스트(1=0-11,2=12-23)
+		for (int i = (pagenum - 1) * 12; i <= pagenum * 12 - 1; i++) {
+			if (i < list.size()) {
+				seclist.add(list.get(i));
+			} else {
+				break;
+			}
+		}
+		if (session.getAttribute("sessionID") != null) {
+			String user_email = (String) session.getAttribute("sessionID");
+			System.out.println("list에 sesssionID" + user_email);
+			mav.addObject("dibList", dibdao.getDibList(user_email));
+		}
+		mav.addObject("shopList", seclist);
+		mav.addObject("shopListCnt", list.size());
+		// 예약 카운트 갱신
+//		ArrayList<ShopVo> list = (ArrayList<ShopVo>)dao.shopList();
+//		for(int i=0;i<list.size();i++) {
+//			String shopID = list.get(i).getShop_id();
+//			int cnt = dao.getReservCnt(shopID);
+//			dao.reserveCntUp(cnt, shopID);			
+//		}		
 		mav.setViewName("list");
 		return mav;
+	}
+
+	@RequestMapping("/list/dib")
+	public void dibs(ModelAndView mav, HttpServletRequest req, HttpServletResponse res, HttpSession session)
+			throws IOException {
+		System.out.println("/BabPool/list/dibs");
+		String shopId = req.getParameter("shopId");
+		int shopIdx = Integer.parseInt(req.getParameter("shopIdx"));
+		if (session.getAttribute("sessionID") == null) {
+			res.getWriter().write("nologin");
+			return;
+		} else {
+			//로그인 되어있으면 넘어온다.
+			String email = (String) session.getAttribute("sessionID");
+			//찜이 되어 있는지 우선 확인
+			if(dibdao.dibCheck(email,shopId)) {
+				//찜이 되어있으면 찜해제
+				dibdao.delDib(email,shopId);
+				res.getWriter().write("deldib");
+			}else {
+				//찜이 안되어있으면 찜하기
+				dibdao.addDib(email, shopId,shopIdx);		
+				res.getWriter().write("adddib");
+			}
+			mav.addObject("sessionID", email);
+						
+		}
 	}
 
 	@RequestMapping("/detail")
@@ -124,7 +190,7 @@ public class ListController {
 		System.out.println("/BabPool/detail");
 		String user_email = (String) session.getAttribute("sessionID");
 		String shop_idx = request.getParameter("shopidx");
-		
+
 		if (user_email != null) {
 			userDao.update_recentShop_shopIdx(user_email, shop_idx);
 			ShopUserVo user;
@@ -138,10 +204,10 @@ public class ListController {
 			}
 		}
 		int shopIdx = Integer.parseInt(request.getParameter("shopidx"));
-		//cnt 가져오기위한 먼저 shop 호출
+		// cnt 가져오기위한 먼저 shop 호출
 		ShopVo shop = dao.shopOne(shopIdx);
 		String ShopId = shop.getShop_id();
-		//cnt 증가후 다시 shop 호출
+		// cnt 증가후 다시 shop 호출
 		dao.viewUp(ShopId);
 		shop = dao.shopOne(shopIdx);
 		mav.addObject("shopOne", shop);
@@ -181,7 +247,6 @@ public class ListController {
 		} else if (user_email.equals("admin")) {
 			response.getWriter().write("admin");
 		} else {
-			System.out.println("ID가 존재하지않음");
 			response.getWriter().write("fail");
 		}
 	}
@@ -207,7 +272,7 @@ public class ListController {
 		int joinType = Integer.parseInt(req.getParameter("join_type"));
 
 		if (joinType == 1) {
-			userDao.signUp(new ShopUserVo(email, pw, name, gender, birth, phone, "0", null, 0, null, 0,0));
+			userDao.signUp(new ShopUserVo(email, pw, name, gender, birth, phone, "0", null, 0, null, 0, 0));
 		} else {
 			String buisnessNumber = req.getParameter("buisness_number");
 			String buisnessName = req.getParameter("buisness_name");
@@ -217,7 +282,7 @@ public class ListController {
 
 			System.out.println(buisnessNumber + " " + buisnessName + " " + buisnessAddress + " " + buisnessAddressEtc
 					+ " " + buisnessFoodType);
-			userDao.signUp(new ShopUserVo(email, pw, name, gender, birth, phone, "1", null, 0, null, 0,0));
+			userDao.signUp(new ShopUserVo(email, pw, name, gender, birth, phone, "1", null, 0, null, 0, 0));
 		}
 		mav.setViewName("main");
 		return mav;
@@ -240,10 +305,11 @@ public class ListController {
 		mav.setViewName("detail/detail_info");
 		return mav;
 	}
+
 	@RequestMapping("/detail/menu.do")
-	public ModelAndView detail_menu(ModelAndView mav , HttpServletRequest req) {
+	public ModelAndView detail_menu(ModelAndView mav, HttpServletRequest req) {
 		String shopId = req.getParameter("shopId");
-		mav.addObject("shopMenu",dao.getMenu(shopId));
+		mav.addObject("shopMenu", dao.getMenu(shopId));
 		mav.setViewName("detail/detail_menu");
 		return mav;
 	}
@@ -397,26 +463,17 @@ public class ListController {
 	@RequestMapping("/reservation")
 	public ModelAndView Reservation(ModelAndView mav, HttpServletRequest req, HttpServletResponse res,
 			HttpSession session) throws ParseException {
-
 		String user_email = (String) session.getAttribute("sessionID");
 		String shop_title = req.getParameter("shop_title");
-		String res_date = req.getParameter("res_date");
 		int res_customer = Integer.parseInt(req.getParameter("res_customer"));
 		String shop_id = req.getParameter("shop_id");
 		String rev_phone = req.getParameter("rev_phone");
 		java.util.Date date = new java.util.Date();
 		java.sql.Date res_date2 = new java.sql.Date(date.getTime());
-		System.out.println(res_date);
-		System.out.println(user_email);
-		System.out.println(shop_title);
-		System.out.println(res_customer);
-		System.out.println(shop_id);
-		System.out.println(res_date2);
-		System.out.println(rev_phone);
 		ReservationVo resvo = new ReservationVo(user_email, shop_title, res_date2, res_customer, shop_id, null, null,
 				rev_phone);
 		resDao.insert_reservation(resvo);
-
+		dao.reserveCntUp(dao.getReservCnt(shop_id), shop_id);
 		return mav;
 	}
 
@@ -449,38 +506,38 @@ public class ListController {
 			mav.addObject("hateList", reviewdao.hateList(user_email, shopId));
 		}
 		if (sort.equals("new")) {
-			mav.addObject("reviewList", alldao.shopreviewList(shopId,"new"));
+			mav.addObject("reviewList", alldao.shopreviewList(shopId, "new"));
 		} else if (sort.equals("popular")) {
-			mav.addObject("reviewList", alldao.shopreviewList(shopId,"popular"));
+			mav.addObject("reviewList", alldao.shopreviewList(shopId, "popular"));
 		} else {
-			mav.addObject("reviewList", alldao.shopreviewList(shopId,"new"));
+			mav.addObject("reviewList", alldao.shopreviewList(shopId, "new"));
 		}
 		mav.setViewName("detail/detail_reviewList");
 		return mav;
 	}
+
 	@RequestMapping("review/del")
-	public void reviewDel(HttpSession session,HttpServletRequest req,HttpServletResponse res) throws IOException {
+	public void reviewDel(HttpSession session, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		System.out.println("review/del");
-		String user_email = (String)session.getAttribute("sessionID");
-		if(user_email == null) {
+		String user_email = (String) session.getAttribute("sessionID");
+		if (user_email == null) {
 			res.getWriter().write("nologin");
 			return;
 		}
 		String delEmail = req.getParameter("delEmail");
 		int delIdx = Integer.parseInt(req.getParameter("delIdx"));
 		System.out.println(delIdx + "//" + delEmail);
-		
-		if(delEmail.equals(user_email)) {
-			//리뷰삭제
+
+		if (delEmail.equals(user_email)) {
+			// 리뷰삭제
 			reviewdao.delReview(delIdx);
 			res.getWriter().write("success");
 			return;
-		}else {
-			//리뷰삭제 불가
+		} else {
+			// 리뷰삭제 불가
 			res.getWriter().write("delFail");
 			return;
 		}
-		
-		
+
 	}
 }

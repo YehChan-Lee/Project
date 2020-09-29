@@ -23,6 +23,7 @@
 		<result property="point" column="POINT"/>
 		<result property="user_photo" column="USER_PHOTO"/>
 		<result property="user_idx" column="USER_IDX"/>
+		<result property="review_cnt" column="REVIEW_CNT"/>
 	</resultMap>
 	
 	<resultMap type="ShopVo" id="ShopResult">

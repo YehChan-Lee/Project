@@ -171,5 +171,19 @@ public class ShopDao {
 		sqlsession.update("Review.cntReload",map);
 		
 	}
+	//예약 등록시 가게 예약카운트 증가	
+	public void reserveCntUp(int cnt,String shop_id) {
+		HashMap<String,Object> map = new HashMap<String, Object>();
+		map.put("cnt",cnt);
+		map.put("shopId",shop_id);
+		sqlsession.update("ShopVo.reserveCntUp",map);		
+	}
+
+	public int getReservCnt(String shop_id) {
+		int cnt = 0;
+		HashMap<String,Object> map = sqlsession.selectOne("ShopVo.getReservCnt",shop_id);
+		cnt = Integer.parseInt(String.valueOf(map.get("CNT")));
+		return cnt;
+	}
 
 }

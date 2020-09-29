@@ -176,4 +176,14 @@
 	<select id="viewCnt" parameterType="hashMap" resultType="hashMap">
 		select shop_view as cnt from Shop where shop_id=#{shopId} 
 	</select>
+	
+	<!-- 예약 카운트 갱신 -->
+	<update id="reserveCntUp" parameterType="hashMap">
+		update Shop set shop_reserve = ${cnt} where shop_id = #{shopId}
+	</update>
+	
+	<!-- 예약 카운트 리턴 -->
+	<select id="getReservCnt" parameterType="String" resultType="hashMap">
+		select count(*) as cnt from Reservation where shop_id=#{shop_id} 
+	</select>
 </mapper>

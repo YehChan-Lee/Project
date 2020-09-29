@@ -3,4 +3,23 @@
 
 <mapper namespace="Dibs">
 
+	<insert id="addDib">
+		insert into shopdibs values(#{shopId},#{email},${cnt},${shopIdx})
+	</insert>
+	
+	<delete id="delDib">
+		delete from shopdibs where user_email=#{email} and shop_id=#{shopId}
+	</delete>
+	
+	<select id="getDibCnt" resultType="hashMap">
+		select count(*) as cnt from shopdibs
+	</select>
+	
+	<select id="getDibList" resultType="Dibs" parameterType="String">
+		select * from shopdibs where user_email = #{user_email}
+	</select>
+	
+	<select id="dibCheck" resultType="Dibs" parameterType="hashMap">
+		select * from shopdibs where user_email = #{email} and shop_id = #{shopId}
+	</select>
 </mapper>

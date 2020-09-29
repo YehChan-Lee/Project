@@ -580,7 +580,7 @@
 					}else if(data == "admin"){
 						window.location.href = "admin"
 					}else {
-						alert("로그인 또는 비밀번호를 잘못 입력하였습니다");
+						alert("ID 또는 비밀번호를 잘못 입력하였습니다");
 					}
 				},
 				error : function() {

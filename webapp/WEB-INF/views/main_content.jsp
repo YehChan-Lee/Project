@@ -9,8 +9,7 @@
 <head>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript"
-	src="<c:url value="${path}/res/js/jquery.star-rating-svg.js"/>"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 
 
 <script
@@ -19,14 +18,14 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
 
 
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="${path}/res/css/main_content.css?ver=3"/>" />
-<link rel="stylesheet" type="text/css"
-	href="<c:url value="${path}/res/css/star-rating-svg.css?ver=1"/>" />
 </head>
 <body>
 	<div class="benefit">
@@ -647,16 +646,14 @@
 		infinite : true,
 		slidesToShow : 4,
 		slidesToScroll : 4
-	});
-
-	$(".infostar").starRating({
-		starSize : 20,
-		initialRating : 3,
-		starShape : 'rounded',
-		useGradient : false,
-		activeColor : '#ff0000',
-		strokeWidth : 5,
-		readOnly : true
-	});
+	});	
+	
+    $(".infostar").rateYo({  	  
+		rating :  3,
+		starWidth: "20px",
+	    halfStar: true,
+	  	readOnly: true,
+		starSvg : '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>'
+		});  
 </script>
 </html>
