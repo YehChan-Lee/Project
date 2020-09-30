@@ -183,7 +183,7 @@
       </c:forEach>
       
 	<c:forEach items="${shopList}" var="shop">
-      $("#star_${shop.shop_idx}").on('click',function (e) {
+      $("#star_${shop.shop_idx} > i").on('click',function (e) {
          e.preventDefault();
          $.ajax({
  			type : "POST",

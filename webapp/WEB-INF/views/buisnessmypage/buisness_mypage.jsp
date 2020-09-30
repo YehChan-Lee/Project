@@ -26,7 +26,7 @@
 		<div id="mypage_banner">
 			<div id="user_box">
 				<div id="user_img">
-					<img src="<c:url value="${path}/res/image/user2.png"/>" height="180px"/>
+					<img src="<c:url value="${path}/res/image/chinese.jpg"/>" height="180px"/>
 				</div>
 				<div id="user_info_box">
 					<div id="user_info">

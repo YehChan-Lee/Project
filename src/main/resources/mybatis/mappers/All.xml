@@ -170,4 +170,15 @@
 	    ORDER BY R.like_review DESC
 	</select>
 	
+	<select id="getReviewList" resultMap="ShopReview">
+	    <![CDATA[
+			SELECT * FROM ( SELECT S.shop_photo,s.shop_title,s.shop_location,u.user_name,u.review_cnt,r.review_score,r.review,r.review_idx FROM Review R
+	    	INNER JOIN ShopUser U
+	        	ON U.user_email=R.user_email
+	   	 	INNER JOIN Shop S
+	       	 	ON S.shop_id=R.shop_id     
+	 		ORDER BY r.review_date DESC) WHERE ROWNUM <= 6
+		]]>
+	</select>
+	
 </mapper>

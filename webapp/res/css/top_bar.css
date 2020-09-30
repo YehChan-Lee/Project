@@ -1044,6 +1044,11 @@ position: relative;
 	cursor: pointer;
 	height: 50px;
 }
+#nav_profile > a > img{
+	width : 32px;
+	height: 32px;
+	border-radius: 32px;
+}
 
 #nav_notice_list {
 	display: none;

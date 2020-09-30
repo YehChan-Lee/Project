@@ -36,6 +36,14 @@ public class JoinController {
 	@Autowired
 	ReviewDao reviewdao;
 	
+	//메인페이지 실시간 리뷰 리스트 Get
+	@RequestMapping("/main")
+	public ModelAndView main(ModelAndView mav) {
+		System.out.println("/BabPool/main");
+		mav.addObject("reviewList",alldao.getReview());
+		mav.setViewName("main");
+		return mav;
+	}
 	
 	// 마이페이지
 	@RequestMapping("/mypage")

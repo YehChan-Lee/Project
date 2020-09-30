@@ -64,12 +64,6 @@ public class ListController {
 
 	String url = "D:\\LYC\\SpringGit\\Project\\webapp\\serverImg\\";
 	
-	@RequestMapping("/main")
-	public ModelAndView main(ModelAndView mav) {
-		System.out.println("/BabPool/main");
-		mav.setViewName("main");
-		return mav;
-	}
 
 	@RequestMapping("/review_upload")
 	public void test(ModelAndView mav, MultipartHttpServletRequest req, HttpServletResponse res, HttpSession session)
@@ -259,11 +253,10 @@ public class ListController {
 	}
 
 	@RequestMapping("/logout")
-	public ModelAndView logout(ModelAndView mav, HttpSession session) {
+	public void logout(HttpSession session,HttpServletResponse res) throws IOException {
 		System.out.println("/BabPool/logout");
 		session.invalidate();
-		mav.setViewName("main");
-		return mav;
+		res.getWriter().write("logout");
 	}
 
 	@RequestMapping("/join")

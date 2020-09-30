@@ -51,7 +51,8 @@ body {
 	width: 100%;
 	font-family : 'Handon3gyeopsal300g',sans-serif;
 	font-weight : 700;
-	height: 1850px;
+	min-height: 1000px;
+	max-height: 1900px;
 }
 
 #content_wrap>#content_list {
@@ -231,6 +232,7 @@ body {
 	width : 730px;
 	display: flex;
 	justify-content: center;
+	margin-bottom: 30px;
 }
 #paging > a{
 	margin : 0px 3px;

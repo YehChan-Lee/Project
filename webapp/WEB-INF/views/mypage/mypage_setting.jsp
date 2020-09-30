@@ -201,7 +201,7 @@ $(".setting_value>button").on('click', function(){
 		$(this).siblings("form").hide();
 	}
 });
-W
+
 /* $("#notice_list>.notice_open").click(function(e){		
 	if($(this).children(".notice_body").css("display") == "none") {
 		$(".notice_body").hide();

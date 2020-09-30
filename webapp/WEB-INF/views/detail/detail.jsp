@@ -302,7 +302,7 @@
 
 				</div>
 				<div id="editor_recommend_restaurant" class="sidebar">
-					<div class="title">추천 리뷰어</div>
+					<div class="title">이달의 TOP 5</div>
 					<ul class="list">
 						<li class="item"><a class="i_wrap" href="/timeline/236031">
 								<i class="image border_radius circle"

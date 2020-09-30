@@ -119,6 +119,6 @@ public class ReviewDao {
 		sqlsession.delete("Review.delLike",map);
 		sqlsession.delete("Review.delHate",map);
 		sqlsession.delete("Review.delReview",map);		
-	}	
+	}
 
 }

@@ -149,6 +149,7 @@ i_wrap background {
 
 #star_score {
 	float: left;
+	padding : 0px;
 	padding-top: 5px;
 }
 

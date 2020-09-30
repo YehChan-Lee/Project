@@ -335,79 +335,6 @@
 		</div>
 	</div>
 
-
-<%-- <div class="circle">
-      <span class="circlespan">뭐로 할까요?</span>
-      <div class=circlediv>
-         <div class="circlediv1">
-
-            <div class="circlediv2">
-               <img
-                  src="<c:url value="${path}/res/image/main_content/chef1.png"/>"
-                  class="circleimg">
-               <div class="circlediv3">후덕죽</div>
-               <div class="circlediv4">허우 / Chef</div>
-            </div>
-            <div class="circlediv2">
-               <img
-                  src="<c:url value="${path}/res/image/main_content/chef2.png"/>"
-                  class="circleimg">
-               <div class="circlediv3">임재원</div>
-               <div class="circlediv4">르 챔버 / Bartender</div>
-            </div>
-            <div class="circlediv2">
-               <img
-                  src="<c:url value="${path}/res/image/main_content/chef3.png"/>"
-                  class="circleimg">
-               <div class="circlediv3">조셉 리저우드</div>
-               <div class="circlediv4">레스토랑 에빗 / Chef</div>
-            </div>
-            <div class="circlediv2">
-               <img
-                  src="<c:url value="${path}/res/image/main_content/chef8.png"/>"
-                  class="circleimg">
-                  <div class="circlediv3">권우중</div>
-               <div class="circlediv4">권숙수 / CHEF</div>
-            </div>
-
-
-            <div class="circlediv2">
-               <img
-                  src="<c:url value="${path}/res/image/main_content/chef4.png"/>"
-                  class="circleimg">
-                     <div class="circlediv3">이 준</div>
-               <div class="circlediv4">스와니예, 도우룸 / CHEF</div>
-            </div>
-            <div class="circlediv2">
-               <img
-                  src="<c:url value="${path}/res/image/main_content/chef5.png"/>"
-                  class="circleimg">
-                        <div class="circlediv3">옥동식</div>
-               <div class="circlediv4">옥동식 / CHEF</div>
-            </div>
-            <div class="circlediv2">
-               <img
-                  src="<c:url value="${path}/res/image/main_content/chef6.png"/>"
-                  class="circleimg">
-                           <div class="circlediv3">피에르가니에르</div>
-               <div class="circlediv4">피에르가니에르 / CHEF</div>
-            </div>
-            <div class="circlediv2">
-               <img
-                  src="<c:url value="${path}/res/image/main_content/chef7.png"/>"
-                  class="circleimg">
-                           <div class="circlediv3">울프강</div>
-               <div class="circlediv4">울프강스테이크하우스 / CEO</div>
-            </div>
-
-         </div>
-
-
-
-      </div>
-
-   </div> --%>
-
 	<div class="category">
 		<span class="categoryspan">카테고리별</span>
 		<div class="category0">
@@ -440,13 +367,13 @@
 	<div class="review">
 		<span class="reviewspan">실시간 리뷰</span>
 		<div class="reviewdiv">
+			<c:forEach items="${reviewList}" var="review">
 			<div class="reviewdiv1">
 				<div class="reviewdiv2">
-					<img
-						src="<c:url value="${path}/res/image/main_content/coffie.jpg"/>"
+					<img src="<c:url value="${path}/res/image/main_content/coffie.jpg"/>"
 						class="reviewdiv2img">
 					<div class="review_img_div">
-						스타벅스<br> 서울 > 구로구
+						${review.shopVo.shop_title}<br> ${review.shopVo.shop_location}
 					</div>
 				</div>
 				<div class="reviewdiv3">
@@ -454,15 +381,14 @@
 						src="<c:url value="${path}/res/image/main_content/profile.png"/>"
 						class="profile">
 					<div class="info">
-						<div class="infoname">이준영</div>
-						<div class="infocount">리뷰수1,팔로워20</div>
-						<div class="infostar"></div>
+						<div class="infoname">${review.shopUser.user_name}</div>
+						<div class="infocount">리뷰수 ${review.shopUser.review_cnt}</div>
+						<div class="infostar" id="infostar${review.reviewVo.review_idx}"></div>
 						<div class="infograde">
-							<span class="infogradespan">3.5점</span>
+							<span class="infogradespan">${review.reviewVo.review_score}점</span>
 						</div>
 						<div class="infopreview">
-							<span class="reviewspan2">지인들이랑 커피 마셧는데 꿀맛이네여 꼭한번 여기서
-								마셔보세요 !~</span>
+							<span class="reviewspan2">${review.reviewVo.review}</span>
 						</div>
 						<div class="infodetail">
 							<a href="http://localhost:8080/hellospring/views/main.jsp"><span>더보기</span></a>
@@ -470,162 +396,7 @@
 					</div>
 				</div>
 			</div>
-
-			<div class="reviewdiv1">
-				<div class="reviewdiv2">
-					<img
-						src="<c:url value="${path}/res/image/main_content/sushikana.png"/>"
-						class="reviewdiv2img">
-					<div class="review_img_div">
-						스시카나<br> 서울 > 강남구 · 일식
-					</div>
-				</div>
-				<div class="reviewdiv3">
-					<img
-						src="<c:url value="${path}/res/image/main_content/profile.png"/>"
-						class="profile">
-					<div class="info">
-						<div class="infoname">박정석</div>
-						<div class="infocount">리뷰수27,팔로워500</div>
-						<div class="infostar"></div>
-						<div class="infograde">
-							<span class="infogradespan">4.0점</span>
-						</div>
-						<div class="infopreview">
-							<span class="reviewspan2">좋은 시간 보내고 갑니다! 맛있는 한끼 감사합니다 :)</span>
-						</div>
-						<div class="infodetail">
-							<a href="http://localhost:8080/hellospring/views/main.jsp"><span>더보기</span></a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="reviewdiv1">
-				<div class="reviewdiv2">
-					<img
-						src="<c:url value="${path}/res/image/main_content/deokhuseonsaeng.png"/>"
-						class="reviewdiv2img">
-					<div class="review_img_div">
-						덕후선생<br> 청담동 · 중식
-					</div>
-				</div>
-				<div class="reviewdiv3">
-					<img
-						src="<c:url value="${path}/res/image/main_content/profile.png"/>"
-						class="profile">
-					<div class="info">
-						<div class="infoname">이예찬</div>
-						<div class="infocount">리뷰수4,팔로워24</div>
-						<div class="infostar"></div>
-						<div class="infograde">
-							<span class="infogradespan">4.0점</span>
-						</div>
-						<div class="infopreview">
-							<span class="reviewspan2">모던눌랑처럼 어두운 조명, 높은 층고와 같은 컨셉이 확실히
-								있는 식당. 요리의 단가가 낮고 포션이 적어 다양하게 맛볼 수 있는게 장점. 베이징덕도 나쁘진 않지만 다른 요리들을
-								더 추천하고 싶음.</span>
-						</div>
-						<div class="infodetail">
-							<a href="http://localhost:8080/hellospring/views/main.jsp"><span>더보기</span></a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="reviewdiv1">
-				<div class="reviewdiv2">
-					<img src="<c:url value="${path}/res/image/main_content/ju.png"/>"
-						class="reviewdiv2img">
-					<div class="review_img_div">
-						주<br> 서래마을 · 중식
-					</div>
-				</div>
-				<div class="reviewdiv3">
-					<img
-						src="<c:url value="${path}/res/image/main_content/profile.png"/>"
-						class="profile">
-					<div class="info">
-						<div class="infoname">서다슬</div>
-						<div class="infocount">리뷰수9,팔로워6</div>
-						<div class="infostar"></div>
-						<div class="infograde">
-							<span class="infogradespan">4.5점</span>
-						</div>
-						<div class="infopreview">
-							<span class="reviewspan2">동네맛집 주. 탕수육은 말할 것도 없구요. 식사 주문 시
-								두개로 나눠달라고 하여 쉐어하는 건 저의 꿀팁! 예를 들어 2명이 식사하러 가서 탕수육 하나에 짬뽕 하나를 시킬
-								때, 짬뽕 하나를 둘로 나눠주세요 라고 하면 둘이 먹기에 최고의 조합+양입니다 !</span>
-						</div>
-						<div class="infodetail">
-							<a href="http://localhost:8080/hellospring/views/main.jsp"><span>더보기</span></a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="reviewdiv1">
-				<div class="reviewdiv2">
-					<img
-						src="<c:url value="${path}/res/image/main_content/hyeonghuntendong.png"/>"
-						class="reviewdiv2img">
-					<div class="review_img_div">
-						형훈텐동<br> 경기 > 수원시 · 일식
-					</div>
-				</div>
-				<div class="reviewdiv3">
-					<img
-						src="<c:url value="${path}/res/image/main_content/profile.png"/>"
-						class="profile">
-					<div class="info">
-						<div class="infoname">안승우</div>
-						<div class="infocount">리뷰수99,팔로워4</div>
-						<div class="infostar"></div>
-						<div class="infograde">
-							<span class="infogradespan">3.0점</span>
-						</div>
-						<div class="infopreview">
-							<span class="reviewspan2">압구정점에서도 먹어봤는데 맛의 차이는 없어요 약간 느끼해서
-								토마토랑 드시는거 추천합니다!</span>
-						</div>
-						<div class="infodetail">
-							<a href="http://localhost:8080/hellospring/views/main.jsp"><span>더보기</span></a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="reviewdiv1">
-				<div class="reviewdiv2">
-					<img
-						src="<c:url value="${path}/res/image/main_content/ottelduseu.png"/>"
-						class="reviewdiv2img">
-					<div class="review_img_div">
-						오뗄두스<br> 서래마을 · 카페/베이커리
-					</div>
-				</div>
-				<div class="reviewdiv3">
-					<img
-						src="<c:url value="${path}/res/image/main_content/profile.png"/>"
-						class="profile">
-					<div class="info">
-						<div class="infoname">최희만</div>
-						<div class="infocount">리뷰수12,팔로워35</div>
-						<div class="infostar"></div>
-						<div class="infograde">
-							<span class="infogradespan">4.5점</span>
-						</div>
-						<div class="infopreview">
-							<span class="reviewspan2">에끌레어 여기보다 맛있는 데 있으면 알려주실래요? 동네
-								디저트집 오뗄두스 1위 / 줄리에뜨 2위</span>
-						</div>
-						<div class="infodetail">
-							<a href="http://localhost:8080/hellospring/views/main.jsp"><span>더보기</span></a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-
+			</c:forEach>
 		</div>
 
 	</div>
@@ -648,12 +419,14 @@
 		slidesToScroll : 4
 	});	
 	
-    $(".infostar").rateYo({  	  
+	<c:forEach items="${reviewList}" var="review">
+    $("#infostar${review.reviewVo.review_idx}").rateYo({  	  
 		rating :  3,
 		starWidth: "20px",
 	    halfStar: true,
 	  	readOnly: true,
 		starSvg : '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>'
 		});  
+    </c:forEach>
 </script>
 </html>
