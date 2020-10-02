@@ -40,10 +40,10 @@
 	<div id="container">
 		<%
 			ShopVo shopvo = (ShopVo) request.getAttribute("shopOne");
-		pageContext.setAttribute("id", session.getAttribute("sessionID"));
-		pageContext.setAttribute("star", shopvo.getShop_score());
-		pageContext.setAttribute("shopidx", shopvo.getShop_idx());
-		List<ShopUserVo> shopuservo = (List<ShopUserVo>) request.getAttribute("shopuser");
+			pageContext.setAttribute("id", session.getAttribute("sessionID"));
+			pageContext.setAttribute("star", shopvo.getShop_score());
+			pageContext.setAttribute("shopidx", shopvo.getShop_idx());
+			List<ShopUserVo> shopuservo = (List<ShopUserVo>) request.getAttribute("shopuser");
 		%>
 
 		<!-- 상단에 배너가 있는 레이아웃 -->
@@ -302,73 +302,26 @@
 
 				</div>
 				<div id="editor_recommend_restaurant" class="sidebar">
-					<div class="title">이달의 TOP 5</div>
+					<div class="title">이달의 예약 TOP 5</div>
 					<ul class="list">
-						<li class="item"><a class="i_wrap" href="/timeline/236031">
-								<i class="image border_radius circle"
-								style="background-image:url(<c:url value="${path}/res/image/lee.jpg"/>)"></i>
-						</a>
-							<div class="detail">
-								<div class="name">
-									<a href="/timeline/236031">이수진</a>
-								</div>
-								<div class="info">
-									101 리뷰, <span data-type="poing.user.follow" data-id="236031">113</span>
-								</div>
+						<c:forEach items="${shopTop5}" var="shop" varStatus="vs">
+							<div class="rank">
+								<img
+									src="<c:url value='${path}/res/image/grade${vs.count}.png'/>"
+									style="width: 45px; height: 45px;" />
+							</div>
+							<li class="item">
+								<div class="detail">
+									<div class="name">
+										<a
+											href="http://babpool.duckdns.org:8088/BabPool/detail?shopidx=${shop.shop_idx}">${shop.shop_title}</a>
+									</div>
+									<div class="info">${shop.shop_reserve} 예약,
+										${shop.shop_review} 리뷰, ${shop.shop_view} 조회수</div>
 
-							</div></li>
-						<li class="item"><a class="i_wrap" href="/timeline/336595">
-								<i class="image border_radius circle"
-								style="background-image: url(<c:url value="${path}/res/image/lee.jpg"/>)"></i>
-						</a>
-							<div class="detail">
-								<div class="name">
-									<a href="/timeline/336595">박소은</a>
 								</div>
-								<div class="info">
-									120 리뷰, <span data-type="poing.user.follow" data-id="336595">64</span>
-								</div>
-
-							</div></li>
-						<li class="item"><a class="i_wrap" href="/timeline/611090">
-								<i class="image border_radius circle"
-								style="background-image: url(<c:url value="${path}/res/image/lee.jpg"/>)"></i>
-						</a>
-							<div class="detail">
-								<div class="name">
-									<a href="/timeline/611090">jy</a>
-								</div>
-								<div class="info">
-									455 리뷰, <span data-type="poing.user.follow" data-id="611090">142</span>
-								</div>
-
-							</div></li>
-						<li class="item"><a class="i_wrap" href="/timeline/537740">
-								<i class="image border_radius circle"
-								style="background-image: url(<c:url value="${path}/res/image/lee.jpg"/>)"></i>
-						</a>
-							<div class="detail">
-								<div class="name">
-									<a href="/timeline/537740">김규철</a>
-								</div>
-								<div class="info">
-									35 리뷰, <span data-type="poing.user.follow" data-id="537740">14</span>
-								</div>
-
-							</div></li>
-						<li class="item"><a class="i_wrap" href="/timeline/599857">
-								<i class="image border_radius circle"
-								style="background-image: url(<c:url value="${path}/res/image/lee.jpg"/>)"></i>
-						</a>
-							<div class="detail">
-								<div class="name">
-									<a href="/timeline/599857">양정아</a>
-								</div>
-								<div class="info">
-									67 리뷰, <span data-type="poing.user.follow" data-id="599857">24</span>
-								</div>
-
-							</div></li>
+							</li>
+						</c:forEach>
 					</ul>
 				</div>
 			</div>

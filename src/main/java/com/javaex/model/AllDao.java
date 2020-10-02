@@ -51,10 +51,6 @@ public class AllDao {
 	}
 
 	public List<AllVo> getReview() {
-		List<AllVo> list = sqlSession.selectList("All.getReviewList");
-		for(int i=0;i<list.size();i++) {
-			System.out.println(list.get(i));
-		}
 		return sqlSession.selectList("All.getReviewList");
 	}
 

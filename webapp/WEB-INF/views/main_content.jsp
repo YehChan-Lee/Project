@@ -10,8 +10,6 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
-
-
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
 <link rel="stylesheet"
@@ -357,13 +355,6 @@
 		</div>
 	</div>
 
-
-
-
-
-
-
-
 	<div class="review">
 		<span class="reviewspan">실시간 리뷰</span>
 		<div class="reviewdiv">
@@ -383,7 +374,7 @@
 					<div class="info">
 						<div class="infoname">${review.shopUser.user_name}</div>
 						<div class="infocount">리뷰수 ${review.shopUser.review_cnt}</div>
-						<div class="infostar" id="infostar${review.reviewVo.review_idx}"></div>
+						<div class="infostar" id="info_star${review.reviewVo.review_idx}"></div>
 						<div class="infograde">
 							<span class="infogradespan">${review.reviewVo.review_score}점</span>
 						</div>
@@ -391,7 +382,7 @@
 							<span class="reviewspan2">${review.reviewVo.review}</span>
 						</div>
 						<div class="infodetail">
-							<a href="http://localhost:8080/hellospring/views/main.jsp"><span>더보기</span></a>
+							<a href="http://babpool.duckdns.org:8088/BabPool/detail?shopidx=${review.shopVo.shop_idx}"><span>더보기</span></a>
 						</div>
 					</div>
 				</div>
@@ -418,15 +409,20 @@
 		slidesToShow : 4,
 		slidesToScroll : 4
 	});	
+	$(document).ready(function () {
+		<c:forEach items="${reviewList}" var="review">
+	    $("#info_star${review.reviewVo.review_idx}").rateYo({  	  
+			rating :  "${review.reviewVo.review_score}",
+			starWidth: "20px",
+		    halfStar: true,
+		  	readOnly: true,
+		  	onInit: function (rating, rateYoInstance) {
+				console.log(rating)
+			},
+			starSvg : '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>'
+			});  
+	    </c:forEach>
+	})
 	
-	<c:forEach items="${reviewList}" var="review">
-    $("#infostar${review.reviewVo.review_idx}").rateYo({  	  
-		rating :  3,
-		starWidth: "20px",
-	    halfStar: true,
-	  	readOnly: true,
-		starSvg : '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>'
-		});  
-    </c:forEach>
 </script>
 </html>

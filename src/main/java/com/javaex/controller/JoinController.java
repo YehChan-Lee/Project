@@ -138,10 +138,6 @@ public class JoinController {
 		String shopId = req.getParameter("shopId");
 		String user_email = (String)session.getAttribute("sessionID");
 		System.out.println("review : " + shopId + user_email);
-		List<AllVo> list = alldao.shopreviewList(shopId,"new");
-		for(int i=0;i<list.size();i++) {
-			System.out.println(list.get(i));
-		}
 		mav.addObject("reviewList",alldao.shopreviewList(shopId,"new"));
 		if(user_email != null) {
 			mav.addObject("likeList",reviewdao.likeList(user_email,shopId));

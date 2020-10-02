@@ -115,6 +115,7 @@ public class ListController {
 		dao.reviewCntReload(shopId, reviewdao.reviewCnt(shopId));
 
 		userDao.reviewCntUpload(user_email);
+		dao.scoreCalc(shopId);
 		res.getWriter().write("success");
 	}
 
@@ -212,6 +213,7 @@ public class ListController {
 		// cnt 증가후 다시 shop 호출
 		dao.viewUp(ShopId);
 		shop = dao.shopOne(shopIdx);
+		mav.addObject("shopTop5",dao.getTop5());
 		mav.addObject("shopOne", shop);
 		mav.setViewName("detail/detail");
 		return mav;
@@ -629,7 +631,6 @@ public class ListController {
 		String shopId = req.getParameter("shopId");
 		String user_email = (String) session.getAttribute("sessionID");
 		String sort = req.getParameter("sort");
-		System.out.println("sort" + sort);
 		if (user_email != null) {
 			mav.addObject("likeList", reviewdao.likeList(user_email, shopId));
 			mav.addObject("hateList", reviewdao.hateList(user_email, shopId));

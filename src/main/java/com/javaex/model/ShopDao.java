@@ -21,6 +21,9 @@ public class ShopDao {
 	public List<ShopVo> shopList(){
 		return sqlsession.selectList("ShopVo.shopList");
 	}
+	public List<ShopVo> getTop5(){
+		return sqlsession.selectList("ShopVo.getTop5");
+	}
 	
 	public List<ShopVo> shopSearch(String location, String[] shop_addrArr, String[] food_typeArr,
 			String string_search, String solt, String price_list, String[] add_infoArr,
@@ -184,6 +187,13 @@ public class ShopDao {
 		HashMap<String,Object> map = sqlsession.selectOne("ShopVo.getReservCnt",shop_id);
 		cnt = Integer.parseInt(String.valueOf(map.get("CNT")));
 		return cnt;
+	}
+
+	public void scoreCalc(String shopId) {
+		HashMap<String, Object> map = sqlsession.selectOne("ShopVo.getScoreAvg",shopId);
+		map.put("shopId",shopId);
+		System.out.println(map);
+		sqlsession.update("ShopVo.scoreCalc",map);
 	}
 
 }

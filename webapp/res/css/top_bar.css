@@ -1042,12 +1042,11 @@ position: relative;
 #nav_profile {
 	float: left;
 	cursor: pointer;
-	height: 50px;
 }
 #nav_profile > a > img{
-	width : 32px;
-	height: 32px;
-	border-radius: 32px;
+	width : 33px;
+	height: 33px;
+	border-radius: 33px;
 }
 
 #nav_notice_list {
