@@ -38,12 +38,27 @@
 		WHERE user_email=#{user_email}
 		]]>
 	</update>
-	
-	<update id="update_recentShop_user_email" parameterType="hashMap">
+
+	<update id="update_recentShop_user_email"
+		parameterType="hashMap">
 		UPDATE ShopUser set recent_shop=#{shop_idx}
-		WHERE user_email=#{user_email}
+		WHERE
+		user_email=#{user_email}
 	</update>
-	
+	<!-- 회원정보 수정 -->
+	<update id="Update_shopuser" parameterType="hashMap">
+		UPDATE ShopUser set
+		user_name=#{user_name}
+		WHERE
+		user_email=#{user_email}
+	</update>
+	<update id="Update_phone" parameterType="hashMap">
+		UPDATE ShopUser set
+		user_phone=#{user_phone}
+		WHERE
+		user_email=#{user_email}
+	</update>
+
 	<delete id="shopuserDelete">
 		<![CDATA[
 		DELETE ShopUser WHERE user_email=#{user_email}
@@ -69,10 +84,17 @@
    ]]>
 	</update>
 
-	<!-- 리뷰 업로드시 해당 계정의 리뷰 카운트 증가  -->
+	<!-- 리뷰 업로드시 해당 계정의 리뷰 카운트 증가 -->
 	<update id="reviewCntUpload" parameterType="hashMap">
-		UPDATE ShopUser set review_cnt=${cnt}
+		UPDATE ShopUser set
+		review_cnt=${cnt}
 		WHERE user_email=#{userEmail}
 	</update>
-	
+
+
+	<delete id="Delete_shopuser" parameterType="hashMap">
+		<![CDATA[
+		DELETE ShopUser WHERE user_email=#{user_email}
+		]]>	
+	</delete>
 </mapper>

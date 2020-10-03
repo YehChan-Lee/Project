@@ -47,30 +47,6 @@ public class HelloController {
 		return "signup";
 	}
 
-	@RequestMapping("/mypage/review")
-	public String mypage_review() {
-		System.out.println("/BabPool/mypage/mypage_review");
-		return "mypage/mypage_review";
-	}
-
-	@RequestMapping("/mypage/review2")
-	public String mypage_review2() {
-		System.out.println("/BabPool/mypage/mypage_review2");
-		return "mypage/mypage_review2";
-	}
-
-	@RequestMapping("/mypage/review3")
-	public String mypage_review3() {
-		System.out.println("/BabPool/mypage/mypage_review3");
-		return "mypage/mypage_review3";
-	}
-
-	@RequestMapping("/mypage/setting")
-	public String mypage_setting() {
-		System.out.println("/BabPool/mypage/mypage_setting");
-		return "mypage/mypage_setting";
-	}
-
 	@RequestMapping("/term")
 	public String term() {
 		System.out.println("/BabPool/term");

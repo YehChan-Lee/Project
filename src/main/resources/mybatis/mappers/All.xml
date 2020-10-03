@@ -150,6 +150,11 @@
     		where N.is_admin='1'
 	</select>
 	
+	<!-- footer 사용자 -->
+	<select id="footeruser" resultType="int">
+		select count(DISTINCT user_email) from ShopUser
+	</select>	
+	
 	<select id="shopreviewList" resultMap="ShopReview">
 		SELECT R.review_idx,U.user_email,U.user_name,U.user_idx,U.review_cnt, R.review_score,R.review,R.review_photo,R.like_review,R.hate_review FROM Review R
 	    INNER JOIN ShopUser U

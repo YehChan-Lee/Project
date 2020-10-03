@@ -20,6 +20,12 @@ public class ReviewDao {
 		this.sqlsession = sqlsession;
 	}
 
+	public int footerreview() {
+		int footerreview = sqlsession.selectOne("Review.footerreview");
+		System.out.println(footerreview);
+		return sqlsession.selectOne("Review.footerreview");
+	 }
+	
 	public int reviewCnt(String shop_id) {
 		HashMap<String, Object> map = sqlsession.selectOne("reviewCnt", shop_id);
 //		System.out.println("CNT : "+String.valueOf(map.get("CNT")));

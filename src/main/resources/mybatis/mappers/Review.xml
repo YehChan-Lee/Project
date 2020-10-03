@@ -108,4 +108,9 @@
 		delete from Review where
 		review_idx=${delIdx}
 	</delete>
+	
+	<!-- footer 리뷰 갯수 -->
+	<select id="footerreview" resultType="int">
+		select count(*) from Review
+	</select>
 </mapper>
