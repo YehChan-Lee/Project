@@ -1,3 +1,5 @@
+<%@page import="com.javaex.model.AdminVo"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -41,13 +43,42 @@
 						<th>상태</th>
 						<th>결제</th>
 					</tr>
+					<%
+						List<AdminVo> Acompany2_list = (List<AdminVo>)request.getAttribute("Acompany2_list");
+						for(int i = 0; i< Acompany2_list.size(); i++){
+							AdminVo vo = Acompany2_list.get(i);
+					
+					%>
+					<tr>
+						<td><%=vo.getShopVo().getShop_id()%></td>
+						<td><%=vo.getShopVo().getShop_title()%></td>
+						<td><%=vo.getShopUser().getUser_name()%></td>
+						<td><%=vo.getShopUser().getUser_phone()%></td>
+						<td><%=vo.getShopUser().getSign_date()%></td>
+						<td><%=vo.getShopVo().getShop_state()%></td>
+						<td><span><i class="fas fa-angle-right"></i>승인</span> <span><i
+								class="fas fa-angle-right"></i>반려</span></td>
+					</tr>
+					<%
+						}
+					%>
+					<!-- <tr>
+						<td>123-12-12345</td>
+						<td>골목식당</td>
+						<td>testID</td>
+						<td>010-1234-1234</td>
+						<td>2020-01-01</td>
+						<td>반려</td>
+						<td><span><i class="fas fa-angle-right"></i>승인</span> <span><i
+								class="fas fa-angle-right"></i>반려</span></td>
+					</tr>
 					<tr>
 						<td>123-12-12345</td>
 						<td>골목식당</td>
 						<td>testID</td>
 						<td>010-1234-1234</td>
 						<td>2020-01-01</td>
-						<td>신청중</td>
+						<td>승인</td>
 						<td><span><i class="fas fa-angle-right"></i>승인</span> <span><i
 								class="fas fa-angle-right"></i>반려</span></td>
 					</tr>
@@ -77,26 +108,6 @@
 						<td>testID</td>
 						<td>010-1234-1234</td>
 						<td>2020-01-01</td>
-						<td>반려</td>
-						<td><span><i class="fas fa-angle-right"></i>승인</span> <span><i
-								class="fas fa-angle-right"></i>반려</span></td>
-					</tr>
-					<tr>
-						<td>123-12-12345</td>
-						<td>골목식당</td>
-						<td>testID</td>
-						<td>010-1234-1234</td>
-						<td>2020-01-01</td>
-						<td>승인</td>
-						<td><span><i class="fas fa-angle-right"></i>승인</span> <span><i
-								class="fas fa-angle-right"></i>반려</span></td>
-					</tr>
-					<tr>
-						<td>123-12-12345</td>
-						<td>골목식당</td>
-						<td>testID</td>
-						<td>010-1234-1234</td>
-						<td>2020-01-01</td>
 						<td>신청중</td>
 						<td><span><i class="fas fa-angle-right"></i>승인</span> <span><i
 								class="fas fa-angle-right"></i>반려</span></td>
@@ -130,7 +141,7 @@
 						<td>신청중</td>
 						<td><span><i class="fas fa-angle-right"></i>승인</span> <span><i
 								class="fas fa-angle-right"></i>반려</span></td>
-					</tr>
+					</tr> -->
 				</table>
 			</div>
 			<div class="paging_com2">

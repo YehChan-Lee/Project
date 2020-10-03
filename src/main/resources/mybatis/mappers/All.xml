@@ -9,6 +9,7 @@
 		<result property="res_date" column="RES_DATE"/>
 		<result property="res_customer" column="RES_CUSTOMER"/>
 		<result property="shop_id" column="SHOP_ID"/>	
+		<result property="rev_phone" column="REV_PHONE"/>	
 	</resultMap>
 
 	<resultMap type="ShopUserVo" id="ShopUserResult">
@@ -96,6 +97,14 @@
 		<collection property="ShopUserVo" resultMap="ShopUserResult"></collection>
 		<collection property="ReviewVo" resultMap="ReviewResult"></collection>
 	</resultMap>
+		
+	<resultMap type="hashMap" id="ReserveResult">
+		<id property="reserve_idx" column="RESERVE_IDX"/>
+		<result property="user_name" column="USER_NAME"/>
+		<result property="res_customer" column="RES_CUSTOMER"/>
+		<result property="rev_phone" column="REV_PHONE"/>
+		<result property="res_date" column="RES_DATE"/>
+	</resultMap>
 	
 	<select id="reserveList" resultMap="AllResult">
 		select * from reservation R
@@ -106,6 +115,16 @@
 			where R.user_email=#{user_email}
             AND R.res_date>TO_CHAR(SYSDATE, 'yyyy-mm-dd')
 	</select>
+	<select id="pos_reserveList" resultMap="ReserveResult">
+		select U.user_name,r.res_customer,r.reserve_idx,r.rev_phone,TO_char(r.res_date,'MM-DD HH24:MI') as res_date from reservation R
+			inner join shopUser U
+				on U.user_email=R.user_email
+			inner join Shop S
+				on S.shop_title = R.shop_title
+			where R.shop_id='123-12-12345'
+            AND TO_Char(R.res_date,'MM-DD HH24:MI:SS')>TO_CHAR(SYSDATE, 'MM-DD HH24:MI:SS')
+	</select>
+	
 	
 	<select id="pastList" resultMap="AllResult">
 		select * from reservation R

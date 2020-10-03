@@ -1,5 +1,8 @@
+<%@page import="com.javaex.model.AdminVo"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +10,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%
+		List<AdminVo> vo = (List<AdminVo>) request.getAttribute("Anotice_list");
+	%>
+
 	<div id="sec_admin_notice">
 		<h2>
 			<i class="fas fa-arrow-circle-right"></i><span>공지사항</span>
@@ -15,7 +22,7 @@
 		<div class="notice_cont">
 			<div class="notice_search">
 				<p>
-					· 검색 결과 : <span>10건</span>
+					· 검색 결과 : <span><%=vo.get(0).getNoticeVo().getNotice_idx()%>건</span>
 				</p>
 				<div class="notice_seaAli">
 					<div class="notice_seaAli1">
@@ -41,104 +48,23 @@
 			</div>
 			<table>
 				<tr>
-					<th><input type="checkbox" /></th>
 					<th>NO.</th>
 					<th>제목</th>
 					<th>리뷰 내용</th>
 					<th>작성자</th>
 					<th>등록일</th>
 				</tr>
-				<tr>
-					<td><input type="checkbox" /></td>
-					<td>1</td>
-					<td><a href="#">서버 정검 안내</a></td>
-					<td>안녕하세요 밥풀입니다. 원활한 서비스 운영을 위해 아래 기간동안 서버 점검을 진행합니다. 서버 점검
-						중에는 서비스 이용이 원활하지 않을 수 있습니다.</td>
-					<td>admin</td>
-					<td>2020.09.02 13:20</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" /></td>
-					<td>2</td>
-					<td><a href="#">서버 정검 안내</a></td>
-					<td>안녕하세요 밥풀입니다. 원활한 서비스 운영을 위해 아래 기간동안 서버 점검을 진행합니다. 서버 점검
-						중에는 서비스 이용이 원활하지 않을 수 있습니다.</td>
-					<td>admin</td>
-					<td>2020.09.02 13:20</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" /></td>
-					<td>3</td>
-					<td><a href="#">서버 정검 안내</a></td>
-					<td>안녕하세요 밥풀입니다. 원활한 서비스 운영을 위해 아래 기간동안 서버 점검을 진행합니다. 서버 점검
-						중에는 서비스 이용이 원활하지 않을 수 있습니다.</td>
-					<td>admin</td>
-					<td>2020.09.02 13:20</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" /></td>
-					<td>4</td>
-					<td><a href="#">서버 정검 안내</a></td>
-					<td>안녕하세요 밥풀입니다. 원활한 서비스 운영을 위해 아래 기간동안 서버 점검을 진행합니다. 서버 점검
-						중에는 서비스 이용이 원활하지 않을 수 있습니다.</td>
-					<td>admin</td>
-					<td>2020.09.02 13:20</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" /></td>
-					<td>5</td>
-					<td><a href="#">서버 정검 안내</a></td>
-					<td>안녕하세요 밥풀입니다. 원활한 서비스 운영을 위해 아래 기간동안 서버 점검을 진행합니다. 서버 점검
-						중에는 서비스 이용이 원활하지 않을 수 있습니다.</td>
-					<td>admin</td>
-					<td>2020.09.02 13:20</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" /></td>
-					<td>6</td>
-					<td><a href="#">서버 정검 안내</a></td>
-					<td>안녕하세요 밥풀입니다. 원활한 서비스 운영을 위해 아래 기간동안 서버 점검을 진행합니다. 서버 점검
-						중에는 서비스 이용이 원활하지 않을 수 있습니다.</td>
-					<td>admin</td>
-					<td>2020.09.02 13:20</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" /></td>
-					<td>7</td>
-					<td><a href="#">서버 정검 안내</a></td>
-					<td>안녕하세요 밥풀입니다. 원활한 서비스 운영을 위해 아래 기간동안 서버 점검을 진행합니다. 서버 점검
-						중에는 서비스 이용이 원활하지 않을 수 있습니다.</td>
-					<td>admin</td>
-					<td>2020.09.02 13:20</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" /></td>
-					<td>8</td>
-					<td><a href="#">서버 정검 안내</a></td>
-					<td>안녕하세요 밥풀입니다. 원활한 서비스 운영을 위해 아래 기간동안 서버 점검을 진행합니다. 서버 점검
-						중에는 서비스 이용이 원활하지 않을 수 있습니다.</td>
-					<td>admin</td>
-					<td>2020.09.02 13:20</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" /></td>
-					<td>9</td>
-					<td><a href="#">서버 정검 안내</a></td>
-					<td>안녕하세요 밥풀입니다. 원활한 서비스 운영을 위해 아래 기간동안 서버 점검을 진행합니다. 서버 점검
-						중에는 서비스 이용이 원활하지 않을 수 있습니다.</td>
-					<td>admin</td>
-					<td>2020.09.02 13:20</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" /></td>
-					<td>10</td>
-					<td><a href="#">서버 정검 안내</a></td>
-					<td>안녕하세요 밥풀입니다. 원활한 서비스 운영을 위해 아래 기간동안 서버 점검을 진행합니다. 서버 점검
-						중에는 서비스 이용이 원활하지 않을 수 있습니다.</td>
-					<td>admin</td>
-					<td>2020.09.02 13:20</td>
-				</tr>
-				
+
+				<c:forEach items="${Anotice_list}" var="Anotice" begin="0" step="1">
+					<c:set var="i" value="${i + 1}" />
+					<tr>
+						<td>${Anotice.getNoticeVo().getNotice_idx() }</td>
+						<td><a href="#">${Anotice.getNoticeVo().getNotice_title() }</a></td>
+						<td>${Anotice.getNoticeVo().getNotice_content() }</td>
+						<td>관리자</td>
+						<td>${Anotice.getNoticeVo().getNotice_date() }</td>
+					</tr>
+				</c:forEach>
 			</table>
 			<div class="paging" style="left: 0">
 				<a href="#" class="bt"><i class="fas fa-angle-double-left"></i></a>
@@ -182,13 +108,20 @@
 		});
 
 		// 공지사항 클릭 시 새창 팝업창 띄우기
-		$("table > tbody > tr > td > a").on("click", function(){
+		/* $("table > tbody > tr > td > a").on("click", function(){
 			var url = "admin_notice_info";
 			window.open(url, "공지사항 정보", "height=700, width=1200, top=100, left=300", "_blank");
 			
 			
 		});
-		
+		 */
+		$("#sec_admin_notice > div > table tr > td:nth-child(2) > a").on("click", function(){
+			/* #sec_admin_resSitu > div:nth-child(1) > table > tbody > tr:nth-child(2) > td:nth-child(4) */
+			var info = $(this).closest("tr").children("td:nth-child(1)").text();
+			console.log("공지사항 IDX : " + info);
+				var url = "admin_notice_info?idx="+info;
+				window.open(url, "공지사항 정보", "height=700, width=1200, top=100, left=300", "_blank");
+		});
 	});
 </script>
 </html>

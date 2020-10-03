@@ -4,36 +4,39 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ShopVo {
-	private String shop_id;			// 사업자 번호(PK)			NOT NULL
-	private String user_email;		// 사용자 이메일(FK)			NOT NULL
-	private int shop_idx;			// 가게번호				NOT NULL
-	private String shop_title;		// 가게 이름				NOT NULL
-	private String shop_addr;		// 가게 세부 주소			NOT NULL
-	private String shop_location;	// 가게 주소(ex. 서울/수도권)	NOT NULL
-	private String food_type;		// 음식타입(ex. 한식)		NOT NULL
-	private String shop_tip;		// 가게 설명 디테일			NULL
-	private String budget;			// 예산					NULL
-	private int shop_reserve;		// 총 예약 수				NULL
-	private String shop_comment;	// 한줄 설명				NULL
-	private int shop_view;			// 조회수					NULL
-	private Double shop_score;		// 별점					NULL
-	private String shop_phone;		// 가게 전화번호			NULL
-	private String shop_time;		// 가게 운영시간			NOT NULL
-	private String shop_addinfo;	// 가게 부가정보			NULL
-	private String shop_tb;			// 가게 테이블 종류			NULL
-	private String shop_alcohol;	// 가게 주류				NULL
-	private String shop_car;		// 주차기능				NOT NULL
-	private String shop_close;		// 휴무일					NULL
-	private String shop_photo;		// 가게 사진				NULL
-	private String shop_review;	
-	
-	public ShopVo() {}
+	private String shop_id; // 사업자 번호(PK) NOT NULL
+	private String user_email; // 사용자 이메일(FK) NOT NULL
+	private int shop_idx; // 가게번호 NOT NULL
+	private String shop_title; // 가게 이름 NOT NULL
+	private String shop_addr; // 가게 세부 주소 NOT NULL
+	private String shop_location; // 가게 주소(ex. 서울/수도권) NOT NULL
+	private String food_type; // 음식타입(ex. 한식) NOT NULL
+	private String shop_tip; // 가게 설명 디테일 NULL
+	private String budget; // 예산 NULL
+	private int shop_reserve; // 총 예약 수 NULL
+	private String shop_comment; // 한줄 설명 NULL
+	private int shop_view; // 조회수 NULL
+	private Double shop_score; // 별점 NULL
+	private String shop_phone; // 가게 전화번호 NULL
+	private String shop_time; // 가게 운영시간 NOT NULL
+	private String shop_addinfo; // 가게 부가정보 NULL
+	private String shop_tb; // 가게 테이블 종류 NULL
+	private String shop_alcohol; // 가게 주류 NULL
+	private String shop_car; // 주차기능 NOT NULL
+	private String shop_close; // 휴무일 NULL
+	private String shop_photo; // 가게 사진 NULL
+	private String shop_review;
+	private String shop_date;// 사업자신청일자NULL
+	private String shop_state;// 사업자 승인NOT NULL
+
+	public ShopVo() {
+	}
 
 	public ShopVo(String shop_id, String user_email, int shop_idx, String shop_title, String shop_addr,
 			String shop_location, String food_type, String shop_tip, String budget, int shop_reserve,
 			String shop_comment, int shop_view, Double shop_score, String shop_phone, String shop_time,
 			String shop_addinfo, String shop_tb, String shop_alcohol, String shop_car, String shop_close,
-			String shop_photo,String shop_review) {
+			String shop_photo, String shop_review) {
 		this.shop_id = shop_id;
 		this.user_email = user_email;
 		this.shop_idx = shop_idx;
@@ -57,10 +60,27 @@ public class ShopVo {
 		this.shop_photo = shop_photo;
 		this.shop_review = shop_review;
 	}
-	
-	public ShopVo(String shop_title,String shop_id, String shop_addr, String shop_location, String food_type, String shop_tip,
-			String budget, String shop_comment, String shop_phone, String[] shop_time, String shop_addinfo,
-			String shop_tb, String shop_alcohol, String shop_car, String shop_close,String shop_photo) {
+
+	public String getShop_date() {
+		return shop_date;
+	}
+
+	public void setShop_date(String shop_date) {
+		this.shop_date = shop_date;
+	}
+
+	public String getShop_state() {
+		return shop_state;
+	}
+
+	public void setShop_state(String shop_state) {
+		this.shop_state = shop_state;
+	}
+
+	public ShopVo(String shop_title, String shop_id, String shop_addr, String shop_location, String food_type,
+			String shop_tip, String budget, String shop_comment, String shop_phone, String[] shop_time,
+			String shop_addinfo, String shop_tb, String shop_alcohol, String shop_car, String shop_close,
+			String shop_photo) {
 		this.shop_title = shop_title;
 		this.shop_addr = shop_addr;
 		this.shop_location = shop_location;
@@ -70,7 +90,7 @@ public class ShopVo {
 		this.budget = budget;
 		this.shop_comment = shop_comment;
 		this.shop_phone = shop_phone;
-		this.shop_time = shop_time[0] + ":"+shop_time[1] + "-" + shop_time[2] + ":" + shop_time[3];
+		this.shop_time = shop_time[0] + ":" + shop_time[1] + "-" + shop_time[2] + ":" + shop_time[3];
 		this.shop_addinfo = shop_addinfo;
 		this.shop_tb = shop_tb;
 		this.shop_alcohol = shop_alcohol;
@@ -238,6 +258,7 @@ public class ShopVo {
 	public void setShop_close(String shop_close) {
 		this.shop_close = shop_close;
 	}
+
 	public String getShop_photo() {
 		return shop_photo;
 	}
@@ -245,7 +266,7 @@ public class ShopVo {
 	public void setShop_photo(String shop_photo) {
 		this.shop_photo = shop_photo;
 	}
-	
+
 	public String getShop_review() {
 		return shop_review;
 	}
@@ -260,8 +281,8 @@ public class ShopVo {
 				+ shop_title + ", shop_addr=" + shop_addr + ", shop_location=" + shop_location + ", food_type="
 				+ food_type + ", shop_tip=" + shop_tip + ", budget=" + budget + ", shop_reserve=" + shop_reserve
 				+ ", shop_comment=" + shop_comment + ", shop_view=" + shop_view + ", shop_score=" + shop_score
-				+ ", shop_phone=" + shop_phone + ", shop_time=" + shop_time + ", shop_addinfo="
-				+ shop_addinfo + ", shop_tb=" + shop_tb + ", shop_alcohol=" + shop_alcohol + ", shop_car=" + shop_car
-				+ ", shop_close=" + shop_close + ", shop_photo=" + shop_photo + "]";
+				+ ", shop_phone=" + shop_phone + ", shop_time=" + shop_time + ", shop_addinfo=" + shop_addinfo
+				+ ", shop_tb=" + shop_tb + ", shop_alcohol=" + shop_alcohol + ", shop_car=" + shop_car + ", shop_close="
+				+ shop_close + ", shop_photo=" + shop_photo + "]";
 	}
 }

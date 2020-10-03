@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AdminVo">
+	<resultMap type="Reservation" id="ReservationResult">
+		<result property="reserve_idx" column="RESERVE_IDX"/>
+		<result property="user_email" column="USER_EMAIL"/>
+		<result property="shop_title" column="SHOP_TITLE"/>
+		<result property="res_date" column="RES_DATE"/>
+		<result property="res_customer" column="RES_CUSTOMER"/>
+		<result property="shop_id" column="SHOP_ID"/>	
+		<result property="res_name" column="RES_NAME"/>	
+	</resultMap>
+	
+	<resultMap type="ReserveOrder" id="ReserveOrderResult">
+		<result property="user_email" column="USER_EMAIL"/>
+		<result property="food_name" column="FOOD_NAME"/>
+		<result property="shop_id" column="SHOP_ID"/>
+		<result property="food_count" column="FOOD_COUNT"/>
+		<result property="table_number" column="TABLE_NUMBER"/>
+		<result property="pay_date" column="PAY_DATE"/>	
+		<result property="is_pay" column="IS_PAY"/>	
+		<result property="reserve_idx" column="RESERVE_IDX"/>	
+	</resultMap>
+
+	<resultMap type="ShopUserVo" id="ShopUserResult">
+		<result property="user_email" column="USER_EMAIL"/>
+		<result property="user_pw" column="USER_PW"/>
+		<result property="user_name" column="USER_NAME"/>
+		<result property="user_gender" column="USER_GENDER"/>
+		<result property="user_birth" column="USER_BIRTH"/>
+		<result property="user_phone" column="USER_PHONE"/>
+		<result property="is_owner" column="IS_OWNER"/>
+		<result property="sign_date" column="SIGN_DATE"/>
+		<result property="point" column="POINT"/>
+		<result property="user_photo" column="USER_PHOTO"/>
+		<result property="user_idx" column="USER_IDX"/>
+	</resultMap>
+	
+	<resultMap type="ShopVo" id="ShopResult">
+		<result property="shop_id" column="SHOP_ID"/>
+		<result property="user_email" column="USER_EMAIL"/>
+		<result property="shop_idx" column="SHOP_IDX"/>
+		<result property="shop_title" column="SHOP_TITLE"/>
+		<result property="shop_addr" column="SHOP_ADDR"/>
+		<result property="shop_location" column="SHOP_LOCATION"/>
+		<result property="food_type" column="FOOD_TYPE"/>
+		<result property="shop_tip" column="SHOP_TIP"/>
+		<result property="budget" column="BUDGET"/>
+		<result property="shop_reserve" column="SHOP_RESERVE"/>
+		<result property="shop_comment" column="SHOP_COMMENT"/>
+		<result property="shop_view" column="SHOP_VIEW"/>
+		<result property="shop_score" column="SHOP_SCORE"/>
+		<result property="shop_phone" column="SHOP_PHONE"/>
+		<result property="shop_time" column="SHOP_TIME"/>
+		<result property="shop_addinfo" column="SHOP_ADDINFO"/>
+		<result property="shop_tb" column="SHOP_TB"/>
+		<result property="shop_alcohol" column="SHOP_ALCOHOL"/>
+		<result property="shop_car" column="SHOP_CAR"/>
+		<result property="shop_close" column="SHOP_CLOSE"/>
+		<result property="shop_review" column="SHOP_REVIEW"/>
+		<result property="shop_photo" column="SHOP_PHOTO"/>
+		<result property="hash_tag" column="HASH_TAG"/>
+		<result property="shop_date" column="SHOP_DATE"/>
+		<result property="shop_state" column="SHOP_STATE"/>
+	</resultMap>
+	
+	<resultMap type="ReviewVo" id="ReviewResult">
+		<result property="review_idx" column="REVIEW_IDX"/>
+		<result property="shop_id" column="SHOP_ID"/>
+		<result property="user_email" column="USER_EMAIL"/>
+		<result property="review_score" column="REVIEW_SCORE"/>
+		<result property="review" column="REVIEW"/>
+		<result property="review_photo" column="REVIEW_PHOTO"/>	
+		<result property="review_date" column="REVIEW_DATE"/>	
+		<result property="like_review" column="LIKE_REVIEW"/>	
+		<result property="hate_review" column="HATE_REVIEW"/>	
+		<result property="review_title" column="REVIEW_TITLE"/>	
+	</resultMap>
+	
+ 	<resultMap type="Dibs" id="DibsResult">
+		<result property="shop_id" column="SHOP_ID"/>
+		<result property="user_email" column="USER_EMAIL"/>	
+		<result property="dibs_idx" column="DIBS_IDX"/>	
+	</resultMap>
+	
+ 	<resultMap type="NewsVo" id="NewsResult">
+		<result property="user_email" column="USER_EMAIL"/>	
+		<result property="news_idx" column="NEWS_IDX"/>
+		<result property="news_content" column="NEWS_CONTENT"/>	
+		<result property="news_date" column="NEWS_DATE"/>	
+		<result property="is_admin" column="IS_ADMIN"/>	
+	</resultMap>
+	
+	<resultMap type="Notice" id="NoticeResult">
+		<result property="notice_title" column="NOTICE_TITLE"/>	
+		<result property="notice_date" column="NOTICE_DATE"/>
+		<result property="notice_content" column="NOTICE_CONTENT"/>	
+		<result property="notice_idx" column="NOTICE_IDX"/>	
+		<result property="nt_row" column="NT_ROW"/>	
+	</resultMap>
+	
+	<!-- <resultMap type="VisitVo" id="VisitResult">
+		<result property="visit_idx" column="VISIT_IDX"/>	
+		<result property="visit_ip" column="VISIT_IP"/>
+		<result property="visit_date" column="VISIT_DATE"/>	
+	</resultMap> -->
+	
+	<resultMap type="AdminVo" id="AdminResult">
+		<id property="ShopVo.shop_id" column="SHOP_ID"/>
+		<id property="ShopUser.user_idx" column="USER_IDX"/>			
+		<id property="Reservation.reserve_idx" column="RESERVE_IDX"/>
+		<id property="ReviewVo.review_idx" column="REVIEW_IDX"/>
+		<id property="Dibs.dibs_idx" column="DIBS_IDX"/>			
+		<id property="NewsVo.news_idx" column="NEWS_IDX"/>
+		<id property="NoticeVo.notice_idx" column="NOTICE_IDX"/>	
+		<!-- <id property="ReserveOrder.food_name" column="FOOD_NAME"/> -->			
+		<id property="ReserveOrder.user_email" column="USER_EMAIL"/>
+		<!-- <id property="Visit.visit_idx" column="VISIT_IDX"/> -->
+		<!-- <id property="Reservation.user_email" column="USER_EMAIL"/>	 -->	
+		<!-- <id property="Reservation.shop_id" column="SHOP_ID"/> -->			
+		<collection property="Reservation" resultMap="ReservationResult"></collection>
+		<collection property="ReserveOrder" resultMap="ReserveOrderResult"></collection>		
+		<collection property="ShopVo" resultMap="ShopResult"></collection>
+		<collection property="ShopUser" resultMap="ShopUserResult"></collection>
+		<collection property="ReviewVo" resultMap="ReviewResult"></collection>
+		<collection property="Dibs" resultMap="DibsResult"></collection>
+		<collection property="NewsVo" resultMap="NewsResult"></collection>
+		<collection property="NoticeVo" resultMap="NoticeResult"></collection>
+		<!-- <collection property="VisitVo" resultMap="VisitResult"></collection> -->
+	</resultMap>
+	<!--관리자 음식예약 확인 -->
+	<resultMap type="AdminVo" id="AdminSituInfo">
+		<id property="ReserveOrder.food_name" column="FOOD_NAME"/>
+		<collection property="ReserveOrder" resultMap="ReserveOrderResult"></collection>
+		<collection property="Reservation" resultMap="ReservationResult"></collection>
+	</resultMap>
+	
+	<!-- 관리자 최신리뷰 -->
+	<select id="Areview_list" resultMap="AdminResult">
+		select R.review_idx, R.review, U.user_name, R.review_date
+		from Review R
+		    join ShopUser U
+		    on R.user_email=U.user_email
+		order by R.review_idx DESC
+	</select>
+	<!-- 관리자 회원관리 -->
+	<select id="Amember_list" resultMap="AdminResult">
+		SELECT U.user_idx, U.user_name, u.user_gender, U.user_birth,
+				U.user_phone, U.user_email, U.sign_date, 
+                CASE WHEN U.is_owner = '0' THEN '미가입'
+                    WHEN U.is_owner = '1' THEN '가입'
+                    END AS IS_OWNER,
+                U.POINT
+		FROM ShopUser U
+		order by u.sign_date DESC
+	</select>
+	<!-- 관리자 업체관리1 -->
+	<select id="Acompany_list" resultMap="AdminResult">
+		SELECT S.shop_idx, S.shop_id, U.user_name, U.user_phone, U.user_email, S.shop_title, S.shop_phone,
+	    S.shop_addr, S.shop_date, S.shop_view, S.shop_score, S.shop_time, 
+	    CASE WHEN S.shop_car = '0' THEN '주차불가능'
+	        WHEN S.shop_car = '1' THEN '주차가능'
+	        END AS shop_car
+			FROM shop S
+			    JOIN ShopUser U 
+			    ON U.user_email = S.user_email
+			ORDER BY S.shop_date DESC
+	</select>
+	<!-- 관리자 업체관리2 -->
+	<select id="Acompany2_list" resultMap="AdminResult">
+		SELECT S.shop_id, S.shop_title, U.user_name, U.user_phone, U.sign_date,
+	    CASE WHEN S.shop_state = '0' THEN '신청중'
+	        WHEN S.shop_state = '1' THEN '승인'
+	        WHEN S.shop_state = '2' THEN '반려'
+	        END AS shop_state 
+	        FROM shop S
+	            JOIN ShopUser U
+	            ON U.user_email = S.user_email
+	        ORDER BY S.shop_date DESC
+	</select>
+	<!-- 관리자 예약현황 -->
+	<select id="AresSitu_list" resultMap="AdminResult">
+		SELECT 
+	    CASE WHEN O.is_pay = '0' THEN '미결제'
+	    WHEN O.is_pay = '1' THEN '결제'
+	    END AS is_pay,
+	        r.reserve_idx, r.res_name, S.shop_title,S.shop_id, S.shop_addr,
+	        R.res_date, R.res_customer, O.food_name, o.food_count, O.pay_date
+	                FROM reservation R
+	                    INNER JOIN reserve_order O
+	                    ON r.reserve_idx= o.reserve_idx(+)
+	                    INNER JOIN shop S
+	                    ON R.shop_id = s.shop_id
+	                order by r.reserve_idx DESC
+	</select>
+	<!-- 관리자 예약현황 > 예약확인 정보 -->
+	<select id="AresSitu_info" resultMap="AdminSituInfo" parameterType="int">
+		SELECT O.reserve_idx, O.food_name, O.food_count, O.table_number, R.res_name, R.shop_title
+		FROM reserve_order O
+        JOIN reservation R
+        ON o.reserve_idx = r.reserve_idx
+        WHERE O.reserve_idx = #{numIdx}
+	</select>
+	<!-- 공지사항 -->
+	<select id="Anotice_list" resultMap="AdminResult" >
+		SELECT notice_title, notice_date, notice_content, notice_idx
+		    FROM notice
+		    ORDER BY notice_idx DESC
+	</select>
+	<!-- 공지사항 > 정보 -->
+	<select id="Anotice_list_info" resultMap="AdminResult" parameterType="int">
+		 SELECT notice_title, notice_date, notice_content, notice_idx
+		    FROM notice
+            WHERE notice_idx= #{numIdx}
+	</select>
+	<!-- 공지사항 > 정보 > 수정-->
+	<select id="Anotice_list_modify" resultMap="AdminResult" parameterType="int">
+		SELECT notice_title, notice_date, notice_content, notice_idx
+		FROM notice WHERE notice_idx = #{numIdx}
+	</select>
+
+	<!-- VISIT INSERT -->
+	<!-- <insert id="VisitInsert" parameterType="VisitVo">
+      <![CDATA[
+      INSERT INTO visit(visit_idx, visit_ip, visit_date) 
+      VALUES (SEQ_VISIT_IDX.nextval, #{visit_ip}, SYSDATE)
+      ]]> 
+   </insert> -->
+	</mapper>

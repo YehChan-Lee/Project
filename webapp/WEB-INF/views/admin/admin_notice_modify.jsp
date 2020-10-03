@@ -1,3 +1,5 @@
+<%@page import="com.javaex.model.AdminVo"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
@@ -16,6 +18,9 @@
 
 </head>
 <body>
+	<%
+		List<AdminVo> vo = (List<AdminVo>) request.getAttribute("Anotice_list_modify");
+	%>
 	<h2>
 		<div>
 			<i class="fas fa-tools"></i>
@@ -29,15 +34,15 @@
 				<th>작성자</th>
 				<td>admin</td>
 				<th>작성날짜</th>
-				<td>2020-01-01 13:20</td>
+				<td><%=vo.get(0).getNoticeVo().getNotice_date()%></td>
 			</tr>
 			<tr>
 				<th>제목</th>
-				<td colspan="3"><input type="text" /></td>
+				<td colspan="3"><input type="text" value="<%=vo.get(0).getNoticeVo().getNotice_title()%>"/></td>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td colspan="3"><textarea id="texarea" name="texarea"></textarea>
+				<td colspan="3"><textarea id="texarea" name="texarea" value="<%=vo.get(0).getNoticeVo().getNotice_title()%>"></textarea>
 				</td>
 			</tr>
 		</table>
@@ -73,7 +78,7 @@
 			},
 			fOnAppLoad : function() {
 			//textarea 내용을 에디터상에 바로 뿌려주고자 할때 사용
-			/* oEditors.getById["ir1"].exec("PASTE_HTML", ["ㅎㅇ 시작하자마자 이문구 작성됨."]); */
+			oEditors.getById["texarea"].exec("PASTE_HTML", ["<%=vo.get(0).getNoticeVo().getNotice_content()%>"]);
 			},
 			fCreator : "createSEditor2"
 		});
