@@ -1,9 +1,9 @@
 .registration_form {
-	display: inline-block;
-	position: relative;
-	width: 808px;
-	height: 1700px;
-	margin: 0;
+	    display: inline-block;
+    position: relative;
+    width: 808px;
+    height: 2800px;
+    margin: 0;
 }
 
 .shop_registration {
@@ -814,16 +814,16 @@ clear: both;
     clear: both;
     position: relative;
     float: left;
-    top: 615px;
+    top: 749px;
     color: #444;
     left: 174px;
 
 }
 
 .shop_photo {
-   position: relative;
+     position: relative;
     float: left;
-    top: 656px;
+    top: 792px;
     left: 85px;
 }
 
@@ -832,15 +832,25 @@ clear: both;
     float: left;
     width: 400px;
     height: 200px;
-    top: 679px;
-    left: -117px;
+    top: 846px;
+    left: -227px;
+    border: 1px solid;
+}
+#subimage_container {
+	    position: relative;
+    float: left;
+    width: 400px;
+    height: 200px;
+    top: 959px;
+    left: 53px;
+    border: 1px solid;
 }
 
 .buisness_submit {
-clear: both;
+    clear: both;
     position: relative;
     float: right;
-    top: 754px;
+    top: 1140px;
     left: -5px;
     width: 100px;
     height: 50px;
@@ -852,16 +862,16 @@ clear: both;
     line-height: 45px;
 }
 .shop_menu {
-    clear: both;
+     clear: both;
     position: relative;
     float: left;
-    top: 1952px;
+    top: 2072px;
     color: #444;
     left: 259px;
 }
 #menu_add {
-	    position: relative !important;
-    top: 246px;
+      position: relative !important;
+    top: -680px;
     left: -149px;
 }
 .food_name_div {
@@ -916,9 +926,37 @@ position: relative;
     width: 58px;
     height: 31px;
 }
-.menu_delete_div {
-	
+.hash_tag_span {
+	    clear: both;
+    position: relative;
+    float: left;
+    font-size: 16px;
+    color: #444;
+    top: 556px;
+    left: 174px;
 }
-#table2 {
-	
+.hash_tag {
+	    clear: both;
+    position: relative;
+    float: left;
+    width: 460px;
+    height: 30px;
+    border-radius: 10px;
+    border: 1px solid #BCBCBC;
+    top: 561px;
+    left: 172px;
+}
+.shop_subphoto_span {
+	clear: both;
+    position: relative;
+    float: left;
+    font-size: 16px;
+    color: #444;
+    top: 875px;
+    left: 172px;
+}
+.shop_subphoto {
+	    position: relative;
+    top: 1594px;
+    left: -308px;
 }

@@ -28,7 +28,7 @@
 	%>
 
 
-	<form action="buisness_update" method="post" class="registration_form">
+	<form action="buisness_update" method="post" class="registration_form" enctype="multipart/form-data">
 		<span class="shop_name_span">가게 이름</span> <input type="text"
 			class="shop_title" name="shop_title"
 			value="<%=shoplist.getShop_title()%>"> <span
@@ -207,18 +207,30 @@
 				value="24시간 영업을 하는"><span class="shop_addinfo_label12">24시간
 				영업을 하는</span>
 		</div>
+		
+		<span class="hash_tag_span">해쉬태그</span>
+		<input type="text" class="hash_tag" id="hash_tag" name="hash_tag" placeholder="#맛있는#혼밥(,를 붙이지 말고 나열해주세요)">
 
 		<span class="shop_photo_span">가게 이미지</span> <input type="file"
 			class="shop_photo" id="image" name="shop_photo" value="shop_photo"
 			accept="image/gif,image/jpeg,image/png"
-			onchange="setThumbnail(event)" multiple="multiple" />
+			/>
 
 		<div id="image_container"></div>
+		
+		<span class="shop_subphoto_span">가게 서브 이미지</span>
+		<input type="file"
+			class="shop_subphoto" id="image2" name="shop_subphoto"
+			accept="image/gif,image/jpeg,image/png" multiple="multiple"
+			/>
 
+		<div id="subimage_container"></div>
 
 		<!-- <input type="submit" class="buisness_submit" value="수정"> -->
-		<a href="javascript:%20modify()" class="buisness_submit">수정</a>
-	</form>
+		<!-- <a href="javascript:%20modify()" class="buisness_submit">수정</a> -->
+		<input type="submit" class="buisness_submit" value="수정">
+		
+	 </form> 
 	<span class="shop_menu">메뉴추가</span>
 	<button type="button" class="btn btn-primary" id="menu_add"
 		data-toggle="modal" data-target="#myModal">메뉴 추가</button>
@@ -262,17 +274,16 @@
 								<th></th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="my-tbody">
 							<%
 								for (int i = 0; i < menulist.size(); i++) {
 							%>
 
 							<tr class="menu_list_hover">
-								<td name="food_name"><%=menulist.get(i).getFood_name()%></td>
-								<td name="food_price"><%=menulist.get(i).getFood_price()%></td>
-								<td name="food_info"><%=menulist.get(i).getFood_info()%></td>
-								<td><button class="menu_delete_button"
-										onclick="menu_delete()">삭제</button></td>
+								<td id="food_name"><%=menulist.get(i).getFood_name()%></td>
+								<td id="food_price"><%=menulist.get(i).getFood_price()%></td>
+								<td id="food_info"><%=menulist.get(i).getFood_info()%></td>
+								<td><button class="menu_delete_button">삭제</button></td>
 							</tr>
 							<%
 								}
@@ -292,19 +303,19 @@
 
 	<script> 
 	
-function menu_delete() {
+/* function menu_delete() {
+	alert($("#food_name").text());
 	$.ajax({
 		type : "POST",
 		url : "menu_delete",
 		data : {
-			pwsearch_email : $(".pwsearch_name").val(),
-			repassword :  $(".repassword").val(),
-			repassword2 : $(".repassword2").val()
+				food_name : $("#food_name").val(),
+				food_price :  $("#food_price").val(),
+				food_info : $("#food_info").val()
 		},
 		success : function(data) {
 			if (data == "success") {
-				alert("변경완료");
-				window.location.reload()
+				
 			} else if (data == "fail") {
 				alert("두 비밀번호가 일치하지 않습니다")
 				$(".repassword").val("");
@@ -314,78 +325,137 @@ function menu_delete() {
 		error : function() {
 		}
 	});
-}
+} */
 	
-	 	/* $('.menu_list_hover').hover(function () {
-			var tag = "<button class='menu_delete_button'>삭제</button>";
-			$(this).find(':nth-child(4)').append(tag);
-		}, function() {
-			$('.menu_delete_button').remove();
-		}) */
-		
-		
-			/* var food_name2 = $(this).parent().children().eq(0).text();
-			if(confirm("음식이름 : "+food_name2+"을 삭제하시겠습니까")) {
-				$(location).attr("href","/foodDelete?food_name=" + food_name2);
-			} */
-			
-		
-		
-		//$('.menu_list_hover').mouseleave(function () {
-		//	$('.menu_delete_button').css('display', 'none');
-		//}) 
 	
-		
-		
 	
 
-	$('.food_add_submit').click(function (e) {
-		e.preventDefault();
-		var action = $('.menu_insert_form').attr("action");;
-		
-		var form_data = {
-				food_name : $(".food_name").val(),
-				food_price :  $(".food_price").val(),
-				food_info : $(".food_info").val(),
-				shop_id : "${shopOwnerList.shop_id}"
-		}
+$(document).on("click",".buisness_submit", function() {
 	
-		$.ajax({
-			type : "POST",
-			url : action,
-			data : form_data,
-			success : function(data) {
-				if (data == "success") {
-					alert("추가 완료");
-					
-				} else if (data == "fail") {
-					alert("음식이름을 입력해주세요");
-				} else if (data == "fail2") {
-					alert("가격을 입력해주세요");
-				} else if (data == "fail3") {
-					alert("음식 설명을 입력해주세요")
-				}
-			}		
-		});
-		
+	if( $(".shop_phone").val() == "") {
+		alert('공백값이 존재 할 수 없습니다.')
+	}
+	
+	$.ajax({
+		type : "POST",
+		url : "buisness_update",
+		data : {
+			shop_title : $(".shop_title").val(),
+			shop_addr : $(".shop_addr").val(),
+			shop_location : $(".shop_location").val(),
+			shop_id : $(".shop_id").val(),
+			food_type : $(".food_type").val(),
+			budget : $(".budget").val(),
+			shop_tip : $(".shop_tip").val(),
+			shop_comment : $(".shop_comment").val(),
+			shop_phone : $(".shop_phone").val(),
+			shop_time : $(".shop_time").val(),
+			shop_addinfo : $(".shop_addinfo").val(),
+			shop_tb : $(".shop_tb").val(),
+			shop_alcohol : $(".shop_alcohol").val(),
+			shop_car : $(".shop_car").val(),
+			shop_close : $(".shop_close").val(),
+			hash_tag : $(".hash_tag").val(),
+			shop_photo : $(".shop_photo").val(),
+			shop_subphoto : $(".shop_subphoto").val() 
+		},
+		success : function(data) {
+			if (data == "a") {
+				alert("수정완료")
+			} else if (data == "fail") {
+				alert("수정실패")
+			}
+		},
+		error : function() {
+		}
 	});
 	
+});
 
+$(document).on("click",".menu_delete_button", function(){
+	console.log("삭제")
+	var food =  $(this).parent().parent().children().eq(0).text();
+     if(confirm("음식이름 : "+food+"을 삭제하시겠습니까?")){
+    	$.ajax({
+    		type : "POST",
+    		url : "menu_delete",
+    		data : {
+    				food_name : $(this).parent().parent().children().eq(0).text(),
+    				food_price :  $(this).parent().parent().children().eq(1).text(),
+    				food_info : $(this).parent().parent().children().eq(2).text(),
+    				shop_id : "${shopOwnerList.shop_id}"
+    		},
+    		success : function(data) {
+    			if (data == "success") {
+    				
+    			} else if (data == "fail") {
+    				
+    			}
+    		},
+    		error : function() {
+    		}
+    	});
+    	
+    	var eventTarget = document.getElementsByClassName('menu_delete_button');
+    	for (var i=0; i<eventTarget.length; i++) {
+    		
+    			var parent = document.querySelector('#table2 tbody')
+    			parent.removeChild(this.parentElement.parentElement)
+    			i--
+    			
+    	}
+    } 
+});
+
+$(document).on("click",".food_add_submit" ,function () {
+
+	var action = $('.menu_insert_form').attr("action");;
 	
+	var form_data = {
+			food_name : $(".food_name").val(),
+			food_price :  $(".food_price").val(),
+			food_info : $(".food_info").val(),
+			shop_id : "${shopOwnerList.shop_id}"
+	}
+
+	$.ajax({
+		type : "POST",
+		url : action,
+		data : form_data,
+		success : function(data) {
+			if (data == "success") {
+				alert("추가 완료");		 
+				var my_tbody = document.getElementById('my-tbody');
+				var row = my_tbody.insertRow(my_tbody.rows.length);
+				var cell1 = row.insertCell(0);
+				var cell2 = row.insertCell(1);
+				var cell3 = row.insertCell(2);
+				var cell4 = row.insertCell(3);
+				cell1.innerHTML = $(".food_name").val();
+				cell2.innerHTML = $(".food_price").val();
+				cell3.innerHTML = $(".food_info").val();
+				cell4.innerHTML ="<td><button class='menu_delete_button'>삭제</button></td>"; 
+				//$(".menu_list_hover").load(window.location.href + ".menu_list_hover");
+			} else if (data == "fail") {
+				alert("음식이름을 입력해주세요");
+			} else if (data == "fail2") {
+				alert("가격을 입력해주세요");
+			} else if (data == "fail3") {
+				alert("음식 설명을 입력해주세요")
+			}
+		}		
+	});
 	
+})	
 
-$(".food_name_div").click(function () {
-	console.log("a")
-})
-
-function setThumbnail(event) { 
+/* function setThumbnail(event) { 
 	for (var image of event.target.files) { 
 		var reader = new FileReader(); 
 		reader.onload = function(event) { 
 			var img = document.createElement("img"); 
 			img.setAttribute("src", event.target.result); 
-			img.width ="100";
-			img.height ="100";
+			img.width ="400";
+			img.height ="200";
 			
 			document.querySelector("div#image_container").appendChild(img); 
 		}; 
@@ -394,6 +464,22 @@ function setThumbnail(event) {
 	}
 	
 } 
+function setThumbnail2(event) { 
+	for (var image of event.target.files) { 
+		var reader = new FileReader(); 
+		reader.onload = function(event) { 
+			var img = document.createElement("img"); 
+			img.setAttribute("src", event.target.result); 
+			img.width ="200";
+			img.height ="200";
+			document.querySelector("div#subimage_container").appendChild(img); 
+			}; 
+			console.log(image); 
+			reader.readAsDataURL(image); 
+		}
+				
+	} 	 */		
+			
 
 function modify() {
 	$(".registration_form").submit();
