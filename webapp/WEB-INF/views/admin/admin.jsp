@@ -8,7 +8,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>밥풀 - AdminPage</title>
 <link rel="stylesheet"
 	href="<c:url value='${path}/res/css/admin/admin.css'/>">
 <script src="http://code.jquery.com/jquery.js"></script>

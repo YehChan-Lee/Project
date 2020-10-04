@@ -4,8 +4,13 @@
 <mapper namespace="VisitVo">
    
    <insert id="VisitInsert" parameterType="string">
+   <![CDATA[
       INSERT INTO visit(visit_idx, visit_ip, visit_date) 
       VALUES(SEQ_VISIT_IDX.NEXTVAL, #{visit_ip}, SYSDATE)
+   ]]>
    </insert>
    
+   <select id="reVisi" parameterType="string" resultType="VisitVo">
+   		SELECT visit_ip FROM visit WHERE visit_ip = #{visit_ip}
+   </select>
 </mapper>
