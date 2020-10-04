@@ -1,8 +1,8 @@
 package com.javaex.model;
 
 public class AdminVo {
-	private String admin_id;	// 관리자 아이디		NOT NULL
-	private String admin_pw;	// 관리자 비밀번호	NOT NULL
+	private String admin_id; // 관리자 아이디 NOT NULL
+	private String admin_pw; // 관리자 비밀번호 NOT NULL
 	private ReservationVo Reservation;
 	private ShopVo ShopVo;
 	private ShopUserVo ShopUser;
@@ -12,14 +12,14 @@ public class AdminVo {
 	private NewsVo NewsVo;
 	private ReserveOrderVo ReserveOrder;
 	private NoticeVo NoticeVo;
-	private VisitVo VisitVo;
-	
-	public AdminVo() {}
+//	private VisitVo VisitVo;
+
+	public AdminVo() {
+	}
 
 	public AdminVo(String admin_id, String admin_pw, ReservationVo reservation, com.javaex.model.ShopVo shopVo,
 			ShopUserVo shopUser, com.javaex.model.ReviewVo reviewVo, MenuVo menu, ShopDibsVo dibs,
-			com.javaex.model.NewsVo newsVo, ReserveOrderVo reserveOrder, com.javaex.model.NoticeVo noticeVo,
-			com.javaex.model.VisitVo visitVo) {
+			com.javaex.model.NewsVo newsVo, ReserveOrderVo reserveOrder, com.javaex.model.NoticeVo noticeVo) {
 		this.admin_id = admin_id;
 		this.admin_pw = admin_pw;
 		Reservation = reservation;
@@ -31,7 +31,6 @@ public class AdminVo {
 		NewsVo = newsVo;
 		ReserveOrder = reserveOrder;
 		NoticeVo = noticeVo;
-		VisitVo = visitVo;
 	}
 
 	public String getAdmin_id() {
@@ -122,21 +121,13 @@ public class AdminVo {
 		NoticeVo = noticeVo;
 	}
 
-	public VisitVo getVisitVo() {
-		return VisitVo;
-	}
-
-	public void setVisitVo(VisitVo visitVo) {
-		VisitVo = visitVo;
-	}
-
 	@Override
 	public String toString() {
 		return "AdminVo [admin_id=" + admin_id + ", admin_pw=" + admin_pw + ", Reservation=" + Reservation + ", ShopVo="
 				+ ShopVo + ", ShopUser=" + ShopUser + ", ReviewVo=" + ReviewVo + ", menu=" + menu + ", Dibs=" + Dibs
-				+ ", NewsVo=" + NewsVo + ", ReserveOrder=" + ReserveOrder + ", NoticeVo=" + NoticeVo + ", VisitVo="
-				+ VisitVo + "]";
+				+ ", NewsVo=" + NewsVo + ", ReserveOrder=" + ReserveOrder + ", NoticeVo=" + NoticeVo + "]";
 	}
 
+	
 	
 }

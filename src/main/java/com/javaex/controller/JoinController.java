@@ -1,5 +1,6 @@
 package com.javaex.controller;
 
+
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.javaex.model.AllDao;
@@ -16,6 +19,7 @@ import com.javaex.model.ReservationDao;
 import com.javaex.model.ReviewDao;
 import com.javaex.model.ShopDao;
 import com.javaex.model.ShopUserDao;
+import com.javaex.model.VisitDao;
 
 @Controller
 public class JoinController {
@@ -34,11 +38,25 @@ public class JoinController {
 
 	@Autowired
 	ReviewDao reviewdao;
+	
+	@Autowired
+	private VisitDao visitDao;
 
 	// 메인페이지 실시간 리뷰 리스트 Get
 	@RequestMapping("/main")
-	public ModelAndView main(ModelAndView mav) {
+	public ModelAndView main(ModelAndView mav, String v) {
 		System.out.println("/BabPool/main");
+		HttpServletRequest req = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
+		String custIP = req.getRemoteAddr();
+		
+		visitDao.reVisi(custIP);
+		/*System.out.println(visitDao.reVisi(custIP));
+		System.out.println(visitDao.reVisi(custIP).size());*/
+		if(visitDao.reVisi(custIP).size() == 0) {
+			visitDao.insertVisit(custIP);			
+		} else {
+			System.out.println("IP 중복 >> " + custIP + "("+visitDao.reVisi(custIP).size()+")");
+		}
 		mav.addObject("reviewList", alldao.getReview());
 		mav.setViewName("main");
 		return mav;

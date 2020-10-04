@@ -1,5 +1,10 @@
 package com.javaex.model;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,11 +20,13 @@ public class VisitDao {
 	public VisitDao(SqlSession sqlsession) {
 		this.sqlSession = sqlsession;
 	}
-	
-	public void insertVisit(String visitIp) {
-		System.out.println(visitIp);
-		System.out.println("SqlSession ===> " + sqlSession);
+	// 방문 IP Insert
+	public void insertVisit(String visitIp) {	
 		sqlSession.insert("VisitVo.VisitInsert", visitIp);
+	}
+	// 방문 IP 필터링(중복체크)
+	public List<VisitVo> reVisi(String custIP) {
+		return sqlSession.selectList("VisitVo.reVisi", custIP);
 	}
 }
 /*package com.javaex.model;

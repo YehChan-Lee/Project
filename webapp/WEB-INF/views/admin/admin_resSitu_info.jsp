@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>예약 현황</title>
 <link rel="stylesheet"
 	href="<c:url value='${path}/res/css/admin/resSitu_info.css'/>">
 <script src="http://code.jquery.com/jquery.js"></script>
