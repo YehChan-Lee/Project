@@ -75,4 +75,11 @@ public class ShopUserDao {
 		System.out.println("오류테스트 :" + map);
 		sqlSession.update("ShopUserVo.reviewCntUpload", map);
 	}
+
+	public void profileUpdate(String fileName,String user_email) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("fileName", fileName);
+		map.put("user_email", user_email);
+		sqlSession.update("ShopUserVo.profileUpdate",map);		
+	}
 }

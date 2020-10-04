@@ -72,6 +72,9 @@
 				<p>2번 테이블</p>
 				<div id="food_list2">
 					<ul>
+					<c:forEach items="${table2}" var="menu">
+						<li>${menu.food_name}/${menu.food_count}</li>
+					</c:forEach>
 					</ul>
 				</div>
 			</div>
@@ -108,18 +111,61 @@
 </body>
 <script>
 $(document).ready(function () {
-	$(".table").click(function (e) {		
+	$(".table").click(function (e) {
 		$(".table").removeClass('selected');
 		$(this).toggleClass('selected');
 		$("#add").click(()=> {			
-			/* $(this).children("ul").html("<li>" +$(".menu.menuselected > :nth-child(2)").val()+"</li>"); */
-			$(this).children("div").children("ul").append("<li>" +$(".menu.menuselected > :nth-child(2)").val()+"</li>");
+			$(this).children("div").children("ul").append("<li>" +$(".menu.menuselected > :nth-child(2)").val()+"/"+$("#cnt").val()+"</li>");
+			/* total += $(".menu.menuselected > :nth-child(4)").val() * $("#cnt").val(); */
+			$.ajax({
+				type : "POST",
+				url : "pos/addmenu",
+				data : {
+					food_name : $('.menu.menuselected > :nth-child(4)').val(),
+					food_cnt : $("#cnt").val()
+				},
+				success : function(data) {
+					if (data == "success") {
+						window.location.reload()
+					} else if (data == "fail") {
+						alert("실패")
+					}
+				},
+				error : function() {
+				}
+			});
 		})
 	});
+	$("#payment").click(function () {
+		alert(total);
+	})
 	$(".menu").click(function (e) {
 		$(".menu").removeClass('menuselected');
 		$(this).toggleClass('menuselected');
 	})
+	/* 예약이 들어오면 알림 */
+	setInterval(function(){
+		$.ajax({
+			type : "POST",
+			url : "pos/alert",
+			data : {
+				reserve_cnt : "${reserveCnt}",
+				menu_cnt : "${table2Cnt}"
+				},
+			success : function(data) {
+				if (data == "deferent") {
+					alert("새로운 예약이 있습니다.");
+					window.location.reload();
+				}else if(data == "menudeferent"){
+					alert("새로운 주문이 있습니다.");
+					window.location.reload();
+				}else if(data == "payment"){
+					alert("2번 테이블 결제완료");
+					window.location.reload();
+				}
+			}
+		});
+  	},5000) 
 })
 	
 </script>

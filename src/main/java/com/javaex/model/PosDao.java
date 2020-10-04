@@ -1,7 +1,5 @@
 package com.javaex.model;
 
-
-
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,9 +23,12 @@ public class PosDao {
 	}
 	public List<HashMap<String, String>> getReserveList(String ShopId){
 		List<HashMap<String, String>> list = sqlsession.selectList("All.pos_reserveList",ShopId);
-		for(int i=0;i<list.size();i++) {
-			System.out.println(list.get(i));
-		}
 		return list;
+	}
+	public List<ReserveOrderVo> getTableInfo(String shopId, int i) {
+		HashMap<String,Object> map = new HashMap<String, Object>();
+		map.put("shopId", shopId);
+		map.put("tableNum", i);
+		return sqlsession.selectList("ReserveOrder.getTableInfo",map);
 	}
 }

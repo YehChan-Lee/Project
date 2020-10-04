@@ -66,7 +66,7 @@ public class ListController {
 	
 
 	@RequestMapping("/review_upload")
-	public void test(ModelAndView mav, MultipartHttpServletRequest req, HttpServletResponse res, HttpSession session)
+	public void test(MultipartHttpServletRequest req, HttpServletResponse res, HttpSession session)
 			throws IOException {
 		System.out.println("/BabPool/review_upload");
 		String user_email = (String) session.getAttribute("sessionID");
@@ -233,6 +233,7 @@ public class ListController {
 				response.getWriter().write("success");
 				session.setAttribute("is_owner", user.getIs_owner());
 				session.setAttribute("sessionID", user_email);
+				session.setAttribute("user_photo", user.getUser_photo());
 				if (user.getRecent_shop() != null) {
 					ShopVo recent_shopList = dao.getAll_shopIdx(user.getRecent_shop());
 					session.setAttribute("shop_title", recent_shopList.getShop_title());

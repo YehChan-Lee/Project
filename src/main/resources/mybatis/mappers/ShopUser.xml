@@ -97,4 +97,10 @@
 		DELETE ShopUser WHERE user_email=#{user_email}
 		]]>	
 	</delete>
+	<!-- 프로필사진 업데이트 -->
+	<update id="profileUpdate" parameterType="hashMap">
+		UPDATE ShopUser set
+		user_photo=#{fileName}
+		WHERE user_email=#{user_email}
+	</update>
 </mapper>
