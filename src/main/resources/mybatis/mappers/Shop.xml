@@ -164,7 +164,7 @@
 						shop_tip=#{shop_tip}, budget=#{budget}, shop_comment=#{shop_comment},
 						shop_phone=#{shop_phone}, shop_time=#{shop_time},
 						shop_addinfo=#{shop_addinfo}, shop_tb=#{shop_tb}, shop_alcohol=#{shop_alcohol},
-						shop_car=#{shop_car}, shop_close=#{shop_close}
+						shop_car=#{shop_car}, shop_close=#{shop_close},shop_photo=#{shop_photo}, hash_tag=#{hash_tag},shop_subphoto=#{shop_subphoto}
 		WHERE shop_id=#{shop_id}
 		]]>
 	</update>

@@ -39,7 +39,7 @@
 	<!-- container -->
 	<div id="container">
 		<%
-			ShopVo shopvo = (ShopVo) request.getAttribute("shopOne");
+		ShopVo shopvo = (ShopVo) request.getAttribute("shopOne");
 		pageContext.setAttribute("id", session.getAttribute("sessionID"));
 		pageContext.setAttribute("star", shopvo.getShop_score());
 		pageContext.setAttribute("shopidx", shopvo.getShop_idx());
@@ -51,7 +51,14 @@
 			<div id="banner" class="restaurant_detail">
 				<div class="i_wrap background">
 					<div class="film"></div>
-					<img src="<c:url value='${path}/res/image/walkerhill.jpg'/>" alt="">
+					 <%-- <img src="<c:url value='${path}/res/image/walkerhill.jpg'/>" alt=""> --%>
+					 	<c:forTokens items="${shop.shopVo.shop_photo}" var="img"
+				delims="/" varStatus="i">
+				<a href="<c:url value='${path}/serverImg/shopimg/${img}'/>">
+				<img src="<c:url value='${path}/serverImg/shopimg/${img}'/>"
+					></a>
+			</c:forTokens>
+			
 				</div>
 				<div class="inner_wrap">
 					<div class="inner">
@@ -173,6 +180,7 @@
 								<div class="modal-body" id="modal-body">
 									<form action="reservation" method="post" class="a">
 										<div class="shop_title_detail_div">가게 이름</div>
+										<input type="text" class="shop_id_none" name="shop_id" value="<%=shopvo.getShop_id()%>">
 										<input type="text" class="shop_title_detail" name="shop_title"
 											value="<%=shopvo.getShop_title()%>" readonly="readonly">
 										<div class="res_date_detail_div">예약 날짜</div>
@@ -541,14 +549,14 @@
 
                  //지도관련 끝
         
-             $('.reservation_submit').click(function(e) {
-     			e.preventDefault();
+             $('.reservation_submit').click(function() {
+     		
      			var action = $('.a').attr("action");  
      			$.ajax({
      				type : "POST",
      				url : action,
      				data : {
-     					shop_id : "${shopOne.shop_id}",
+     					shop_id : $(".shop_id_none").val(),
      					res_customer : $(".res_customer_detail").val(),
      					shop_title : $(".shop_title_detail").val(),
      					rev_phone : $(".rev_phone").val(),

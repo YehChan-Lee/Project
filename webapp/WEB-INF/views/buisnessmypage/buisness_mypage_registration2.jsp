@@ -28,7 +28,7 @@
 	%>
 
 
-	<form action="buisness_update" method="post" class="registration_form">
+	<form action="buisness_update" method="post" class="registration_form" enctype="multipart/form-data">
 		<span class="shop_name_span">가게 이름</span> <input type="text"
 			class="shop_title" name="shop_title"
 			value="<%=shoplist.getShop_title()%>"> <span
@@ -207,18 +207,30 @@
 				value="24시간 영업을 하는"><span class="shop_addinfo_label12">24시간
 				영업을 하는</span>
 		</div>
+		
+		<span class="hash_tag_span">해쉬태그</span>
+		<input type="text" class="hash_tag" id="hash_tag" name="hash_tag" placeholder="#맛있는#혼밥(,를 붙이지 말고 나열해주세요)">
 
 		<span class="shop_photo_span">가게 이미지</span> <input type="file"
 			class="shop_photo" id="image" name="shop_photo" value="shop_photo"
 			accept="image/gif,image/jpeg,image/png"
-			onchange="setThumbnail(event)" multiple="multiple" />
+			/>
 
 		<div id="image_container"></div>
+		
+		<span class="shop_subphoto_span">가게 서브 이미지</span>
+		<input type="file"
+			class="shop_subphoto" id="image2" name="shop_subphoto"
+			accept="image/gif,image/jpeg,image/png" multiple="multiple"
+			/>
 
+		<div id="subimage_container"></div>
 
 		<!-- <input type="submit" class="buisness_submit" value="수정"> -->
-		<a href="javascript:%20modify()" class="buisness_submit">수정</a>
-	</form>
+		<!-- <a href="javascript:%20modify()" class="buisness_submit">수정</a> -->
+		<input type="submit" class="buisness_submit" value="수정">
+		
+	 </form> 
 	<span class="shop_menu">메뉴추가</span>
 	<button type="button" class="btn btn-primary" id="menu_add"
 		data-toggle="modal" data-target="#myModal">메뉴 추가</button>
@@ -314,9 +326,52 @@
 		}
 	});
 } */
-
-
 	
+	
+	
+
+$(document).on("click",".buisness_submit", function() {
+	
+	if( $(".shop_phone").val() == "") {
+		alert('공백값이 존재 할 수 없습니다.')
+	}
+	
+	$.ajax({
+		type : "POST",
+		url : "buisness_update",
+		data : {
+			shop_title : $(".shop_title").val(),
+			shop_addr : $(".shop_addr").val(),
+			shop_location : $(".shop_location").val(),
+			shop_id : $(".shop_id").val(),
+			food_type : $(".food_type").val(),
+			budget : $(".budget").val(),
+			shop_tip : $(".shop_tip").val(),
+			shop_comment : $(".shop_comment").val(),
+			shop_phone : $(".shop_phone").val(),
+			shop_time : $(".shop_time").val(),
+			shop_addinfo : $(".shop_addinfo").val(),
+			shop_tb : $(".shop_tb").val(),
+			shop_alcohol : $(".shop_alcohol").val(),
+			shop_car : $(".shop_car").val(),
+			shop_close : $(".shop_close").val(),
+			hash_tag : $(".hash_tag").val(),
+			shop_photo : $(".shop_photo").val(),
+			shop_subphoto : $(".shop_subphoto").val() 
+		},
+		success : function(data) {
+			if (data == "a") {
+				alert("수정완료")
+			} else if (data == "fail") {
+				alert("수정실패")
+			}
+		},
+		error : function() {
+		}
+	});
+	
+});
+
 $(document).on("click",".menu_delete_button", function(){
 	console.log("삭제")
 	var food =  $(this).parent().parent().children().eq(0).text();
@@ -351,29 +406,6 @@ $(document).on("click",".menu_delete_button", function(){
     	}
     } 
 });
-
-	 	/* $('.menu_list_hover').hover(function () {
-			var tag = "<button class='menu_delete_button'>삭제</button>";
-			$(this).find(':nth-child(4)').append(tag);
-		}, function() {
-			$('.menu_delete_button').remove();
-		}) */
-		
-		
-			/* var food_name2 = $(this).parent().children().eq(0).text();
-			if(confirm("음식이름 : "+food_name2+"을 삭제하시겠습니까")) {
-				$(location).attr("href","/foodDelete?food_name=" + food_name2);
-			} */
-			
-		
-		
-		//$('.menu_list_hover').mouseleave(function () {
-		//	$('.menu_delete_button').css('display', 'none');
-		//}) 
-	
-		
-		
-	
 
 $(document).on("click",".food_add_submit" ,function () {
 
@@ -416,21 +448,14 @@ $(document).on("click",".food_add_submit" ,function () {
 	
 })	
 
-	
-	
-
-$(".food_name_div").click(function () {
-	console.log("a")
-})
-
-function setThumbnail(event) { 
+/* function setThumbnail(event) { 
 	for (var image of event.target.files) { 
 		var reader = new FileReader(); 
 		reader.onload = function(event) { 
 			var img = document.createElement("img"); 
 			img.setAttribute("src", event.target.result); 
-			img.width ="100";
-			img.height ="100";
+			img.width ="400";
+			img.height ="200";
 			
 			document.querySelector("div#image_container").appendChild(img); 
 		}; 
@@ -439,6 +464,22 @@ function setThumbnail(event) {
 	}
 	
 } 
+function setThumbnail2(event) { 
+	for (var image of event.target.files) { 
+		var reader = new FileReader(); 
+		reader.onload = function(event) { 
+			var img = document.createElement("img"); 
+			img.setAttribute("src", event.target.result); 
+			img.width ="200";
+			img.height ="200";
+			document.querySelector("div#subimage_container").appendChild(img); 
+			}; 
+			console.log(image); 
+			reader.readAsDataURL(image); 
+		}
+				
+	} 	 */		
+			
 
 function modify() {
 	$(".registration_form").submit();

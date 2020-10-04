@@ -26,7 +26,12 @@ public class ShopVo {
 	private String shop_close;		// 휴무일					NULL
 	private String shop_photo;		// 가게 사진				NULL
 	private String shop_review;	
+	private String hash_tag;
+	private String shop_subphoto;
+
 	
+
+
 	public ShopVo() {}
 
 	public ShopVo(String shop_id, String user_email, int shop_idx, String shop_title, String shop_addr,
@@ -60,11 +65,11 @@ public class ShopVo {
 	
 	public ShopVo(String shop_title,String shop_id, String shop_addr, String shop_location, String food_type, String shop_tip,
 			String budget, String shop_comment, String shop_phone, String[] shop_time, String shop_addinfo,
-			String shop_tb, String shop_alcohol, String shop_car, String shop_close,String shop_photo) {
+			String shop_tb, String shop_alcohol, String shop_car, String shop_close,String shop_photo, String hash_tag, String shop_subphoto) {
 		this.shop_title = shop_title;
+		this.shop_id = shop_id;
 		this.shop_addr = shop_addr;
 		this.shop_location = shop_location;
-		this.shop_id = shop_id;
 		this.food_type = food_type;
 		this.shop_tip = shop_tip;
 		this.budget = budget;
@@ -77,7 +82,11 @@ public class ShopVo {
 		this.shop_car = shop_car;
 		this.shop_close = shop_close;
 		this.shop_photo = shop_photo;
+		this.hash_tag = hash_tag;
+		this.shop_subphoto = shop_subphoto;
 	}
+	
+	
 
 	public String getShop_id() {
 		return shop_id;
@@ -119,6 +128,13 @@ public class ShopVo {
 		this.shop_addr = shop_addr;
 	}
 
+	public String getHash_tag() {
+		return hash_tag;
+	}
+
+	public void setHash_tag(String hash_tag) {
+		this.hash_tag = hash_tag;
+	}
 	public String getShop_location() {
 		return shop_location;
 	}
@@ -252,6 +268,16 @@ public class ShopVo {
 
 	public void setShop_review(String shop_review) {
 		this.shop_review = shop_review;
+	}
+	
+	
+
+	public String getShop_subphoto() {
+		return shop_subphoto;
+	}
+
+	public void setShop_subphoto(String shop_subphoto) {
+		this.shop_subphoto = shop_subphoto;
 	}
 
 	@Override

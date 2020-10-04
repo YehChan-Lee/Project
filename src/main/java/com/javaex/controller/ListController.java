@@ -15,6 +15,7 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -315,15 +316,16 @@ public class ListController {
 	}
 
 	@RequestMapping("/detail/menu.do")
-	public ModelAndView detail_menu(ModelAndView mav, HttpServletRequest req) {
+	public ModelAndView detail_menu(ModelAndView mav,HttpServletResponse response, HttpServletRequest req) {
 		String shopId = req.getParameter("shopId");
 		mav.addObject("shopMenu", dao.getMenu(shopId));
 		mav.setViewName("detail/detail_menu");
 		return mav;
 	}
 
+	
 	@RequestMapping("/buisness_update")
-	public ModelAndView buisnessmypage_update(ModelAndView mav, HttpServletRequest req) {
+	public void buisnessmypage_update(HttpServletResponse response , MultipartHttpServletRequest req) throws IOException {
 		String shop_title = req.getParameter("shop_title");
 		String shop_addr = req.getParameter("shop_addr");
 		String shop_location = req.getParameter("shop_location");
@@ -342,8 +344,74 @@ public class ListController {
 		String shop_alcohol = "";
 		String shop_car = req.getParameter("shop_car");
 		String shop_close = req.getParameter("shop_close");
-		String shop_photo = null;
+		String hash_tag = req.getParameter("hash_tag");
 		String comma = "";
+		
+		
+		
+		List<MultipartFile> fileList = req.getFiles("shop_photo");
+		List<MultipartFile> fileList2 = req.getFiles("shop_subphoto");
+		
+		String folder = "shopsubimg\\";
+		String folder2 = "shopimg\\";
+		String path = "";
+		String fileName = "";
+		String path2 = "";
+		
+		for (MultipartFile mf : fileList2) {
+			String originFileName = mf.getOriginalFilename();
+			fileName = "shopsubimg" + shop_id + originFileName;
+			String safeFile = url + folder + fileName;
+			
+			try {
+				File file = new File(url);
+				if (!file.exists()) {
+					try {
+						file.mkdir(); // 폴더 생성합니다.
+						System.out.println("폴더가 생성되었습니다.");
+						mf.transferTo(new File(safeFile));
+					} catch (Exception e) {
+						e.getStackTrace();
+					}
+				} else {
+					mf.transferTo(new File(safeFile));
+				}
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			path2 += fileName + "/";
+			
+		}
+		
+		
+		for (MultipartFile mf : fileList) {
+			String originFileName = mf.getOriginalFilename();
+			fileName = "shopimg" + shop_id + originFileName;
+			String safeFile = url + folder2 + fileName;
+			
+			try {
+				File file = new File(url);
+				if (!file.exists()) {
+					try {
+						file.mkdir(); // 폴더 생성합니다.
+						System.out.println("폴더가 생성되었습니다.");
+						mf.transferTo(new File(safeFile));
+					} catch (Exception e) {
+						e.getStackTrace();
+					}
+				} else {
+					mf.transferTo(new File(safeFile));
+				}
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			path += fileName + "/";
+		}
+		
 
 		for (int i = 0; i < shop_alcoholArr.length; i++) {
 			if (i == 0) {
@@ -371,13 +439,18 @@ public class ListController {
 				shop_addinfo += comma + shop_addinfoArr[i];
 			}
 		}
+		
+		
+		
+		if (shop_id == null) {
+			response.getWriter().write("fail");
+		} else {
+			response.getWriter().write("a");
+			ShopVo s = new ShopVo(shop_title,shop_id, shop_addr,  shop_location, food_type, shop_tip, budget, shop_comment,
+					shop_phone, shop_time, shop_addinfo, shop_tb, shop_alcohol, shop_car, shop_close, path,hash_tag, path2);
+			dao.updateShop(s);
+		}
 
-		ShopVo s = new ShopVo(shop_title, shop_id, shop_addr, shop_location, food_type, shop_tip, budget, shop_comment,
-				shop_phone, shop_time, shop_addinfo, shop_tb, shop_alcohol, shop_car, shop_close, shop_photo);
-		dao.updateShop(s);
-		mav.setViewName("buisnessmypage");
-		System.out.println(s.toString());
-		return mav;
 	}
 
 	@RequestMapping("/buisnessmypage/registration2")
@@ -469,7 +542,7 @@ public class ListController {
 	}
 
 	@RequestMapping("/reservation")
-	public ModelAndView Reservation(ModelAndView mav, HttpServletRequest req,
+	public void Reservation(HttpServletRequest req,
 			HttpSession session,HttpServletResponse response) throws ParseException, IOException {
 		String user_email = (String) session.getAttribute("sessionID");
 		String shop_title = req.getParameter("shop_title");
@@ -479,12 +552,13 @@ public class ListController {
 		java.util.Date date = new java.util.Date();
 		java.sql.Date res_date2 = new java.sql.Date(date.getTime());
 		String res_name = req.getParameter("res_name");
-		String state = "fail";
+		String state = "";
 		ReservationVo resvo = new ReservationVo(user_email, shop_title, res_date2, res_customer, shop_id, null, null,
 				rev_phone, res_name);
 		
 		
-		if (rev_phone.equals("")) {
+		if (rev_phone.equals("") || res_name.equals("")) {
+			state = "fail";
 			response.getWriter().write(state);
 		} else {
 			state = "success";
@@ -493,7 +567,6 @@ public class ListController {
 		}
 
 		dao.reserveCntUp(dao.getReservCnt(shop_id), shop_id);
-		return mav;
 	}
 
 	@RequestMapping("/alert")
