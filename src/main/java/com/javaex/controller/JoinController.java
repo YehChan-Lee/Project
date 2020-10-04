@@ -22,6 +22,7 @@ import com.javaex.model.ReviewDao;
 import com.javaex.model.ShopDao;
 import com.javaex.model.ShopUserDao;
 import com.javaex.model.ShopUserVo;
+import com.javaex.model.VisitDao;
 
 @Controller
 public class JoinController {
