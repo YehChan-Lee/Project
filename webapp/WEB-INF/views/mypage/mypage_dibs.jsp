@@ -8,11 +8,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>Insert title here</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="<c:url value='${path}/res/js/jquery-ui.js'/>" type="text/javascript"></script>
 <script src="<c:url value='${path}/res/js/jquery.rateyo.min.js'/>" type="text/javascript"></script>
-
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
 <body>
@@ -25,6 +25,14 @@
 	</div>
 	<%
 	   List<AllVo> dibsList = (ArrayList<AllVo>)request.getAttribute("dibsList"); 
+		if(dibsList.size()==0){
+	%>
+	<div id="message">
+	예약이 없습니다.<br>
+	지금 레스토랑에 예약해보시겠어요?
+	</div>
+	<%
+		}
 	%>
          <%            
             for(int i=0;i<dibsList.size();i++){
@@ -36,7 +44,7 @@
                <div class="list_img">
                   <a class="img_a" href="detail?shopidx=<%=vo.getShopVo().getShop_idx() %>" style="background-image: url(<c:url value="${path}/res/image/default.png"/>)">
                      <div class="img_top">
-                        <span>예약 <%=vo.getShopVo().getShop_reserve() %> 리뷰 <%=vo.getShopVo().getShop_view() %> 조회수 <%=vo.getShopVo().getShop_view() %></span>
+                        <span>예약 <%=vo.getShopVo().getShop_reserve() %> 리뷰 <%=vo.getShopVo().getShop_review() %> 조회수 <%=vo.getShopVo().getShop_view() %></span>
                         <span class="star_"><i class="far fa-star fa-2x"></i></span>      
                      </div>
                      <div class="img_bottom">
@@ -56,15 +64,15 @@
                <div class="review_btn">
                   <a class="review_a" href="detail?shopidx= <%=vo.getShopVo().getShop_idx() %>">리뷰 쓰기</a>
                </div>
-            </div>
+            </div>            
             <%
-               }else{ 
-            %>
-            <div class="shop_medium">
+               } else{
+           	%>
+           <div class="shop_medium">
                <div class="list_img" style="background-image: url(<c:url value="${path}/res/image/default.png"/>)">
                   <a class="img_a" href="detail?shopidx=<%=vo.getShopVo().getShop_idx() %>" style="background-image: url(<c:url value="${path}/res/image/default.png"/>)">
                      <div class="img_top">
-                        <span>예약 <%=vo.getShopVo().getShop_reserve() %> 리뷰 <%=vo.getShopVo().getShop_view() %> 조회수 <%=vo.getShopVo().getShop_view() %></span>
+                        <span>예약 <%=vo.getShopVo().getShop_reserve() %> 리뷰 <%=vo.getShopVo().getShop_review() %> 조회수 <%=vo.getShopVo().getShop_view() %></span>
                         <span class="star_"><i class="far fa-star fa-2x"></i></span>      
                      </div>
                      <div class="img_bottom">
@@ -88,19 +96,19 @@
             <%
                }
             }
-            %>             
-         </div>
+            %>
 </div>
+
 <script>
-	<c:forEach items="${shopList}" var="shop">
-	$("#shop_tmp${shop.shop_idx}").rateYo({
-	  rating :  ${shop.shop_score},
-	  starWidth: "20px",
-	  halfStar: true,
-	  readOnly: true,
-	  starSvg : '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>'
-	  });  
-	</c:forEach>
+<c:forEach items="${shopList}" var="shop">
+$("#shop_tmp${shop.shop_idx}").rateYo({
+  rating :  ${shop.shop_score},
+  starWidth: "20px",
+  halfStar: true,
+  readOnly: true,
+  starSvg : '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>'
+  });  
+</c:forEach>
 </script>
 </body>
 </html>

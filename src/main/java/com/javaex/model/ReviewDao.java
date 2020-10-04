@@ -20,6 +20,12 @@ public class ReviewDao {
 		this.sqlsession = sqlsession;
 	}
 
+	public int footerreview() {
+		int footerreview = sqlsession.selectOne("Review.footerreview");
+		System.out.println(footerreview);
+		return sqlsession.selectOne("Review.footerreview");
+	 }
+	
 	public int reviewCnt(String shop_id) {
 		HashMap<String, Object> map = sqlsession.selectOne("reviewCnt", shop_id);
 //		System.out.println("CNT : "+String.valueOf(map.get("CNT")));
@@ -50,7 +56,6 @@ public class ReviewDao {
 		map.put("email", user_email);
 		map.put("reviewIdx", review_idx);
 		map.put("shopId", shopId);
-		System.out.println("likeAdd : " + user_email + " " + review_idx + " " + shopId);
 		sqlsession.insert("Review.likeAdd", map);
 	}
 
@@ -75,7 +80,6 @@ public class ReviewDao {
 		map.put("email", user_email);
 		map.put("reviewIdx", review_idx);
 		map.put("shopId", shopId);
-		System.out.println("hateAdd : " + user_email + " " + review_idx + " " + shopId);
 		sqlsession.insert("Review.hateAdd", map);
 		
 	}
@@ -115,10 +119,9 @@ public class ReviewDao {
 		//리뷰삭제시 관련데이터 전부 삭제
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("delIdx",delIdx);
-		System.out.println("delReview : " + delIdx);
 		sqlsession.delete("Review.delLike",map);
 		sqlsession.delete("Review.delHate",map);
 		sqlsession.delete("Review.delReview",map);		
-	}	
+	}
 
 }

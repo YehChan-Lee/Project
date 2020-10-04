@@ -65,15 +65,9 @@ public class ListController {
 
 	String url = "C:\\Users\\Kosmo_23\\Desktop\\백업\\Project\\webapp\\serverImg\\";
 	
-	@RequestMapping("/main")
-	public ModelAndView main(ModelAndView mav) {
-		System.out.println("/BabPool/main");
-		mav.setViewName("main");
-		return mav;
-	}
 
 	@RequestMapping("/review_upload")
-	public void test(ModelAndView mav, MultipartHttpServletRequest req, HttpServletResponse res, HttpSession session)
+	public void test(MultipartHttpServletRequest req, HttpServletResponse res, HttpSession session)
 			throws IOException {
 		System.out.println("/BabPool/review_upload");
 		String user_email = (String) session.getAttribute("sessionID");
@@ -123,6 +117,7 @@ public class ListController {
 		dao.reviewCntReload(shopId, reviewdao.reviewCnt(shopId));
 
 		userDao.reviewCntUpload(user_email);
+		dao.scoreCalc(shopId);
 		res.getWriter().write("success");
 	}
 
@@ -220,6 +215,7 @@ public class ListController {
 		// cnt 증가후 다시 shop 호출
 		dao.viewUp(ShopId);
 		shop = dao.shopOne(shopIdx);
+		mav.addObject("shopTop5",dao.getTop5());
 		mav.addObject("shopOne", shop);
 		mav.setViewName("detail/detail");
 		return mav;
@@ -239,6 +235,7 @@ public class ListController {
 				response.getWriter().write("success");
 				session.setAttribute("is_owner", user.getIs_owner());
 				session.setAttribute("sessionID", user_email);
+				session.setAttribute("user_photo", user.getUser_photo());
 				if (user.getRecent_shop() != null) {
 					ShopVo recent_shopList = dao.getAll_shopIdx(user.getRecent_shop());
 					session.setAttribute("shop_title", recent_shopList.getShop_title());
@@ -261,11 +258,10 @@ public class ListController {
 	}
 
 	@RequestMapping("/logout")
-	public ModelAndView logout(ModelAndView mav, HttpSession session) {
+	public void logout(HttpSession session,HttpServletResponse res) throws IOException {
 		System.out.println("/BabPool/logout");
 		session.invalidate();
-		mav.setViewName("main");
-		return mav;
+		res.getWriter().write("logout");
 	}
 
 	@RequestMapping("/join")
@@ -710,7 +706,6 @@ public class ListController {
 		String shopId = req.getParameter("shopId");
 		String user_email = (String) session.getAttribute("sessionID");
 		String sort = req.getParameter("sort");
-		System.out.println("sort" + sort);
 		if (user_email != null) {
 			mav.addObject("likeList", reviewdao.likeList(user_email, shopId));
 			mav.addObject("hateList", reviewdao.hateList(user_email, shopId));

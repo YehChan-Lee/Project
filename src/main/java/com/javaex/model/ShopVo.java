@@ -28,10 +28,9 @@ public class ShopVo {
 	private String shop_review;	
 	private String hash_tag;
 	private String shop_subphoto;
-
+	private String shop_date;// 사업자신청일자NULL
+	private String shop_state;// 사업자 승인NOT NULL
 	
-
-
 	public ShopVo() {}
 
 	public ShopVo(String shop_id, String user_email, int shop_idx, String shop_title, String shop_addr,
@@ -62,7 +61,21 @@ public class ShopVo {
 		this.shop_photo = shop_photo;
 		this.shop_review = shop_review;
 	}
-	
+	public String getShop_date() {
+		return shop_date;
+	}
+
+	public void setShop_date(String shop_date) {
+		this.shop_date = shop_date;
+	}
+
+	public String getShop_state() {
+		return shop_state;
+	}
+
+	public void setShop_state(String shop_state) {
+		this.shop_state = shop_state;
+	}
 	public ShopVo(String shop_title,String shop_id, String shop_addr, String shop_location, String food_type, String shop_tip,
 			String budget, String shop_comment, String shop_phone, String[] shop_time, String shop_addinfo,
 			String shop_tb, String shop_alcohol, String shop_car, String shop_close,String shop_photo, String hash_tag, String shop_subphoto) {

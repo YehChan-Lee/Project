@@ -193,4 +193,21 @@
 	<select id="getReservCnt" parameterType="String" resultType="hashMap">
 		select count(*) as cnt from Reservation where shop_id=#{shop_id} 
 	</select>
+	<!-- 해당 가게의 리뷰 평균점수 -->
+	<select id="getScoreAvg" resultType="hashMap">
+		select Round(avg(review_score)*10)/10 as avg from review where shop_id=#{shopId}
+	</select>
+	
+	<!-- 가게 평균 점수 갱신 -->
+	<update id="scoreCalc" parameterType="hashMap">
+		update Shop set shop_score = ${AVG} where shop_id = #{shopId}
+	</update> 
+	
+	<!-- 예약 상위 5개  -->
+	<select id="getTop5" resultType="ShopVo">
+		<![CDATA[
+			SELECT * FROM ( SELECT * FROM Shop	    	   
+	 		ORDER BY shop_reserve DESC) WHERE ROWNUM <= 5
+		]]>
+	</select>
 </mapper>

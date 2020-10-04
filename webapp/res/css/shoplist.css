@@ -29,6 +29,9 @@ body {
 	box-sizing: border-box;
 	font-weight : 700;
 	margin-top: 58px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
 }
 
 #list_banner>#banner_wrap {
@@ -51,7 +54,8 @@ body {
 	width: 100%;
 	font-family : 'Handon3gyeopsal300g',sans-serif;
 	font-weight : 700;
-	height: 1850px;
+	min-height: 1000px;
+	max-height: 1900px;
 }
 
 #content_wrap>#content_list {
@@ -231,6 +235,7 @@ body {
 	width : 730px;
 	display: flex;
 	justify-content: center;
+	margin-bottom: 30px;
 }
 #paging > a{
 	margin : 0px 3px;

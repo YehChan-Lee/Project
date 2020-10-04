@@ -6,9 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>세상의 모든 맛집 - 밥풀</title>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="${path}/res/css/main.css?ver=10"/>" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
 </head>
 
 <body>

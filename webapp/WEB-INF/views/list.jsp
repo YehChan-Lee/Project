@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>밥풀 - 카페/베이커리</title>
+<title>밥풀 - 목록</title>
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap"
 	rel="stylesheet">
@@ -27,14 +27,28 @@
 	<%
 		List<ShopVo> shoplist = (ArrayList<ShopVo>) request.getAttribute("shopList");
 		pageContext.setAttribute("sort", request.getParameter("shopListCnt"));
+		String bannerText = null;
+		if(request.getParameter("food_type") != null && request.getParameter("location") == null){
+			String[] typearr = request.getParameterValues("food_type");
+			if(typearr.length > 1){
+				bannerText = "검색";
+			}else{
+				bannerText = request.getParameter("food_type");
+			}
+		}else if(request.getParameter("food_type") == null && request.getParameter("location") != null){
+			bannerText = request.getParameter("location");
+		}else{
+			bannerText = "검색";
+		}
+		String bannertxt = bannerText.replace("/", "");
+		pageContext.setAttribute("banner", bannertxt);
 	%>
 	<!--리스트 베너 시작  -->
 	<div id="list_banner"
-		style="background : url(<c:url value='${path}/res/image/list_banner.png'/>)">
+		style="background-size:cover;background-repeat:no-repeat;background-image : url(<c:url value='${path}/res/image/banner/${banner}.png'/>);">
 		<div id="banner_wrap">
-			<div id="banner_title">카페/베이커리</div>
+			<div id="banner_title"><%=bannerText%></div>
 			<div id="banner_line">───</div>
-			<div id="banner_title_eng">CAFE & BAKERY</div>
 		</div>
 	</div>
 	<!--리스트 베너 끝 -->
@@ -183,7 +197,7 @@
       </c:forEach>
       
 	<c:forEach items="${shopList}" var="shop">
-      $("#star_${shop.shop_idx}").on('click',function (e) {
+      $("#star_${shop.shop_idx} > i").on('click',function (e) {
          e.preventDefault();
          $.ajax({
  			type : "POST",
@@ -204,7 +218,6 @@
  					/* alert("로그인 후 시도하세요"); */
  					idcheck();				
  				}else{
- 					console.log(data);
  				}			
  			},
  			error : function() {
@@ -272,11 +285,9 @@
           var url = document.location.href;
           var editurl = "";
           if(url.indexOf("page") != -1){
-	         	 console.log("page != -1"+url.substring(url.indexOf("?"),url.indexOf("&page")));
 	         	 editurl = url.substring(url.indexOf("?"),url.indexOf("&page="));
 	         	 editurl +="&page="
 	          }else{
-	        	  console.log("page == -1"+url.substring(url.indexOf("?")));
 	        	  editurl = url.substring(url.indexOf("?")) + "&page="
 	           }
           if(prev > 0)   {    

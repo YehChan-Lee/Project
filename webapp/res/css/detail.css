@@ -12,7 +12,19 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big,
 	font-family: 'Noto Sans', sans-serif;
 	-webkit-font-smoothing: subpixel-antialiased !important
 }
-
+@font-face {
+font-family: 'NanumSquareRound';
+src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+font-weight: normal;
+font-style: normal;
+}
+.rank{
+	float:left;
+}
+.rank > img{
+    margin: 0 1px;
+	margin-top: 10px;
+}
 .i_wrap {
 	display: inline-block
 }
@@ -121,7 +133,9 @@ i_wrap background {
 	line-height: 15px;
 	vertical-align: middle
 }
-
+html > *{
+	font-family: 'NanumSquareRound';
+}
 #banner.restaurant_detail>.inner_wrap>.inner>.info_list>.item>.name {
 	width: 120px
 }
@@ -149,6 +163,7 @@ i_wrap background {
 
 #star_score {
 	float: left;
+	padding : 0px;
 	padding-top: 5px;
 }
 
@@ -309,7 +324,7 @@ i_wrap background {
 }
 
 #sidebar_wrap>.sidebar>.list>.item>.detail>.name {
-	margin-bottom: 4px;
+	margin: 5px 0;
 	font-size: 9.5pt
 }
 

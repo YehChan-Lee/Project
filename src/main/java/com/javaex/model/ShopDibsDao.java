@@ -17,11 +17,7 @@ public class ShopDibsDao {
 		this.sqlsession = sqlsession;
 	}
 	
-	public List<ShopDibsVo> getDibList(String user_email){
-		List<ShopDibsVo> list = sqlsession.selectList("Dibs.getDibList",user_email);
-		for(int i=0;i<list.size();i++) {
-			System.out.println(list.get(i));
-		}
+	public List<ShopDibsVo> getDibList(String user_email){		
 		return sqlsession.selectList("Dibs.getDibList",user_email);
 	}
 

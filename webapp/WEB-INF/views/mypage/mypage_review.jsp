@@ -12,8 +12,8 @@
 <div id="reservation" class="body empty">
 	<div id="reserve_filter">
 		<ul id="rever">
-			<li id="star_review">찜한 리뷰</li>
-			<li id="my_review" class="selected">내가 쓴 리뷰  &nbsp | &nbsp </li>
+			<!-- <li id="star_review">찜한 리뷰</li> -->
+			<li id="my_review" class="selected">내가 쓴 리뷰  <!-- &nbsp | &nbsp --> </li>
 		</ul>
 	</div>
 	<div id="contents_box">
@@ -29,15 +29,17 @@ $(document).ready(function(){
 		$(this).addClass("selected").siblings().removeClass("selected");
 		
 		mypage_change();
+
 	 });
 	 
 	 function mypage_change() {
+		 
 		 if($("#rever>.selected")[0] == $("#star_review")[0]) {
 			 $("#contents_box").load("mypage/review3");
 		 }
-		 else if($("#my_tab>.selected")[0] == $("#my_review")[0]) {
+		 else /* if($("#rever>.selected")[0] == $("#my_review")[0]) */ {
 			 $("#contents_box").load("mypage/review2");
-		 }
+		 } 
 	 }
 });
 </script>

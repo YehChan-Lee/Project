@@ -46,12 +46,6 @@ $(document).ready(function(){
 			예약이 없습니다.<br>
 			지금 레스토랑에 예약해보시겠어요?
 		</div>
-		<script>
-		$(document).ready(function(){
-			$("#reservation>#contents_box").removeAttr("style");
-			$("#reservation>#contents_box").css("text-align", "center").css("background-color", "#fff").css("padding", "150px").css("font-size","17px").css("border-radius", "5px");
-		});
-		</script>     
     <% 
     }
     %>

@@ -42,13 +42,13 @@
 		</div>
 		<script>
 		$(document).ready(function(){
-			$("#my_notice>#my_list").css("text-align", "center").css("background-color", "#fff").css("padding", "150px").css("font-size","17px").css("border-radius", "5px") ;
+			$("#message").css("text-align", "center").css("background-color", "#fff").css("padding", "150px").css("font-size","17px").css("border-radius", "5px") ;
 		});
 		</script>    
 	<%	
 	}
     %>
-    <div id="mypage_pagination">
+    <!-- <div id="mypage_pagination">
 	<div id="mypage_list">
 		<ul id="pagination" onselectstart="return false;">
 			<li id="prevAll"> &nbsp<<&nbsp </li>
@@ -57,7 +57,7 @@
 			<li id="next">&nbsp > &nbsp</li>
 			<li id="nextAll">&nbsp >> </li>
 		</ul>
-	</div>
+	</div> -->
 </div>
 
 </body>

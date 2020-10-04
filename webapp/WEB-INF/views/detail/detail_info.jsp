@@ -45,7 +45,6 @@ ShopVo shopvo = (ShopVo)request.getAttribute("shopOne");
 			<div class="section_title">판매 주류</div>
 			<div class="section_body"><%=shopvo.getShop_alcohol() %></div>
 		</div>
-		<hr />
 	</div>
 </div>
 

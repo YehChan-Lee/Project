@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>세상의 모든 맛집 - 밥풀</title>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="${path}/res/css/top_bar.css?ver=1"/>" />
 <script type="text/javascript"
@@ -403,14 +403,14 @@
 							if (session.getAttribute("is_owner").equals("0")) {
 						%>
 						<a href="mypage"> <img
-							src="<c:url value="${path}/res/image/user2.png"/>" height="32px">
+							src="<c:url value="${path}/serverImg/profile/user/${user_photo}"/>" height="32px">
 						</a>
 						<%
 							} else {
 						pageContext.setAttribute("shop_id", session.getAttribute("shop_id"));
 						%>
 						<a href="buisnessmypage"> <img
-							src="<c:url value="${path}/res/image/user2.png"/>" height="32px">
+							src="<c:url value="${path}/res/image/${user_photo}"/>" height="32px">
 						</a>
 						<%
 							}
@@ -1192,7 +1192,21 @@
 		});
 
 		$("#nav_logout").on("click", function() {
-			location.href = "logout";
+			$.ajax({
+				type : "POST",
+				url : "logout",
+				success : function(data) {
+					if (data == "logout") {
+						location.href = "main";
+					}else {
+						alert("로그아웃실패");
+					}
+				},
+				error : function() {
+					alert("에러발생");
+				}
+
+			});
 		});
 
 		//네이버 로그인 API 관련

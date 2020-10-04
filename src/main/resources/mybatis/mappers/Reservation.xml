@@ -3,6 +3,12 @@
 
 <mapper namespace="Reservation">
 
+	<!-- footer 예약수 -->
+	<select id="footerreserve" resultType="int">
+		select count(*) from
+		Reservation
+	</select>
+
 	<select id="getAll_shopId" parameterType="String"
 		resultType="Reservation">
 	<![CDATA[select * from RESERVATION where SHOP_ID=#{shop_id} ]]>
@@ -18,7 +24,7 @@
    <![CDATA[
    UPDATE RESERVATION SET ALERT_NEW = '0' WHERE SHOP_ID = #{shop_id}
    ]]>
-</update>
+	</update>
 
 	<select id="reservationOne" parameterType="String"
 		resultType="Reservation">
