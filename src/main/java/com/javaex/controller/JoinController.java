@@ -1,6 +1,6 @@
 package com.javaex.controller;
 
-
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +10,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,6 +21,7 @@ import com.javaex.model.ReservationDao;
 import com.javaex.model.ReviewDao;
 import com.javaex.model.ShopDao;
 import com.javaex.model.ShopUserDao;
+import com.javaex.model.ShopUserVo;
 import com.javaex.model.VisitDao;
 
 @Controller
@@ -68,6 +71,8 @@ public class JoinController {
 		System.out.println("/BabPool/mypage");
 		// 아이디 가져오기
 		String user_email = (String) session.getAttribute("sessionID");
+		ShopUserVo user = userDao.loginCheck(user_email);
+		session.setAttribute("user_photo", user.getUser_photo());
 		mav.addObject("reserveList", alldao.reserveList(user_email));
 		mav.addObject("reviewList", alldao.reviewList(user_email));
 		mav.addObject("dibsList", alldao.dibsList(user_email));
@@ -220,6 +225,38 @@ public class JoinController {
 			return;
 		}
 		resp.getWriter().write("update_success");
+	}
+	
+	@RequestMapping("mypage/profile.do")
+	public void mypage_profile(MultipartHttpServletRequest req, HttpServletResponse res, HttpSession session) throws IOException {
+		System.out.println("/BabPool/mypage/profile.do");
+		String user_email = (String) session.getAttribute("sessionID");
+		String url = "D:\\Git\\Project\\Project\\webapp\\serverImg\\";
+		
+		String folder = "profile\\user\\";
+		String fileName = "profile"+user_email+".png";
+		MultipartFile mf = req.getFile("photofile");
+		String safeFile = url + folder + fileName;
+		try {
+			File file = new File(url+folder);
+			if (!file.exists()) {
+				try {
+					file.mkdir(); // 폴더 생성합니다.
+					System.out.println("폴더가 생성되었습니다.");
+					mf.transferTo(new File(safeFile));
+				} catch (Exception e) {
+					e.getStackTrace();
+				}
+			} else {
+				mf.transferTo(new File(safeFile));
+			}
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		userDao.profileUpdate(fileName,user_email);
+		res.getWriter().write("update_success");
 	}
 
 	// footer

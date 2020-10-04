@@ -19,7 +19,6 @@
 
 <link rel="stylesheet" href="<c:url value="${path}/res/css/mypage.css?ver=1"/>"/>
 <link rel="stylesheet" href="<c:url value="${path}/res/css/jquery-ui.css"/>"/>
-<%-- <link rel="stylesheet" href="<c:url value="${path}/res/css/lkj.css"/>"/> --%>
 </head>
 <body>
 <%@include file="../top_bar.jsp" %>
@@ -35,7 +34,7 @@
 		<div id="mypage_banner">
 			<div id="user_box">
 				<div id="user_img">
-					<img src="<c:url value="${path}/res/image/user2.png"/>" height="180px"/>
+					<img src="<c:url value="${path}/serverImg/profile/user/${user_photo}"/>" height="180px"/>
 					<%-- <form id="frm" name="frm" action="${path}/mypage/uploadContent" enctype="multipart/form-data" method="post">
     					<label for="file"><img src="<c:url value="${path}/res/image/user2.png"/>" height="180px"/></label>
     					<input multiple="multiple" name="files[]" id="files" type="file" style="width:180px"/>

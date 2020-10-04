@@ -403,14 +403,14 @@
 							if (session.getAttribute("is_owner").equals("0")) {
 						%>
 						<a href="mypage"> <img
-							src="<c:url value="${path}/res/image/chinese.jpg"/>" height="32px">
+							src="<c:url value="${path}/serverImg/profile/user/${user_photo}"/>" height="32px">
 						</a>
 						<%
 							} else {
 						pageContext.setAttribute("shop_id", session.getAttribute("shop_id"));
 						%>
 						<a href="buisnessmypage"> <img
-							src="<c:url value="${path}/res/image/user2.png"/>" height="32px">
+							src="<c:url value="${path}/res/image/${user_photo}"/>" height="32px">
 						</a>
 						<%
 							}
