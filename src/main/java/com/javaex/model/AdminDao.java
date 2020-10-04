@@ -16,7 +16,6 @@ public class AdminDao {
 	}
 	
 	public List<AdminVo> Areview_list(){
-		System.out.println("SqlSession ===> " + sqlSession);
 		 List<AdminVo> adminvo = sqlSession.selectList("AdminVo.Areview_list");
 		 System.out.println(adminvo.size());
 		 for (int i = 0; i < adminvo.size(); i++) {

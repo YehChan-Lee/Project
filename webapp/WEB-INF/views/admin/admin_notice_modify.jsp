@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공지사항</title>
 <script src="http://code.jquery.com/jquery.js"></script>
 <link rel="stylesheet"
 	href="<c:url value='${path}/res/css/admin/notice_modify.css'/>">
