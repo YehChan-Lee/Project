@@ -19,15 +19,15 @@ public class MenuDao {
 	}
 	
 	 public void insert_menu(MenuVo vo) {
-	      sqlSession.insert("Menu.menuinsert", vo);
+	      sqlSession.insert("MenuVo.menuinsert", vo);
 	   }
 	 
 	 public List<MenuVo> MenuOne(String shop_id) {
-		 return sqlSession.selectList("Menu.MenuOne", shop_id);
+		 return sqlSession.selectList("MenuVo.MenuOne", shop_id);
 	 }
 	 
 	 public void DeleteMenu(HashMap<String, Object> map) {
-		 sqlSession.delete("Menu.MenuDelete", map);
+		 sqlSession.delete("MenuVo.MenuDelete", map);
 	 }
 	
 }

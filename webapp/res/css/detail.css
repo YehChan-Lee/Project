@@ -755,3 +755,7 @@ height: 568px;
 	position: relative !important;
 	left: 50px;
 }
+.shop_id_none {
+	display: none !important;
+
+	}

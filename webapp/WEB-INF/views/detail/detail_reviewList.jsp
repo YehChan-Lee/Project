@@ -26,11 +26,10 @@
 		</div>
 		<div class="text">${review.reviewVo.review}</div>
 		<div class="photo" id="photo${review.reviewVo.review_idx}">
-			<c:forTokens items="${review.reviewVo.review_photo}" var="img"
+			<c:forTokens items="${freview.reviewVo.review_photo}" var="img"
 				delims="/" varStatus="i">
-				<a href="<c:url value='${path}/serverImg/review/${img}'/>"
-					><img
-					src="<c:url value='${path}/serverImg/review/${img}'/>" width="75"
+				<a href="<c:url value='${path}/serverImg/review/${img}'/>">
+				<img src="<c:url value='${path}/serverImg/review/${img}'/>" width="75"
 					height="75"></a>
 			</c:forTokens>
 		</div>
