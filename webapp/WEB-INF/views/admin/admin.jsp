@@ -1,3 +1,4 @@
+<%@page import="com.javaex.model.VisitVo"%>
 <%@page import="com.javaex.model.AdminVo"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -37,7 +38,9 @@
 			<div>
 				<div class="sc_txt">
 					<span>관리자</span>
-					<div class="sc_admin_ID">(Admin ID)</div>
+					<div class="sc_admin_ID">
+						<c:out value="${Aadmin_id.admin_id }" />
+					</div>
 				</div>
 				<div class="sc_btn">
 					<button class="sc_myhome_btn" onclick="location.href='main'">
@@ -61,7 +64,9 @@
 			<div class="subNav_txt">
 				<div>관리자</div>
 				<!-- 관리자(ID) -->
-				<div class="admin_ID">(Admin ID)</div>
+				<div class="admin_ID">
+					<c:out value="${Aadmin_id.admin_id }" />
+				</div>
 				<div>님 환영합니다.</div>
 			</div>
 			<div class="subNav_btn">
@@ -198,10 +203,17 @@
 						<i class="fas fa-arrow-circle-right"></i></i><span>접속자 통계 요약</span>
 					</h2>
 					<hr>
+					<%
+						List<VisitVo> viVo = (List<VisitVo>) request.getAttribute("admin_numerical_total");
+						int vivoSize = viVo.size();
+
+						List<VisitVo> viVoToday = (List<VisitVo>) request.getAttribute("admin_numerical_totalToday");
+						int viVoTodaySize = viVoToday.size();
+					%>
 					<table>
 						<tr>
 							<th>총 접속자 수</th>
-							<td>49,054명</td>
+							<td><%=vivoSize%>명</td>
 						</tr>
 						<tr>
 							<th>이달의 접속자 수</th>
@@ -209,7 +221,7 @@
 						</tr>
 						<tr>
 							<th>오늘 접속자 수</th>
-							<td>2명</td>
+							<td><%=viVoTodaySize%>명</td>
 						</tr>
 						<tr>
 							<th>일일 평균 접속자 수</th>
@@ -233,75 +245,44 @@
 </body>
 
 <script>
-	$(document)
-			.ready(
-					function() {
-						$(window).load(function() {
-							$('.loader_bg').fadeOut();
-							$('.loader').fadeOut();
-						});
-						
-						$(".siti_reservation, .siti_number, .siti_ranking")
-								.children().next().hide();
+	$(document).ready(function() {
+		$(window).load(function() {
+			$('.loader_bg').fadeOut();
+			$('.loader').fadeOut();
+		});
 
-						$(
-								".siti_reservation>div, .siti_number>div, .siti_ranking>div")
-								.on(
-										'click',
-										function() {
-											$(this).next().slideToggle("fast");
+		$(".siti_reservation, .siti_number, .siti_ranking").children().next().hide();
+		$(".siti_reservation>div, .siti_number>div, .siti_ranking>div").on('click',function() {
+			$(this).next().slideToggle("fast");
+			if ($(this).children(":first").hasClass("fas fa-angle-down")) {
+				$(this).children(":first").removeClass(".fas fa-angle-down").addClass(".fas fa-angle-up");
+			} else {
+				$(this).children(":first").removeClass(".fas fa-angle-up").addClass("fas fa-angle-down");
+			}
+		});
 
-											if ($(this)
-													.children(":first")
-													.hasClass(
-															"fas fa-angle-down")) {
-												$(this)
-														.children(":first")
-														.removeClass(
-																".fas fa-angle-down")
-														.addClass(
-																".fas fa-angle-up");
-											} else {
-												$(this)
-														.children(":first")
-														.removeClass(
-																".fas fa-angle-up")
-														.addClass(
-																"fas fa-angle-down");
-											}
-										});
-
-						/*슬라이드 메뉴바 이벤트*/
-
-						$("#cont_sidebar > ul > li.siti_member").on(
-								'click',
-								function() {
-									$("#cont_section").load(
-											"admin/admin_member");
-									// 회원 관리
-									console.log("member");
-									return false;
-								});
-						$("#cont_sidebar > ul > li.siti_company").on(
-								'click',
-								function() {
-									$("#cont_section").load(
-											"admin/admin_company");
-									// 업체 관리
-									console.log("company");
-									return false;
-								});
-						$(
-								"#cont_sidebar > ul > li.siti_reservation > ul > li:nth-child(1)")
-								.on(
-										'click',
-										function() {
-											$("#cont_section").load(
-													"admin/admin_resSitu");
-											// 예약 현황
-											console.log("resSitu");
-											return false;
-										});
+		/*슬라이드 메뉴바 이벤트*/
+		$("#cont_sidebar > ul > li.siti_member").on('click',function() {
+			$("#cont_section").load("admin/admin_member");
+			// 회원 관리
+			console.log("member");
+			return false;
+		});
+		
+		$("#cont_sidebar > ul > li.siti_company").on('click',function() {
+			$("#cont_section").load("admin/admin_company");
+			// 업체 관리
+			console.log("company");
+			return false;
+		});
+		
+		$("#cont_sidebar > ul > li.siti_reservation > ul > li:nth-child(1)").on('click',function() {
+			$("#cont_section").load("admin/admin_resSitu");
+			// 예약 현황
+			console.log("resSitu");
+			return false;
+		});
+		
 						$(
 								"#cont_sidebar > ul > li.siti_reservation > ul > li:nth-child(2)")
 								.on(

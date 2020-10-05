@@ -81,7 +81,7 @@ i_wrap background {
 }
 
 #banner.restaurant_detail>.inner_wrap>.inner>.title {
-	padding: 35px 20px 5px;
+	padding: 35px 0 20px 5px;
 	border-bottom: 1px solid #afafaf;
 	/* background:rgba(0,0,0,.5) */
 }
@@ -250,11 +250,9 @@ html > *{
 	font-size: 17px;
 	font-weight: 600;
 	text-align: center;
-	line-height: 34px
+	line-height: 34px;
+	font-family: 'NanumSquareRound';
 }
-/* #content>.tab>.item>span{
-    color:#444;
-} */
 #content>.tab>.item.selected>span, #content>.tab>.item>span:hover {
 	color: #f05e23;
 }
@@ -264,7 +262,6 @@ html > *{
 	float: right;
 	position: relative;
 	width: 220px;
-	/*  z-index: 4; */
 }
 
 #sidebar_wrap>.sidebar {
@@ -280,7 +277,7 @@ html > *{
 #sidebar_wrap>.sidebar.empty {
 	padding: 0;
 	border: none;
-	background: 0 0
+	background: 0 0;	
 }
 
 #sidebar_wrap>.sidebar:first-child {
@@ -411,7 +408,9 @@ button.empty {
 	border: none;
 	background: 0 0;
 	padding: 0;
-	margin: 0
+	margin: 0;
+	color: white;
+	float:right;
 }
 
 button.red_fill {

@@ -84,14 +84,16 @@ width: 100%;
 }
 #content_wrap>#content>ul .my_item{
 	border: 0px solid red;
-    list-style: none;
-    width: 283px;
-    float: left;
-    text-align: center;
-    padding: 10px;
-    font-size: 20px;
-    position: relative;
-    /* left: 118px; */
+	list-style: none;
+	width: 282px;
+	float: left;
+	text-align: center;
+	padding: 10px;
+	font-size: 20px;
+	font-weight: 600;
+}
+#content_wrap>#content>ul .my_item:hover{
+	color: #f05e23;
 }
 #my_tab a {
 	color: black;
@@ -126,7 +128,7 @@ width: 100%;
     font-size: 17px;
     border-radius: 5px;
     /* position: relative; */
-    height: 2900px;
+    height: 2727px;
 }
 /* mypage_notice */
 #my_notice, #bobpool_notice{
@@ -304,6 +306,12 @@ button{
 	clear:both;
 	float: right;
 	margin-top: 5px;
+}
+
+#user_img > img{
+	border-radius: 180px;
+	width:180px;
+	height: 180px;
 }
 
 /* calendar */

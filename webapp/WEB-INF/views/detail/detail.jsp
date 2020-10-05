@@ -43,6 +43,7 @@
 		pageContext.setAttribute("id", session.getAttribute("sessionID"));
 		pageContext.setAttribute("star", shopvo.getShop_score());
 		pageContext.setAttribute("shopidx", shopvo.getShop_idx());
+		pageContext.setAttribute("shopid", shopvo.getShop_id());
 		List<ShopUserVo> shopuservo = (List<ShopUserVo>) request.getAttribute("shopuser");
 		%>
 
@@ -52,7 +53,7 @@
 				<div class="i_wrap background">
 					<div class="film"></div>
 					 <%-- <img src="<c:url value='${path}/res/image/walkerhill.jpg'/>" alt=""> --%>
-					 	<c:forTokens items="${shop.shopVo.shop_photo}" var="img"
+					 	<c:forTokens items="${ShopPhoto}" var="img"
 				delims="/" varStatus="i">
 				<a href="<c:url value='${path}/serverImg/shopimg/${img}'/>">
 				<img src="<c:url value='${path}/serverImg/shopimg/${img}'/>"
@@ -72,9 +73,8 @@
 								<%=shopvo.getShop_review()%>건 / 조회
 								<%=shopvo.getShop_view()%>건
 							</div>
-							<button class="empty " data-type="poing.restaurants.favorite"
-								data-id="28654">
-								찜하기<i class="icon heart large "></i>
+							<button class="empty">
+								<i class="far fa-star fa-2x"></i>
 							</button>
 						</div>
 						<ul class="info_list">
@@ -321,8 +321,7 @@
 							<li class="item">
 								<div class="detail">
 									<div class="name">
-										<a
-											href="http://babpool.duckdns.org:8088/BabPool/detail?shopidx=${shop.shop_idx}">${shop.shop_title}</a>
+										<a href="http://localhost:8088/BabPool/detail?shopidx=${shop.shop_idx}">${shop.shop_title}</a>
 									</div>
 									<div class="info">${shop.shop_reserve} 예약,
 										${shop.shop_review} 리뷰, ${shop.shop_view} 조회수</div>
@@ -340,7 +339,39 @@
 		src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=cyozvucbzs&submodules=geocoder"></script>
 
 	<script>
-        $(document).ready(function(){  
+        $(document).ready(function(){
+        	var isdib = "${isDib}";
+        	if(isdib == "true"){
+        		$('.empty').attr("style","color:#f05e23;");
+        	}else{
+        		$('.empty').attr("style","color:white;");
+        	}
+        	
+        	$(".empty").click(function () {
+                 $.ajax({
+         			type : "POST",
+         			url : "isDib",
+         			data: {
+         				shopId :"${shopid}",
+         				shopIdx : "${shopidx}"
+         			},
+         			success : function(data) {
+         				if(data == "success"){
+         					alert("success");
+         				}else if(data == "adddib"){
+         					$('.empty').attr("style","color:#f05e23;");
+         				}else if(data == "deldib"){
+         					$('.empty').attr("style","color:white;");
+         				}else if(data == "nologin"){
+         					loginPopUp();				
+         				}
+         			},
+         			error : function() {
+         				alert("에러발생");
+         			}
+         		});			
+			})
+        	
         	$('.action > button').click(function () {
         		var tmp = '${id}';
     			if( tmp = null){
@@ -364,7 +395,7 @@
     				$('.popup_close').css('top', -90 + 'px');
     				$('.popup_close').css('left', 80 + '%');
     			}else{
-    				alert("로그인되어있슴")
+    				alert("로그인되어있습니다.")
     			}
     		})
         	

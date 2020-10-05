@@ -15,6 +15,11 @@ public class AdminDao {
 	public AdminDao(SqlSession sqlsession) {
 		this.sqlSession = sqlsession;
 	}
+	public AdminVo Aadmin_id(){
+		 AdminVo adminvo = sqlSession.selectOne("AdminVo.Aadmin_id");
+		 System.out.println(adminvo);
+		 return adminvo;
+	 }
 	
 	public List<AdminVo> Areview_list(){
 		 List<AdminVo> adminvo = sqlSession.selectList("AdminVo.Areview_list");

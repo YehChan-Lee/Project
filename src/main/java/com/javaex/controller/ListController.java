@@ -120,7 +120,6 @@ public class ListController {
 		userDao.reviewCntUpload(user_email);
 		dao.scoreCalc(shopId);
 		res.getWriter().write("success");
-		System.out.println("별점의 tmp : " + reviewScore + "\n" + "textarea : " + review);
 	}
 
 	@RequestMapping("/list")
@@ -187,8 +186,6 @@ public class ListController {
 				dibdao.addDib(email, shopId,shopIdx);		
 				res.getWriter().write("adddib");
 			}
-			mav.addObject("sessionID", email);
-						
 		}
 	}
 
@@ -214,13 +211,47 @@ public class ListController {
 		// cnt 가져오기위한 먼저 shop 호출
 		ShopVo shop = dao.shopOne(shopIdx);
 		String ShopId = shop.getShop_id();
+
+		// 찜이 되어 있는지 우선 확인
+		if (dibdao.dibCheck(user_email, ShopId)) {
+			mav.addObject("isDib","true");
+		} 
+		else {
+			mav.addObject("isDib","false");
+		}
+
 		// cnt 증가후 다시 shop 호출
 		dao.viewUp(ShopId);
 		shop = dao.shopOne(shopIdx);
-		mav.addObject("shopTop5",dao.getTop5());
+		mav.addObject("ShopPhoto", dao.getShopPhoto(user_email));
+		mav.addObject("shopTop5", dao.getTop5());
 		mav.addObject("shopOne", shop);
 		mav.setViewName("detail/detail");
 		return mav;
+	}
+
+	@RequestMapping("/isDib")
+	public void isDib(HttpServletRequest req, HttpServletResponse res, HttpSession session) throws IOException {
+		System.out.println("/BabPool/isDib");
+		String shopId = req.getParameter("shopId");
+		int shopIdx = Integer.parseInt(req.getParameter("shopIdx"));
+		if (session.getAttribute("sessionID") == null) {
+			res.getWriter().write("nologin");
+			return;
+		} else {
+			// 로그인 되어있으면 넘어온다.
+			String email = (String) session.getAttribute("sessionID");
+			// 찜이 되어 있는지 우선 확인
+			if (dibdao.dibCheck(email, shopId)) {
+				// 찜이 되어있으면 찜해제
+				dibdao.delDib(email, shopId);
+				res.getWriter().write("deldib");
+			} else {
+				// 찜이 안되어있으면 찜하기
+				dibdao.addDib(email, shopId, shopIdx);
+				res.getWriter().write("adddib");
+			}
+		}
 	}
 
 	@RequestMapping("/login")
@@ -246,14 +277,13 @@ public class ListController {
 					session.setAttribute("shop_idx", recent_shopList.getShop_idx());
 				}
 
-
 				if (user.getIs_owner().equals("1")) {
 					session.setAttribute("shop_id", dao.getShopId(user_email));
 				}
 			} else {
 				response.getWriter().write("fail");
 			}
-		} else if (user_email.equals("admin")) {
+		} else if (user_email.equals("admin@babpool.com")) {
 			response.getWriter().write("admin");
 		} else {
 			response.getWriter().write("fail");
@@ -313,16 +343,6 @@ public class ListController {
 		mav.setViewName("detail/detail_info");
 		return mav;
 	}
-	
-//	@RequestMapping("/detail2/photo.do")
-//	public ModelAndView detail_photo(ModelAndView mav,HttpServletRequest request) {
-//		System.out.println("/BabPool/detail_photo");
-//		int shop_idx = Integer.parseInt(request.getParameter("shopidx"));
-//		mav.addObject("shopOne",shopdao.shopOne(shop_idx));
-//		mav.setViewName("detail_photo");
-//		return mav;
-//	}
-	
 
 	@RequestMapping("/detail/menu.do")
 	public ModelAndView detail_menu(ModelAndView mav,HttpServletResponse response, HttpServletRequest req) {
@@ -331,8 +351,14 @@ public class ListController {
 		mav.setViewName("detail/detail_menu");
 		return mav;
 	}
-
 	
+	@RequestMapping("/buisnessmypage")
+	public ModelAndView buisnessmypage(ModelAndView mav) {
+		System.out.println("/buisnessmypage");
+		mav.setViewName( "buisnessmypage/buisness_mypage");
+		return mav;
+	}
+
 	@RequestMapping("/buisness_update")
 	public void buisnessmypage_update(HttpServletResponse response , MultipartHttpServletRequest req) throws IOException {
 		String shop_title = req.getParameter("shop_title");
@@ -448,13 +474,20 @@ public class ListController {
 				shop_addinfo += comma + shop_addinfoArr[i];
 			}
 		}
-				
-		if (shop_id == null) {
-			response.getWriter().write("fail");
+
+		if (shop_id.equals("")) {
+			response.getWriter().write("shopid_null");
+		} else if (shop_addr.equals("")) {
+			response.getWriter().write("shopaddr_null");
+		} else if (shop_location.equals("")) {
+			response.getWriter().write("shoplocation_null");
+		} else if (food_type.equals("")) {
+			response.getWriter().write("foodtype_null");
 		} else {
-			response.getWriter().write("a");
-			ShopVo s = new ShopVo(shop_title,shop_id, shop_addr,  shop_location, food_type, shop_tip, budget, shop_comment,
-					shop_phone, shop_time, shop_addinfo, shop_tb, shop_alcohol, shop_car, shop_close, path,hash_tag, path2);
+			response.getWriter().write("update");
+			ShopVo s = new ShopVo(shop_title, shop_id, shop_addr, shop_location, food_type, shop_tip, budget,
+					shop_comment, shop_phone, shop_time, shop_addinfo, shop_tb, shop_alcohol, shop_car, shop_close,
+					path, hash_tag, path2);
 			dao.updateShop(s);
 		}
 

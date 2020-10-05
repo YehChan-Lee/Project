@@ -415,8 +415,7 @@
 							}
 						%>
 						<div id="nav_profile_list" class="border_radius soft">
-							<div class="item" data-link="mypage">예약</div>
-							<div class="item" data-link="mypage">설정</div>
+							<div class="item" data-link="mypage">마이 페이지</div>
 							<div id="nav_logout" class="item">로그아웃</div>
 						</div>
 					</div>
@@ -1183,11 +1182,13 @@
 		}); */
 
 		$("#nav_profile_list>.item").click(function() {
-			var link = $(this).data("link");
-
-			if (typeof link == "string") {
-				location.href = link;
+			var isowner = "${is_owner}";
+			if(isowner == 1){
+				location.href = "buisnessmypage";
+			}else{
+				location.href = "mypage";
 			}
+			
 		});
 
 		$("#nav_logout").on("click", function() {
