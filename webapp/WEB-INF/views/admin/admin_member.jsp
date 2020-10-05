@@ -250,6 +250,23 @@
 		// 월의 한글 형식.
 
 		});
+		
+		/* $(function() {
+			  var enableDays = ['2020-09-28', '2020-09-27', '2020-08-27'];
+			  console.log(enableDays);
+			  function enableAllTheseDays(date) {
+			    var fDate = $.datepicker.formatDate('yy-mm-dd', date);
+			    var result = [false, ""];
+			    $.each(enableDays, function(k, d) {
+			      if (fDate === d) {
+			        result = [true, "black"];
+			      }
+			    });
+			    return result;
+			 beforeShowDay: enableAllTheseDays
+			  } 
+		});*/
+		
 		$("#datepicker2").datepicker({
 			showOn : "both", // 버튼과 텍스트 필드 모두 캘린더를 보여준다.
 			/* buttonImage: "res/image/admin/calendar.png", // 버튼 이미지 */
@@ -273,10 +290,11 @@
 			dateFormat : "yy-mm-dd", // 텍스트 필드에 입력되는 날짜 형식.
 			/* showAnim: "slide", //애니메이션을 적용한다. */
 			showMonthAfterYear : true, // 월, 년순의 셀렉트 박스를 년,월 순으로 바꿔준다. 
-			dayNamesMin : ['월', '화', '수', '목', '금', '토', '일'
-			], // 요일의 한글 형식.
+			dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+			dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+			dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], // 요일의 한글 형식.
 			monthNamesShort : ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'
-			]
+			],
 		// 월의 한글 형식.
 
 		});

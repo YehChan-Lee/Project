@@ -2,27 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="ShopVo">
-	<!--  -->
-	<select id="pageList" resultType="ShopVo">
-		select shop_idx, shop_reserve, shop_review, shop_view, shop_title
-			, shop_location, shop_score, budget, shop_comment
-		from (
-		    select shop_idx, shop_reserve, shop_review, shop_view
-                    , shop_title, shop_location, shop_score, budget, shop_comment,
-		            ROW_NUMBER() OVER (ORDER BY shop_idx DESC) as rNum
-		            from Shop) S
-		where rNum between #{rowStart} and #{rowEnd}
-		order by rNum ASC
-	</select>
-	
-	<select id="pageCount" resultType="int">
-		<![CDATA[
-		select count(shop_idx)
-		from Shop
-		where shop_idx>0
-		]]>
-	</select>
-	<!--  -->
 	<select id="shopList" resultType="ShopVo">
 		<![CDATA[SELECT * FROM Shop]]> 		
 	</select>
@@ -105,8 +84,7 @@
 		<if test="hash_tag != null">
 			and
 				HASH_TAG like '%' || #{hash_tag} || '%'
-		</if>
-		
+		</if>		
 		<if test="solt != null">
 			<if test='solt == "1"'>
 				order by SHOP_SCORE DESC
@@ -124,6 +102,11 @@
 				]]>	
 			</if>
 		</if>
+		
+		<if test="hash_tag != null">
+			and
+				HASH_TAG like '%' || #{hash_tag} || '%'
+		</if>
 
 	</select>
 	
@@ -139,7 +122,7 @@
 		SELECT * FROM Shop WHERE shop_idx=#{Shop_idx}
 		]]>		
 	</select>
-
+	
 	<select id="getShopId" parameterType="string" resultType="string">
 	<!-- 가게정보 -->
 		<![CDATA[
@@ -181,7 +164,7 @@
 						shop_tip=#{shop_tip}, budget=#{budget}, shop_comment=#{shop_comment},
 						shop_phone=#{shop_phone}, shop_time=#{shop_time},
 						shop_addinfo=#{shop_addinfo}, shop_tb=#{shop_tb}, shop_alcohol=#{shop_alcohol},
-						shop_car=#{shop_car}, shop_close=#{shop_close}
+						shop_car=#{shop_car}, shop_close=#{shop_close},shop_photo=#{shop_photo}, hash_tag=#{hash_tag},shop_subphoto=#{shop_subphoto}
 		WHERE shop_id=#{shop_id}
 		]]>
 	</update>
@@ -191,4 +174,40 @@
 		DELETE Shop WHERE shop_id=#{shop_id}
 		]]>
 	</delete>
+	
+	<!-- 조회수 증가 -->
+	<update id="viewUp" parameterType="hashMap">
+		update Shop set shop_view = ${cnt} where shop_id = #{shopId}
+	</update>
+	<!-- 뷰 카운트 리턴 -->
+	<select id="viewCnt" parameterType="hashMap" resultType="hashMap">
+		select shop_view as cnt from Shop where shop_id=#{shopId} 
+	</select>
+	
+	<!-- 예약 카운트 갱신 -->
+	<update id="reserveCntUp" parameterType="hashMap">
+		update Shop set shop_reserve = ${cnt} where shop_id = #{shopId}
+	</update>
+	
+	<!-- 예약 카운트 리턴 -->
+	<select id="getReservCnt" parameterType="String" resultType="hashMap">
+		select count(*) as cnt from Reservation where shop_id=#{shop_id} 
+	</select>
+	<!-- 해당 가게의 리뷰 평균점수 -->
+	<select id="getScoreAvg" resultType="hashMap">
+		select Round(avg(review_score)*10)/10 as avg from review where shop_id=#{shopId}
+	</select>
+	
+	<!-- 가게 평균 점수 갱신 -->
+	<update id="scoreCalc" parameterType="hashMap">
+		update Shop set shop_score = ${AVG} where shop_id = #{shopId}
+	</update> 
+	
+	<!-- 예약 상위 5개  -->
+	<select id="getTop5" resultType="ShopVo">
+		<![CDATA[
+			SELECT * FROM ( SELECT * FROM Shop	    	   
+	 		ORDER BY shop_reserve DESC) WHERE ROWNUM <= 5
+		]]>
+	</select>
 </mapper>

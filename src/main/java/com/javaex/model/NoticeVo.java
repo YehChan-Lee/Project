@@ -6,7 +6,9 @@ public class NoticeVo{
 	private String notice_title;	// 공지사항 제목		NOT NULL
 	private Date notice_date;		// 공지사항 작성 날짜	NOT NULL
 	private String notice_content;	// 공지사항 내용		NOT NULL
-	private String notice_author; 	// 작성자				NOT NULL
+	private String notice_author;
+	private int notice_idx; 		// 공지사항 번호				NOT NULL
+	private int nt_row;				// rownum// 작성자				NOT NULL
 	
 	public NoticeVo() {}
 
@@ -19,6 +21,22 @@ public class NoticeVo{
 
 	public String getNotice_title() {
 		return notice_title;
+	}	
+	
+	public int getNotice_idx() {
+		return notice_idx;
+	}
+
+	public void setNotice_idx(int notice_idx) {
+		this.notice_idx = notice_idx;
+	}
+
+	public int getNt_row() {
+		return nt_row;
+	}
+
+	public void setNt_row(int nt_row) {
+		this.nt_row = nt_row;
 	}
 
 	public void setNotice_title(String notice_title) {

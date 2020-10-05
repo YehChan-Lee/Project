@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="ShopUser">
-	<select id="getUser" parameterType="String" resultType="ShopUser">
-		<![CDATA[select * from ShopUser where USER_EMAIL=#{user_email} ]]> 		
+<mapper namespace="ShopUserVo">
+	<select id="getUser" parameterType="String"
+		resultType="ShopUserVo">
+		<![CDATA[select * from ShopUser where USER_EMAIL=#{user_email} ]]>
 	</select>
-	
-	<insert id="signUp" parameterType="ShopUser">
-		<![CDATA[insert into ShopUser VALUES(#{user_email},#{user_pw},#{user_name},#{user_gender},#{user_birth},#{user_phone},#{is_owner},sysdate,#{point}) ]]> 
+
+	<insert id="signUp" parameterType="ShopUserVo">
+		<![CDATA[insert into ShopUser VALUES(#{user_email},#{user_pw},#{user_name},#{user_gender},#{user_birth},#{user_phone},#{is_owner},sysdate,#{point}) ]]>
 	</insert>
-	
-	<select id="shopUserList" resultType="ShopUser">
-		<![CDATA[SELECT * FROM ShopUser]]> 		
+
+	<select id="shopUserList" resultType="ShopUserVo">
+		<![CDATA[SELECT * FROM ShopUser]]>
 	</select>
-		
-	<select id="cntShopUser" resultType="int">
+	
+	<select id="cntShopUser" resultType="ShopUserVo">
 		<!-- 사업자 제외 -->
 		<![CDATA[
 			SELECT COUNT(CASE WHEN is_owner=0 THEN 1 END)
 			FROM ShopUser
 		]]>
 	</select>
-	
+
 	<insert id="shopuserInsert">
 		<![CDATA[
 		INSERT INTO ShopUser(user_email, user_pw, user_name, user_gender,
@@ -42,19 +43,76 @@
 				user_phone=#{user_phone}
 		WHERE
 			user_email=#{user_email}
-	</update>
-	
-	<update id="update_recentShop_user_email">
+
+	<update id="shopuserUpdate">
 		<![CDATA[
-		UPDATE ShopUser set recent_shop=#{shop_idx}
+		UPDATE ShopUser set user_pw=#{user_pw}, user_phone=#{user_phone}
 		WHERE user_email=#{user_email}
-		]]>	
+		]]>
 	</update>
-	
+
+	<update id="update_recentShop_user_email"
+		parameterType="hashMap">
+		UPDATE ShopUser set recent_shop=#{shop_idx}
+		WHERE
+		user_email=#{user_email}
+	</update>
+	<!-- 회원정보 수정 -->
+	<update id="Update_shopuser" parameterType="hashMap">
+		UPDATE ShopUser set
+		user_name=#{user_name}
+		WHERE
+		user_email=#{user_email}
+	</update>
+	<update id="Update_phone" parameterType="hashMap">
+		UPDATE ShopUser set
+		user_phone=#{user_phone}
+		WHERE
+		user_email=#{user_email}
+	</update>
+
+	<delete id="shopuserDelete">
+		<![CDATA[
+		DELETE ShopUser WHERE user_email=#{user_email}
+		]]>
+	</delete>
+
+	<select id="selectemail" parameterType="hashMap"
+		resultType="String">
+		<![CDATA[
+		select user_email from shopuser where user_name = #{user_name} and user_phone = #{user_phone}
+		]]>
+	</select>
+
+	<select id="searchEmail" resultType="String">
+		<![CDATA[
+		select user_email from shopuser
+		]]>
+	</select>
+
+	<update id="passwordupdate" parameterType="hashMap">
+   <![CDATA[
+   UPDATE SHOPUSER SET USER_PW=#{user_pw} WHERE user_email = #{user_email}
+   ]]>
+	</update>
+
+	<!-- 리뷰 업로드시 해당 계정의 리뷰 카운트 증가 -->
+	<update id="reviewCntUpload" parameterType="hashMap">
+		UPDATE ShopUser set
+		review_cnt=${cnt}
+		WHERE user_email=#{userEmail}
+	</update>
+
+
 	<delete id="Delete_shopuser" parameterType="hashMap">
 		<![CDATA[
 		DELETE ShopUser WHERE user_email=#{user_email}
 		]]>	
 	</delete>
-	
+	<!-- 프로필사진 업데이트 -->
+	<update id="profileUpdate" parameterType="hashMap">
+		UPDATE ShopUser set
+		user_photo=#{fileName}
+		WHERE user_email=#{user_email}
+	</update>
 </mapper>

@@ -21,15 +21,10 @@ public class ShopDao {
 	public List<ShopVo> shopList(){
 		return sqlsession.selectList("ShopVo.shopList");
 	}
-	// 가게 리스트 출력
-	public List<ShopVo> pageList(){
-		System.out.println("shopList page");
-		return sqlsession.selectList("ShopVo.pageList");
+	public List<ShopVo> getTop5(){
+		return sqlsession.selectList("ShopVo.getTop5");
 	}
-	// shop 총 개수
-	public int pageCount() {
-		return sqlsession.selectOne("ShopVo.pageCount");
-	}
+	
 	public List<ShopVo> shopSearch(String location, String[] shop_addrArr, String[] food_typeArr,
 			String string_search, String solt, String price_list, String[] add_infoArr,
 			String[] table_typeArr, String[] alcohol_typeArr, String parking_available){
@@ -154,4 +149,51 @@ public class ShopDao {
 	public void deleteShop() {
 		sqlsession.delete("ShopVo.shopDelete");
 	}
+	public void viewUp(String shopId) {
+		HashMap<String,Object> map = new HashMap<String, Object>();
+		int cnt = 0;
+		
+		map.put("shopId",shopId);
+		System.out.println("viewUp : "+sqlsession.selectOne("ShopVo.viewCnt",map));
+		HashMap<String,Object> result = sqlsession.selectOne("ShopVo.viewCnt",map);
+		cnt = Integer.parseInt(String.valueOf(result.get("CNT")));
+		map.put("cnt",cnt+1);
+		sqlsession.update("ShopVo.viewUp",map);
+	}
+
+	public List<MenuVo> getMenu(String shopId) {
+		HashMap<String,Object> map = new HashMap<String, Object>();
+		map.put("shopId",shopId);
+		return sqlsession.selectList("MenuVo.getMenu",map);
+	}
+
+	public void reviewCntReload(String shopId,int reviewCnt) {
+		HashMap<String,Object> map = new HashMap<String, Object>();
+		map.put("shopId",shopId);
+		map.put("reviewCnt",reviewCnt);
+		sqlsession.update("Review.cntReload",map);
+		
+	}
+	//예약 등록시 가게 예약카운트 증가	
+	public void reserveCntUp(int cnt,String shop_id) {
+		HashMap<String,Object> map = new HashMap<String, Object>();
+		map.put("cnt",cnt);
+		map.put("shopId",shop_id);
+		sqlsession.update("ShopVo.reserveCntUp",map);		
+	}
+
+	public int getReservCnt(String shop_id) {
+		int cnt = 0;
+		HashMap<String,Object> map = sqlsession.selectOne("ShopVo.getReservCnt",shop_id);
+		cnt = Integer.parseInt(String.valueOf(map.get("CNT")));
+		return cnt;
+	}
+
+	public void scoreCalc(String shopId) {
+		HashMap<String, Object> map = sqlsession.selectOne("ShopVo.getScoreAvg",shopId);
+		map.put("shopId",shopId);
+		System.out.println(map);
+		sqlsession.update("ShopVo.scoreCalc",map);
+	}
+
 }

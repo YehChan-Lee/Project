@@ -1042,7 +1042,12 @@ position: relative;
 #nav_profile {
 	float: left;
 	cursor: pointer;
-	height: 50px;
+	height: 45px;
+}
+#nav_profile > a > img{
+	width : 33px;
+	height: 33px;
+	border-radius: 33px;
 }
 
 #nav_notice_list {
@@ -1282,7 +1287,7 @@ position: relative;
 
 .finddiv2 {
 	position: relative;
-	top: 100px;
+	top: 93px;
 	left: 30px;
 	width: 345px;
 	height: 40px;
@@ -1321,6 +1326,29 @@ position: relative;
 	border-radius: 10px;
 	border: 1px solid;
 }
+.email_number {
+	position: relative;
+	display:none;
+    top: 75px;
+    left: 30px;
+    width: 270px;
+    height: 35px;
+    border-radius: 10px;
+    border: 1px solid;
+}
+.email_number_submit {
+	position: relative;
+    display: none;
+    border: 1px solid;
+    border-radius: 10px;
+    width: 50px;
+    top: 76px;
+    left: 50px;
+    height: 41px;
+    background: #ffa500;
+    color: white;
+}
+
 #naverIdLogin {
 	position: relative;
 }
@@ -1347,4 +1375,50 @@ position: relative;
 }
 #naverIdLogin img {
     display: none;
+}
+
+.repassword_span {
+	position: relative;
+	display:none;
+	top: 40px;
+	left: 114px;
+	width: 350px;
+	height: 40px;
+	font-weight: bolder;
+	font-size: 13px;
+}
+.repassword {
+	position: relative;
+	display:none;
+	    top: 43px;
+	left: 30px;
+	width: 340px;
+	height: 35px;
+	border-radius: 10px;
+	border: 1px solid;
+}
+.repassword2 {
+	position: relative;
+	display:none;
+	    top: 70px;
+	left: 30px;
+	width: 340px;
+	height: 35px;
+	border-radius: 10px;
+	border: 1px solid;
+}
+.repassword_submit {
+	position: relative;
+	display:none;
+	top: 93px;
+	left: 30px;
+	width: 345px;
+	height: 40px;
+	border-radius: 10px;
+	border: 1px solid;
+	text-align: center;
+	line-height: 40px;
+	background: #ffa500;
+	color: white;
+	font-size: 18px;
 }

@@ -29,6 +29,9 @@ body {
 	box-sizing: border-box;
 	font-weight : 700;
 	margin-top: 58px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
 }
 
 #list_banner>#banner_wrap {
@@ -52,6 +55,8 @@ body {
 	font-family : 'Handon3gyeopsal300g',sans-serif;
 	font-weight : 700;
 	overflow: hidden;
+	min-height: 1000px;
+	max-height: 1900px;
 }
 
 #content_wrap>#content_list {
@@ -226,38 +231,14 @@ body {
 	height: 28px;
 	display: block;	
 	line-height: 28px;
+
 }
-#page_btn{
-    /* position: relative; */
-    /* left: 810px; */
-    border: 0px solid red;
-    overflow: auto;
-    display: flex;
-    /* margin-left: 25%; */
-    margin-bottom: 7%;
-    text-align: center;
-    justify-content: center;
-}
-#page_btn>ul>li{
-	list-style: none;
-    /* float: left; */
-    padding: 10px 20px;
-    color: black;
-    background: #fff;
-    border: 1px solid #f3f3f3;
-    border-radius: 5px;
-}
-#page_btn>ul>li:hover{
-	background-color: #ddd;
-}
-#pagination{
+#paging {
+	width : 730px;
 	display: flex;
-    text-align: center;
+	justify-content: center;
+	margin-bottom: 30px;
 }
-#page_btn a:link{
-	color: #000;
-}
-#page_btn a:hover {
-	color: #000;
-	font-weight: 600;
+#paging > a{
+	margin : 0px 3px;
 }

@@ -9,31 +9,36 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ReservationDao {
 
-   @Autowired
-   private SqlSession sqlSession;
-   
-   public ReservationDao(SqlSession sqlsession) {
-      this.sqlSession = sqlsession;
-   }
-   
-   public ReservationVo user_reserve(String user_email) {
-      return sqlSession.selectOne(user_email);
-   }
-   
-   public List<ReservationVo> getAll_shopId(String shop_id) {
-	  return sqlSession.selectList("Reservation.getAll_shopId",shop_id);
-   }
-   
-   public void updateAlertNew_shopId(String shop_id) {
-	  sqlSession.update("Reservation.updateAlertNew_shopId", shop_id);
-   }
+	@Autowired
+	private SqlSession sqlSession;
 
-	 public int footerreserve() {
-		 int footerreserve = sqlSession.selectOne("Reservation.footerreserve");
-			System.out.println(footerreserve);
+	public ReservationDao(SqlSession sqlsession) {
+		this.sqlSession = sqlsession;
+	}
+
+	public ReservationVo user_reserve(String user_email) {
+		return sqlSession.selectOne(user_email);
+	}
+
+	public List<ReservationVo> getAll_shopId(String shop_id) {
+		return sqlSession.selectList("Reservation.getAll_shopId", shop_id);
+	}
+
+	public void updateAlertNew_shopId(String shop_id) {
+		sqlSession.update("Reservation.updateAlertNew_shopId", shop_id);
+	}
+
+	public void insert_reservation(ReservationVo vo) {
+		sqlSession.insert("Reservation.insertReservation", vo);
+	}
+
+	public List<ReservationVo> reservationOne(String shop_id) {
+		return sqlSession.selectList("Reservation.reservationOne", shop_id);
+	}
+
+	public int footerreserve() {
+		int footerreserve = sqlSession.selectOne("Reservation.footerreserve");
+		System.out.println(footerreserve);
 		return sqlSession.selectOne("Reservation.footerreserve");
-	 }
-   public void insert_reservation(ReservationVo vo) {
-      sqlSession.insert("Reservation.insertReservation", vo);
-   }
+	}
 }

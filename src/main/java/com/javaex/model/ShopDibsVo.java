@@ -5,13 +5,23 @@ public class ShopDibsVo {
 	private String shop_id;
 	private String user_email;
 	private int dibs_idx;
+	private int shop_idx;
 	
 	public ShopDibsVo() {}
 
-	public ShopDibsVo(String shop_id, String user_email, int dibs_idx) {
+	public ShopDibsVo(String shop_id, String user_email, int dibs_idx, int shop_idx) {
 		this.shop_id = shop_id;
 		this.user_email = user_email;
 		this.dibs_idx = dibs_idx;
+		this.shop_idx = shop_idx;
+	}
+
+	public int getShop_idx() {
+		return shop_idx;
+	}
+
+	public void setShop_idx(int shop_idx) {
+		this.shop_idx = shop_idx;
 	}
 
 	public String getShop_id() {
@@ -40,7 +50,8 @@ public class ShopDibsVo {
 
 	@Override
 	public String toString() {
-		return "ShopDibsVo [shop_id=" + shop_id + ", user_email=" + user_email + ", dibs_idx=" + dibs_idx + "]";
+		return "ShopDibsVo [shop_id=" + shop_id + ", user_email=" + user_email + ", dibs_idx=" + dibs_idx
+				+ ", shop_idx=" + shop_idx + "]";
 	}
 
 }

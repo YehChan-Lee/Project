@@ -1,7 +1,5 @@
 package com.javaex.model;
 
-import java.sql.Date;
-
 import org.springframework.stereotype.Component;
 
 @Component
@@ -27,9 +25,11 @@ public class ShopVo {
 	private String shop_car;		// 주차기능				NOT NULL
 	private String shop_close;		// 휴무일					NULL
 	private String shop_photo;		// 가게 사진				NULL
-	private String shop_review;		// 리뷰 수 					NULL
-	private Date shop_date;			// 사업가 신청 날짜			NULL
-	private String hash_tag;		// 해시태그				NULL
+	private String shop_review;	
+	private String hash_tag;
+	private String shop_subphoto;
+	private String shop_date;// 사업자신청일자NULL
+	private String shop_state;// 사업자 승인NOT NULL
 	
 	public ShopVo() {}
 
@@ -63,14 +63,28 @@ public class ShopVo {
 		this.shop_date = shop_date;
 		this.hash_tag = hash_tag;
 	}
-	
+	public String getShop_date() {
+		return shop_date;
+	}
+
+	public void setShop_date(String shop_date) {
+		this.shop_date = shop_date;
+	}
+
+	public String getShop_state() {
+		return shop_state;
+	}
+
+	public void setShop_state(String shop_state) {
+		this.shop_state = shop_state;
+	}
 	public ShopVo(String shop_title,String shop_id, String shop_addr, String shop_location, String food_type, String shop_tip,
 			String budget, String shop_comment, String shop_phone, String[] shop_time, String shop_addinfo,
-			String shop_tb, String shop_alcohol, String shop_car, String shop_close,String shop_photo) {
+			String shop_tb, String shop_alcohol, String shop_car, String shop_close,String shop_photo, String hash_tag, String shop_subphoto) {
 		this.shop_title = shop_title;
+		this.shop_id = shop_id;
 		this.shop_addr = shop_addr;
 		this.shop_location = shop_location;
-		this.shop_id = shop_id;
 		this.food_type = food_type;
 		this.shop_tip = shop_tip;
 		this.budget = budget;
@@ -83,7 +97,11 @@ public class ShopVo {
 		this.shop_car = shop_car;
 		this.shop_close = shop_close;
 		this.shop_photo = shop_photo;
+		this.hash_tag = hash_tag;
+		this.shop_subphoto = shop_subphoto;
 	}
+	
+	
 
 	public String getShop_id() {
 		return shop_id;
@@ -244,7 +262,6 @@ public class ShopVo {
 	public void setShop_close(String shop_close) {
 		this.shop_close = shop_close;
 	}
-	
 	public String getShop_photo() {
 		return shop_photo;
 	}
@@ -252,7 +269,7 @@ public class ShopVo {
 	public void setShop_photo(String shop_photo) {
 		this.shop_photo = shop_photo;
 	}
-
+	
 	public String getShop_review() {
 		return shop_review;
 	}
@@ -260,21 +277,15 @@ public class ShopVo {
 	public void setShop_review(String shop_review) {
 		this.shop_review = shop_review;
 	}
+	
+	
 
-	public Date getShop_date() {
-		return shop_date;
+	public String getShop_subphoto() {
+		return shop_subphoto;
 	}
 
-	public void setShop_date(Date shop_date) {
-		this.shop_date = shop_date;
-	}
-
-	public String getHash_tag() {
-		return hash_tag;
-	}
-
-	public void setHash_tag(String hash_tag) {
-		this.hash_tag = hash_tag;
+	public void setShop_subphoto(String shop_subphoto) {
+		this.shop_subphoto = shop_subphoto;
 	}
 
 	@Override
@@ -285,7 +296,6 @@ public class ShopVo {
 				+ ", shop_comment=" + shop_comment + ", shop_view=" + shop_view + ", shop_score=" + shop_score
 				+ ", shop_phone=" + shop_phone + ", shop_time=" + shop_time + ", shop_addinfo="
 				+ shop_addinfo + ", shop_tb=" + shop_tb + ", shop_alcohol=" + shop_alcohol + ", shop_car=" + shop_car
-				+ ", shop_close=" + shop_close + ", shop_photo=" + shop_photo + ", shop_review=" + shop_review + "]"
-				+ ", shop_close=" + shop_close + ", shop_photo=" + shop_photo + ", shop_date=" + shop_date + ", hasg_tag=" + hash_tag + "]";
+				+ ", shop_close=" + shop_close + ", shop_photo=" + shop_photo + "]";
 	}
 }

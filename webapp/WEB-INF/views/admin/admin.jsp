@@ -8,7 +8,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>밥풀 - AdminPage</title>
 <link rel="stylesheet"
 	href="<c:url value='${path}/res/css/admin/admin.css'/>">
 <script src="http://code.jquery.com/jquery.js"></script>
@@ -16,14 +16,16 @@
 	crossorigin="anonymous"></script>
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
-	<script src="<c:url value='${path}/res/js/jquery-ui1.js'/>"
+<script src="<c:url value='${path}/res/js/jquery-ui1.js'/>"
 	type="text/javascript"></script>
 <script src="<c:url value='${path}/res/js/datepicker-ko.js'/>"
 	type="text/javascript"></script>
 </head>
 
 <body>
-	<div class="loader"></div>
+	<div class="loader_bg">
+		<div class="loader"></div>
+	</div>
 	<!-- 탑 배너 바-->
 	<div id="admin_scollbar">
 		<div>
@@ -31,7 +33,7 @@
 				<div id="admin_logo2"
 					style="background-image : url(<c:url value='${path}/res/image/admin/babpoolN1.png'/>)"></div>
 			</a>
-			
+
 			<div>
 				<div class="sc_txt">
 					<span>관리자</span>
@@ -95,7 +97,7 @@
 					</div>
 					<ul>
 						<li>예약 현황</li>
-						
+
 						<!-- <li>예약 취소</li> -->
 					</ul>
 				</li>
@@ -145,13 +147,17 @@
 				<div>
 					<table>
 						<tr>
-							<th></th>
+
 							<th>NO.</th>
-							<th>제목</th>
 							<th>리뷰 내용</th>
 							<th>작성자</th>
 							<th>등록일</th>
 						</tr>
+						<%
+							List<AdminVo> Areview_list = (List<AdminVo>) request.getAttribute("Areview_list");
+							for (int i = 0; i < Areview_list.size(); i++) {
+								AdminVo vo = Areview_list.get(i);
+						%>
 						<tr>
 						<%
 						List<AdminVo> Areview_list = (List<AdminVo>)request.getAttribute("Areview_list");
@@ -159,8 +165,6 @@
 							AdminVo vo = Areview_list.get(i);
 							
 							%>
-							<td><input type="radio" name="sec_home1_ckb"
-								id="sec_home1_ckb"></td>
 							<td><%=vo.getReviewVo().getReview_idx() %></td>
 							<td><%=vo.getReviewVo().getReview() %></td>
 							<td><%=vo.getShopUser().getUser_name() %></td>
@@ -258,11 +262,7 @@
 							href="#" class="num">3</a> <a href="#" class="bt"><i
 							class="fas fa-angle-right"></i></a> <a href="#" class="bt"><i
 							class="fas fa-angle-double-right"></i></a>
-						<div>
-							<button>
-								<i class="fas fa-search"></i>검색
-							</button>
-						</div>
+						<div></div>
 					</div>
 					<div class="paging_search">
 						<select name="pSea" id="pSea">
@@ -317,182 +317,246 @@
 </body>
 
 <script>
-	$(document).ready(function() {
-		$(window).load(function() {
-			$('.loader').fadeOut();
-		});
+	$(document)
+			.ready(
+					function() {
+						$(window).load(function() {
+							$('.loader_bg').fadeOut();
+							$('.loader').fadeOut();
+						});
+						
+						$(".siti_reservation, .siti_number, .siti_ranking")
+								.children().next().hide();
 
-		$(".siti_reservation, .siti_number, .siti_ranking").children().next().hide();
+						$(
+								".siti_reservation>div, .siti_number>div, .siti_ranking>div")
+								.on(
+										'click',
+										function() {
+											$(this).next().slideToggle("fast");
 
-		$(".siti_reservation>div, .siti_number>div, .siti_ranking>div").on('click', function() {
-			$(this).next().slideToggle("fast");
+											if ($(this)
+													.children(":first")
+													.hasClass(
+															"fas fa-angle-down")) {
+												$(this)
+														.children(":first")
+														.removeClass(
+																".fas fa-angle-down")
+														.addClass(
+																".fas fa-angle-up");
+											} else {
+												$(this)
+														.children(":first")
+														.removeClass(
+																".fas fa-angle-up")
+														.addClass(
+																"fas fa-angle-down");
+											}
+										});
 
-			if ($(this).children(":first").hasClass("fas fa-angle-down")) {
-				$(this).children(":first").removeClass(".fas fa-angle-down").addClass(".fas fa-angle-up");
-			} else {
-				$(this).children(":first").removeClass(".fas fa-angle-up").addClass("fas fa-angle-down");
-			}
-		});
+						/*슬라이드 메뉴바 이벤트*/
 
-		/*슬라이드 메뉴바 이벤트*/
-		$("#cont_sidebar > ul > li.siti_member").on('click', function() {
-			$("#cont_section").load("admin/admin_member");
-			// 회원 관리
-			console.log("member");
-		});
-		$("#cont_sidebar > ul > li.siti_company").on('click', function() {
-			$("#cont_section").load("admin/admin_company");
-			// 업체 관리
-			console.log("company");
-		});
-		$("#cont_sidebar > ul > li.siti_reservation > ul > li:nth-child(1)").on('click', function() {
-			$("#cont_section").load("admin/admin_resSitu");
-			// 예약 현황
-			console.log("resSitu");
-		});
-		$("#cont_sidebar > ul > li.siti_reservation > ul > li:nth-child(2)").on('click', function() {
-			$("#cont_section").load("admin/admin_resRegi");
-			// 예약 등록
-			console.log("resRegi");
-		});
-		$("#cont_sidebar > ul > li.siti_number > ul > li:nth-child(1)").on('click', function() {
-			$("#cont_section").load("admin/admin_numerical1");
-			// 일별 통계
-			console.log("일별 통계");
-		});
-		$("#cont_sidebar > ul > li.siti_number > ul > li:nth-child(2)").on('click', function() {
-			$("#cont_section").load("admin/admin_numerical2");
-			// 요일별 통계
-			console.log("요일별 통계");
-		});
-		$("#cont_sidebar > ul > li.siti_number > ul > li:nth-child(3)").on('click', function() {
-			$("#cont_section").load("admin/admin_numerical3");
-			// 월별 통계
-			console.log("월별 통계");
-		});
-		$("#cont_sidebar > ul > li.siti_number > ul > li:nth-child(4)").on('click', function() {
-			$("#cont_section").load("admin/admin_numerical4");
-			// 성별 
-			console.log("성별 ");
-		});
-		$("#cont_sidebar > ul > li.siti_number > ul > li:nth-child(5)").on('click', function() {
-			$("#cont_section").load("admin/admin_numerical5");
-			// 연령 별
-			console.log("연령 별");
-		});
-		$("#cont_sidebar > ul > li.siti_number > ul > li:nth-child(6)").on('click', function() {
-			$("#cont_section").load("admin/admin_numerical6");
-			// 지역 별
-			console.log("지역 별");
-		});
-		$("#cont_sidebar > ul > li.siti_number > ul > li:nth-child(7)").on('click', function() {
-			$("#cont_section").load("admin/admin_numerical7");
-			// 음식 종류
-			console.log("음식 종류");
-		});
-		$("#cont_sidebar > ul > li.siti_notice").on('click', function() {
-			$("#cont_section").load("admin/admin_notice");
-			// 공지사항
-			console.log("공지사항");
-		});
+						$("#cont_sidebar > ul > li.siti_member").on(
+								'click',
+								function() {
+									$("#cont_section").load(
+											"admin/admin_member");
+									// 회원 관리
+									console.log("member");
+									return false;
+								});
+						$("#cont_sidebar > ul > li.siti_company").on(
+								'click',
+								function() {
+									$("#cont_section").load(
+											"admin/admin_company");
+									// 업체 관리
+									console.log("company");
+									return false;
+								});
+						$(
+								"#cont_sidebar > ul > li.siti_reservation > ul > li:nth-child(1)")
+								.on(
+										'click',
+										function() {
+											$("#cont_section").load(
+													"admin/admin_resSitu");
+											// 예약 현황
+											console.log("resSitu");
+											return false;
+										});
+						$(
+								"#cont_sidebar > ul > li.siti_reservation > ul > li:nth-child(2)")
+								.on(
+										'click',
+										function() {
+											$("#cont_section").load(
+													"admin/admin_resRegi");
+											// 예약 등록
+											console.log("resRegi");
+											return false;
+										});
+						$(
+								"#cont_sidebar > ul > li.siti_number > ul > li:nth-child(1)")
+								.on(
+										'click',
+										function() {
+											$("#cont_section").load(
+													"admin/admin_numerical1");
+											// 일별 통계
+											console.log("일별 통계");
+											return false;
+										});
+						$(
+								"#cont_sidebar > ul > li.siti_number > ul > li:nth-child(2)")
+								.on(
+										'click',
+										function() {
+											$("#cont_section").load(
+													"admin/admin_numerical2");
+											// 요일별 통계
+											console.log("요일별 통계");
+											return false;
+										});
+						$(
+								"#cont_sidebar > ul > li.siti_number > ul > li:nth-child(3)")
+								.on(
+										'click',
+										function() {
+											$("#cont_section").load(
+													"admin/admin_numerical3");
+											// 월별 통계
+											console.log("월별 통계");
+											return false;
+										});
+						$(
+								"#cont_sidebar > ul > li.siti_number > ul > li:nth-child(4)")
+								.on(
+										'click',
+										function() {
+											$("#cont_section").load(
+													"admin/admin_numerical4");
+											// 성별 
+											console.log("성별 ");
+											return false;
+										});
+						$(
+								"#cont_sidebar > ul > li.siti_number > ul > li:nth-child(5)")
+								.on(
+										'click',
+										function() {
+											$("#cont_section").load(
+													"admin/admin_numerical5");
+											// 연령 별
+											console.log("연령 별");
+											return false;
+										});
+						$(
+								"#cont_sidebar > ul > li.siti_number > ul > li:nth-child(6)")
+								.on(
+										'click',
+										function() {
+											$("#cont_section").load(
+													"admin/admin_numerical6");
+											// 지역 별
+											console.log("지역 별");
+											return false;
+										});
+						$(
+								"#cont_sidebar > ul > li.siti_number > ul > li:nth-child(7)")
+								.on(
+										'click',
+										function() {
+											$("#cont_section").load(
+													"admin/admin_numerical7");
+											// 음식 종류
+											console.log("음식 종류");
+											return false;
+										});
+						$("#cont_sidebar > ul > li.siti_notice").on(
+								'click',
+								function() {
+									$("#cont_section").load(
+											"admin/admin_notice");
+									// 공지사항
+									console.log("공지사항");
+									return false;
+								});
 
-		/* $("#cont_sidebar li").on("click", function(){
-			$(this).addClass("selected").siblings().removeClass("selected");
-			admin_change();
-		});
-		
-		function admin_change() {
-			if($("#cont_sidebar>.selected")[0] == $("#siti_member")[0]){
-				 $("#cont_section").load("admin/admin_member");
-				 console.log("member");
-			}
-			if($("#cont_sidebar>.selected")[0] == $("#siti_company")[0]){
-			 $("#cont_section").load("admin/admin_company");
-			 console.log("company");
-		}
-		};
-		/* $("cont_section"). */
-	});
+						google.charts.load('current', {
+							'packages' : [ 'bar' ]
+						});
+						google.charts.setOnLoadCallback(drawStuff);
+
+						$(function() {
+							$(window).scroll(function() { //스크롤하면 아래 코드 실행
+								var num = $(this).scrollTop(); // 스크롤값
+
+								if (num > 36) { // 스크롤을 36이상 했을 때
+									$(".admin_top_nav_container").css({
+										visibility : "hidden"
+									});
+									$("#admin_scollbar").css({
+										visibility : "visible",
+										position : "fixed",
+										width : "100%"
+									});
+
+								} else {
+									$(".admin_top_nav_container").css({
+										visibility : "visible"
+									});
+									$("#admin_scollbar").css({
+										visibility : "hidden",
+										position : "absolute",
+										width : "99%"
+									});
+								}
+							});
+						});
+
+						function drawStuff() {
+							var data = new google.visualization.arrayToDataTable(
+									[ [ 'Move', '월별 통계' ], [ "1월", 44 ],
+											[ "2월", 31 ], [ "3월", 12 ],
+											[ "4월", 14 ], [ "5월", 11 ],
+											[ "6월", 6 ], [ "7월", 16 ],
+											[ "8월", 24 ], [ "9월", 30 ],
+											[ "10월", 28 ], [ "11월", 31 ],
+											[ "12월", 41 ], ]);
+
+							var options = {
+								width : 730,
+								legend : {
+									position : 'none'
+								},
+								chart : {
+									title : '',
+									subtitle : ''
+								},
+								axes : {
+									x : {
+										0 : {
+											side : 'bottom',
+											label : '월별 통계'
+										}
+									// Top x-axis.
+									}
+								},
+								bar : {
+									groupWidth : "50%"
+								}
+							};
+
+							var chart = new google.charts.Bar(document
+									.getElementById('sec_home2_gg'));
+							// Convert the Classic options to Material options.
+							chart.draw(data, google.charts.Bar
+									.convertOptions(options));
+						}
+						;
+
+					});
 </script>
-<script>
-	google.charts.load('current', {
-		'packages' : ['bar'
-		]
-	});
-	google.charts.setOnLoadCallback(drawStuff);
-
-	$(function() {
-		$(window).scroll(function() { //스크롤하면 아래 코드 실행
-			var num = $(this).scrollTop(); // 스크롤값
-
-			if (num > 36) { // 스크롤을 36이상 했을 때
-				$(".admin_top_nav_container").css({
-					visibility : "hidden"
-				});
-				$("#admin_scollbar").css({
-					visibility : "visible",
-					position : "fixed"
-				});
-				$("#admin_scollbar").animate({
-					height : 40
-				}, 1000);
-			} else {
-				$(".admin_top_nav_container").css({
-					visibility : "visible"
-				});
-				$("#admin_scollbar").css({
-					visibility : "hidden",
-					position : "absolute",
-					height : 10
-				});
-			}
-		});
-	});
-
-	function drawStuff() {
-		var data = new google.visualization.arrayToDataTable([['Move', '월별 통계'
-		], ["1월", 44
-		], ["2월", 31
-		], ["3월", 12
-		], ["4월", 14
-		], ["5월", 11
-		], ["6월", 6
-		], ["7월", 16
-		], ["8월", 24
-		], ["9월", 30
-		], ["10월", 28
-		], ["11월", 31
-		], ["12월", 41
-		],
-		]);
-
-		var options = {
-			width : 730,
-			legend : {
-				position : 'none'
-			},
-			chart : {
-				title : '',
-				subtitle : ''
-			},
-			axes : {
-				x : {
-					0 : {
-						side : 'bottom',
-						label : '월별 통계'
-					}
-				// Top x-axis.
-				}
-			},
-			bar : {
-				groupWidth : "50%"
-			}
-		};
-
-		var chart = new google.charts.Bar(document.getElementById('sec_home2_gg'));
-		// Convert the Classic options to Material options.
-		chart.draw(data, google.charts.Bar.convertOptions(options));
-	};
-</script>
-
 </html>

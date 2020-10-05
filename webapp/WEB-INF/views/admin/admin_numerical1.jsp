@@ -42,6 +42,11 @@
 			<button><i class="fas fa-search"></i>검색</button>
 		</div>
 		<div id="num1_chart" style="width: 1400px; height: 700px;"></div>
+		<div class="num1_tb_info">
+		
+			<%@include file="admin_numerical_total.jsp"%>
+			
+		</div>
 	</div>
 </body>
 <script>
@@ -85,5 +90,44 @@ function drawBasic() {
 
       chart.draw(data, options);
     }
+</script>
+<script>
+	$(document).ready(function(){
+		$("#sec_admin_numerical1 > div:nth-child(1) > div:nth-child(1)").on('click', function() {
+			$("#cont_section").load("admin/admin_numerical1");
+			// 일별 통계
+			console.log("일별 통계");
+		});
+		$("#sec_admin_numerical1 > div:nth-child(1) > div:nth-child(2)").on('click', function() {
+			$("#cont_section").load("admin/admin_numerical2");
+			// 요일별 통계
+			console.log("요일별 통계");
+		});
+		$("#sec_admin_numerical1 > div:nth-child(1) > div:nth-child(3)").on('click', function() {
+			$("#cont_section").load("admin/admin_numerical3");
+			// 월별 통계
+			console.log("월별 통계");
+		});
+		
+		$("#sec_admin_numerical1 > div:nth-child(1) > div:nth-child(2)").hover(function(){
+			$(this).css({
+				background:"#c8c8c8"
+			});
+		}, function(){
+			$(this).css({
+				background:"#e5e5e5"
+			})
+		});
+		$("#sec_admin_numerical1 > div:nth-child(1) > div:nth-child(3)").hover(function(){
+			$(this).css({
+				background:"#c8c8c8"
+			});
+		}, function(){
+			$(this).css({
+				background:"#e5e5e5"
+			})
+		});
+		
+	});
 </script>
 </html>

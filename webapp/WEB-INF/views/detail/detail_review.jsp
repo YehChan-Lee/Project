@@ -1,5 +1,3 @@
-<%@page import="com.javaex.model.AllVo"%>
-<%@page import="java.util.List"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -7,13 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 
 <link rel="stylesheet"
 	href="<c:url value='${path}/res/css/magnific-popup.css'/>">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
-
+<link rel="stylesheet" href="<c:url value='${path}/res/css/detail_review.css?ver=1'/>">
 </head>
 <body>
 <%pageContext.setAttribute("sessionid", session.getAttribute("sessionID")); %>
@@ -47,8 +44,8 @@
 		<div id="sort_wrap">
 			<span class="title">리뷰</span>
 			<ul class="sort_list">
-				<li class="listitem">최신순</li>
-				<li class="listitem">인기순</li>
+				<li class="listitem" id="new">최신순</li>
+				<li class="listitem" id="popular">인기순</li>
 			</ul>
 		</div>
 		<div class="review_list">
@@ -119,6 +116,7 @@
 <script>
 	var cur_rating = 0;	
 	var id = '${sessionid}';
+	$(".review_list").load("detail/reviewList", {shopId : "${shopId}",sort : "new"});
 	
 	if(id != null){
 		<c:forEach items="${likeList}" var="obj" >
@@ -129,8 +127,6 @@
 			$('#review_hate${obj.review_idx}').attr("style","color:#f05e23;border-color:#f05e23;").children("p").attr("style", "border-color:#f05e23");
 		</c:forEach>	
 	}
-	
-	
 	
 	function mk_comment(currentIndex,div,score) {
 		$(score).text(currentIndex + "점");
@@ -169,114 +165,31 @@
 	    	$("#hidden_grade").attr("value",rating);
 	    },
 		starSvg : '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>'
-	});
-	<c:forEach items="${reviewList}" var="review">
-		$("#grade${review.reviewVo.review_idx}").rateYo({
-			rating : ${review.reviewVo.review_score},
-			starWidth: "23px",
-			halfStar: true,
-			readOnly: false,
-			onInit: function (rating, rateYoInstance) {
-				mk_comment(rating,"#grade_comment${review.reviewVo.review_idx}","#grade_score${review.reviewVo.review_idx}");
-				$("#grade${review.reviewVo.review_idx}").rateYo("option", "readOnly", true);
-			},
-			starSvg : '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>'
-		});
-	</c:forEach>
-	
+	});	
 	var option = {
 		type : "POST",
 		url : "review_upload",
 		data : {shopId : "${shopId}"},
 		success:function(data){
 			if(data == "success"){
-				alert("업로드 성공");
-				 location.reload();
+				$(".review_list").unload();
+				$(".review_list").load("detail/reviewList?sort=new", {shopId : "${shopId}"});
+			}else if(data == "notLogin"){
+				idcheck();
+			}else if(data == "reviewinput"){
+				alert("별점이나 내용을 입력해주세요.");
 			}
 		},
 	  error : function(data, status, err) {
-	   alert('Fail to save Development Tools');
+	   alert('에러발생 리뷰 업로드 실패');
 	  }
 	} 
 	
 	$('#review_upload').submit(function () {
 		$(this).ajaxSubmit(option);
 		return false;
-	});	
-	
-	$('.photo').magnificPopup({
-		delegate: 'a',
-		type: 'image',
-		tLoading: 'Loading image #%curr%...',
-		mainClass: 'mfp-img-mobile',
-		gallery: {
-			enabled: true,
-			navigateByImgClick: true,
-			preload: [0,1] // Will preload 0 - before current, and 1 after the current image
-		},
-		image: {
-			tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
-			titleSrc: function(item) {
-				return item.el.attr('title') + '<small>by Marsel Van Oosten</small>';
-			}
-		}
-	});
-	<c:forEach items="${reviewList}" var="review">	
-		$("#review_like${review.reviewVo.review_idx}").click(function () {
-			$.ajax({
-				type : "POST",
-				url : "review/like",
-				dataType : "json",
-				data: {
-					reviewIdx : ${review.reviewVo.review_idx},
-					shopId : "${shopId}"
-				},
-				success:function(data) {
-					if(data.isLike == "true"){
-						alert("이미 좋아요를 누르셨습니다.");
-					}else if(data.isLike == "false"){
-						$('#review_like${review.reviewVo.review_idx}').children("span").replaceWith("<span>"+data.like+"</span>");
-						$('#review_like${review.reviewVo.review_idx}').attr("style","color:#f05e23;border-color:#f05e23;").children("p").attr("style", "border-color:#f05e23");
-					}else if(data.islogin == "false"){
-						idcheck();
-					}					
-				},
-				error : function() {
-					alert("에러발생");
-				}
-	
-			});
-		});
-		</c:forEach>
-		<c:forEach items="${reviewList}" var="review">	
-		$("#review_hate${review.reviewVo.review_idx}").click(function () {			
-			$.ajax({
-				type : "POST",
-				url : "review/hate",
-				dataType : "json",
-				data: {
-					reviewIdx : ${review.reviewVo.review_idx},
-					shopId : "${shopId}"
-				},
-				success : function(data) {
-					if(data.isHate == "true"){
-						alert("이미 싫어요를 누르셨습니다.");
-					}else if(data.isHate == "false"){
-						$('#review_hate${review.reviewVo.review_idx}').children("span").replaceWith("<span>"+data.hate+"</span>");
-						$('#review_hate${review.reviewVo.review_idx}').attr("style","color:#f05e23;border-color:#f05e23;").children("p").attr("style", "border-color:#f05e23");
-					}else if(data.islogin == "false"){
-						/* alert("로그인 후 시도하세요"); */
-						idcheck();					
-					}	
-					
-				},
-				error : function() {
-					alert("에러발생");
-				}
-	
-			});			
-		});
-	</c:forEach>
+	});				
+		
 	$(".action > button").hover(function() {
 		$(this).children("p").attr("border-color", "#f05e23");
 	});
@@ -301,7 +214,15 @@
 		$('.popup_close').css('top', -90 + 'px');
 		$('.popup_close').css('left', 80 + '%');
 	}
-	
-	
+	$(".sort_list > .listitem").click(function () {
+		if($(this).attr("id") == "new"){
+			$(".review_list").unload();
+			$(".review_list").load("detail/reviewList?sort=new", {shopId : "${shopId}"});
+		}else{
+			$(".review_list").unload();		
+			$(".review_list").load("detail/reviewList?sort=popular", {shopId : "${shopId}"}); 
+		}
+	})
 </script>
+
 </html>

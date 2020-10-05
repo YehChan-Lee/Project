@@ -1,24 +1,37 @@
+
 package com.javaex.model;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class AdminVo {
-	private String admin_id;	// 관리자 아이디		NOT NULL
-	private String admin_pw;	// 관리자 비밀번호	NOT NULL
+	private String admin_id; // 관리자 아이디 NOT NULL
+	private String admin_pw; // 관리자 비밀번호 NOT NULL
 	private ReservationVo Reservation;
 	private ShopVo ShopVo;
 	private ShopUserVo ShopUser;
 	private ReviewVo ReviewVo;
-	private MenuVO menu;
+	private MenuVo menu;
 	private ShopDibsVo Dibs;
 	private NewsVo NewsVo;
-	
-	public AdminVo() {}
+	private ReserveOrderVo ReserveOrder;
+	private NoticeVo NoticeVo;
+//	private VisitVo VisitVo;
 
-	public AdminVo(String admin_id, String admin_pw) {
+	public AdminVo() {
+	}
+
+	public AdminVo(String admin_id, String admin_pw, ReservationVo reservation, com.javaex.model.ShopVo shopVo,
+			ShopUserVo shopUser, com.javaex.model.ReviewVo reviewVo, MenuVo menu, ShopDibsVo dibs,
+			com.javaex.model.NewsVo newsVo, ReserveOrderVo reserveOrder, com.javaex.model.NoticeVo noticeVo) {
 		this.admin_id = admin_id;
 		this.admin_pw = admin_pw;
+		Reservation = reservation;
+		ShopVo = shopVo;
+		ShopUser = shopUser;
+		ReviewVo = reviewVo;
+		this.menu = menu;
+		Dibs = dibs;
+		NewsVo = newsVo;
+		ReserveOrder = reserveOrder;
+		NoticeVo = noticeVo;
 	}
 
 	public String getAdmin_id() {
@@ -60,20 +73,20 @@ public class AdminVo {
 	public void setShopUser(ShopUserVo shopUser) {
 		ShopUser = shopUser;
 	}
-	
+
 	public ReviewVo getReviewVo() {
 		return ReviewVo;
 	}
 
-	public void setReviewVo(ReviewVo review) {
-		this.ReviewVo = review;
+	public void setReviewVo(ReviewVo reviewVo) {
+		ReviewVo = reviewVo;
 	}
 
-	public MenuVO getMenu() {
+	public MenuVo getMenu() {
 		return menu;
 	}
 
-	public void setMenu(MenuVO menu) {
+	public void setMenu(MenuVo menu) {
 		this.menu = menu;
 	}
 
@@ -93,11 +106,29 @@ public class AdminVo {
 		NewsVo = newsVo;
 	}
 
+	public ReserveOrderVo getReserveOrder() {
+		return ReserveOrder;
+	}
+
+	public void setReserveOrder(ReserveOrderVo reserveOrder) {
+		ReserveOrder = reserveOrder;
+	}
+
+	public NoticeVo getNoticeVo() {
+		return NoticeVo;
+	}
+
+	public void setNoticeVo(NoticeVo noticeVo) {
+		NoticeVo = noticeVo;
+	}
+
 	@Override
 	public String toString() {
 		return "AdminVo [admin_id=" + admin_id + ", admin_pw=" + admin_pw + ", Reservation=" + Reservation + ", ShopVo="
 				+ ShopVo + ", ShopUser=" + ShopUser + ", ReviewVo=" + ReviewVo + ", menu=" + menu + ", Dibs=" + Dibs
-				+ ", NewsVo=" + NewsVo + "]";
+				+ ", NewsVo=" + NewsVo + ", ReserveOrder=" + ReserveOrder + ", NoticeVo=" + NoticeVo + "]";
 	}
 
+	
+	
 }

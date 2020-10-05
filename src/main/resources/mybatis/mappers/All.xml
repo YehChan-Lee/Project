@@ -11,7 +11,7 @@
 		<result property="shop_id" column="SHOP_ID"/>	
 	</resultMap>
 
-	<resultMap type="ShopUser" id="ShopUserResult">
+	<resultMap type="ShopUserVo" id="ShopUserResult">
 		<result property="user_email" column="USER_EMAIL"/>
 		<result property="user_pw" column="USER_PW"/>
 		<result property="user_name" column="USER_NAME"/>
@@ -23,6 +23,7 @@
 		<result property="point" column="POINT"/>
 		<result property="user_photo" column="USER_PHOTO"/>
 		<result property="user_idx" column="USER_IDX"/>
+		<result property="review_cnt" column="REVIEW_CNT"/>
 	</resultMap>
 	
 	<resultMap type="ShopVo" id="ShopResult">
@@ -94,8 +95,16 @@
 	<resultMap type="All" id="ShopReview">
 		<id property="ReviewVo.review_idx" column="REVIEW_IDX"/>		
 		<collection property="ShopVo" resultMap="ShopResult"></collection>
-		<collection property="ShopUser" resultMap="ShopUserResult"></collection>
+		<collection property="ShopUserVo" resultMap="ShopUserResult"></collection>
 		<collection property="ReviewVo" resultMap="ReviewResult"></collection>
+	</resultMap>
+		
+	<resultMap type="hashMap" id="ReserveResult">
+		<id property="reserve_idx" column="RESERVE_IDX"/>
+		<result property="user_name" column="USER_NAME"/>
+		<result property="res_customer" column="RES_CUSTOMER"/>
+		<result property="rev_phone" column="REV_PHONE"/>
+		<result property="res_date" column="RES_DATE"/>
 	</resultMap>
 	
 	<select id="reserveList" resultMap="AllResult">
@@ -106,6 +115,15 @@
             on S.shop_title = R.shop_title
          where R.user_email=#{user_email}
             AND R.res_date>=TO_CHAR(SYSDATE, 'yyyy-mm-dd')
+	</select>
+	<select id="pos_reserveList" resultMap="ReserveResult">
+		select U.user_name,r.res_customer,r.reserve_idx,r.rev_phone,TO_char(r.res_date,'MM-DD HH24:MI') as res_date from reservation R
+			inner join shopUser U
+				on U.user_email=R.user_email
+			inner join Shop S
+				on S.shop_title = R.shop_title
+			where R.shop_id='123-12-12345'
+            AND TO_Char(R.res_date,'MM-DD HH24:MI:SS')>TO_CHAR(SYSDATE, 'MM-DD HH24:MI:SS')
 	</select>
 		
 	<select id="pastList" resultMap="AllResult">
@@ -157,13 +175,34 @@
 	</select>	
 
 	<select id="shopreviewList" resultMap="ShopReview">
-		SELECT R.review_idx,U.user_email,U.user_name,U.user_idx, R.review_score,R.review,R.review_photo,R.like_review,R.hate_review FROM Review R
+		SELECT R.review_idx,U.user_email,U.user_name,U.user_idx,U.review_cnt, R.review_score,R.review,R.review_photo,R.like_review,R.hate_review FROM Review R
 	    INNER JOIN ShopUser U
 	        ON U.user_email=R.user_email
 	    INNER JOIN Shop S
 	        ON S.shop_id=R.shop_id
 	    WHERE R.shop_id = #{shopId}
 	    ORDER BY R.review_date DESC
+	</select>
+	
+	<select id="popreviewList" resultMap="ShopReview">
+		SELECT R.review_idx,U.user_email,U.user_name,U.user_idx,U.review_cnt, R.review_score,R.review,R.review_photo,R.like_review,R.hate_review FROM Review R
+	    INNER JOIN ShopUser U
+	        ON U.user_email=R.user_email
+	    INNER JOIN Shop S
+	        ON S.shop_id=R.shop_id
+	    WHERE R.shop_id = #{shopId}
+	    ORDER BY R.like_review DESC
+	</select>
+	
+	<select id="getReviewList" resultMap="ShopReview">
+	    <![CDATA[
+			SELECT * FROM ( SELECT S.shop_photo,s.shop_title,s.shop_idx,s.shop_location,u.user_name,u.review_cnt,r.review_score,r.review,r.review_idx FROM Review R
+	    	INNER JOIN ShopUser U
+	        	ON U.user_email=R.user_email
+	   	 	INNER JOIN Shop S
+	       	 	ON S.shop_id=R.shop_id     
+	 		ORDER BY r.review_date DESC) WHERE ROWNUM <= 6
+		]]>
 	</select>
 	
 </mapper>

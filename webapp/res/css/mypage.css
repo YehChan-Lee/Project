@@ -46,6 +46,16 @@ body, html{
 	position: relative;
 	float:left;
 }
+#mypage_banner>#user_box>#user_img > img{
+	border-radius: 180px;
+	width : 180px;
+	height: 180px;
+}
+#upphoto{
+	top: 2px;
+    right: 10px;
+	position: relative;
+}
 #mypage_banner>#user_box>#user_info_box>#user_info{
 	margin: 5px;
 }
@@ -209,11 +219,11 @@ td{
 button{
 	cursor: pointer;
 }
-#setting.body>table>tbody>tr>.setting_value>button:hover{
+#setting.body>table>tbody>tr>.setting_value button:hover{
 	color: #646464;
 	border-color: #646464;
 }
-#setting.body>table>tbody>tr>.setting_value>button{
+#setting.body>table>tbody>tr>.setting_value button{
 	float:right;
 	border: 1px solid #969696;
 	background: 0 0;

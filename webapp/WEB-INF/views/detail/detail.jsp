@@ -12,15 +12,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>밥풀 - 카페/베이커리</title>
 
-<link rel="stylesheet" href="<c:url value='${path}/res/css/detail.css?ver=1'/>">
-<link rel="stylesheet" href="<c:url value='${path}/res/css/bootstrap.min.css'/>">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+<link rel="stylesheet"
+	href="<c:url value='${path}/res/css/detail.css?ver=1'/>">
+<link rel="stylesheet"
+	href="<c:url value='${path}/res/css/bootstrap.min.css'/>">
+<link
+	href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
 
 <script src="http://code.jquery.com/jquery.js"></script>
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
 </head>
@@ -31,10 +39,11 @@
 	<!-- container -->
 	<div id="container">
 		<%
-			ShopVo shopvo = (ShopVo) request.getAttribute("shopOne");
-			pageContext.setAttribute("id", session.getAttribute("sessionID"));
-			pageContext.setAttribute("star", shopvo.getShop_score());
-			pageContext.setAttribute("shopidx", shopvo.getShop_idx());
+		ShopVo shopvo = (ShopVo) request.getAttribute("shopOne");
+		pageContext.setAttribute("id", session.getAttribute("sessionID"));
+		pageContext.setAttribute("star", shopvo.getShop_score());
+		pageContext.setAttribute("shopidx", shopvo.getShop_idx());
+		List<ShopUserVo> shopuservo = (List<ShopUserVo>) request.getAttribute("shopuser");
 		%>
 
 		<!-- 상단에 배너가 있는 레이아웃 -->
@@ -42,7 +51,14 @@
 			<div id="banner" class="restaurant_detail">
 				<div class="i_wrap background">
 					<div class="film"></div>
-					<img src="<c:url value='${path}/res/image/walkerhill.jpg'/>" alt="">
+					 <%-- <img src="<c:url value='${path}/res/image/walkerhill.jpg'/>" alt=""> --%>
+					 	<c:forTokens items="${shop.shopVo.shop_photo}" var="img"
+				delims="/" varStatus="i">
+				<a href="<c:url value='${path}/serverImg/shopimg/${img}'/>">
+				<img src="<c:url value='${path}/serverImg/shopimg/${img}'/>"
+					></a>
+			</c:forTokens>
+			
 				</div>
 				<div class="inner_wrap">
 					<div class="inner">
@@ -136,13 +152,19 @@
 				<div class="container">
 
 					<!-- Button to Open the Modal -->
-					<%if (session.getAttribute("sessionID") == null) { %>
-					<button type="button" class="btn btn-primary" onclick="loginPopUp()"
-					id="reservation_btn">예약 하기</button>
-						<% } else{ %>
+					<%
+						if (session.getAttribute("sessionID") == null) {
+					%>
+					<button type="button" class="btn btn-primary"
+						onclick="loginPopUp()" id="reservation_btn">예약 하기</button>
+					<%
+						} else {
+					%>
 					<button type="button" class="btn btn-primary" data-toggle="modal"
-					data-target="#myModal" id="reservation_btn">예약 하기</button>
-					<% } %>
+						data-target="#myModal" id="reservation_btn">예약 하기</button>
+					<%
+						}
+					%>
 					<!-- The Modal -->
 					<div class="modal fade" id="myModal">
 						<div class="modal-dialog modal-dialog-centered">
@@ -158,7 +180,9 @@
 								<div class="modal-body" id="modal-body">
 									<form action="reservation" method="post" class="a">
 										<div class="shop_title_detail_div">가게 이름</div>
-										<input type="text" class="shop_title_detail" name="shop_title" value="<%=shopvo.getShop_title()%>" readonly="readonly">
+										<input type="text" class="shop_id_none" name="shop_id" value="<%=shopvo.getShop_id()%>">
+										<input type="text" class="shop_title_detail" name="shop_title"
+											value="<%=shopvo.getShop_title()%>" readonly="readonly">
 										<div class="res_date_detail_div">예약 날짜</div>
 										<select class="res_date_detail" name="res_year">
 											<option value="2020">2020
@@ -260,8 +284,13 @@
 											<option value="50">50
 										</select>
 										<div class="res_time_detail_div3">분</div>
-										<div class="res_customer_detail_div">예약 인원</div>
-										<input type="text" class="res_customer_detail" name="res_customer">
+
+										<div id="res_name_detail_div">예약자 이름</div>
+										<input type="text" class="res_name_detail" name="res_name">
+
+										<div id="res_customer_detail_div">예약 인원</div>
+										<input type="text" class="res_customer_detail"
+											name="res_customer">
 										<div class="res_customer_detail_div2">명</div>
 										<div class="rev_phone_div">예약자 핸드폰 번호</div>
 										<input type="text" class="rev_phone" name="rev_phone">
@@ -281,80 +310,34 @@
 
 				</div>
 				<div id="editor_recommend_restaurant" class="sidebar">
-					<div class="title">추천 리뷰어</div>
+					<div class="title">이달의 예약 TOP 5</div>
 					<ul class="list">
-						<li class="item"><a class="i_wrap" href="/timeline/236031">
-								<i class="image border_radius circle"
-								style="background-image:url(<c:url value="${path}/res/image/lee.jpg"/>)"></i>
-						</a>
-							<div class="detail">
-								<div class="name">
-									<a href="/timeline/236031">이수진</a>
-								</div>
-								<div class="info">
-									101 리뷰, <span data-type="poing.user.follow" data-id="236031">113</span>
-								</div>
+						<c:forEach items="${shopTop5}" var="shop" varStatus="vs">
+							<div class="rank">
+								<img
+									src="<c:url value='${path}/res/image/grade${vs.count}.png'/>"
+									style="width: 45px; height: 45px;" />
+							</div>
+							<li class="item">
+								<div class="detail">
+									<div class="name">
+										<a
+											href="http://babpool.duckdns.org:8088/BabPool/detail?shopidx=${shop.shop_idx}">${shop.shop_title}</a>
+									</div>
+									<div class="info">${shop.shop_reserve} 예약,
+										${shop.shop_review} 리뷰, ${shop.shop_view} 조회수</div>
 
-							</div></li>
-						<li class="item"><a class="i_wrap" href="/timeline/336595">
-								<i class="image border_radius circle"
-								style="background-image: url(<c:url value="${path}/res/image/lee.jpg"/>)"></i>
-						</a>
-							<div class="detail">
-								<div class="name">
-									<a href="/timeline/336595">박소은</a>
 								</div>
-								<div class="info">
-									120 리뷰, <span data-type="poing.user.follow" data-id="336595">64</span>
-								</div>
-
-							</div></li>
-						<li class="item"><a class="i_wrap" href="/timeline/611090">
-								<i class="image border_radius circle"
-								style="background-image: url(<c:url value="${path}/res/image/lee.jpg"/>)"></i>
-						</a>
-							<div class="detail">
-								<div class="name">
-									<a href="/timeline/611090">jy</a>
-								</div>
-								<div class="info">
-									455 리뷰, <span data-type="poing.user.follow" data-id="611090">142</span>
-								</div>
-
-							</div></li>
-						<li class="item"><a class="i_wrap" href="/timeline/537740">
-								<i class="image border_radius circle"
-								style="background-image: url(<c:url value="${path}/res/image/lee.jpg"/>)"></i>
-						</a>
-							<div class="detail">
-								<div class="name">
-									<a href="/timeline/537740">김규철</a>
-								</div>
-								<div class="info">
-									35 리뷰, <span data-type="poing.user.follow" data-id="537740">14</span>
-								</div>
-
-							</div></li>
-						<li class="item"><a class="i_wrap" href="/timeline/599857">
-								<i class="image border_radius circle"
-								style="background-image: url(<c:url value="${path}/res/image/lee.jpg"/>)"></i>
-						</a>
-							<div class="detail">
-								<div class="name">
-									<a href="/timeline/599857">양정아</a>
-								</div>
-								<div class="info">
-									67 리뷰, <span data-type="poing.user.follow" data-id="599857">24</span>
-								</div>
-
-							</div></li>
+							</li>
+						</c:forEach>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
 	<%@include file="../footer.jsp"%>
-	<script type="text/javascript"src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=cyozvucbzs&submodules=geocoder"></script>
+	<script type="text/javascript"
+		src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=cyozvucbzs&submodules=geocoder"></script>
 
 	<script>
         $(document).ready(function(){  
@@ -440,7 +423,9 @@
             	else if($("#content > ul > .item.selected")[0] == $("#menu")[0]){
             		$("#naverMap").hide();
             		$("#import").unload();
-            		$("#import").load("detail/menu.do")
+            		$("#import").load("detail/menu.do",{
+            			"shopId" : "${shopOne.shop_id}"
+            		})
             		$("#import").show();
             	}
             	else if($("#content > ul > .item.selected")[0] == $("#map")[0]){
@@ -517,35 +502,44 @@
 
                  //지도관련 끝
         
-		$('.reservation_submit').click(function(e) {
-			e.preventDefault();
-			var action = $('.a').attr("action");
-			
-			var form_data = {
-				
-					shop_id : "${shopOne.shop_id}",
-					res_customer : $(".res_customer_detail").val(),
-					shop_title : $(".shop_title_detail").val(),
-					rev_phone : $(".rev_phone").val(),
-					res_date : $(".res_date_detail").val() + "-" + $(".res_date_detail2").val() + "-" + 
-					$(".res_date_detail3").val() +" "+  $(".res_time_detail").val() + ":" + $(".res_time_detail2").val()
-					
-				};
-		
-			$.ajax({
-				type : "POST",
-				url : action,
-				data : form_data,
-				success : function(data) {
-				
-				},
-				error : function() {
-					
-				}
-		
-			});
-		});      
-}); 
+             $('.reservation_submit').click(function() {
+     		
+     			var action = $('.a').attr("action");  
+     			$.ajax({
+     				type : "POST",
+     				url : action,
+     				data : {
+     					shop_id : $(".shop_id_none").val(),
+     					res_customer : $(".res_customer_detail").val(),
+     					shop_title : $(".shop_title_detail").val(),
+     					rev_phone : $(".rev_phone").val(),
+     					res_name : $(".res_name_detail").val(),
+     					res_date : $(".res_date_detail").val() + "-" + $(".res_date_detail2").val() + "-" + 
+     					$(".res_date_detail3").val() +" "+  $(".res_time_detail").val() + ":" + $(".res_time_detail2").val()
+     				},
+     				success : function(data) {
+     					if (data == "fail") {
+     						alert("예약 실패");
+     						$(".rev_phone").val("");
+     						$(".res_name").val("");
+     						$(".res_customer").val("");
+     						} else if(data == "success"){
+     						alert("예약 성공")
+     						$(".rev_phone").val("");
+     						$(".res_name").val("");
+     						$(".res_customer").val("");
+     						window.location.reload()
+     						}
+     					},
+     				error : function() {
+  					
+     				}
+    		
+     			});
+    
+     		});      
+     }); 
+
         //로그인 팝업 관련
 		function loginPopUp(){
 			$("#join_body").hide();
@@ -568,7 +562,8 @@
 			$('.popup_close').css('top', -90 + 'px');
 			$('.popup_close').css('left', 80 + '%'); 
 	    }
-    </script>
- 
+        
+</script>
+
 </body>
 </html>

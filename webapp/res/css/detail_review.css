@@ -2,7 +2,10 @@
 
 hr{border-top: 1px solid lightgray;margin-top: 15px;}
 #review_wrap{
-	width : 730px;	
+	width : 730px;		
+}
+#review_write_wrap{
+	background-color: white;
 }
 
 #review_wrap #review_write_wrap{
@@ -253,4 +256,11 @@ hr{border-top: 1px solid lightgray;margin-top: 15px;}
 #review_wrap .no_name{
 	color: #323232;
     font-weight: 600;
+}
+.del > i{
+	float : right;
+ 	cursor: pointer;
+}
+.jq-ry-container{
+	padding: 0;
 }

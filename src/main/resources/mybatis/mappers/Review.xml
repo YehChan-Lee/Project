@@ -1,74 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="Review">	
-	<!--리뷰 총 갯수  -->
+<mapper namespace="Review">
+	<!--리뷰 총 갯수 -->
 	<select id="reviewCnt" resultType="HashMap">
-		select count(*)  as cnt from Review
-    		where shop_id = #{shopId}
+		select count(*) as cnt from
+		Review
+		where shop_id = #{shopId}
 	</select>
+
+	<!--해당 ID의 리뷰 총 갯수 -->
+	<select id="idReviewCnt" resultType="HashMap">
+		select count(*) as cnt from
+		Review
+		where user_email = #{userEmail}
+	</select>
+
+	<!-- 가게의 리뷰갯수 갱신 -->
+	<update id="cntReload" parameterType="hashMap">
+		update Shop set
+		shop_review=${reviewCnt} where shop_id=#{shopId}
+	</update>
 	<!--로그인한 ID의 해당 가게의 좋아요 누른 리스트 -->
 	<select id="likeList" resultType="ReviewLikeVo">
-		select Review_idx from Review_like
-			where user_email = #{user_email} and shop_id = #{shopId}
+		select Review_idx from
+		Review_like
+		where user_email = #{user_email} and shop_id = #{shopId}
 	</select>
 	<!--로그인한 ID의 해당 가게의 싫어요 누른 리스트 -->
 	<select id="hateList" resultType="ReviewHateVo">
-		select Review_idx from Review_hate
-			where user_email = #{user_email} and shop_id = #{shopId}
+		select Review_idx from
+		Review_hate
+		where user_email = #{user_email} and shop_id = #{shopId}
 	</select>
-	
-	<!--리뷰 입력  -->
+
+	<!--리뷰 입력 -->
 	<insert id="reviewInsert" parameterType="reviewvo">
-		Insert into Review values(seq_review_idx.nextval,#{shop_id},#{user_email},${review_score},#{review},sysdate,0,0,#{review_photo})
+		Insert into Review
+		values(seq_review_idx.nextval,#{shop_id},#{user_email},${review_score},#{review},sysdate,0,0,#{review_photo})
 	</insert>
-	
-	<!--좋아요 누른지 판별  -->
-	<select id="likeCheck" parameterType="hashMap" resultType="ReviewLikeVo">
+
+	<!--좋아요 누른지 판별 -->
+	<select id="likeCheck" parameterType="hashMap"
+		resultType="ReviewLikeVo">
 		select * from Review_Like
-    		where review_idx = #{reviewIdx} and user_email = #{email} 
+		where review_idx = #{reviewIdx} and user_email = #{email}
 	</select>
-	
-	<!--좋아요 누른갯수  -->
+
+	<!--좋아요 누른갯수 -->
 	<select id="likeCnt" resultType="HashMap">
-		select count(*)  as cnt from Review_Like
-    		where review_idx = #{reviewIdx}
+		select count(*) as cnt from
+		Review_Like
+		where review_idx = #{reviewIdx}
 	</select>
-	
-	<!--좋아요 테이블에 데이터 추가  -->
+
+	<!--좋아요 테이블에 데이터 추가 -->
 	<insert id="likeAdd" parameterType="hashMap">
-		insert into Review_Like values(#{email},#{shopId},${reviewIdx})
-	</insert>	
-	
+		insert into Review_Like
+		values(#{email},#{shopId},${reviewIdx})
+	</insert>
+
 	<!--좋아요 갯수 갱신 -->
 	<update id="like_up" parameterType="hashMap">
-		update review set like_review=${cnt} where review_idx=${reviewIdx}
+		update review set
+		like_review=${cnt} where review_idx=${reviewIdx}
 	</update>
-			
-	<!--싫어요 누른지 판별  -->
-	<select id="hateCheck" parameterType="hashMap" resultType="ReviewHateVo">
+
+	<!--싫어요 누른지 판별 -->
+	<select id="hateCheck" parameterType="hashMap"
+		resultType="ReviewHateVo">
 		select * from Review_Hate
-    		where review_idx = #{reviewIdx} and user_email = #{email} 
+		where review_idx = #{reviewIdx} and user_email = #{email}
 	</select>
+	<!--싫어요 누른갯수 -->
+	<select id="hateCnt" resultType="hashMap">
+		select count(*) as cnt from
+		Review_Hate
+		where review_idx = #{reviewIdx}
+    </select>
+
+	<!--싫어요 테이블에 데이터 추가  -->
+	<insert id="hateAdd" parameterType="hashMap">
+		insert into Review_Hate
+		values(#{email},#{shopId},${reviewIdx})
+	</insert>
+
+	<!--싫어요 갯수 갱신 -->
+	<update id="hate_up" parameterType="hashMap">
+		update review set
+		hate_review=${cnt} where review_idx=${reviewIdx}
+	</update>
+
+	<!--좋아요 삭제 -->
+	<delete id="delLike" parameterType="hashMap">
+		delete from Review_Like where
+		review_idx=#{delIdx}
+	</delete>
+	<!--싫어요 삭제 -->
+	<delete id="delHate" parameterType="hashMap">
+		delete from Review_Hate where
+		review_idx=#{delIdx}
+	</delete>
+
+	<!--리뷰 삭제 -->
+	<delete id="delReview" parameterType="hashMap">
+		delete from Review where
+		review_idx=${delIdx}
+	</delete>
 	
 	<!-- footer 리뷰 갯수 -->
 	<select id="footerreview" resultType="int">
 		select count(*) from Review
 	</select>
-	
-	<!--싫어요 누른갯수  -->
-	<select id="hateCnt" resultType="hashMap">
-		select count(*)  as cnt from Review_Hate
-    		where review_idx = #{reviewIdx}
-    </select>
-
-	<!--싫어요 테이블에 데이터 추가  -->
-	<insert id="hateAdd" parameterType="hashMap">
-		insert into Review_Hate values(#{email},#{shopId},${reviewIdx})
-	</insert>	
-	
-	<!--싫어요 갯수 갱신 -->
-	<update id="hate_up" parameterType="hashMap">
-		update review set hate_review=${cnt} where review_idx=${reviewIdx}
-	</update>
 </mapper>
