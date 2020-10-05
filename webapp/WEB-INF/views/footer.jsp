@@ -16,14 +16,6 @@
 <body>
 <!-- footer -->
 <div id="footer_wrap">
-	<div id="download">
-	<span>밥풀 앱 다운로드</span>
-	<a id="android" href="">
-		<div id="download_img">
-		<img src="<c:url value="${path}/res/image/androidapp.png"/>" height="40px"/>
-		</div>
-	</a>
-	</div>
 	<div id="footer_container">
 		<div id="footer_logo">
 		<a href="">
@@ -31,8 +23,7 @@
         </a>
         </div>
 		<div id="footer_slogan">
-		밥풀은 맛있다.<br>
-		바밤바도 맛있다.
+		당신의 탁월한 선택 밥풀<br>
 		</div>
 		
 		<div id="footer_count">

@@ -321,8 +321,7 @@
 							<li class="item">
 								<div class="detail">
 									<div class="name">
-										<a
-											href="http://babpool.duckdns.org:8088/BabPool/detail?shopidx=${shop.shop_idx}">${shop.shop_title}</a>
+										<a href="http://localhost:8088/BabPool/detail?shopidx=${shop.shop_idx}">${shop.shop_title}</a>
 									</div>
 									<div class="info">${shop.shop_reserve} 예약,
 										${shop.shop_review} 리뷰, ${shop.shop_view} 조회수</div>
@@ -340,26 +339,37 @@
 		src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=cyozvucbzs&submodules=geocoder"></script>
 
 	<script>
-        $(document).ready(function(){  
+        $(document).ready(function(){
+        	var isdib = "${isDib}";
+        	if(isdib == "true"){
+        		$('.empty').attr("style","color:#f05e23;");
+        	}else{
+        		$('.empty').attr("style","color:white;");
+        	}
         	
         	$(".empty").click(function () {
-        		 e.preventDefault();
                  $.ajax({
          			type : "POST",
          			url : "isDib",
          			data: {
-         				starClass : $(this).attr("class"),
-         				shopId :"${shopId}"
+         				shopId :"${shopid}",
+         				shopIdx : "${shopidx}"
          			},
          			success : function(data) {
-         					alert(data)
+         				if(data == "success"){
+         					alert("success");
+         				}else if(data == "adddib"){
+         					$('.empty').attr("style","color:#f05e23;");
+         				}else if(data == "deldib"){
+         					$('.empty').attr("style","color:white;");
+         				}else if(data == "nologin"){
+         					loginPopUp();				
+         				}
          			},
          			error : function() {
          				alert("에러발생");
          			}
-
          		});			
-                 $(this).closest("span").toggleClass("off")
 			})
         	
         	$('.action > button').click(function () {
@@ -385,7 +395,7 @@
     				$('.popup_close').css('top', -90 + 'px');
     				$('.popup_close').css('left', 80 + '%');
     			}else{
-    				alert("로그인되어있슴")
+    				alert("로그인되어있습니다.")
     			}
     		})
         	

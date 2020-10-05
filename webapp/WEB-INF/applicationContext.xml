@@ -49,5 +49,6 @@
 			name="sqlSessionFactory" />
 	</bean>
 
+	<bean id="visitDao" class="com.javaex.model.VisitDao"></bean>
 	
 </beans>

@@ -47,22 +47,8 @@ public class JoinController {
 
 	// 메인페이지 실시간 리뷰 리스트 Get
 	@RequestMapping("/main")
-	public ModelAndView main(ModelAndView mav, String v, HttpSession session) {
-		System.out.println("/BabPool/main");
-		HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
-				.getRequest();
-		String custIP = req.getRemoteAddr();
-
-		/*
-		 * visitDao.reVisi(custIP);
-		 * 
-		 * System.out.println(visitDao.reVisi(custIP));
-		 * System.out.println(visitDao.reVisi(custIP).size());
-		 * 
-		 * if (visitDao.reVisi(custIP).size() == 0) { visitDao.insertVisit(custIP); }
-		 * else { System.out.println("IP 중복 >> " + custIP + "(" +
-		 * visitDao.reVisi(custIP).size() + ")"); }
-		 */
+	public ModelAndView main(ModelAndView mav, HttpSession session) {
+		System.out.println("/BabPool/main");		
 		mav.addObject("reviewList", alldao.getReview());
 		session.setAttribute("footeruser", alldao.footeruser());
 		session.setAttribute("footerreview", reviewdao.footerreview());
