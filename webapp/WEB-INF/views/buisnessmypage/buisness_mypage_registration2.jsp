@@ -10,11 +10,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet"
-<<<<<<< HEAD
-	href="<c:url value="${path}/res/css/bootstrap.min.css?ver=1"/>" />
-=======
 	href="<c:url value="${path}/res/css/bootstrap.min.css"/>">
->>>>>>> refs/remotes/remote/origin/master
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
@@ -31,8 +27,6 @@
 	<%
 		ShopVo shoplist = (ShopVo) request.getAttribute("shopOwnerList");
 	%>
-
-
 	<form action="buisness_update" method="post" class="registration_form" enctype="multipart/form-data">
 		<span class="shop_name_span">가게 이름</span> <input type="text"
 			class="shop_title" name="shop_title"
