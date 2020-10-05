@@ -1,3 +1,6 @@
+<%@page import="java.util.Iterator"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.javaex.model.AllVo"%>
 <%@page import="java.util.List"%>
@@ -16,22 +19,15 @@
 
 <link rel="stylesheet" href="<c:url value="${path}/res/css/mypage.css?ver=1"/>"/>
 <link rel="stylesheet" href="<c:url value="${path}/res/css/jquery-ui.css"/>"/>
+<%-- <link rel="stylesheet" href="<c:url value="${path}/res/css/lkj.css"/>"/> --%>
 </head>
 <body>
 <%@include file="../top_bar.jsp" %>
 <!-- 마이페이지 -->
-
-<%
-List<AllVo> reserveList = (ArrayList<AllVo>)request.getAttribute("reserveList");
-List<AllVo> reviewList = (ArrayList<AllVo>)request.getAttribute("reviewList");
-List<AllVo> dibsList = (ArrayList<AllVo>)request.getAttribute("dibsList");
-%>
-
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.4.0/"/></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
-<link rel="stylesheet" href="<c:url value="${path}/res/css/jquery-ui.css"/>"/>
 <script src="<c:url value='${path}/res/js/jquery-ui.js'/>" type="text/javascript"></script>
 
 <div id="timeline">
@@ -53,9 +49,9 @@ List<AllVo> dibsList = (ArrayList<AllVo>)request.getAttribute("dibsList");
 						<div class="point">${getUser.point} BP</div>
 					</div>
 					<div id="situation">
-						<a href="">예약 <%=reserveList.size() %></a>
-						<a href="">리뷰 <%=reviewList.size() %></a>
-						<a href="">찜한 매장 <%=dibsList.size() %></a>
+						<a href="">예약 ${reserveList.size()}</a>
+						<a href="">리뷰 ${reviewList.size()}</a>
+						<a href="">찜한 매장 ${dibsList.size()}</a>
 					</div>
 				</div>
 			</div>
@@ -77,67 +73,37 @@ List<AllVo> dibsList = (ArrayList<AllVo>)request.getAttribute("dibsList");
 		</div>
 	</div>
 	<div id="nalzza">
-		<div id="nalzza_title">예약 캘린더</div>
+		<div id="nalzza_title">예약 캘린더</div>  
 		<div id="datepicker"></div>
 	</div>
 </div>
+<%
+ArrayList<AllVo> reserveList = (ArrayList<AllVo>)request.getAttribute("reserveList");
+ArrayList<String> rDate = new ArrayList<String>();
+for (int i = 0; i < reserveList.size(); i++) {
+	AllVo vo = reserveList.get(i);
+	Date date2 = vo.getReservation().getRes_date();
+	
+	SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+	String date3 = simpleDate.format(date2); 
+	rDate.add(date3);
+	System.out.println(date3);
+}
+%>
+	<c:set var="rDate" value="<%=rDate %>" />
+	
 	<script>
 	  $(function() {
 		  
 		  mypage_change();
-		  
-		  var enableDays = ['2020-09-28', '2020-09-27', '2020-08-27'];
-          console.log(enableDays);
-          function enableAllTheseDays(date) {
-            var fDate = $.datepicker.formatDate('yy-mm-dd', date);
-            var result = [false, ""];
-            $.each(enableDays, function(k, d) {
-              if (fDate === d) {
-                result = [true, "black"];
-              }
-            });
-            return result;
-          }
           
-		  $("#datepicker2").datepicker({
-		         showOn : "both", // 버튼과 텍스트 필드 모두 캘린더를 보여준다.
-		         /* buttonImage: "res/image/admin/calendar.png", // 버튼 이미지 */
-		         buttonImage : "res/image/admin/calendar.png", // 버튼 이미지
-		         buttonImageOnly : true, // 버튼에 있는 이미지만 표시한다.
-		         changeMonth : true, // 월을 바꿀수 있는 셀렉트 박스를 표시한다.
-		         changeYear : true, // 년을 바꿀 수 있는 셀렉트 박스를 표시한다.
-		         minDate : '-100y', // 현재날짜로부터 100년이전까지 년을 표시한다.
-		         maxDate : '0',
-		         nextText : '다음 달', // next 아이콘의 툴팁.
-		         prevText : '이전 달', // prev 아이콘의 툴팁.
-		         numberOfMonths : [1, 1
-		         ], // 한번에 얼마나 많은 월을 표시할것인가. [2,3] 일 경우, 2(행) x 3(열) = 6개의 월을 표시한다.
-		         //stepMonths: 3, // next, prev 버튼을 클릭했을때 얼마나 많은 월을 이동하여 표시하는가. 
-		         /* yearRange: 'c-100:c+10', // 년도 선택 셀렉트박스를 현재 년도에서 이전, 이후로 얼마의 범위를 표시할것인가. */
-		         yearRange : 'c-30:c+0', // 년도 선택 셀렉트박스를 현재 년도에서 이전, 이후로 얼마의 범위를 표시할것인가.
-		         showButtonPanel : true, // 캘린더 하단에 버튼 패널을 표시한다.
-		         gotoCurrent: true,
-		         currentText : '오늘 날짜', // 오늘 날짜로 이동하는 버튼 패널
-		         closeText : '닫기', // 닫기 버튼 패널
-		         dateFormat : "yy-mm-dd", // 텍스트 필드에 입력되는 날짜 형식.
-		         /* showAnim: "slide", //애니메이션을 적용한다. */
-		         showMonthAfterYear : true, // 월, 년순의 셀렉트 박스를 년,월 순으로 바꿔준다. 
-		         dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-		         dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-		         dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], // 요일의 한글 형식.
-		         monthNamesShort : ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'
-		         ],
-		          beforeShowDay: enableAllTheseDays
-		      // 월의 한글 형식.
-
-		      });
-         /* //모든 datepicker에 대한 공통 옵션 설정
+         //모든 datepicker에 대한 공통 옵션 설정
          $.datepicker.setDefaults({
              dateFormat: 'yy-mm-dd' //Input Display Format 변경
              ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
              ,showMonthAfterYear:true //년도 먼저 나오고, 뒤에 월 표시
              ,changeYear: true //콤보박스에서 년 선택 가능
-             ,changeMonth: true //콤보박스에서 월 선택 가능                
+             ,changeMonth: true //콤보박스에서 월 선택 가능
              ,showOn: "both" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
              ,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //버튼 이미지 경로
              ,buttonImageOnly: true //기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
@@ -148,11 +114,11 @@ List<AllVo> dibsList = (ArrayList<AllVo>)request.getAttribute("dibsList");
              ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 부분 텍스트
              ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
              ,minDate: "-1Y" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
-             ,maxDate: "+1Y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)                    
-         }); */
+             ,maxDate: "+1Y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
+         });
 
          //input을 datepicker로 선언
-         $("#datepicker").datepicker();                    
+         $("#datepicker").datepicker();
          
          //From의 초기값을 오늘 날짜로 설정
          $('#datepicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
@@ -163,9 +129,74 @@ List<AllVo> dibsList = (ArrayList<AllVo>)request.getAttribute("dibsList");
                     jQuery("#ui-datepicker-div").css({"left":i_offset});
                    // datepicker의 div의 포지션을 강제로 클릭한 input 위취로 이동시킨다.
                  })
-              }
-         })
+              } 
+         });
+         
+           
+         reserved();
+         
+          function reserved(){
+        	  var rDate = [
+             	 <c:forEach items="${rDate}" var="ds"> 	 
+             	 	"<c:out value="${ds}"/>",
+             	 </c:forEach>
+             	 ];
+              for(var k=0; k<rDate.length; k++){
+     	         var year = rDate[k].substring(0,4);
+     	         var month = rDate[k].substring(5,7);
+     	         var day = rDate[k].substring(8);
+	        	 
+     	         if(($(".ui-datepicker-year option:selected").text()).toString() == year.toString()) {	 
+	        		 if(($(".ui-datepicker-month option:selected").text()).toString() == month.toString()) {
+	        		 	for(var i = 1; i < $(".ui-datepicker-calendar tr").length; i++) { // week
+	        		 		for(var j = 1; j< 8; j++) {	// day
+		        		 		 if($(".ui-datepicker-calendar tr:nth-child("+i+")>td:nth-child("+j+")").children().prop('tagName') == "A"){
+		        		 			if(($(".ui-datepicker-calendar tr:nth-child("+i+")>td:nth-child("+j+")>a").text()).toString() == day ||
+		        		 					"0" + ($(".ui-datepicker-calendar tr:nth-child("+i+")>td:nth-child("+j+")>a").text()).toString()== day) {
+		        		 				$(".ui-datepicker-calendar tr:nth-child("+i+")>td:nth-child("+j+")>a").css("background-color","#b7ffb7");
+		        		 			}
+		        		 		}
+	        		 		}
+	        		 	}
+	        		 }
+	        	 }
+        	 }
+          }
+         
+		 $("select").on('change',function(){
+	       	  	reserved();
+	       	 $("select").on('change',function(){
+		       	  	reserved();
+		       	 $("select").on('change',function(){
+			       	  	reserved();
+			       	 $("select").on('change',function(){
+				       	  	reserved();
+				       	 $("select").on('change',function(){
+					       	  	reserved();
+					       	 $("select").on('change',function(){
+						       	  	reserved();
+						       	 $("select").on('change',function(){
+							       	  	reserved();
+							       	 $("select").on('change',function(){
+								       	  	reserved();
+								       	 $("select").on('change',function(){
+									       	  	reserved();
+									       	 $("select").on('change',function(){
+										       	  	reserved();
+										         });
+									         });
+								         });
+							         });
+						         });
+					         });
+				         });
+			         });
+		         });
+	         }); 
 
+         /* alert(($(".ui-datepicker-calendar tr:nth-child(1)>td:nth-child(3)>a").text()).toString()); */
+         /* alert($(".ui-datepicker-calendar tr:nth-child(1)>td:nth-child(1)").children().prop('tagName')); */      
+         
          $(".active").css("color", "#ffa500");
          $("#my_tab>.my_item").mouseenter(function(){
         	$(this).css("cursor","pointer");
@@ -198,7 +229,6 @@ List<AllVo> dibsList = (ArrayList<AllVo>)request.getAttribute("dibsList");
      });
 	  
     </script>
-    
 <%@include file="../footer.jsp" %>
 
 </body>

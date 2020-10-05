@@ -105,7 +105,7 @@
          inner join Shop S
             on S.shop_title = R.shop_title
          where R.user_email=#{user_email}
-            AND R.res_date>TO_CHAR(SYSDATE, 'yyyy-mm-dd')
+            AND R.res_date>=TO_CHAR(SYSDATE, 'yyyy-mm-dd')
 	</select>
 		
 	<select id="pastList" resultMap="AllResult">

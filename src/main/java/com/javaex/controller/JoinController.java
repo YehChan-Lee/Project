@@ -50,7 +50,7 @@ public class JoinController {
 		mav.setViewName("mypage/mypage");
 		return mav;
 	}
-	
+
 	@RequestMapping("/mypage/reservation")
 	public ModelAndView mypage_reservation(ModelAndView mav, HttpSession session) {
 		System.out.println("/BabPool/mypage/reservation");
