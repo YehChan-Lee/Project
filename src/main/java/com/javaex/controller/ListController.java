@@ -63,11 +63,11 @@ public class ListController {
 	@Autowired
 	ShopDibsDao dibdao;
 
-	String url = "D:\\LYC\\SpringGit\\Project\\webapp\\serverImg\\";
+	String url = "C:\\Users\\Kosmo_23\\Desktop\\백업\\Project\\webapp\\serverImg\\";
 	
 
 	@RequestMapping("/review_upload")
-	public void test(MultipartHttpServletRequest req, HttpServletResponse res, HttpSession session)
+	public void test(ModelAndView mav,MultipartHttpServletRequest req, HttpServletResponse res, HttpSession session)
 			throws IOException {
 		System.out.println("/BabPool/review_upload");
 		String user_email = (String) session.getAttribute("sessionID");
@@ -79,25 +79,25 @@ public class ListController {
 			res.getWriter().write("reviewinput");
 			return;
 		}
+
 		List<MultipartFile> fileList = req.getFiles("inputImage");// input file타입 파라미터
 		double reviewScore = Double.parseDouble(req.getParameter("hidden_grade"));// 별점
 		String review = req.getParameter("review_area");// 리뷰내용
-		String shopId = req.getParameter("shopId");		//리뷰적힌 상점번호
+		String shopId = req.getParameter("shopId");
 		req.setAttribute("shopId", shopId);
 		
-		// 이미지 저장 경로
-		String folder = "review\\";
+		String folder = "review\\";// 이미지 저장 경로
 		String path = "";
 		String fileName = "";
 		for (MultipartFile mf : fileList) {
 			String originFileName = mf.getOriginalFilename(); // 원본 파일 명
 			fileName = "review" + reviewdao.reviewCnt(shopId) + shopId + originFileName;
-			String safeFile = url + folder + fileName;//저장될 경로와 파일이름을 정해서 저장
+			String safeFile = url + folder + fileName;
 			try {
 				File file = new File(url);
 				if (!file.exists()) {
 					try {
-						file.mkdir(); // 해당폴더가 없으면 생성
+						file.mkdir(); // 폴더 생성합니다.
 						System.out.println("폴더가 생성되었습니다.");
 						mf.transferTo(new File(safeFile));
 					} catch (Exception e) {
@@ -113,9 +113,9 @@ public class ListController {
 			}
 			path += fileName + "/";
 		}
-		reviewdao.reviewUpload(new ReviewVo(0, shopId, user_email, reviewScore, review, path, 0, 0));//적힌 리뷰의 데이터를 가져와서 DB로 보내줌
-		dao.reviewCntReload(shopId, reviewdao.reviewCnt(shopId));//해당 가게의 리뷰카운트 증가
-
+		reviewdao.reviewUpload(new ReviewVo(0, shopId, user_email, reviewScore, review, path, 0, 0));
+		dao.reviewCntReload(shopId, reviewdao.reviewCnt(shopId));
+		
 		userDao.reviewCntUpload(user_email);
 		dao.scoreCalc(shopId);
 		res.getWriter().write("success");
@@ -215,6 +215,7 @@ public class ListController {
 		// cnt 증가후 다시 shop 호출
 		dao.viewUp(ShopId);
 		shop = dao.shopOne(shopIdx);
+		mav.addObject("ShopPhoto", dao.getShopPhoto(user_email));
 		mav.addObject("shopTop5",dao.getTop5());
 		mav.addObject("shopOne", shop);
 		mav.setViewName("detail/detail");
@@ -348,8 +349,6 @@ public class ListController {
 		String hash_tag = req.getParameter("hash_tag");
 		String comma = "";
 		
-		
-		
 		List<MultipartFile> fileList = req.getFiles("shop_photo");
 		List<MultipartFile> fileList2 = req.getFiles("shop_subphoto");
 		
@@ -443,10 +442,16 @@ public class ListController {
 		
 		
 		
-		if (shop_id == null) {
-			response.getWriter().write("fail");
+		if (shop_id.equals("")) {
+			response.getWriter().write("shopid_null");
+		} else if (shop_addr.equals("")) {
+			response.getWriter().write("shopaddr_null");
+		} else if (shop_location.equals("")) {
+			response.getWriter().write("shoplocation_null");
+		} else if (food_type.equals("")) {
+			response.getWriter().write("foodtype_null");
 		} else {
-			response.getWriter().write("a");
+			response.getWriter().write("update");
 			ShopVo s = new ShopVo(shop_title,shop_id, shop_addr,  shop_location, food_type, shop_tip, budget, shop_comment,
 					shop_phone, shop_time, shop_addinfo, shop_tb, shop_alcohol, shop_car, shop_close, path,hash_tag, path2);
 			dao.updateShop(s);

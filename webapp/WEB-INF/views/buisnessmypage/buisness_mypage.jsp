@@ -9,18 +9,13 @@
 <title>사업자 마이 페이지</title>
 
 <link rel="stylesheet" href="<c:url value="${path}/res/css/buisnessmypage.css?ver=1"/>"/>
+<link rel="stylesheet" href="<c:url value="${path}/res/css/jquery-ui.css"/>"/>
+ 
 
 </head>
 <body>
 <%@include file="../top_bar.jsp" %>
 <!-- 마이페이지 -->
-
- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.4.0/"/></script>
-<link rel="stylesheet" href="<c:url value="${path}/res/css/jquery-ui.css"/>"/>
-<script src="<c:url value='${path}/res/js/jquery-ui.js'/>" type="text/javascript"></script>
-
 <div id="timeline">
 	<div id="user_timeline">
 		<div id="mypage_banner">
@@ -48,7 +43,7 @@
 <div id="content_wrap">
 	<div id="content" class="mypage">
 		<ul id="my_tab">
-			<li id="my_reserv" class="my_item selected">내 가게</li>			
+			<li id="my_reserv" class="my_item active">내 가게</li>			
 			<li id="my_review" class="my_item">예약 현황</li>
 			<li id="my_setting" class="my_item">설정</li>
 		</ul>
@@ -57,15 +52,13 @@
 		</div>
 	</div>
 
-</div>
-
-	<script>
+</div>    
+<%@include file="../footer.jsp" %>
+<script>
 	  $(function() {
 		  
 		  mypage_change();
-		  
-      
-         
+
          $("#my_tab>.my_item").mouseenter(function(){
         	$(this).css("cursor","pointer");
          });
@@ -86,13 +79,12 @@
         	 }
         	 else if($("#my_tab>.selected")[0] == $("#my_setting")[0]) {
         		 $("#mypage_import").load("buisnessmypage/setting");
+        	 } else {
+        		 $("#mypage_import").load("buisnessmypage/registration");
         	 }
          }
      });
 	  
     </script>
-    
-<%@include file="../footer.jsp" %>
-
 </body>
 </html>
