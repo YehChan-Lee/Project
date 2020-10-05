@@ -18,7 +18,11 @@
    		SELECT * FROM visit WHERE to_date(visit_date, 'YY/MM/DD') = #{today}
    </select>
    
-   <!-- <select id="reVisi" parameterType="VisitVo" resultType="VisitVo">
-   		SELECT visit_id FROM visit WHERE visit_id = #{visit_id}
-   </select> -->
+   <select id="visitMonth" resultType="VisitVo" parameterType="string">
+   		select count(*), to_char(visit_date, 'yy/mm')
+		from visit
+		where to_char(visit_date, 'yy/mm') = to_char(sysdate, 'yy/mm')
+		group by to_char(visit_date, 'yy/mm');
+   </select>
+   
 </mapper>

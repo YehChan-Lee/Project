@@ -35,8 +35,17 @@ public class VisitDao {
 		 }
 		return visitvo;
 	}
-	
+	// 오늘 방문
 	public List<VisitVo> aTotalToday(String today) {
+		List<VisitVo> visitvo = sqlSession.selectList("VisitVo.visitToday", today);
+		System.out.println(visitvo.size());
+		 for (int i = 0; i < visitvo.size(); i++) {
+			 System.out.println(visitvo.get(i));
+		 }
+		return visitvo;
+	}
+	// 이달 방문
+	public List<VisitVo> aTotalMonth(String today) {
 		List<VisitVo> visitvo = sqlSession.selectList("VisitVo.visitToday", today);
 		System.out.println(visitvo.size());
 		 for (int i = 0; i < visitvo.size(); i++) {

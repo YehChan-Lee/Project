@@ -43,6 +43,7 @@ public class AdminController {
 		String month = monthFo.format(d);
 		System.out.println("현재(yy/mm/dd) : " + today);
 		mav.addObject("admin_numerical_totalToday", visitDao.aTotalToday(today));
+		mav.addObject("admin_numerical_totalMonth", visitDao.aTotalMonth(month));
 		
 		mav.addObject("admin_numerical_total", visitDao.aTotalAll());
 		mav.addObject("Aadmin_id", admindao.Aadmin_id());
