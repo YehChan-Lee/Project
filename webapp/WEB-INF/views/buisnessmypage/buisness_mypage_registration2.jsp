@@ -10,13 +10,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	href="<c:url value="${path}/res/css/bootstrap.min.css?ver=1"/>" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="http://malsup.github.com/jquery.form.js"></script>
 <link rel="stylesheet"
 	href="<c:url value="${path}/res/css/buisness_mypage_registration2.css?ver=1"/>" />
 
@@ -33,7 +34,7 @@
 			class="shop_title" name="shop_title"
 			value="<%=shoplist.getShop_title()%>"> <span
 			class="shop_addr_span">가게 주소</span> <input type="text"
-			class=shop_addr name="shop_addr"> <input type="text"
+			class=shop_addr name="shop_addr" value="<%=shoplist.getShop_addr()%>"> <input type="text"
 			class=shop_addr2 name="shop_addr"> <span
 			class="shop_location_span">가게 지역</span> <select class="shop_location"
 			name="shop_location">
@@ -60,7 +61,7 @@
 			class="budget4" name="budget" value="16만원 이상"> <span
 			class="shop_tip_span">가게 설명</span>
 		<textarea class="shop_tip" style="resize: none" name="shop_tip"
-			value="<%=shoplist.getShop_tip()%>"></textarea>
+			><%=shoplist.getShop_tip()%></textarea>
 		<span class="shop_comment_span">한줄 설명</span> <input type="text"
 			class="shop_comment" name="shop_comment"
 			value="<%=shoplist.getShop_comment()%>"> <span
@@ -216,7 +217,7 @@
 			accept="image/gif,image/jpeg,image/png"
 			/>
 
-		<div id="image_container"></div>
+		
 		
 		<span class="shop_subphoto_span">가게 서브 이미지</span>
 		<input type="file"
@@ -224,7 +225,7 @@
 			accept="image/gif,image/jpeg,image/png" multiple="multiple"
 			/>
 
-		<div id="subimage_container"></div>
+	
 
 		<!-- <input type="submit" class="buisness_submit" value="수정"> -->
 		<!-- <a href="javascript:%20modify()" class="buisness_submit">수정</a> -->
@@ -240,7 +241,7 @@
 
 				<!-- Modal Header -->
 				<div class="modal-header">
-					<h4 class="modal-title">Modal Heading</h4>
+					<h4 class="modal-title">메뉴 추가</h4>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 
@@ -303,74 +304,38 @@
 
 	<script> 
 	
-/* function menu_delete() {
-	alert($("#food_name").text());
-	$.ajax({
-		type : "POST",
-		url : "menu_delete",
-		data : {
-				food_name : $("#food_name").val(),
-				food_price :  $("#food_price").val(),
-				food_info : $("#food_info").val()
-		},
-		success : function(data) {
-			if (data == "success") {
-				
-			} else if (data == "fail") {
-				alert("두 비밀번호가 일치하지 않습니다")
-				$(".repassword").val("");
-				$(".repassword2").val("");
-			}
-		},
-		error : function() {
-		}
-	});
-} */
-	
-	
-	
 
-$(document).on("click",".buisness_submit", function() {
-	
-	if( $(".shop_phone").val() == "") {
-		alert('공백값이 존재 할 수 없습니다.')
-	}
-	
-	$.ajax({
-		type : "POST",
-		url : "buisness_update",
-		data : {
-			shop_title : $(".shop_title").val(),
-			shop_addr : $(".shop_addr").val(),
-			shop_location : $(".shop_location").val(),
-			shop_id : $(".shop_id").val(),
-			food_type : $(".food_type").val(),
-			budget : $(".budget").val(),
-			shop_tip : $(".shop_tip").val(),
-			shop_comment : $(".shop_comment").val(),
-			shop_phone : $(".shop_phone").val(),
-			shop_time : $(".shop_time").val(),
-			shop_addinfo : $(".shop_addinfo").val(),
-			shop_tb : $(".shop_tb").val(),
-			shop_alcohol : $(".shop_alcohol").val(),
-			shop_car : $(".shop_car").val(),
-			shop_close : $(".shop_close").val(),
-			hash_tag : $(".hash_tag").val(),
-			shop_photo : $(".shop_photo").val(),
-			shop_subphoto : $(".shop_subphoto").val() 
-		},
-		success : function(data) {
-			if (data == "a") {
-				alert("수정완료")
-			} else if (data == "fail") {
-				alert("수정실패")
+ 
+ var option = {
+			type : "POST",
+			url : "buisness_update",
+
+			success : function(data) {
+				if (data == "update") {
+					alert("수정완료")
+				} else if (data == "shopid_null") {
+					alert("사업자번호는 필수입력칸 입니다.")
+				} else if (data == "shopaddr_null") {
+					alert("주소는 필수입력칸 입니다.")
+				} else if (data == "shoplocation_null") {
+					alert("가게지역은 필수입력칸 입니다.")
+				} else if (data == "foodtype_null") {
+					alert("음식종류는 필수입력칸 입니다.")
+				} else if (data == "shoptime_null") {
+					alert("가게 운영시간은 필수 입력칸 입니다.")
+				}
+			},
+			error : function() {
 			}
-		},
-		error : function() {
-		}
-	});
-	
-});
+ }
+ 
+$('.registration_form').submit(function () {
+	$(this).ajaxSubmit(option);
+	return false;
+})
+
+
+
 
 $(document).on("click",".menu_delete_button", function(){
 	console.log("삭제")
@@ -417,7 +382,6 @@ $(document).on("click",".food_add_submit" ,function () {
 			food_info : $(".food_info").val(),
 			shop_id : "${shopOwnerList.shop_id}"
 	}
-
 	$.ajax({
 		type : "POST",
 		url : action,
@@ -481,10 +445,7 @@ function setThumbnail2(event) {
 	} 	 */		
 			
 
-function modify() {
-	$(".registration_form").submit();
-	
-}
+
 
 
 	</script>

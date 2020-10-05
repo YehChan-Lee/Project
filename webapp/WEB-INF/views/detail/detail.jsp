@@ -52,7 +52,7 @@
 				<div class="i_wrap background">
 					<div class="film"></div>
 					 <%-- <img src="<c:url value='${path}/res/image/walkerhill.jpg'/>" alt=""> --%>
-					 	<c:forTokens items="${shop.shopVo.shop_photo}" var="img"
+					 	<c:forTokens items="${ShopPhoto}" var="img"
 				delims="/" varStatus="i">
 				<a href="<c:url value='${path}/serverImg/shopimg/${img}'/>">
 				<img src="<c:url value='${path}/serverImg/shopimg/${img}'/>"

@@ -67,7 +67,7 @@ public class ListController {
 	
 
 	@RequestMapping("/review_upload")
-	public void test(MultipartHttpServletRequest req, HttpServletResponse res, HttpSession session)
+	public void test(ModelAndView mav,MultipartHttpServletRequest req, HttpServletResponse res, HttpSession session)
 			throws IOException {
 		System.out.println("/BabPool/review_upload");
 		String user_email = (String) session.getAttribute("sessionID");
@@ -115,7 +115,7 @@ public class ListController {
 		}
 		reviewdao.reviewUpload(new ReviewVo(0, shopId, user_email, reviewScore, review, path, 0, 0));
 		dao.reviewCntReload(shopId, reviewdao.reviewCnt(shopId));
-
+		
 		userDao.reviewCntUpload(user_email);
 		dao.scoreCalc(shopId);
 		res.getWriter().write("success");
@@ -215,6 +215,7 @@ public class ListController {
 		// cnt 증가후 다시 shop 호출
 		dao.viewUp(ShopId);
 		shop = dao.shopOne(shopIdx);
+		mav.addObject("ShopPhoto", dao.getShopPhoto(user_email));
 		mav.addObject("shopTop5",dao.getTop5());
 		mav.addObject("shopOne", shop);
 		mav.setViewName("detail/detail");
@@ -343,8 +344,6 @@ public class ListController {
 		String hash_tag = req.getParameter("hash_tag");
 		String comma = "";
 		
-		
-		
 		List<MultipartFile> fileList = req.getFiles("shop_photo");
 		List<MultipartFile> fileList2 = req.getFiles("shop_subphoto");
 		
@@ -438,10 +437,16 @@ public class ListController {
 		
 		
 		
-		if (shop_id == null) {
-			response.getWriter().write("fail");
+		if (shop_id.equals("")) {
+			response.getWriter().write("shopid_null");
+		} else if (shop_addr.equals("")) {
+			response.getWriter().write("shopaddr_null");
+		} else if (shop_location.equals("")) {
+			response.getWriter().write("shoplocation_null");
+		} else if (food_type.equals("")) {
+			response.getWriter().write("foodtype_null");
 		} else {
-			response.getWriter().write("a");
+			response.getWriter().write("update");
 			ShopVo s = new ShopVo(shop_title,shop_id, shop_addr,  shop_location, food_type, shop_tip, budget, shop_comment,
 					shop_phone, shop_time, shop_addinfo, shop_tb, shop_alcohol, shop_car, shop_close, path,hash_tag, path2);
 			dao.updateShop(s);

@@ -11,6 +11,6 @@
    </insert>
    
    <select id="reVisi" parameterType="string" resultType="VisitVo">
-   		SELECT visit_ip FROM visit WHERE visit_ip = #{visit_ip}
+   		SELECT visit_id FROM visit WHERE visit_id = #{visit_ip}
    </select>
 </mapper>

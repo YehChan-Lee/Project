@@ -130,6 +130,20 @@
 		]]>		
 	</select>
 	
+	<select id="getShopPhoto" parameterType="string" resultType="string">
+	<!-- 가게정보 -->
+		<![CDATA[
+		SELECT shop_photo FROM Shop WHERE user_email=#{user_email}
+		]]>		
+	</select>
+	
+	<select id="getShopSubPhoto" parameterType="string" resultType="string">
+	<!-- 가게정보 -->
+		<![CDATA[
+		SELECT shop_subphoto FROM Shop WHERE user_email=#{user_email}
+		]]>		
+	</select>
+	
 	<select id="shopOwnerList" parameterType="String" resultType="ShopVo">
 		<!-- 가게정보 -->
 		<![CDATA[
