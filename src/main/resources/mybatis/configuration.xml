@@ -3,7 +3,7 @@
 <configuration>
 	<!-- Mybatis 환경설정 -->
 	<typeAliases>
-		<typeAlias alias="ShopUser"	type="com.javaex.model.ShopUserVo"></typeAlias>
+		<typeAlias alias="ShopUserVo"	type="com.javaex.model.ShopUserVo"></typeAlias>
 
 		<typeAlias alias="Notice" type="com.javaex.model.NoticeVo"></typeAlias>
 
@@ -16,7 +16,12 @@
 		<typeAlias alias="ReviewVo" type="com.javaex.model.ReviewVo"></typeAlias>
 		
 		<typeAlias alias="Dibs" type="com.javaex.model.ShopDibsVo"></typeAlias>
+		
+		<typeAlias alias="NewsVo" type="com.javaex.model.NewsVo"></typeAlias>
 
+		<typeAlias alias="ReviewLikeVo"
+			type="com.javaex.model.ReviewLikeVo"></typeAlias>
+		
 		<typeAlias alias="ReviewHateVo"
 			type="com.javaex.model.ReviewHateVo"></typeAlias>
 		<typeAlias alias="MenuVo" type="com.javaex.model.MenuVo"></typeAlias>
