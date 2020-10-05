@@ -13,7 +13,10 @@ import org.springframework.stereotype.Repository;
 public class VisitDao {
 
 	@Autowired
-	private SqlSession sqlSession;
+	SqlSession sqlSession;
+	
+	@Autowired
+	VisitDao visitDao;	
 	
 	public VisitDao() {}
 
@@ -21,54 +24,38 @@ public class VisitDao {
 		this.sqlSession = sqlsession;
 	}
 	// 방문 IP Insert
-	public void insertVisit(String visitIp) {	
-		sqlSession.insert("VisitVo.VisitInsert", visitIp);
+	public void insertVisit(VisitVo visitVo) {	
+		sqlSession.insert("VisitVo.VisitInsert", visitVo);
 	}
-	// 방문 IP 필터링(중복체크)
-	public List<VisitVo> reVisi(String custIP) {
-		return sqlSession.selectList("VisitVo.reVisi", custIP);
+	public List<VisitVo> aTotalAll() {
+		List<VisitVo> visitvo = sqlSession.selectList("VisitVo.visitAll");
+		System.out.println(visitvo.size());
+		 for (int i = 0; i < visitvo.size(); i++) {
+			 System.out.println(visitvo.get(i));
+		 }
+		return visitvo;
+	}
+	
+	public List<VisitVo> aTotalToday(String today) {
+		List<VisitVo> visitvo = sqlSession.selectList("VisitVo.visitToday", today);
+		System.out.println(visitvo.size());
+		 for (int i = 0; i < visitvo.size(); i++) {
+			 System.out.println(visitvo.get(i));
+		 }
+		return visitvo;
 	}
 }
-/*package com.javaex.model;
 
-import java.util.HashMap;
 
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-
-@Repository
-public class VisitDao {
-
-	@Autowired
-	private SqlSession sqlSession;
-
-	public VisitDao() {
-	}
-
-	public VisitDao(SqlSession sqlsession) {
-		this.sqlSession = sqlsession;
-	}
-
-	public void insertVisit(String visitIp) throws Exception {
-		System.out.println(visitIp);
-		System.out.println("절취선");
-
-		System.out.println("SqlSession ===> " + sqlSession);
-		
-		
-		
-
-		
-		 * HashMap<String,Object> map = new HashMap<String, Object>();
-		 * map.put("visitIp",visitVo.getVisit_ip()); System.out.println(map);
-		 * System.out.println(visitVo.getVisit_ip());
-		 * 
-		 * map.put("visitIp", "s1s2"); sqlSession.insert("VisitVo.VisitInsert", map );
-		 
-
-		sqlSession.insert("VisitVo.VisitInsert", visitIp);
-		
-	}
-
-}*/
+//		visitDao.reVisi(visitVo);
+//		/* System.out.println(visitDao.reVisi(visitVo).size()); */
+//		
+//		if(visitDao.reVisi(visitVo).size() == 0) { 
+//			visitDao.insertVisit(visitVo);
+//		} else {
+//			System.out.println("Id 중복 >> " + visitVo + "("+visitDao.reVisi(visitVo).size()+")");
+//		}
+/*
+ * // 방문 IP 필터링(중복체크) public List<VisitVo> reVisi(VisitVo visitVo) { return
+ * sqlSession.selectList("VisitVo.reVisi", visitVo); }
+ */

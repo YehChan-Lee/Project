@@ -5,10 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet"
-	href="<c:url value="${path}/res/css/mypage.css"/>" />
-	
 </head>
 <body>
 	<div id="setting" class="body empty">

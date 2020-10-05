@@ -3,14 +3,22 @@
 
 <mapper namespace="VisitVo">
    
-   <insert id="VisitInsert" parameterType="string">
+   <insert id="VisitInsert" parameterType="VisitVo">
    <![CDATA[
-      INSERT INTO visit(visit_idx, visit_ip, visit_date) 
-      VALUES(SEQ_VISIT_IDX.NEXTVAL, #{visit_ip}, SYSDATE)
+      INSERT INTO visit(visit_idx, visit_id, visit_date) 
+      VALUES(SEQ_VISIT_IDX.NEXTVAL, #{visit_id}, SYSDATE)
    ]]>
    </insert>
    
-   <select id="reVisi" parameterType="string" resultType="VisitVo">
-   		SELECT visit_id FROM visit WHERE visit_id = #{visit_ip}
+   <select id="visitAll" resultType="VisitVo">
+   		SELECT * FROM visit
    </select>
+   
+   <select id="visitToday" resultType="VisitVo" parameterType="string">
+   		SELECT * FROM visit WHERE to_date(visit_date, 'YY/MM/DD') = #{today}
+   </select>
+   
+   <!-- <select id="reVisi" parameterType="VisitVo" resultType="VisitVo">
+   		SELECT visit_id FROM visit WHERE visit_id = #{visit_id}
+   </select> -->
 </mapper>

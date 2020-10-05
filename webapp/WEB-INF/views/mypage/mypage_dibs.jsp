@@ -100,7 +100,7 @@
 </div>
 
 <script>
-<c:forEach items="${shopList}" var="shop">
+<c:forEach items="${dibsList}" var="shop">
 $("#shop_tmp${shop.shop_idx}").rateYo({
   rating :  ${shop.shop_score},
   starWidth: "20px",

@@ -10,7 +10,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet"
+<<<<<<< HEAD
 	href="<c:url value="${path}/res/css/bootstrap.min.css?ver=1"/>" />
+=======
+	href="<c:url value="${path}/res/css/bootstrap.min.css"/>">
+>>>>>>> refs/remotes/remote/origin/master
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script

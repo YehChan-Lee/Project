@@ -81,7 +81,7 @@ i_wrap background {
 }
 
 #banner.restaurant_detail>.inner_wrap>.inner>.title {
-	padding: 35px 20px 5px;
+	padding: 35px 0 20px 5px;
 	border-bottom: 1px solid #afafaf;
 	/* background:rgba(0,0,0,.5) */
 }
@@ -280,7 +280,7 @@ html > *{
 #sidebar_wrap>.sidebar.empty {
 	padding: 0;
 	border: none;
-	background: 0 0
+	background: 0 0;	
 }
 
 #sidebar_wrap>.sidebar:first-child {
@@ -411,7 +411,9 @@ button.empty {
 	border: none;
 	background: 0 0;
 	padding: 0;
-	margin: 0
+	margin: 0;
+	color: white;
+	float:right;
 }
 
 button.red_fill {

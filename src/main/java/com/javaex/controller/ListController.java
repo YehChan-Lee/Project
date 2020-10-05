@@ -221,6 +221,11 @@ public class ListController {
 		mav.setViewName("detail/detail");
 		return mav;
 	}
+	@RequestMapping("/isDib")
+	public void isDib(HttpServletRequest request, HttpSession session) {
+		System.out.println("/BabPool/detail");
+		
+	}
 
 	@RequestMapping("/login")
 	public void login(HttpServletRequest request, HttpServletResponse response, HttpSession session)
@@ -251,7 +256,7 @@ public class ListController {
 			} else {
 				response.getWriter().write("fail");
 			}
-		} else if (user_email.equals("admin")) {
+		} else if (user_email.equals("admin@babpool.com")) {
 			response.getWriter().write("admin");
 		} else {
 			response.getWriter().write("fail");

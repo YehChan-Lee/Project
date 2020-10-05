@@ -175,7 +175,7 @@
 	</select>	
 	
 	<select id="shopreviewList" resultMap="ShopReview">
-		SELECT R.review_idx,U.user_email,U.user_name,U.user_idx,U.review_cnt, R.review_score,R.review,R.review_photo,R.like_review,R.hate_review FROM Review R
+		SELECT R.review_idx,U.user_email,U.user_photo,U.user_name,U.user_idx,U.review_cnt, R.review_score,R.review,R.review_photo,R.like_review,R.hate_review FROM Review R
 	    INNER JOIN ShopUser U
 	        ON U.user_email=R.user_email
 	    INNER JOIN Shop S

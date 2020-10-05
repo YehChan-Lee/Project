@@ -9,7 +9,7 @@
 		<i class="fas fa-times" style="color:lightgray" id="del${review.reviewVo.review_idx}"></i>
 	</div>  --%>
 		<a class="author" href=""> <span class="thumbnail"
-			style="background-image: url(<c:url value="${path}/res/image/user2.png"/>);"></span>
+			style="background-image: url(<c:url value="${path}/serverImg/profile/user/${review.shopUser.user_photo}"/>);"></span>
 			<div class="info">
 				<p class="name">${review.shopUser.user_name}</p>
 				<p class="stat">리뷰 ${review.shopUser.review_cnt}</p>

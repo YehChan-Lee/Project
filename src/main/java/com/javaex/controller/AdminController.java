@@ -1,6 +1,8 @@
 package com.javaex.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.javaex.model.AdminDao;
 import com.javaex.model.AllDao;
 import com.javaex.model.ShopDao;
+import com.javaex.model.VisitDao;
 
 @Controller
 public class AdminController {
@@ -25,10 +28,24 @@ public class AdminController {
 	@Autowired
 	AllDao alldao;
 	
+	@Autowired
+	VisitDao visitDao;
+	
 	@RequestMapping("/admin")
 	public ModelAndView admin(ModelAndView mav) {
 		System.out.println("/BabPool/admin");
 
+		Date d = new Date();
+		SimpleDateFormat todayFo = new SimpleDateFormat("yy/MM/dd");
+		SimpleDateFormat monthFo = new SimpleDateFormat("yy/MM/dd");
+		
+		String today = todayFo.format(d);
+		String month = monthFo.format(d);
+		System.out.println("현재(yy/mm/dd) : " + today);
+		mav.addObject("admin_numerical_totalToday", visitDao.aTotalToday(today));
+		
+		mav.addObject("admin_numerical_total", visitDao.aTotalAll());
+		mav.addObject("Aadmin_id", admindao.Aadmin_id());
 		mav.addObject("Areview_list", admindao.Areview_list());
 		mav.setViewName("admin/admin");
 		return mav;

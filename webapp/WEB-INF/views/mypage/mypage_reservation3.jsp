@@ -10,6 +10,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery.js"></script>
+<link rel="stylesheet"
+	href="<c:url value='${path}/res/css/magnific-popup.css'/>">
+	<script src="<c:url value='${path}/res/js/jquery.magnific-popup.js'/>"></script>
 <script>
 $(document).ready(function(){
 	$("#reservation>#contents_box").removeAttr("style");

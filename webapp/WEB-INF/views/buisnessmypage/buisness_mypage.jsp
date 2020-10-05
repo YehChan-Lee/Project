@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>사업자 마이 페이지</title>
 
 <link rel="stylesheet" href="<c:url value="${path}/res/css/buisnessmypage.css?ver=1"/>"/>
 <link rel="stylesheet" href="<c:url value="${path}/res/css/jquery-ui.css"/>"/>
@@ -21,7 +21,7 @@
 		<div id="mypage_banner">
 			<div id="user_box">
 				<div id="user_img">
-					<img src="<c:url value="${path}/res/image/chinese.jpg"/>" height="180px"/>
+					<img src="<c:url value="${path}/res/image/chinese.jpg"/>"/>
 				</div>
 				<div id="user_info_box">
 					<div id="user_info">
