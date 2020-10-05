@@ -1,5 +1,6 @@
 package com.javaex.controller;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -266,17 +267,17 @@ public class JoinController {
 	}
 	
 	@RequestMapping("/detail/review.do")
-	public ModelAndView hello(ModelAndView mav,HttpSession session,HttpServletRequest req) {
+	public ModelAndView hello(ModelAndView mav, HttpSession session, HttpServletRequest req) {
 		System.out.println("/BabPool/review.do");
 		String shopId = req.getParameter("shopId");
-		String user_email = (String)session.getAttribute("sessionID");
+		String user_email = (String) session.getAttribute("sessionID");
 		System.out.println("review : " + shopId + user_email);
-		mav.addObject("reviewList",alldao.shopreviewList(shopId));
-		if(user_email != null) {
-			mav.addObject("likeList",reviewdao.likeList(user_email,shopId));
-			mav.addObject("hateList",reviewdao.hateList(user_email,shopId));
+		mav.addObject("reviewList", alldao.shopreviewList(shopId, "new"));
+		if (user_email != null) {
+			mav.addObject("likeList", reviewdao.likeList(user_email, shopId));
+			mav.addObject("hateList", reviewdao.hateList(user_email, shopId));
 		}
-		mav.addObject("shopId",shopId);
+		mav.addObject("shopId", shopId);
 		mav.setViewName("detail/detail_review");
 		return mav;
 	}

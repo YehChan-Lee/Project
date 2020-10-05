@@ -153,11 +153,6 @@
 							<th>작성자</th>
 							<th>등록일</th>
 						</tr>
-						<%
-							List<AdminVo> Areview_list = (List<AdminVo>) request.getAttribute("Areview_list");
-							for (int i = 0; i < Areview_list.size(); i++) {
-								AdminVo vo = Areview_list.get(i);
-						%>
 						<tr>
 						<%
 						List<AdminVo> Areview_list = (List<AdminVo>)request.getAttribute("Areview_list");
@@ -172,88 +167,9 @@
 						</tr>
 						<%
 						}
+						
 						%>
-						<!-- <tr>
-							<td><input type="radio" name="sec_home1_ckb"
-								id="sec_home1_ckb"></td>
-							<td>2</td>
-							<td>맛있어요~</td>
-							<td>먹어보니 맛집이네유? 추천이에유!</td>
-							<td>테스트계정임</td>
-							<td>2020.09.02</td>
-						</tr>
-						<tr>
-							<td><input type="radio" name="sec_home1_ckb"
-								id="sec_home1_ckb"></td>
-							<td>3</td>
-							<td>맛있어요~</td>
-							<td>먹어보니 맛집이네유? 추천이에유!</td>
-							<td>테스트계정임</td>
-							<td>2020.09.02</td>
-						</tr>
-						<tr>
-							<td><input type="radio" name="sec_home1_ckb"
-								id="sec_home1_ckb"></td>
-							<td>4</td>
-							<td>맛있어요~</td>
-							<td>먹어보니 맛집이네유? 추천이에유!</td>
-							<td>테스트계정임</td>
-							<td>2020.09.02</td>
-						</tr>
-						<tr>
-							<td><input type="radio" name="sec_home1_ckb"
-								id="sec_home1_ckb"></td>
-							<td>5</td>
-							<td>맛있어요~</td>
-							<td>먹어보니 맛집이네유? 추천이에유!</td>
-							<td>테스트계정임</td>
-							<td>2020.09.02</td>
-						</tr>
-						<tr>
-							<td><input type="radio" name="sec_home1_ckb"
-								id="sec_home1_ckb"></td>
-							<td>6</td>
-							<td>맛있어요~</td>
-							<td>먹어보니 맛집이네유? 추천이에유!</td>
-							<td>테스트계정임</td>
-							<td>2020.09.02</td>
-						</tr>
-						<tr>
-							<td><input type="radio" name="sec_home1_ckb"
-								id="sec_home1_ckb"></td>
-							<td>7</td>
-							<td>맛있어요~</td>
-							<td>먹어보니 맛집이네유? 추천이에유!</td>
-							<td>테스트계정임</td>
-							<td>2020.09.02</td>
-						</tr>
-						<tr>
-							<td><input type="radio" name="sec_home1_ckb"
-								id="sec_home1_ckb"></td>
-							<td>8</td>
-							<td>맛있어요~</td>
-							<td>먹어보니 맛집이네유? 추천이에유!</td>
-							<td>테스트계정임</td>
-							<td>2020.09.02</td>
-						</tr>
-						<tr>
-							<td><input type="radio" name="sec_home1_ckb"
-								id="sec_home1_ckb"></td>
-							<td>9</td>
-							<td>맛있어요~</td>
-							<td>먹어보니 맛집이네유? 추천이에유!</td>
-							<td>테스트계정임</td>
-							<td>2020.09.02</td>
-						</tr>
-						<tr>
-							<td><input type="radio" name="sec_home1_ckb"
-								id="sec_home1_ckb"></td>
-							<td>10</td>
-							<td>맛있어요~</td>
-							<td>먹어보니 맛집이네유? 추천이에유!</td>
-							<td>테스트계정임</td>
-							<td>2020.09.02</td>
-						</tr> -->
+						
 					</table>
 					<div class="paging">
 						<a href="#" class="bt"><i class="fas fa-angle-double-left"></i></a>

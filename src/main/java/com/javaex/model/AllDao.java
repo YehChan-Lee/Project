@@ -50,11 +50,17 @@ public class AllDao {
 		return sqlSession.selectOne("All.footeruser");
 	 }
 	 // 가게 리뷰 리스트
-	 public List<AllVo> shopreviewList(String shopId){		 
-		return sqlSession.selectList("All.shopreviewList",shopId);
-	}
+	 public List<AllVo> shopreviewList(String shopId, String sort) {
+			List<AllVo> list = null;
+			if (sort.equals("new")) {
+				list = sqlSession.selectList("All.shopreviewList", shopId);
+			} else if (sort.equals("popular")) {
+				list = sqlSession.selectList("All.popreviewList", shopId);
+			}
+			return list;
+		}
 	 
 	 public List<AllVo> getReview() {
 			return sqlSession.selectList("All.getReviewList");
-	 
+	 }
 }

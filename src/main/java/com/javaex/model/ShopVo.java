@@ -37,7 +37,7 @@ public class ShopVo {
 			String shop_location, String food_type, String shop_tip, String budget, int shop_reserve,
 			String shop_comment, int shop_view, Double shop_score, String shop_phone, String shop_time,
 			String shop_addinfo, String shop_tb, String shop_alcohol, String shop_car, String shop_close,
-			String shop_photo, String shop_review, Date shop_date, String hash_tag) {
+			String shop_photo, String shop_review, String shop_date, String hash_tag) {
 		this.shop_id = shop_id;
 		this.user_email = user_email;
 		this.shop_idx = shop_idx;

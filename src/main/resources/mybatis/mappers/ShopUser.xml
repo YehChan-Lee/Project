@@ -31,19 +31,6 @@
 				#{user_birth}, #{user_phone}, #{is_owner}, #{sign_date}, #{point})
 		]]>
 	</insert>
-	<!-- 회원정보 수정 -->
-	<update id="Update_shopuser" parameterType="hashMap">
-		UPDATE ShopUser set
-				user_name=#{user_name}
-		WHERE
-			user_email=#{user_email}
-	</update>
-	<update id="Update_phone" parameterType="hashMap">
-		UPDATE ShopUser set
-				user_phone=#{user_phone}
-		WHERE
-			user_email=#{user_email}
-
 	<update id="shopuserUpdate">
 		<![CDATA[
 		UPDATE ShopUser set user_pw=#{user_pw}, user_phone=#{user_phone}
