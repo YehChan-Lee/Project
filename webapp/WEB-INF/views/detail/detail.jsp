@@ -43,6 +43,7 @@
 		pageContext.setAttribute("id", session.getAttribute("sessionID"));
 		pageContext.setAttribute("star", shopvo.getShop_score());
 		pageContext.setAttribute("shopidx", shopvo.getShop_idx());
+		pageContext.setAttribute("shopid", shopvo.getShop_id());
 		List<ShopUserVo> shopuservo = (List<ShopUserVo>) request.getAttribute("shopuser");
 		%>
 
@@ -72,9 +73,8 @@
 								<%=shopvo.getShop_review()%>건 / 조회
 								<%=shopvo.getShop_view()%>건
 							</div>
-							<button class="empty " data-type="poing.restaurants.favorite"
-								data-id="28654">
-								찜하기<i class="icon heart large "></i>
+							<button class="empty">
+								<i class="far fa-star fa-2x"></i>
 							</button>
 						</div>
 						<ul class="info_list">
@@ -341,6 +341,27 @@
 
 	<script>
         $(document).ready(function(){  
+        	
+        	$(".empty").click(function () {
+        		 e.preventDefault();
+                 $.ajax({
+         			type : "POST",
+         			url : "isDib",
+         			data: {
+         				starClass : $(this).attr("class"),
+         				shopId :"${shopId}"
+         			},
+         			success : function(data) {
+         					alert(data)
+         			},
+         			error : function() {
+         				alert("에러발생");
+         			}
+
+         		});			
+                 $(this).closest("span").toggleClass("off")
+			})
+        	
         	$('.action > button').click(function () {
         		var tmp = '${id}';
     			if( tmp = null){

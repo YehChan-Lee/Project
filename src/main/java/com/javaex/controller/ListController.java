@@ -63,7 +63,7 @@ public class ListController {
 	@Autowired
 	ShopDibsDao dibdao;
 
-	String url = "C:\\Users\\Kosmo_23\\Desktop\\백업\\Project\\webapp\\serverImg\\";
+	String url = "D:\\LYC\\SpringGit\\Project\\webapp\\serverImg\\";
 	
 
 	@RequestMapping("/review_upload")
@@ -79,25 +79,25 @@ public class ListController {
 			res.getWriter().write("reviewinput");
 			return;
 		}
-
 		List<MultipartFile> fileList = req.getFiles("inputImage");// input file타입 파라미터
 		double reviewScore = Double.parseDouble(req.getParameter("hidden_grade"));// 별점
 		String review = req.getParameter("review_area");// 리뷰내용
-		String shopId = req.getParameter("shopId");
+		String shopId = req.getParameter("shopId");		//리뷰적힌 상점번호
 		req.setAttribute("shopId", shopId);
 		
-		String folder = "review\\";// 이미지 저장 경로
+		// 이미지 저장 경로
+		String folder = "review\\";
 		String path = "";
 		String fileName = "";
 		for (MultipartFile mf : fileList) {
 			String originFileName = mf.getOriginalFilename(); // 원본 파일 명
 			fileName = "review" + reviewdao.reviewCnt(shopId) + shopId + originFileName;
-			String safeFile = url + folder + fileName;
+			String safeFile = url + folder + fileName;//저장될 경로와 파일이름을 정해서 저장
 			try {
 				File file = new File(url);
 				if (!file.exists()) {
 					try {
-						file.mkdir(); // 폴더 생성합니다.
+						file.mkdir(); // 해당폴더가 없으면 생성
 						System.out.println("폴더가 생성되었습니다.");
 						mf.transferTo(new File(safeFile));
 					} catch (Exception e) {
@@ -113,8 +113,8 @@ public class ListController {
 			}
 			path += fileName + "/";
 		}
-		reviewdao.reviewUpload(new ReviewVo(0, shopId, user_email, reviewScore, review, path, 0, 0));
-		dao.reviewCntReload(shopId, reviewdao.reviewCnt(shopId));
+		reviewdao.reviewUpload(new ReviewVo(0, shopId, user_email, reviewScore, review, path, 0, 0));//적힌 리뷰의 데이터를 가져와서 DB로 보내줌
+		dao.reviewCntReload(shopId, reviewdao.reviewCnt(shopId));//해당 가게의 리뷰카운트 증가
 
 		userDao.reviewCntUpload(user_email);
 		dao.scoreCalc(shopId);
@@ -220,6 +220,11 @@ public class ListController {
 		mav.setViewName("detail/detail");
 		return mav;
 	}
+	@RequestMapping("/isDib")
+	public void isDib(HttpServletRequest request, HttpSession session) {
+		System.out.println("/BabPool/detail");
+		
+	}
 
 	@RequestMapping("/login")
 	public void login(HttpServletRequest request, HttpServletResponse response, HttpSession session)
@@ -250,7 +255,7 @@ public class ListController {
 			} else {
 				response.getWriter().write("fail");
 			}
-		} else if (user_email.equals("admin")) {
+		} else if (user_email.equals("admin@babpool.com")) {
 			response.getWriter().write("admin");
 		} else {
 			response.getWriter().write("fail");

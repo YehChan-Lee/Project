@@ -306,6 +306,12 @@ button{
 	margin-top: 5px;
 }
 
+#user_img > img{
+	border-radius: 180px;
+	width:180px;
+	height: 180px;
+}
+
 /* calendar */
 #nalzza{
 	position: absolute;

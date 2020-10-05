@@ -14,61 +14,64 @@ font-style: normal;
 }
 
 body, html{
-	margin: 0;
-	padding: 0;
-	width: 100%;
+   margin: 0;
+   padding: 0;
+   width: 100%;
 }
 /* footer */
 #footer_wrap, #footer_container, #footer_logo,
 #footer_slogan, #footer_count, #footer_explan, #download, #info{
-	color : #fff;
+   color : #fff;
 }
 #footer_wrap{
-	background: #373737;
-	width: 100%;
-	height: 300px;
-	padding: 30px 50px 30px 50px;
-	box-sizing: border-box;
+   background: #373737;
+   width: 100%;
+   height: 300px;
+   padding: 30px 50px 30px 50px;
+   box-sizing: border-box;
 }
 #footer_wrap a{
-	color : white;
+   color : white;
 }
 #footer_container{
-	width: 550px;
-	overflow: hidden;
-	position:absolute;
+   width: 550px;
+   overflow: hidden;
+   position:absolute;
 }
 #footer_logo{
-	font-family: 'fromdamiM';
-	font-size: 50px;
-	margin-bottom: 10px;
+   font-family: 'fromdamiM';
+   font-size: 50px;
+   margin-bottom: 10px;
 }
 #footer_slogan{
-	font-family: 'NanumSquareRound';
-	margin-bottom: 10px;
-	font-size:16px;
-}	
+   font-family: 'NanumSquareRound';
+   margin-bottom: 10px;
+   font-size:16px;
+}   
 #footer_count{
-	font-family: 'NanumSquareRound';
-	margin-bottom: 10px;
+   font-family: 'NanumSquareRound';
+   margin-bottom: 10px;
 }
 #footer_explan{
-	font-family: 'NanumSquareRound';
-	margin-bottom: 10px;
-	font-size:11px;
+   font-family: 'NanumSquareRound';
+   margin-bottom: 10px;
+   font-size:11px;
 }
 #download{
-	font-family: 'NanumSquareRound';
-	margin-bottom: 10px;
-	float:right;
-	padding-left: 20px;
+   font-family: 'NanumSquareRound';
+   margin-bottom: 10px;
+   float:right;
+   padding-left: 20px;
 }
 #download_img{
-	margin: 20px;
-	padding-left:15px;
+   margin: 20px;
+   padding-left:15px;
 }
 #info{
-	font-family: 'NanumSquareRound';
-	font-size:11px;
-	
+   font-family: 'NanumSquareRound';
+   font-size:11px;
+}
+.foot{
+   color: red;
+   font-size: 600;
 }

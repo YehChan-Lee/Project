@@ -678,3 +678,8 @@ hr{border-top: 1px solid lightgray;margin-top: 15px;}
 	font-size: 17px;
 	border-radius: 5px;
 }
+.Dname{
+	top: 2px;
+    right: 10px;
+    position: relative;
+}

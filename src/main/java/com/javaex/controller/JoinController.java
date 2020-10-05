@@ -41,26 +41,32 @@ public class JoinController {
 
 	@Autowired
 	ReviewDao reviewdao;
-	
+
 	@Autowired
 	private VisitDao visitDao;
 
 	// 메인페이지 실시간 리뷰 리스트 Get
 	@RequestMapping("/main")
-	public ModelAndView main(ModelAndView mav, String v) {
+	public ModelAndView main(ModelAndView mav, String v, HttpSession session) {
 		System.out.println("/BabPool/main");
-		HttpServletRequest req = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
+		HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
+				.getRequest();
 		String custIP = req.getRemoteAddr();
-		
-		visitDao.reVisi(custIP);
-		/*System.out.println(visitDao.reVisi(custIP));
-		System.out.println(visitDao.reVisi(custIP).size());*/
-		if(visitDao.reVisi(custIP).size() == 0) {
-			visitDao.insertVisit(custIP);			
-		} else {
-			System.out.println("IP 중복 >> " + custIP + "("+visitDao.reVisi(custIP).size()+")");
-		}
+
+		/*
+		 * visitDao.reVisi(custIP);
+		 * 
+		 * System.out.println(visitDao.reVisi(custIP));
+		 * System.out.println(visitDao.reVisi(custIP).size());
+		 * 
+		 * if (visitDao.reVisi(custIP).size() == 0) { visitDao.insertVisit(custIP); }
+		 * else { System.out.println("IP 중복 >> " + custIP + "(" +
+		 * visitDao.reVisi(custIP).size() + ")"); }
+		 */
 		mav.addObject("reviewList", alldao.getReview());
+		session.setAttribute("footeruser", alldao.footeruser());
+		session.setAttribute("footerreview", reviewdao.footerreview());
+		session.setAttribute("footerreserve", reservedao.footerreserve());
 		mav.setViewName("main");
 		return mav;
 	}
@@ -226,19 +232,20 @@ public class JoinController {
 		}
 		resp.getWriter().write("update_success");
 	}
-	
+
 	@RequestMapping("mypage/profile.do")
-	public void mypage_profile(MultipartHttpServletRequest req, HttpServletResponse res, HttpSession session) throws IOException {
+	public void mypage_profile(MultipartHttpServletRequest req, HttpServletResponse res, HttpSession session)
+			throws IOException {
 		System.out.println("/BabPool/mypage/profile.do");
 		String user_email = (String) session.getAttribute("sessionID");
-		String url = "D:\\Git\\Project\\Project\\webapp\\serverImg\\";
-		
+		String url = "D:\\LYC\\SpringGit\\Project\\webapp\\serverImg\\";
+
 		String folder = "profile\\user\\";
-		String fileName = "profile"+user_email+".png";
+		String fileName = "profile" + user_email + ".png";
 		MultipartFile mf = req.getFile("photofile");
 		String safeFile = url + folder + fileName;
 		try {
-			File file = new File(url+folder);
+			File file = new File(url + folder);
 			if (!file.exists()) {
 				try {
 					file.mkdir(); // 폴더 생성합니다.
@@ -255,7 +262,9 @@ public class JoinController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		userDao.profileUpdate(fileName,user_email);
+		userDao.profileUpdate(fileName, user_email);
+		ShopUserVo user = userDao.loginCheck(user_email);
+		session.setAttribute("user_photo", user.getUser_photo());
 		res.getWriter().write("update_success");
 	}
 
