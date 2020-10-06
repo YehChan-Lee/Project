@@ -261,6 +261,7 @@ public class ListController {
 		String user_email = request.getParameter("user_id");
 		String password = request.getParameter("user_pw");
 
+		System.out.println("user : " + user_email);
 		ShopUserVo user = userDao.loginCheck(user_email);
 		if (userDao.loginCheck(user_email) != null) {
 			if (user.getUser_pw().equals(password)) {
@@ -309,7 +310,7 @@ public class ListController {
 		int joinType = Integer.parseInt(req.getParameter("join_type"));
 
 		if (joinType == 1) {
-			userDao.signUp(new ShopUserVo(email, pw, name, gender, birth, phone, "0", null, 0, null, 0, 0));
+			userDao.signUp(new ShopUserVo(email, pw, name, gender, birth, phone, "0", 0, "user2.png", 0, null, 0));
 		} else {
 			String buisnessNumber = req.getParameter("buisness_number");
 			String buisnessName = req.getParameter("buisness_name");
@@ -319,7 +320,7 @@ public class ListController {
 
 			System.out.println(buisnessNumber + " " + buisnessName + " " + buisnessAddress + " " + buisnessAddressEtc
 					+ " " + buisnessFoodType);
-			userDao.signUp(new ShopUserVo(email, pw, name, gender, birth, phone, "1", null, 0, null, 0, 0));
+			userDao.signUp(new ShopUserVo(email, pw, name, gender, birth, phone, "1", 0, "user2.png", 0, null, 0));
 		}
 		mav.setViewName("main");
 		return mav;

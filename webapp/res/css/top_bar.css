@@ -601,8 +601,7 @@ div#wrap {
 	float: left;
 	margin: 2px 25px;
 	padding-top: 18px;
-	font-size: 14px;
-	font-weight: 600;
+	font-size: 14px
 }
 
 #nav_account>#nav_guest>span:hover {

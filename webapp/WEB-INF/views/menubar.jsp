@@ -6,7 +6,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <link rel="stylesheet"
 	href="<c:url value='${path}/res/css/filters.css'/>">
 <script src="<c:url value='${path}/res/js/md5.js'/>"></script>
@@ -328,9 +327,35 @@
 </script>
 </head>
 <body>
-	<!-- 우측 메뉴바 -->
+	<!-- 우측 메뉴바 -->	
 	<!-- 필터 사이드 바 -->
 	<form action="list">
+	<%
+		if(request.getParameterValues("food_type") !=null){
+			String[] food_typeArr = request.getParameterValues("food_type");
+		for(int i=0;i<food_typeArr.length;i++){
+	%>
+	<input type="hidden" name="shop_addr" value="<%=food_typeArr[i]%>"/>
+	<%
+		}
+	}
+	%>
+	
+	<% 
+		if(request.getParameter("location") !=null){
+	%>
+		<input type="hidden" name="location" value="<%=request.getParameter("location") %>"/>		
+		<%
+		}
+		if(request.getParameterValues("shop_addr") != null){
+			String[] shop_addrArr = request.getParameterValues("shop_addr");
+			for(int i=0;i<shop_addrArr.length;i++){
+		%>
+		<input type="hidden" name="shop_addr" value="<%=shop_addrArr[i]%>"/>
+		<%
+			}
+		}
+		%>
 	<div id="filter_sidebar">
 		<div class="filters">
 			<!-- 필터 타이틀 -->

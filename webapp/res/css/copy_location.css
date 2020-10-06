@@ -80,9 +80,9 @@
 #content_wrap>.section>.body>.content .subtitle{
     position: absolute;
     width: 300px;
-    height: 300px;
     z-index: 3;
     font-size: 18pt;
     padding-top: 125px;
     font-weight: bolder;
+    display: inline-block;
 }

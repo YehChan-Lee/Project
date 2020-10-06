@@ -12,9 +12,7 @@
 <title>세상의 모든 맛집 - 밥풀</title>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="${path}/res/css/top_bar.css?ver=1"/>" />
-<script type="text/javascript"
-	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
-	charset="utf-8"></script>
+
 </head>
 <body>
 
@@ -441,8 +439,8 @@
 					class="popup_close" />
 				<h2 class="loginh2">로그인</h2>
 				<hr class="loginhr1">
-				<input id="email" name="email" placeholder="   Email" type="text">
-				<input id="password" name="password" placeholder="   password"
+				<input class="enterkey" id="email" name="email" placeholder="   Email" type="text">
+				<input class="enterkey" id="password" name="password" placeholder="   password"
 					type="password"> <a href="javascript:%20check_empty()"
 					id="submit">로그인</a>
 				<div id="pwSearch">비밀번호 찾기</div>
@@ -579,6 +577,7 @@
 				error : function() {
 				}
 			});
+			
 		}
 		
 		function passclick2() {
@@ -687,9 +686,8 @@
 				endLoading();
 			}
 		});
-
-		$('#submit').click(function(e) {
-			e.preventDefault();
+		
+		function login_submit() {
 			var action = $('#form').attr("action");
 
 			var form_data = {
@@ -715,6 +713,11 @@
 				}
 
 			});
+		}
+
+		$('#submit').click(function(e) {
+			e.preventDefault();
+			login_submit();			
 		});
 		//알림기능 관련
   		if (window.Notification) {
@@ -1015,6 +1018,21 @@
 			$('.popup_close').css('left', 80 + '%');
 
 		});	
+		
+		//엔터키 입력
+		$(document).ready()
+		$(".enterkey").keydown(function (key) {
+			if(key.keyCode == 13){
+				/* alert(document.getElementById('password').value + document.getElementById('email').value); */
+				if (document.getElementById('email').value == "") {
+					alert("이메일을 확인해 주세요!");
+				} else if (document.getElementById('password').value == "") {
+					alert("비밀번호를 확인해 주세요!");
+				} else {
+					login_submit();
+				}
+			}
+		})
 		
 		//회원가입 팝업
 		$(".nav_join").click(function() {

@@ -1,3 +1,10 @@
+@font-face {
+font-family: 'NanumSquareRound';
+src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+font-weight: normal;
+font-style: normal;
+}
+
 /* 노말라이즈 */
 body, ul, li, h1, h2, h3, h4, h5, p, figure {
 	margin: 0;
@@ -13,6 +20,7 @@ a {
 #main_slider{
 	/* background-color: #fffff8; */
 	padding-bottom: 50px;
+	height: 585px;
 }
 
 /* 라이브러리 */
@@ -255,6 +263,7 @@ body {
 	opacity: 0;
 	transform: translateY(30%);
 	transition: opacity .8s, transform .8s;
+	font-family: 'NanumSquareRound';
 }
 
 .v-story-wrap .v-story-slider .slider-item>.v-story-desc-list>.v-story-desc-tt

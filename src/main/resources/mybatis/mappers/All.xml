@@ -115,6 +115,7 @@
 			where R.user_email=#{user_email}
             AND R.res_date>TO_CHAR(SYSDATE, 'yyyy-mm-dd')
 	</select>
+	
 	<select id="pos_reserveList" resultMap="ReserveResult">
 		select U.user_name,r.res_customer,r.reserve_idx,r.rev_phone,TO_char(r.res_date,'MM-DD HH24:MI') as res_date from reservation R
 			inner join shopUser U
@@ -123,6 +124,7 @@
 				on S.shop_title = R.shop_title
 			where R.shop_id='123-12-12345'
             AND TO_Char(R.res_date,'MM-DD HH24:MI:SS')>TO_CHAR(SYSDATE, 'MM-DD HH24:MI:SS')
+            ORDER BY res_date asc
 	</select>
 	
 	
@@ -196,7 +198,7 @@
 	
 	<select id="getReviewList" resultMap="ShopReview">
 	    <![CDATA[
-			SELECT * FROM ( SELECT S.shop_photo,s.shop_title,s.shop_idx,s.shop_location,u.user_name,u.review_cnt,r.review_score,r.review,r.review_idx FROM Review R
+			SELECT * FROM ( SELECT S.shop_photo,s.shop_title,s.shop_idx,s.shop_location,u.user_name,u.user_photo,u.review_cnt,r.review_score,r.review,r.review_idx FROM Review R
 	    	INNER JOIN ShopUser U
 	        	ON U.user_email=R.user_email
 	   	 	INNER JOIN Shop S

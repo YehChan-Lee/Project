@@ -115,7 +115,8 @@ body {
 	text-align: center;
 	top: -118px;
 	color: white;
-	font-weight: bolder;
+	font-weight: 500;
+	font-family: 'NanumSquareRound';
 }
 
 .categorydiv>img {
@@ -192,6 +193,7 @@ body {
 .profile {
 	width: 40px;
 	height: 40px;
+	border-radius: 40px;
 	position: relative;
 	left: 10px;
 	top: 10px;
@@ -215,8 +217,8 @@ body {
 .infostar>* {
 	float: left;
 }
-.jq-ry-container>.jq-ry-group-wrapper {
-    left: -5px;
+.info > .infoname{
+	font-weight: 600;
 }
 
 .starVoid {
@@ -261,10 +263,12 @@ body {
 
 .infopreview {
 	position: relative;
-	top: 10px;
+	top: 5px;
 	left: -45px;
 	width: 300px;
 	height: 150px;
+	padding: 5px 5px 0 5px;
+    border-top: 1px solid lightgray;
 }
 
 .infodetail {
@@ -273,13 +277,14 @@ body {
 	left: 225px;
 	width: 45px;
 	height: 20px;
+	display: inline-block;
 }
 
 .infodetail>a:link {
 	color: #c91b3c;
 	text-decoration: none;
 }
-
+/*  */
 .infodetail>a:visited {
 	color: #c91b3c;
 	text-decoration: none;
@@ -294,6 +299,8 @@ body {
 	width: 280px;
 	height: 150px;
 	word-break: break-all;
+	font-family: 'math';
+	font-size: 12px;
 }
 
 .benefit {
@@ -347,7 +354,8 @@ body {
 	height: 150px;
 	border-radius: 0px 0px 10px 10px;
 	background-color: white;
-    padding-top: 10px;
+	padding-top: 10px;
+	display: inline-block;
 }
 
 .epicureandiv2img {

@@ -61,14 +61,19 @@
 					</table>
 				</div>
 			</div>
+			
+			<div id="payment_div">
+				<p>결제내역</p>
+			</div>
+			
 		</div>
 		<div id="table_div">
-			<div class="table" id="1">
+			<div class="shoptable" id="1">
 				<p>1번 테이블</p>
 				<div id="food_list1">
 				</div>
 			</div>
-			<div class="table" id="2">
+			<div class="shoptable" id="2">
 				<p>2번 테이블</p>
 				<div id="food_list2">
 					<ul>
@@ -78,28 +83,28 @@
 					</ul>
 				</div>
 			</div>
-			<div class="table" id="3">
+			<div class="shoptable" id="3">
 				<p>3번 테이블</p>
 				<div id="food_list3">
 					<ul>
 					</ul>
 				</div>
 			</div>
-			<div class="table" id="4">
+			<div class="shoptable" id="4">
 				<p>4번 테이블</p>
 				<div id="food_list4">
 					<ul>
 					</ul>
 				</div>
 			</div>
-			<div class="table" id="5">
+			<div class="shoptable" id="5">
 				<p>5번 테이블</p>
 				<div id="food_list5">
 					<ul>
 					</ul>
 				</div>
 			</div>
-			<div class="table" id="6">
+			<div class="shoptable" id="6">
 				<p>6번 테이블</p>
 				<div id="food_list6">
 					<ul>
@@ -111,8 +116,8 @@
 </body>
 <script>
 $(document).ready(function () {
-	$(".table").click(function (e) {
-		$(".table").removeClass('selected');
+	$(".shoptable").click(function (e) {
+		$(".shoptable").removeClass('selected');
 		$(this).toggleClass('selected');
 		$("#add").click(()=> {			
 			$(this).children("div").children("ul").append("<li>" +$(".menu.menuselected > :nth-child(2)").val()+"/"+$("#cnt").val()+"</li>");

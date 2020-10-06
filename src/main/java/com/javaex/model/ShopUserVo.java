@@ -22,8 +22,11 @@ public class ShopUserVo {
 	
 	public ShopUserVo() {}	
 
+	
+	
 	public ShopUserVo(String user_email, String user_pw, String user_name, String user_gender, String user_birth,
-			String user_phone, String is_owner, Date sign_date, int point, String user_photo, int user_idx,int review_cnt) {
+			String user_phone, String is_owner, int point, String user_photo, int user_idx,
+			String recent_shop, int review_cnt) {
 		this.user_email = user_email;
 		this.user_pw = user_pw;
 		this.user_name = user_name;
@@ -31,13 +34,15 @@ public class ShopUserVo {
 		this.user_birth = user_birth;
 		this.user_phone = user_phone;
 		this.is_owner = is_owner;
-		this.sign_date = sign_date;
 		this.point = point;
 		this.user_photo = user_photo;
 		this.user_idx = user_idx;
+		this.recent_shop = recent_shop;
 		this.review_cnt = review_cnt;
 	}
-	
+
+
+
 	public ShopUserVo(String user_pw) {
 		this.user_pw = user_pw;
 	}
