@@ -2,7 +2,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,10 +73,9 @@
 					href="#" class="num">3</a> <a href="#" class="bt"><i
 					class="fas fa-angle-right"></i></a> <a href="#" class="bt"><i
 					class="fas fa-angle-double-right"></i></a>
-				<div>
-				</div>
+				<div></div>
 			</div>
-			<div class="paging_search" >
+			<div class="paging_search">
 				<select name="pSea" id="pSea">
 					<option value="번호">NO.</option>
 					<option value="제목">제목</option>

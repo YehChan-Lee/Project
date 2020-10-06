@@ -18,9 +18,9 @@
 		<hr />
 		<div>
 			<div class="resSituRdo">
-				<input type="radio" name="rsRdo" value="전체" />전체 <input type="radio"
-					name="rsRdo" value="예약중" />예약중 <input type="radio" name="rsRdo"
-					value="결제완료" />결제완료 <span> | </span>
+				<input type="radio" name="rsRdo" value="전체" />전체 <input
+					type="radio" name="rsRdo" value="예약중" />예약중 <input type="radio"
+					name="rsRdo" value="결제완료" />결제완료 <span> | </span>
 			</div>
 			<span>검색 키워드</span>
 			<div>
@@ -53,10 +53,12 @@
 						<th>음식 예약</th>
 						<th>결제 날짜</th>
 					</tr>
-					<c:forEach items="${AresSitu_list}" var="AresSitu" begin="0" step="1">
-					<tr>
-						<c:set var="i" value="${i + 1}" />
-						<c:set var="food" value="${AresSitu.getReserveOrder().getFood_name()}"/>
+					<c:forEach items="${AresSitu_list}" var="AresSitu" begin="0"
+						step="1">
+						<tr>
+							<c:set var="i" value="${i + 1}" />
+							<c:set var="food"
+								value="${AresSitu.getReserveOrder().getFood_name()}" />
 							<td><input type="checkbox" name="resSitu_sib" />
 							<td>${i}</td>
 							<td>${AresSitu.getReserveOrder().getIs_pay()}</td>
@@ -67,18 +69,17 @@
 							<td>${AresSitu.getShopVo().getShop_addr()}</td>
 							<td>${AresSitu.getReservation().getRes_date()}</td>
 							<td>${AresSitu.getReservation().getRes_customer()}</td>
-							<td><a href="#">
-							<c:choose>
-								<c:when test="${empty food }">
-									<c:out value=""></c:out>
-								</c:when>
-								<c:otherwise>
-									<c:out value="예약 확인"></c:out>
-								</c:otherwise>
-							</c:choose>
+							<td><a href="#"> <c:choose>
+										<c:when test="${empty food }">
+											<c:out value=""></c:out>
+										</c:when>
+										<c:otherwise>
+											<c:out value="예약 확인"></c:out>
+										</c:otherwise>
+									</c:choose>
 							</a></td>
 							<td>${AresSitu.getReserveOrder().getPay_date()}</td>
-					</tr>	
+						</tr>
 					</c:forEach>
 					<%-- <%
 						List<AdminVo> AresSitu_list = (List<AdminVo>)request.getAttribute("AresSitu_list");
@@ -107,9 +108,9 @@
          <div>등록된 글이 없습니다.</div>
       </c:otherwise>
    </c:choose> --%>
-					
+
 					<!-- <tr> -->
-						<%-- <td><input type="checkbox" name="resSitu_sib" /></td>
+					<%-- <td><input type="checkbox" name="resSitu_sib" /></td>
 						<td><%=i+1 %></td>
 						<td><%=vo.getReserveOrderVo().getIs_pay() %></td>
 						<td><%=vo.getReservation().getReserve_idx() %></td>
@@ -120,9 +121,9 @@
 						<td><%=vo.getReservation().getRes_date()%></td>
 						<td><%=vo.getReservation().getRes_customer()%></td> --%>
 					<!-- 	<td><a href="#"> -->
-						
-						
-						<%--  <c:forEach items="${AresSitu_list}" var="AresSitu">
+
+
+					<%--  <c:forEach items="${AresSitu_list}" var="AresSitu">
 							<td>${AresSitu.getReserveOrderVo().getIs_pay()}</td>
 						
 						</c:forEach> --%>
@@ -143,7 +144,7 @@
 					<%-- <%
 						}
 					%> --%>
-					
+
 					<!-- <tr>
 						<td><input type="checkbox" name="resSitu_sib" /></td>
 						<td>1</td>
@@ -275,13 +276,13 @@
 	</div>
 </body>
 <script>
-	$(document).ready(function(){
-		$("#sec_admin_resSitu > div:nth-child(1) > table > tbody > tr > td > a ").on("click", function(){
+	$(document).ready(function() {
+		$("#sec_admin_resSitu > div:nth-child(1) > table > tbody > tr > td > a ").on("click", function() {
 			/* #sec_admin_resSitu > div:nth-child(1) > table > tbody > tr:nth-child(2) > td:nth-child(4) */
 			var info = $(this).closest("tr").children("td:nth-child(4)").text();
 			console.log("예약번호 : " + info);
-				var url = "admin_resSitu_info?idx="+info;
-				window.open(url, "예약 현황 정보", "height=700, width=1200, top=100, left=300", "_blank");
+			var url = "admin_resSitu_info?idx=" + info;
+			window.open(url, "예약 현황 정보", "height=700, width=1200, top=100, left=300", "_blank");
 		});
 	});
 </script>

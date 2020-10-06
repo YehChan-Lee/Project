@@ -38,11 +38,13 @@
 			</tr>
 			<tr>
 				<th>제목</th>
-				<td colspan="3"><input type="text" value="<%=vo.get(0).getNoticeVo().getNotice_title()%>"/></td>
+				<td colspan="3"><input type="text"
+					value="<%=vo.get(0).getNoticeVo().getNotice_title()%>" /></td>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td colspan="3"><textarea id="texarea" name="texarea" value="<%=vo.get(0).getNoticeVo().getNotice_title()%>"></textarea>
+				<td colspan="3"><textarea id="texarea" name="texarea"
+						value="<%=vo.get(0).getNoticeVo().getNotice_title()%>"></textarea>
 				</td>
 			</tr>
 		</table>
@@ -83,8 +85,8 @@
 			fCreator : "createSEditor2"
 		});
 	});
-	
-	$("#container > div > div:nth-child(2)").on("click", function(){
+
+	$("#container > div > div:nth-child(2)").on("click", function() {
 		window.close();
 	});
 </script>

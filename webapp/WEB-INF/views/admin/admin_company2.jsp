@@ -44,10 +44,9 @@
 						<th>결제</th>
 					</tr>
 					<%
-						List<AdminVo> Acompany2_list = (List<AdminVo>)request.getAttribute("Acompany2_list");
-						for(int i = 0; i< Acompany2_list.size(); i++){
+						List<AdminVo> Acompany2_list = (List<AdminVo>) request.getAttribute("Acompany2_list");
+						for (int i = 0; i < Acompany2_list.size(); i++) {
 							AdminVo vo = Acompany2_list.get(i);
-					
 					%>
 					<tr>
 						<td><%=vo.getShopVo().getShop_id()%></td>
@@ -169,6 +168,14 @@
 				//취소
 				return;
 			}
+		});
+		
+		$("#sec_admin_company2 > div:nth-child(1) > table > tbody > tr > td:nth-child(7) > span:nth-child(1)").on('click', function(){
+			alert("1");
+		});
+		
+		$("#sec_admin_company2 > div:nth-child(1) > table > tbody > tr > td:nth-child(7) > span:nth-child(2)").on('click', function(){
+			alert("2");
 		});
 
 		$("#sec_admin_company2 table > tbody > tr > td:nth-child(1) > input[type=checkbox]").on('click', function() {
