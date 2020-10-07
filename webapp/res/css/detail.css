@@ -12,6 +12,7 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big,
 	font-family: 'Noto Sans', sans-serif;
 	-webkit-font-smoothing: subpixel-antialiased !important
 }
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
 @font-face {
 font-family: 'NanumSquareRound';
 src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
@@ -65,19 +66,22 @@ i_wrap background {
 	background-color: black;
 	opacity: 50%;
 	z-index: 2;
+	margin-top: 58px;
 }
 
 #banner.restaurant_detail>.inner_wrap {
 	display: block;
 	width: 970px;
 	height: 100%;
-	margin: 0 auto
+	margin: 0 auto;
+	font-size: 17px;
 }
 
 #banner.restaurant_detail>.inner_wrap>.inner {
 	position: relative;
 	color: #fff;
 	z-index: 3;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 #banner.restaurant_detail>.inner_wrap>.inner>.title {
@@ -87,7 +91,8 @@ i_wrap background {
 }
 
 #banner.restaurant_detail>.inner_wrap>.inner>.title>.name {
-	font-size: 14pt
+	font-size: 14pt;
+	font-weight: 600;
 }
 
 #banner.restaurant_detail>.inner_wrap>.inner>.title>.info {

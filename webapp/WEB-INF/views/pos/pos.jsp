@@ -64,6 +64,26 @@
 			
 			<div id="payment_div">
 				<p>결제내역</p>
+				<table class="table table-dark">
+						<thead>
+							<tr>
+								<th>번호</th>
+								<th>이메일</th>
+								<th>결제 금액</th>
+								<th>결제 날짜</th>
+							</tr>
+						</thead>
+						<tbody>
+						<c:forEach items="${payment}" var="pay">
+							<tr>
+								<td>${pay.pay_idx}</td>
+								<td>${pay.user_email}</td>
+								<td>${pay.pay_point}</td>
+								<td>${pay.pay_date}</td>
+							</tr>							
+						</c:forEach>
+						</tbody>
+					</table>
 			</div>
 			
 		</div>

@@ -1,59 +1,77 @@
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<c:forEach items="${reviewList}" var="review">
-	<div class="review">
-	<%-- <div class="del">
+
+<c:choose>
+	<c:when test="${!empty reviewList}">
+		<c:forEach items="${reviewList}" var="review">
+			<div class="review">
+				<%-- <div class="del">
 		<input type="hidden" id="h_reviewIdx${review.reviewVo.review_idx}" value="${review.reviewVo.review_idx}"/>
 		<input type="hidden" id="h_user_email${review.reviewVo.review_idx}" value="${review.reviewVo.user_email}"/>
 		<i class="fas fa-times" style="color:lightgray" id="del${review.reviewVo.review_idx}"></i>
 	</div>  --%>
-		<a class="author" href=""> <span class="thumbnail"
-			style="background-image: url(<c:url value="${path}/serverImg/profile/user/${review.shopUser.user_photo}"/>);"></span>
-			<div class="info">
-				<p class="name">${review.shopUser.user_name}</p>
-				<p class="stat">리뷰 ${review.shopUser.review_cnt}</p>
+				<a class="author" href=""> <span class="thumbnail"
+					style="background-image: url(<c:url value="${path}/serverImg/profile/user/${review.shopUser.user_photo}"/>);"></span>
+					<div class="info">
+						<p class="name">${review.shopUser.user_name}</p>
+						<p class="stat">리뷰 ${review.shopUser.review_cnt}</p>
+					</div>
+				</a>
+				<hr />
+				<div class="star_grade">
+					<div class="grade" id="grade${review.reviewVo.review_idx}"
+						style="padding: 0;"></div>
+					<div class="grade_score"
+						id="grade_score${review.reviewVo.review_idx}"></div>
+					<div class="grade_comment"
+						id="grade_comment${review.reviewVo.review_idx}"></div>
+				</div>
+				<div class="text">${review.reviewVo.review}</div>
+				<div class="photo" id="photo${review.reviewVo.review_idx}">
+					<c:forTokens items="${review.reviewVo.review_photo}" var="img"
+						delims="/" varStatus="i">
+						<a href="<c:url value='${path}/serverImg/review/${img}'/>"> <img
+							src="<c:url value='${path}/serverImg/review/${img}'/>" width="75"
+							height="75"></a>
+					</c:forTokens>
+				</div>
+
+				<div class="action">
+					<input type="hidden" name="like_form"
+						value="${review.reviewVo.review_idx}" />
+					<button class="like" id="review_like${review.reviewVo.review_idx}">
+						<i class="far fa-thumbs-up"></i>
+						<p>좋아요</p>
+						<span>${review.reviewVo.like_review}</span>
+					</button>
+
+					<input type="hidden" name="hate_form"
+						value="${review.reviewVo.review_idx}" />
+					<button class="hate" id="review_hate${review.reviewVo.review_idx}">
+						<i class="far fa-thumbs-down"></i>
+						<p>싫어요</p>
+						<span>${review.reviewVo.hate_review}</span>
+					</button>
+				</div>
 			</div>
-		</a>
-		<hr />
-		<div class="star_grade">
-			<div class="grade" id="grade${review.reviewVo.review_idx}"
-				style="padding: 0;"></div>
-			<div class="grade_score"
-				id="grade_score${review.reviewVo.review_idx}"></div>
-			<div class="grade_comment"
-				id="grade_comment${review.reviewVo.review_idx}"></div>
-		</div>
-		<div class="text">${review.reviewVo.review}</div>
-		<div class="photo" id="photo${review.reviewVo.review_idx}">
-			<c:forTokens items="${review.reviewVo.review_photo}" var="img"
-				delims="/" varStatus="i">
-				<a href="<c:url value='${path}/serverImg/review/${img}'/>">
-				<img src="<c:url value='${path}/serverImg/review/${img}'/>" width="75"
-					height="75"></a>
-			</c:forTokens>
-		</div>
+		</c:forEach>
+	</c:when>
 
-		<div class="action">
-			<input type="hidden" name="like_form"
-				value="${review.reviewVo.review_idx}" />
-			<button class="like" id="review_like${review.reviewVo.review_idx}">
-				<i class="far fa-thumbs-up"></i>
-				<p>좋아요</p>
-				<span>${review.reviewVo.like_review}</span>
-			</button>
-
-			<input type="hidden" name="hate_form"
-				value="${review.reviewVo.review_idx}" />
-			<button class="hate" id="review_hate${review.reviewVo.review_idx}">
-				<i class="far fa-thumbs-down"></i>
-				<p>싫어요</p>
-				<span>${review.reviewVo.hate_review}</span>
-			</button>
+	<c:otherwise>
+		<div id="message">
+			작성한 리뷰가 없습니다.<br> 지금 리뷰 작성을 해보시겠어요?
 		</div>
-	</div>
-</c:forEach>
-<%pageContext.setAttribute("shopId", request.getParameter("shopId"));%>
+		<script>
+			$(document).ready(function(){
+				$("#message").css("color", "lightgray").css("text-align", "center").css("background-color", "#fff").css("padding", "150px").css("font-size","17px").css("border-radius", "5px").css("font-family","'Noto Sans KR', sans-serif").css("font-weight", "500") ;
+			});
+			</script>
+	</c:otherwise>
+</c:choose>
+<%
+	pageContext.setAttribute("shopId", request.getParameter("shopId"));
+%>
 <script>
 	/* 버튼 색상변경 */
 	if(id != null){
