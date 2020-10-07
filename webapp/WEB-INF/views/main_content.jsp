@@ -382,7 +382,7 @@
 							<span class="reviewspan2">${review.reviewVo.review}</span>
 						</div>
 						<div class="infodetail">
-							<a href="http://babpool.duckdns.org:8088/BabPool/detail?shopidx=${review.shopVo.shop_idx}"><span style="position: relative;bottom : 3px;right : -2px;">더보기</span></a>
+							<a href="http://localhost:8088/BabPool/detail?shopidx=${review.shopVo.shop_idx}"><span style="position: relative;bottom : 3px;right : -2px;">더보기</span></a>
 						</div>
 					</div>
 				</div>

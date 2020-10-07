@@ -26,6 +26,7 @@ public class PosController {
 		mav.addObject("reserveList",posdao.getReserveList(shopId));
 		mav.addObject("reserveCnt",posdao.getReserveList(shopId).size());
 		mav.addObject("table2",posdao.getTableInfo(shopId,2));
+		mav.addObject("payment",posdao.getPayment());
 		session.setAttribute("table2Cnt",posdao.getTableInfo(shopId,2).size());
 		mav.setViewName("pos/pos");
 		return mav;

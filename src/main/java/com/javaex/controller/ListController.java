@@ -191,10 +191,19 @@ public class ListController {
 	public ModelAndView detail(ModelAndView mav, HttpServletRequest request, HttpSession session) {
 		System.out.println("/BabPool/detail");
 		String user_email = (String) session.getAttribute("sessionID");
-		String shop_idx = request.getParameter("shopidx");
-
+		int shopIdx = Integer.parseInt(request.getParameter("shopidx"));
+		// cnt 가져오기위한 먼저 shop 호출
+		ShopVo shop = dao.shopOne(shopIdx);
+		String ShopId = shop.getShop_id();
 		if (user_email != null) {
-			userDao.update_recentShop_shopIdx(user_email, shop_idx);
+			// 찜이 되어 있는지 우선 확인
+			if (dibdao.dibCheck(user_email, ShopId)) {
+				mav.addObject("isDib","true");
+			} 
+			else {
+				mav.addObject("isDib","false");
+			}
+			userDao.update_recentShop_shopIdx(user_email, shopIdx);
 			ShopUserVo user;
 			user = userDao.loginCheck(user_email);
 			if (user.getRecent_shop() != null) {
@@ -206,23 +215,9 @@ public class ListController {
 			}
 		}
 
-		int shopIdx = Integer.parseInt(request.getParameter("shopidx"));
-		// cnt 가져오기위한 먼저 shop 호출
-		ShopVo shop = dao.shopOne(shopIdx);
-		String ShopId = shop.getShop_id();
-
-		// 찜이 되어 있는지 우선 확인
-		if (dibdao.dibCheck(user_email, ShopId)) {
-			mav.addObject("isDib","true");
-		} 
-		else {
-			mav.addObject("isDib","false");
-		}
-
 		// cnt 증가후 다시 shop 호출
 		dao.viewUp(ShopId);
 		shop = dao.shopOne(shopIdx);
-		mav.addObject("ShopPhoto", dao.getShopPhoto(user_email));
 		mav.addObject("shopTop5", dao.getTop5());
 		mav.addObject("shopOne", shop);
 		mav.setViewName("detail/detail");
@@ -276,7 +271,6 @@ public class ListController {
 					session.setAttribute("shop_addr", recent_shopList.getShop_addr());
 					session.setAttribute("shop_idx", recent_shopList.getShop_idx());
 				}
-
 				if (user.getIs_owner().equals("1")) {
 					session.setAttribute("shop_id", dao.getShopId(user_email));
 				}

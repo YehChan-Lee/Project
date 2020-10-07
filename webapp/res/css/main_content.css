@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
 <!--리뷰 슬라이드-->
 body {
 	background-color: #f3f3f3;
@@ -116,7 +116,7 @@ body {
 	top: -118px;
 	color: white;
 	font-weight: 500;
-	font-family: 'NanumSquareRound';
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 .categorydiv>img {
@@ -179,6 +179,7 @@ body {
 	color: white;
 	font-weight: bold;
 	font-size: 16px;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 .reviewdiv3 {
