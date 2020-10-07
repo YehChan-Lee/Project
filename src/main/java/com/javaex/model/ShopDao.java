@@ -133,8 +133,12 @@ public class ShopDao {
 		return sqlsession.selectOne("ShopVo.getShopId", user_email);
 	}
 	
-	public String getShopPhoto(String user_email) {
-		return sqlsession.selectOne("ShopVo.getShopPhoto", user_email);
+	public String getShopPhoto(String shop_idx) {
+		return sqlsession.selectOne("ShopVo.getShopPhoto", shop_idx);
+	}
+	
+	public String getShopSubPhoto(String shop_idx) {
+		return sqlsession.selectOne("ShopVo.getShopSubPhoto", shop_idx);
 	}
 	
 	public ShopVo cntShopReserve(){
@@ -153,6 +157,15 @@ public class ShopDao {
 	public void deleteShop() {
 		sqlsession.delete("ShopVo.shopDelete");
 	}
+	
+	public String getShopReview(String user_email) {
+		return sqlsession.selectOne("ShopVo.getShopReview", user_email);
+	}
+	
+	public String getShopReserve(String user_email) {
+		return sqlsession.selectOne("ShopVo.getShopReserve", user_email);
+	}
+	
 	public void viewUp(String shopId) {
 		HashMap<String,Object> map = new HashMap<String, Object>();
 		int cnt = 0;

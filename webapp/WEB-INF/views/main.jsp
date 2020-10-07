@@ -189,7 +189,7 @@
 
 	var naverLogin = new naver.LoginWithNaverId({
 		clientId : "9N2m3BOpk_HOvgVlJP0X",
-		callbackUrl : "http://localhost:8088/BabPool/main",
+		callbackUrl : "http://127.0.0.1:8088/BabPool/main",
 		isPopup : false,
 		callbackHandle : true
 	/* callback 페이지가 분리되었을 경우에 callback 페이지에서는 callback처리를 해줄수 있도록 설정합니다. */
@@ -199,39 +199,60 @@
 	naverLogin.init();
 
 	/* (4) Callback의 처리. 정상적으로 Callback 처리가 완료될 경우 main page로 redirect(또는 Popup close) */
-	window
-			.addEventListener(
-					'load',
-					function() {
+	window.addEventListener('load',function() {
 						naverLogin
 								.getLoginStatus(function(status) {
 									if (status) {
 										/* (5) 필수적으로 받아야하는 프로필 정보가 있다면 callback처리 시점에 체크 */
 										var email = naverLogin.user.getEmail();
+										var name = naverLogin.user.getName();
+										var gender = naverLogin.user.getGender();
+										var birthday = naverLogin.user.getBirthday();
 										if (email == undefined || email == null) {
 											alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
 											/* (5-1) 사용자 정보 재동의를 위하여 다시 네아로 동의페이지로 이동함 */
 											naverLogin.reprompt();
 											return;
 										}
+										$("#naverIdLogin").click(function () {
+											$.ajax({
+												type : "POST",
+												url : "main",
+												data : {
+													email : email,
+													name : name,
+													gender : gender,
+													birthday : birthday
+												},
+												success : function(data) {
+													window.location
+													.replace("http://"
+															+ window.location.hostname
+															+ ((location.port == "" || location.port == undefined) ? ""
+																	: ":"
+																			+ location.port)
+															+ "127.0.0.1:8088/BabPool/main");
+													
+												},
+												error : function() {
+													alert("에러발생");
+												}
 
-										window.location
-												.replace("http://"
-														+ window.location.hostname
-														+ ((location.port == "" || location.port == undefined) ? ""
-																: ":"
-																		+ location.port)
-														+ "localhost:8088/BabPool/main");
+											});
+										})
+
 										/* 인증이 완료된후 /sample/main.html 페이지로 이동하라는것이다. 본인 페이로 수정해야한다. */
 									} else {
 										console.log("callback 처리에 실패하였습니다.");
 									}
 								});
 					});
+	
+
 
 	var naver_id_login = new naver_id_login("9N2m3BOpk_HOvgVlJP0X",
-			"http://localhost:8088/BabPool/main"); // 역시 마찬가지로 'localhost'가 포함된 CallBack URL
-			 var naver_id_login = new naver_id_login("9N2m3BOpk_HOvgVlJP0X", "http://localhost:8088/BabPool/main"); // 역시 마찬가지로 'localhost'가 포함된 CallBack URL
+			"http://127.0.0.1:8088/BabPool/main"); // 역시 마찬가지로 'localhost'가 포함된 CallBack URL
+			 var naver_id_login = new naver_id_login("9N2m3BOpk_HOvgVlJP0X", "http://127.0.0.1:8088/BabPool/main"); // 역시 마찬가지로 'localhost'가 포함된 CallBack URL
 		        
 		        // 접근 토큰 값 출력
 		        alert(naver_id_login.oauthParams.access_token);

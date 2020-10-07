@@ -131,16 +131,30 @@
 	</select>
 	
 	<select id="getShopPhoto" parameterType="string" resultType="string">
-	<!-- 가게정보 -->
+
 		<![CDATA[
-		SELECT shop_photo FROM Shop WHERE user_email=#{user_email}
+		SELECT shop_photo FROM Shop WHERE shop_idx=#{shop_idx}
 		]]>		
 	</select>
 	
 	<select id="getShopSubPhoto" parameterType="string" resultType="string">
-	<!-- 가게정보 -->
+	
 		<![CDATA[
-		SELECT shop_subphoto FROM Shop WHERE user_email=#{user_email}
+		SELECT shop_subphoto FROM Shop WHERE shop_idx=#{shop_idx}
+		]]>		
+	</select>
+	
+	<select id="getShopReview" parameterType="string" resultType="string">
+
+		<![CDATA[
+		SELECT shop_review FROM Shop WHERE user_email = #{user_email}
+		]]>		
+	</select>
+	
+	<select id="getShopReserve" parameterType="string" resultType="string">
+	
+		<![CDATA[
+		SELECT SHOP_RESERVE FROM Shop WHERE user_email = #{user_email}
 		]]>		
 	</select>
 	

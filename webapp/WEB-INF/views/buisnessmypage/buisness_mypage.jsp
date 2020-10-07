@@ -16,24 +16,25 @@
 <body>
 <%@include file="../top_bar.jsp" %>
 <!-- 마이페이지 -->
+
 <div id="timeline">
 	<div id="user_timeline">
 		<div id="mypage_banner">
 			<div id="user_box">
 				<div id="user_img">
-					<img src="<c:url value="${path}/res/image/chinese.jpg"/>"/>
+					<img src="<c:url value="${path}/serverImg/profile/user/${user.user_photo }"/>"/>
 				</div>
 				<div id="user_info_box">
 					<div id="user_info">
 						<div id="user_name">
-							<span>USER NAME</span>
+							<span>${user.user_name }</span>
 						</div>
 						<div class="point">POINT</div>
 					</div>
 					<div id="situation">
-						<a href="">예약 0</a>
-						<a href="">리뷰 0</a>
-						<a href="">찜한 매장 0</a>
+						<a href="">예약 ${shopreserve}</a>
+						<a href="">리뷰 ${shopreview}</a>
+						<a href="">찜한 매장 ${shopdibsidx}</a>
 					</div>
 				</div>
 			</div>

@@ -1,4 +1,11 @@
 @charset "UTF-8";
+@font-face {
+font-family: 'NanumSquareRound';
+src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+font-weight: normal;
+font-style: normal;
+}
+
 body, html{
 	padding: 0;
 	margin: 0;
@@ -91,6 +98,7 @@ width: 100%;
 	padding: 10px;
 	font-size: 20px;
 	font-weight: 600;
+	font-family: "NanumSquareRound";
 }
 #content_wrap>#content>ul .my_item:hover{
 	color: #f05e23;

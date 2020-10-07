@@ -22,11 +22,13 @@ public class ShopUserVo {
 	
 	public ShopUserVo() {}	
 
-	
+
 	
 	public ShopUserVo(String user_email, String user_pw, String user_name, String user_gender, String user_birth,
-			String user_phone, String is_owner, int point, String user_photo, int user_idx,
-			String recent_shop, int review_cnt) {
+
+			String user_phone, String is_owner, int point, String user_photo, int user_idx, String recent_shop,
+			int review_cnt) {
+
 		this.user_email = user_email;
 		this.user_pw = user_pw;
 		this.user_name = user_name;

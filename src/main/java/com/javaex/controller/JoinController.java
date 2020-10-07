@@ -47,13 +47,30 @@ public class JoinController {
 
 	// 메인페이지 실시간 리뷰 리스트 Get
 	@RequestMapping("/main")
-	public ModelAndView main(ModelAndView mav, HttpSession session) {
-		System.out.println("/BabPool/main");		
+	public ModelAndView main(ModelAndView mav, String v, HttpSession session, HttpServletRequest request) {
+		System.out.println("/BabPool/main");
+		
+		String email = request.getParameter("email");
+		String name = request.getParameter("name");
+		String gender = request.getParameter("gender");
+		String birthday = request.getParameter("birthday");
+		
+		
+		if (email != null) {
+			if(userDao.getUser(email) != null) {
+				session.setAttribute("sessionID", email);
+				session.setAttribute("is_owner", "0");
+			} else {
+				userDao.signUp(new ShopUserVo(email, "12345", name, gender, birthday, "010-0000-0000", "0", 0, "user2.png", 0, null, 0));
+			}
+		} 
+
 		mav.addObject("reviewList", alldao.getReview());
 		session.setAttribute("footeruser", alldao.footeruser());
 		session.setAttribute("footerreview", reviewdao.footerreview());
 		session.setAttribute("footerreserve", reservedao.footerreserve());
 		mav.setViewName("main");
+		
 		return mav;
 	}
 
@@ -63,6 +80,7 @@ public class JoinController {
 		System.out.println("/BabPool/mypage");
 		// 아이디 가져오기
 		String user_email = (String) session.getAttribute("sessionID");
+		System.out.println(user_email);
 		ShopUserVo user = userDao.loginCheck(user_email);
 		session.setAttribute("user_photo", user.getUser_photo());
 		mav.addObject("reserveList", alldao.reserveList(user_email));
@@ -182,7 +200,7 @@ public class JoinController {
 		return mav;
 	}
 
-	// 마이페이지 설정
+	// 留덉씠�럹�씠吏� �꽕�젙
 	@RequestMapping("/mypage/setting")
 	public ModelAndView mypage_setting(ModelAndView mav, HttpSession session, HttpServletRequest req) {
 		System.out.println("/BabPool/mypage/setting");
@@ -203,14 +221,14 @@ public class JoinController {
 		System.out.println(
 				"기본=>user_email: " + user_email + ", update_phone : " + user_phone + ", update_name :" + user_name);
 
-		if (!user_name.equals("")) { // 이름만 변경
+		if (!user_name.equals("")) { // �씠由꾨쭔 蹂�寃�
 			userDao.Update_shopuser(user_name, user_email);
-			System.out.println("이름만=>user_email: " + user_email + ", update_phone : " + user_phone + ", update_name :"
+			System.out.println("�씠由꾨쭔=>user_email: " + user_email + ", update_phone : " + user_phone + ", update_name :"
 					+ user_name);
 		} else if (!user_phone.equals("")) { // 번호만 변경
 			userDao.Update_phone(user_phone, user_email);
 			;
-			System.out.println("번호만=>user_email: " + user_email + ", update_phone : " + user_phone + ", update_name :"
+			System.out.println("踰덊샇留�=>user_email: " + user_email + ", update_phone : " + user_phone + ", update_name :"
 					+ user_name);
 		} else if (user_phone.equals("") && user_name.equals("")) {
 			resp.getWriter().write("fail");
@@ -224,7 +242,7 @@ public class JoinController {
 			throws IOException {
 		System.out.println("/BabPool/mypage/profile.do");
 		String user_email = (String) session.getAttribute("sessionID");
-		String url = "D:\\LYC\\SpringGit\\Project\\webapp\\serverImg\\";
+		String url = "C:\\Users\\Kosmo_23\\Desktop\\諛깆뾽\\Project\\webapp\\serverImg\\";
 
 		String folder = "profile\\user\\";
 		String fileName = "profile" + user_email + ".png";
@@ -234,7 +252,7 @@ public class JoinController {
 			File file = new File(url + folder);
 			if (!file.exists()) {
 				try {
-					file.mkdir(); // 폴더 생성합니다.
+					file.mkdir(); // �뤃�뜑 �깮�꽦�빀�땲�떎.
 					System.out.println("폴더가 생성되었습니다.");
 					mf.transferTo(new File(safeFile));
 				} catch (Exception e) {
