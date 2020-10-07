@@ -2,9 +2,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="<c:url value='${path}/res/css/detail_menu.css?ver=1'/>">
+
 <div id="menu_wrap">
-<%-- 	<c:if >
-	</c:if> --%>
+<c:choose>
+	<c:when test="${!empty shopMenu}">
 	<table class="menutable">
     <thead>
       <tr>
@@ -23,4 +24,17 @@
      </c:forEach>
     </tbody>
   </table>
+  </c:when>
+
+	<c:otherwise>
+		<div id="message">
+			사장님이 메뉴를 안적으셨어요.<br> 사장님께 말해볼께요
+		</div>
+		<script>
+			$(document).ready(function(){
+				$("#message").css("color", "lightgray").css("text-align", "center").css("background-color", "#fff").css("padding", "150px").css("font-size","17px").css("border-radius", "5px").css("font-family","'Noto Sans KR', sans-serif").css("font-weight", "500") ;
+			});
+			</script>
+	</c:otherwise>
+</c:choose>
 </div>

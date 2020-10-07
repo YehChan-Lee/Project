@@ -31,4 +31,7 @@ public class PosDao {
 		map.put("tableNum", i);
 		return sqlsession.selectList("ReserveOrder.getTableInfo",map);
 	}
+	public List<HashMap<String,Object>> getPayment(){
+		return sqlsession.selectList("All.getPayment");
+	}
 }
