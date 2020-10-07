@@ -55,4 +55,8 @@ public class ShopDibsDao {
 		}
 
 	}
+	
+	public String getShopDibsIdx(String shop_id) {
+		return sqlsession.selectOne("Dibs.getDib",shop_id);
+	}
 }

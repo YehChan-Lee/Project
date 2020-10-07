@@ -65,6 +65,10 @@ public class ListController {
 
 	String url = "C:\\Users\\Kosmo_23\\Desktop\\백업\\Project\\webapp\\serverImg\\";
 	
+	
+
+
+	
 
 	@RequestMapping("/review_upload")
 	public void test(ModelAndView mav,MultipartHttpServletRequest req, HttpServletResponse res, HttpSession session)
@@ -195,7 +199,7 @@ public class ListController {
 		System.out.println("/BabPool/detail");
 		String user_email = (String) session.getAttribute("sessionID");
 		String shop_idx = request.getParameter("shopidx");
-
+		mav.addObject("ShopPhoto", dao.getShopPhoto(shop_idx));
 		if (user_email != null) {
 			userDao.update_recentShop_shopIdx(user_email, shop_idx);
 			ShopUserVo user;
@@ -215,12 +219,22 @@ public class ListController {
 		// cnt 증가후 다시 shop 호출
 		dao.viewUp(ShopId);
 		shop = dao.shopOne(shopIdx);
-		mav.addObject("ShopPhoto", dao.getShopPhoto(user_email));
 		mav.addObject("shopTop5",dao.getTop5());
 		mav.addObject("shopOne", shop);
 		mav.setViewName("detail/detail");
 		return mav;
 	}
+	
+	@RequestMapping("/detail/photo.do")
+	public ModelAndView detail_photo(ModelAndView mav, HttpServletRequest request, HttpSession session) {
+		System.out.println("/BabPool/detail/photo.do");
+		String shop_idx = request.getParameter("shopidx");
+		mav.addObject("ShopSubPhoto", dao.getShopSubPhoto(shop_idx));
+		mav.setViewName("detail/detail_photo");
+		return mav;
+	}
+	
+	
 	@RequestMapping("/isDib")
 	public void isDib(HttpServletRequest request, HttpSession session) {
 		System.out.println("/BabPool/detail");
@@ -234,7 +248,6 @@ public class ListController {
 
 		String user_email = request.getParameter("user_id");
 		String password = request.getParameter("user_pw");
-
 		ShopUserVo user = userDao.loginCheck(user_email);
 		if (userDao.loginCheck(user_email) != null) {
 			if (user.getUser_pw().equals(password)) {
@@ -283,7 +296,7 @@ public class ListController {
 		int joinType = Integer.parseInt(req.getParameter("join_type"));
 
 		if (joinType == 1) {
-			userDao.signUp(new ShopUserVo(email, pw, name, gender, birth, phone, "0", null, 0, null, 0, 0));
+			userDao.signUp(new ShopUserVo(email, pw, name, gender, birth, phone, "0", 0, "user2.png", 0, null, 0));
 		} else {
 			String buisnessNumber = req.getParameter("buisness_number");
 			String buisnessName = req.getParameter("buisness_name");
@@ -293,7 +306,7 @@ public class ListController {
 
 			System.out.println(buisnessNumber + " " + buisnessName + " " + buisnessAddress + " " + buisnessAddressEtc
 					+ " " + buisnessFoodType);
-			userDao.signUp(new ShopUserVo(email, pw, name, gender, birth, phone, "1", null, 0, null, 0, 0));
+			userDao.signUp(new ShopUserVo(email, pw, name, gender, birth, phone, "1", 0, "user2.png", 0, null, 0));
 		}
 		mav.setViewName("main");
 		return mav;
@@ -325,6 +338,20 @@ public class ListController {
 		return mav;
 	}
 
+	@RequestMapping("/buisnessmypage")
+	public ModelAndView buisnessmypage(ModelAndView mav,HttpServletResponse response, HttpServletRequest req,HttpSession session) {
+		System.out.println("/buisnessmypage");
+		String user_email = (String)session.getAttribute("sessionID");
+		String shop_id = (String)session.getAttribute("shop_id");
+		mav.addObject("shopdibsidx",dibdao.getShopDibsIdx(shop_id));
+		mav.addObject("shopreserve",dao.getShopReserve(user_email));
+		mav.addObject("shopreview", dao.getShopReview(user_email));
+		mav.addObject("user",userDao.getUser(user_email));
+		mav.setViewName("buisnessmypage/buisness_mypage");
+		System.out.println(dao.getShopReserve(user_email));
+		System.out.println(dao.getShopReview(user_email));
+		return mav;
+	}
 	
 	@RequestMapping("/buisness_update")
 	public void buisnessmypage_update(HttpServletResponse response , MultipartHttpServletRequest req) throws IOException {
@@ -768,5 +795,7 @@ public class ListController {
 		menudao.DeleteMenu(map);
 
 	}
+	
+	
 }
 

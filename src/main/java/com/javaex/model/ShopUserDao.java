@@ -20,6 +20,8 @@ public class ShopUserDao {
 	public ShopUserVo loginCheck(String email) {
 		return sqlSession.selectOne("ShopUserVo.getUser", email);
 	}
+	
+	
 
 	public void signUp(ShopUserVo user) {
 		sqlSession.insert("ShopUserVo.signUp", user);

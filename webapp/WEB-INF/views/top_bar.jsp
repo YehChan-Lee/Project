@@ -410,7 +410,7 @@
 						pageContext.setAttribute("shop_id", session.getAttribute("shop_id"));
 						%>
 						<a href="buisnessmypage"> <img
-							src="<c:url value="${path}/res/image/${user_photo}"/>" height="32px">
+							src="<c:url value="${path}/serverImg/profile/user/${user_photo}"/>" height="32px">
 						</a>
 						<%
 							}
@@ -1213,7 +1213,7 @@
 		//네이버 로그인 API 관련
 		var naverLogin = new naver.LoginWithNaverId({
 			clientId : "9N2m3BOpk_HOvgVlJP0X",
-			callbackUrl : "http://localhost:8088/BabPool/main",
+			callbackUrl : "http://127.0.0.1:8088/BabPool/main",
 			isPopup : false, /* 팝업을 통한 연동처리 여부 */
 			loginButton : {
 				color : "green",

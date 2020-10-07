@@ -53,7 +53,7 @@
 				<div class="i_wrap background">
 					<div class="film"></div>
 					 <%-- <img src="<c:url value='${path}/res/image/walkerhill.jpg'/>" alt=""> --%>
-					 	<c:forTokens items="${ShopPhoto}" var="img"
+				<c:forTokens items="${ShopPhoto}" var="img"
 				delims="/" varStatus="i">
 				<a href="<c:url value='${path}/serverImg/shopimg/${img}'/>">
 				<img src="<c:url value='${path}/serverImg/shopimg/${img}'/>"
@@ -121,9 +121,11 @@
 						<div class="slider">
 							<div id="detail_slider">
 								<div class="i_wrap">
+								<c:forTokens items="${ShopPhoto}" var="img" delims="/" varStatus="i">
 									<div class="image" data-index="0" id="shop_photo"
-										style="width:319px; height:213px; background-image:url(<c:url value='${path}/res/image/walkerhill1.jpg'/>)"
-										title="양재해장국 매장 이미지"></div>
+										style="background-image:url('<c:url value='${path}/serverImg/shopimg/${img}'/>') ; width:320px ; height:231px ; background-position: center;">
+									</div>
+								</c:forTokens>										
 								</div>
 							</div>
 						</div>
@@ -322,7 +324,7 @@
 								<div class="detail">
 									<div class="name">
 										<a
-											href="http://babpool.duckdns.org:8088/BabPool/detail?shopidx=${shop.shop_idx}">${shop.shop_title}</a>
+											href="http://localhost:8088/BabPool/detail?shopidx=${shop.shop_idx}">${shop.shop_title}</a>
 									</div>
 									<div class="info">${shop.shop_reserve} 예약,
 										${shop.shop_review} 리뷰, ${shop.shop_view} 조회수</div>
@@ -427,7 +429,10 @@
             	else if($("#content > ul > .item.selected")[0] == $("#photo")[0]) {
             		$("#naverMap").hide();
             		$("#import").unload();
-            		$("#import").load("detail/photo.do")
+            		$("#import").load("detail/photo.do",{
+            			"shopidx" : ${shopidx},
+            			"shopId" : "${shopOne.shop_id}"
+            		})
             		$("#import").show();
             	}
 				else if($("#content > ul > .item.selected")[0] == $("#review")[0]){
