@@ -133,7 +133,7 @@ public class ShopDao {
 		return sqlsession.selectOne("ShopVo.getShopId", user_email);
 	}
 	
-	public String getShopPhoto(String shop_idx) {
+	public String getShopPhoto(int shop_idx) {
 		return sqlsession.selectOne("ShopVo.getShopPhoto", shop_idx);
 	}
 	

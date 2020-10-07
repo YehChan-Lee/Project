@@ -202,7 +202,7 @@ public class ListController {
 		// cnt 가져오기위한 먼저 shop 호출
 		ShopVo shop = dao.shopOne(shopIdx);
 		String ShopId = shop.getShop_id();
-		mav.addObject("ShopPhoto", dao.getShopPhoto(shop_idx));
+		mav.addObject("ShopPhoto", dao.getShopPhoto(shopIdx));
 		if (user_email != null) {
 			// 찜이 되어 있는지 우선 확인
 			if (dibdao.dibCheck(user_email, ShopId)) {

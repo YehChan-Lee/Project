@@ -238,43 +238,6 @@ div#wrap {
 	vertical-align: top;
 }
 
-/* #nav_container form>.search>.box>.top{
-    height:15px;
-    line-height:15px;
-    border-bottom:1px solid #969696;
-    padding:9px 25px;
-    font-weight:700;
-    font-size:0
-} */
-/* #nav_container form>#nav_genre.search>.box>.top{
-    padding-left:20px;
-    font-size:15px;
-} */
-/* #nav_container form>.search>.box>.city{
-    width:129px;
-    height:365px;
-    float:left;
-    border-right:1px solid #dcdddf;
-    list-style-type: none;
-    /* padding: 0;
-} */
-/* #nav_container form>.search>.box>.city>li{
-    line-height:34px;
-    padding-left:20px;
-    color:#828282;
-    list-style-type: none;
-    padding: 0;
-} */
-/* #nav_container form>.search>.box>.city>li.selected{
-    background:#ffecc8;
-    color:#f05e23;
-    font-weight:700;
-    list-style-type: none;
-} */
-/* #nav_container form>.search>.box>.city>li>span{
-    float:right;
-    /* margin-right:15px; 
-} */
 #nav_container form>.search>.box>.district {
 	width: 149px;
 	height: 365px;

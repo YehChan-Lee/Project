@@ -130,7 +130,7 @@
 		]]>		
 	</select>
 	
-	<select id="getShopPhoto" parameterType="string" resultType="string">
+	<select id="getShopPhoto" parameterType="int" resultType="string">
 
 		<![CDATA[
 		SELECT shop_photo FROM Shop WHERE shop_idx=#{shop_idx}
