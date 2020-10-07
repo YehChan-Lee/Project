@@ -543,7 +543,6 @@ div#wrap {
 #nav_account>#nav_guest>span:hover {
 	color: #444;
 }
-/* 湲�濡쒕쾶 �뙘�뾽 */
 #popup_body {
 	display: none;
 	position: fixed;
@@ -559,7 +558,6 @@ div#wrap {
 	z-index: 100;
 }
 
-/* 濡쒓렇�씤 �뙘�뾽 */
 img.popup_close {
 	width: 40px;
 	height: 40px;
@@ -577,7 +575,7 @@ div#login_body {
 }
 
 .loginh2 {
-       width: 82.5%;
+    width: 82.5%;
     background-color: #FEFFED;
     padding: 20px 35px;
     margin: -13px -50px;
