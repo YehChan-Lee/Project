@@ -63,7 +63,7 @@ public class ListController {
 	@Autowired
 	ShopDibsDao dibdao;
 
-	String url = "C:\\Users\\Kosmo_23\\Desktop\\백업\\Project\\webapp\\serverImg\\";
+	String url = "C:\\Users\\Kosmo_23\\Desktop\\닭\\Project\\webapp\\serverImg\\";
 	
 	
 
@@ -199,8 +199,19 @@ public class ListController {
 		System.out.println("/BabPool/detail");
 		String user_email = (String) session.getAttribute("sessionID");
 		String shop_idx = request.getParameter("shopidx");
+		int shopIdx = Integer.parseInt(request.getParameter("shopidx"));
+		// cnt 가져오기위한 먼저 shop 호출
+		ShopVo shop = dao.shopOne(shopIdx);
+		String ShopId = shop.getShop_id();
 		mav.addObject("ShopPhoto", dao.getShopPhoto(shop_idx));
 		if (user_email != null) {
+			// 찜이 되어 있는지 우선 확인
+			if (dibdao.dibCheck(user_email, ShopId)) {
+				mav.addObject("isDib","true");
+			} 
+			else {
+				mav.addObject("isDib","false");
+			}
 			userDao.update_recentShop_shopIdx(user_email, shop_idx);
 			ShopUserVo user;
 			user = userDao.loginCheck(user_email);
@@ -212,14 +223,10 @@ public class ListController {
 				session.setAttribute("shop_idx", recent_shopList.getShop_idx());
 			}
 		}
-		int shopIdx = Integer.parseInt(request.getParameter("shopidx"));
-		// cnt 가져오기위한 먼저 shop 호출
-		ShopVo shop = dao.shopOne(shopIdx);
-		String ShopId = shop.getShop_id();
 		// cnt 증가후 다시 shop 호출
 		dao.viewUp(ShopId);
 		shop = dao.shopOne(shopIdx);
-		mav.addObject("shopTop5",dao.getTop5());
+		mav.addObject("shopTop5", dao.getTop5());
 		mav.addObject("shopOne", shop);
 		mav.setViewName("detail/detail");
 		return mav;
@@ -236,9 +243,27 @@ public class ListController {
 	
 	
 	@RequestMapping("/isDib")
-	public void isDib(HttpServletRequest request, HttpSession session) {
-		System.out.println("/BabPool/detail");
-		
+	public void isDib(HttpServletRequest req, HttpServletResponse res, HttpSession session) throws IOException {
+		System.out.println("/BabPool/isDib");
+		String shopId = req.getParameter("shopId");
+		int shopIdx = Integer.parseInt(req.getParameter("shopIdx"));
+		if (session.getAttribute("sessionID") == null) {
+			res.getWriter().write("nologin");
+			return;
+		} else {
+			// 로그인 되어있으면 넘어온다.
+			String email = (String) session.getAttribute("sessionID");
+			// 찜이 되어 있는지 우선 확인
+			if (dibdao.dibCheck(email, shopId)) {
+				// 찜이 되어있으면 찜해제
+				dibdao.delDib(email, shopId);
+				res.getWriter().write("deldib");
+			} else {
+				// 찜이 안되어있으면 찜하기
+				dibdao.addDib(email, shopId, shopIdx);
+				res.getWriter().write("adddib");
+			}
+		}
 	}
 
 	@RequestMapping("/login")

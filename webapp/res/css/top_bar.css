@@ -601,8 +601,7 @@ div#wrap {
 	float: left;
 	margin: 2px 25px;
 	padding-top: 18px;
-	font-size: 14px;
-	font-weight: 600;
+	font-size: 14px
 }
 
 #nav_account>#nav_guest>span:hover {
@@ -642,14 +641,15 @@ div#login_body {
 }
 
 .loginh2 {
-    width: 82.5%;
+       width: 82.5%;
     background-color: #FEFFED;
     padding: 20px 35px;
     margin: -13px -50px;
     text-align: center;
     border-radius: 10px 10px 0 0;
     position: relative;
-    top: -50px;
+    top: 3px;
+    left: 1px;
 }
 
 .loginhr1 {
@@ -658,22 +658,23 @@ div#login_body {
     margin: 10px 0px;
     border: 0;
     border-top: 1px solid #ccc;
-    top: -48px;
+    top: 7px;
 }
 
 .loginhr2 {
-	width: 352px;
-	position: relative;
-	top: 50px;
-	left: 25px;
-	margin: 10px -50px;
-	border: 0;
-	border-top: 1px solid #ccc
+    width: 352px;
+    position: relative;
+    top: 37px;
+    left: 25px;
+    margin: 10px -50px;
+    border: 0;
+    border-top: 1px solid #ccc;
 }
 
 #password {
-	    position: relative;
-    top: -30px;
+
+    position: relative;
+    top: 12px;
     left: -30px;
     width: 87.2%;
     height: 49px;
@@ -683,7 +684,7 @@ div#login_body {
 
 #email {
 	    position: relative;
-    top: -30px;
+    top: 17px;
     left: -30px;
     width: 87.2%;
     height: 49px;
@@ -693,9 +694,9 @@ div#login_body {
 }
 
 #pwSearch {
-     position: relative;
+      position: relative;
     left: 241px;
-    top: -8px;
+    top: 68px;
     text-align: right;
     font-size: 15px;
     color: #C91B3C;
@@ -705,15 +706,16 @@ div#login_body {
 }
 
 #idSearch {
-position: relative;
+    position: relative;
     left: 145px;
-    top: -35px;
+    top: 31px;
     text-align: right;
     font-size: 15px;
     color: #C91B3C;
     margin: 10px 70px 10px 0;
     font-size: 13px;
     width: 80px;
+    display: inline-block;
 }
 
 #pwSearch:HOVER {
@@ -724,10 +726,10 @@ position: relative;
 	cursor: pointer;
 }
 
-#submit {
-    position: relative;
+#submit {   
+	position: relative;
     left: -28px;
-    top: -10px;
+    top: 45px;
     text-decoration: none;
     width: 87.4%;
     text-align: center;
@@ -776,20 +778,20 @@ position: relative;
 }
 
 #nav_join {
-	position: relative;
-	background-color: #C91B3C;
-	color: white;
-	outline: 0;
-	border: 0;
-	width: 87.4%;
-	height: 49px;
-	border-radius: 10px;
-	font-size: 15px;
-	top: 60px;
-	left: -25px;
-	text-align: center;
-	line-height: 48px;
-	cursor: pointer;
+    position: relative;
+    background-color: #C91B3C;
+    color: white;
+    outline: 0;
+    border: 0;
+    width: 87.4%;
+    height: 49px;
+    border-radius: 10px;
+    font-size: 15px;
+    top: 60px;
+    left: -25px;
+    text-align: center;
+    line-height: 48px;
+    cursor: pointer;
 }
 
 /* �쉶�썝媛��엯 �뙘�뾽 */
@@ -1349,32 +1351,12 @@ position: relative;
     color: white;
 }
 
+
+
 #naverIdLogin {
-	position: relative;
-}
-#naverIdLogin a {
-    display: block;
-    position: relative;
-    width: 352px;
-    height: 49px;
-    background: #1ec800!important;
-    border-radius: 10px;
-    margin-bottom: 5px;
-    left: 25px;
-    top: 305px;
-    z-index: 1;
-}
-#naverIdLogin a:before {
-    content: '네이버 로그인';
-    color: #fff;
-    width: inherit;
-    font-size: 16px;
-    text-align: center;
-    line-height: 48px;
-    position: absolute;
-}
-#naverIdLogin img {
-    display: none;
+     position: relative;
+    top: -23px;
+    left: 135px;
 }
 
 .repassword_span {

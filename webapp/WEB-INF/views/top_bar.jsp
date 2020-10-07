@@ -12,9 +12,7 @@
 <title>세상의 모든 맛집 - 밥풀</title>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="${path}/res/css/top_bar.css?ver=1"/>" />
-<script type="text/javascript"
-	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
-	charset="utf-8"></script>
+
 </head>
 <body>
 
@@ -362,6 +360,7 @@
 					<div id="nav_guest">
 						<span class="nav_login" style="cursor: pointer;">로그인</span>
 						&nbsp;|&nbsp; <span class="nav_join" style="cursor: pointer;">회원가입</span>
+						<div id="naverIdLogin"></div>
 					</div>
 				</div>
 				<%
@@ -431,7 +430,7 @@
 	<!-- </div> -->
 
 	<div id="popup_body">
-		<div id="naverIdLogin"></div>
+		
 		<!-- 로그인 팝업 -->
 		<div id="login_body">
 			<form action="login" id="form" method="post" name="form"
@@ -441,14 +440,13 @@
 					class="popup_close" />
 				<h2 class="loginh2">로그인</h2>
 				<hr class="loginhr1">
-				<input id="email" name="email" placeholder="   Email" type="text">
-				<input id="password" name="password" placeholder="   password"
+				<input class="enterkey" id="email" name="email" placeholder="   Email" type="text">
+				<input class="enterkey" id="password" name="password" placeholder="   password"
 					type="password"> <a href="javascript:%20check_empty()"
 					id="submit">로그인</a>
 				<div id="pwSearch">비밀번호 찾기</div>
 				<div id="idSearch">아이디 찾기</div>
 
-				<div class="logingmail" id="logingmail">G-Mail 로그인</div>
 
 				<hr class="loginhr2">
 				<div class="nav_join" id="nav_join">회원가입</div>
@@ -462,7 +460,7 @@
 			<h2 id="join_h2">회원가입</h2>
 			<hr id="join_hr">
 
-			<div id="join_gmail">G-Mail로 간편하게 가입하기</div>
+			
 			<div id="join_email">이메일로 가입하기</div>
 			<span class="loginreadyspan">이미 회원이신가요?</span>
 			<hr class="loginhr">
@@ -579,6 +577,7 @@
 				error : function() {
 				}
 			});
+			
 		}
 		
 		function passclick2() {
@@ -687,9 +686,8 @@
 				endLoading();
 			}
 		});
-
-		$('#submit').click(function(e) {
-			e.preventDefault();
+		
+		function login_submit() {
 			var action = $('#form').attr("action");
 
 			var form_data = {
@@ -715,6 +713,11 @@
 				}
 
 			});
+		}
+
+		$('#submit').click(function(e) {
+			e.preventDefault();
+			login_submit();			
 		});
 		//알림기능 관련
   		if (window.Notification) {
@@ -1007,37 +1010,49 @@
 			$("#nav_btn").siblings().removeClass('focus');
 
 			$('#popup_body').css('width', 404 + 'px');
-			$('#popup_body').css('height', 554 + 'px');
+			$('#popup_body').css('height', 472 + 'px');
 
-			$("#naverIdLogin").css('top', 0);
+			$("#naverIdLogin").css('top',-22);
 
-			$('.popup_close').css('top', -90 + 'px');
+			$('.popup_close').css('top', -50 + 'px');
 			$('.popup_close').css('left', 80 + '%');
 
 		});	
+		
+		//엔터키 입력
+		$(document).ready()
+		$(".enterkey").keydown(function (key) {
+			if(key.keyCode == 13){
+				/* alert(document.getElementById('password').value + document.getElementById('email').value); */
+				if (document.getElementById('email').value == "") {
+					alert("이메일을 확인해 주세요!");
+				} else if (document.getElementById('password').value == "") {
+					alert("비밀번호를 확인해 주세요!");
+				} else {
+					login_submit();
+				}
+			}
+		})
 		
 		//회원가입 팝업
 		$(".nav_join").click(function() {
 
 			$("#login_body").hide();
-			$("#join2_body").hide();
+			$("#join_body").hide();
 			$("#idsearch_body").hide();
 			$("#passwordsearch_body").hide();
-
-			$("#join_body").show();
-			$("#popup_body").show();
 			$("#naverIdLogin").show();
-			$("#nav_shading.shading_bg").show();
 
+			$("#join2_body").show();
+			$("#popup_body").show();
+			$("#nav_shading.shading_bg").show();
 			$("#nav_btn").siblings().removeClass('focus');
 
 			$('#popup_body').css('width', 404 + 'px');
 			$('#popup_body').css('height', 524 + 'px');
 
-			$("#naverIdLogin").css('top', -200 + 'px');
-
-			$('.popup_close').css('top', -108 + 'px');
-			$('.popup_close').css('left', 79.4 + '%');
+			$('.popup_close').css('top', -39 + 'px');
+			$('.popup_close').css('left', 92.4 + '%');
 
 		});
 
@@ -1048,7 +1063,7 @@
 			$("#join_body").hide();
 			$("#idsearch_body").hide();
 			$("#passwordsearch_body").hide();
-			$("#naverIdLogin").hide();
+			$("#naverIdLogin").show();
 
 			$("#join2_body").show();
 			$("#popup_body").show();
@@ -1068,7 +1083,7 @@
 			$("#login_body").hide();
 			$("#join_body").hide();
 			$("#join2_body").hide();
-			$("#naverIdLogin").hide();
+			$("#naverIdLogin").show();
 			$("#passwordsearch_body").hide();
 			$("#password_reset_body").hide();
 			$("#idsearch_body").show();
@@ -1086,7 +1101,7 @@
 		});
 		//비밀번호 찾기 팝업
 		$("#pwSearch").click(function() {
-			$("#naverIdLogin").hide();
+			$("#naverIdLogin").show();
 			$("#login_body").hide();
 			$("#join_body").hide();
 			$("#join2_body").hide();
@@ -1217,8 +1232,8 @@
 			isPopup : false, /* 팝업을 통한 연동처리 여부 */
 			loginButton : {
 				color : "green",
-				type : 3,
-				height : 60
+				type : 1,
+				height : 30
 			}
 		/* 로그인 버튼의 타입을 지정 */
 		});

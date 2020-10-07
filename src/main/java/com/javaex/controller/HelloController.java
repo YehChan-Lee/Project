@@ -62,8 +62,6 @@ public class HelloController {
 		return "term";
 	}
 
-
-
 	@RequestMapping("/buisnessmypage/registration")
 	public String registration() {
 		System.out.println("/registration");

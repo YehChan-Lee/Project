@@ -7,8 +7,11 @@
 		SELECT * FROM Reserve_Order
 	</select>
 	<select id="getTableInfo" parameterType="hashMap" resultType="ReserveOrder">
-		SELECT food_name,food_count FROM Reserve_Order
-		where is_pay = 0 and table_number = ${tableNum} and shop_id=#{shopId}
+	<![CDATA[
+			SELECT food_name,food_count FROM Reserve_Order
+		where is_pay > 0 and table_number = ${tableNum} and shop_id=#{shopId}
+		]]>
+		
 	</select>
 
 </mapper>

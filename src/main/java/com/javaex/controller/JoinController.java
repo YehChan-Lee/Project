@@ -45,7 +45,7 @@ public class JoinController {
 	@Autowired
 	private VisitDao visitDao;
 
-	// 硫붿씤�럹�씠吏� �떎�떆媛� 由щ럭 由ъ뒪�듃 Get
+	// 메인페이지 실시간 리뷰 리스트 Get
 	@RequestMapping("/main")
 	public ModelAndView main(ModelAndView mav, String v, HttpSession session, HttpServletRequest request) {
 		System.out.println("/BabPool/main");
@@ -74,11 +74,11 @@ public class JoinController {
 		return mav;
 	}
 
-	// 留덉씠�럹�씠吏�
+	// 마이페이지
 	@RequestMapping("/mypage")
 	public ModelAndView mypage(ModelAndView mav, HttpSession session) {
 		System.out.println("/BabPool/mypage");
-		// �븘�씠�뵒 媛��졇�삤湲�
+		// 아이디 가져오기
 		String user_email = (String) session.getAttribute("sessionID");
 		System.out.println(user_email);
 		ShopUserVo user = userDao.loginCheck(user_email);
@@ -219,13 +219,13 @@ public class JoinController {
 		String user_name = req.getParameter("update_name");
 		String user_phone = req.getParameter("update_phone");
 		System.out.println(
-				"湲곕낯=>user_email: " + user_email + ", update_phone : " + user_phone + ", update_name :" + user_name);
+				"기본=>user_email: " + user_email + ", update_phone : " + user_phone + ", update_name :" + user_name);
 
 		if (!user_name.equals("")) { // �씠由꾨쭔 蹂�寃�
 			userDao.Update_shopuser(user_name, user_email);
 			System.out.println("�씠由꾨쭔=>user_email: " + user_email + ", update_phone : " + user_phone + ", update_name :"
 					+ user_name);
-		} else if (!user_phone.equals("")) { // 踰덊샇留� 蹂�寃�
+		} else if (!user_phone.equals("")) { // 번호만 변경
 			userDao.Update_phone(user_phone, user_email);
 			;
 			System.out.println("踰덊샇留�=>user_email: " + user_email + ", update_phone : " + user_phone + ", update_name :"
@@ -253,7 +253,7 @@ public class JoinController {
 			if (!file.exists()) {
 				try {
 					file.mkdir(); // �뤃�뜑 �깮�꽦�빀�땲�떎.
-					System.out.println("�뤃�뜑媛� �깮�꽦�릺�뿀�뒿�땲�떎.");
+					System.out.println("폴더가 생성되었습니다.");
 					mf.transferTo(new File(safeFile));
 				} catch (Exception e) {
 					e.getStackTrace();

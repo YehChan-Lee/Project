@@ -342,7 +342,13 @@
 		src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=cyozvucbzs&submodules=geocoder"></script>
 
 	<script>
-        $(document).ready(function(){  
+        $(document).ready(function(){
+        	var isdib = "${isDib}";
+        	if(isdib == "true"){
+        		$('.empty').attr("style","color:#f05e23;");
+        	}else{
+        		$('.empty').attr("style","color:white;");
+        	}
         	
         	$(".empty").click(function () {
         		 e.preventDefault();
@@ -354,7 +360,15 @@
          				shopId :"${shopId}"
          			},
          			success : function(data) {
-         					alert(data)
+         				if(data == "success"){
+         					alert("success");
+         				}else if(data == "adddib"){
+         					$('.empty').attr("style","color:#f05e23;");
+         				}else if(data == "deldib"){
+         					$('.empty').attr("style","color:white;");
+         				}else if(data == "nologin"){
+         					loginPopUp();				
+         				}
          			},
          			error : function() {
          				alert("에러발생");

@@ -250,11 +250,9 @@ html > *{
 	font-size: 17px;
 	font-weight: 600;
 	text-align: center;
-	line-height: 34px
+	line-height: 34px;
+	font-family: 'NanumSquareRound';
 }
-/* #content>.tab>.item>span{
-    color:#444;
-} */
 #content>.tab>.item.selected>span, #content>.tab>.item>span:hover {
 	color: #f05e23;
 }
@@ -264,7 +262,6 @@ html > *{
 	float: right;
 	position: relative;
 	width: 220px;
-	/*  z-index: 4; */
 }
 
 #sidebar_wrap>.sidebar {
