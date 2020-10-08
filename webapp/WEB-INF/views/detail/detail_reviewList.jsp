@@ -6,11 +6,6 @@
 	<c:when test="${!empty reviewList}">
 		<c:forEach items="${reviewList}" var="review">
 			<div class="review">
-				<%-- <div class="del">
-		<input type="hidden" id="h_reviewIdx${review.reviewVo.review_idx}" value="${review.reviewVo.review_idx}"/>
-		<input type="hidden" id="h_user_email${review.reviewVo.review_idx}" value="${review.reviewVo.user_email}"/>
-		<i class="fas fa-times" style="color:lightgray" id="del${review.reviewVo.review_idx}"></i>
-	</div>  --%>
 				<a class="author" href=""> <span class="thumbnail"
 					style="background-image: url(<c:url value="${path}/serverImg/profile/user/${review.shopUser.user_photo}"/>);"></span>
 					<div class="info">
@@ -63,9 +58,7 @@
 			작성한 리뷰가 없습니다.<br> 지금 리뷰 작성을 해보시겠어요?
 		</div>
 		<script>
-			$(document).ready(function(){
 				$("#message").css("color", "lightgray").css("text-align", "center").css("background-color", "#fff").css("padding", "150px").css("font-size","17px").css("border-radius", "5px").css("font-family","'Noto Sans KR', sans-serif").css("font-weight", "500") ;
-			});
 			</script>
 	</c:otherwise>
 </c:choose>
@@ -211,11 +204,13 @@
 		$("#nav_btn").siblings().removeClass('focus');
 	
 		$('#popup_body').css('width', 404 + 'px');
-		$('#popup_body').css('height', 554 + 'px');
+		$('#popup_body').css('height', 472 + 'px');
 	
-		$("#naverIdLogin").css('top', 0);
+		
 	
-		$('.popup_close').css('top', -90 + 'px');
+		$('.popup_close').css('top', -50 + 'px');
 		$('.popup_close').css('left', 80 + '%');
+		
+		
 	}
 </script>

@@ -16,12 +16,10 @@ public class ReservationVo {
    public ReservationVo() {}
 
 
-public ReservationVo(String user_email, String shop_title, Date res_date, int res_customer, String shop_id,
+public ReservationVo(String user_email, String shop_title, int res_customer, String shop_id,
 		String reserve_idx, String alert_new, String rev_phone, String res_name) {
-	super();
 	this.user_email = user_email;
 	this.shop_title = shop_title;
-	this.res_date = res_date;
 	this.res_customer = res_customer;
 	this.shop_id = shop_id;
 	this.reserve_idx = reserve_idx;

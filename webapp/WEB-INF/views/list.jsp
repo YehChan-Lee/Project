@@ -78,12 +78,17 @@
 				<%
 					for (int i = 0; i < shoplist.size(); i++) {
 						ShopVo shopvo = shoplist.get(i);
+						pageContext.setAttribute("photo", "default.png");
+						if (shopvo.getShop_photo() != null) {
+							pageContext.setAttribute("photo", shopvo.getShop_photo());
+						} 
 						if ((i + 1) % 3 == 1) {
 				%>
 				<div class="shop_first">
 					<div class="list_img">
+					<c:forTokens items="${photo}" delims="/" var="img">
 						<a class="img_a" href="detail?shopidx=<%=shopvo.getShop_idx() %>"
-							style="background-image: url(<c:url value="${path}/res/image/default.png"/>)">
+							style="background-image: url('<c:url value="${path}/serverImg/shopimg/${img}"/>')">
 							<div class="img_top">
 								<span>예약 <%=shopvo.getShop_reserve()%> 리뷰 <%=shopvo.getShop_review()%>
 									조회수<%=shopvo.getShop_view()%></span> <span class="star_"
@@ -98,6 +103,7 @@
 								<div class="shop_area"><%=shopvo.getShop_location()%></div>
 							</div>
 						</a>
+							</c:forTokens>
 					</div>
 					<div class="shop_desc">
 						<div class="shop_star">
@@ -117,10 +123,10 @@
 					} else {
 				%>
 				<div class="shop_medium">
-					<div class="list_img"
-						style="background-image: url(<c:url value="${path}/res/image/default.png"/>)">
-						<a class="img_a" href="detail?shopidx=<%=shopvo.getShop_idx()%>"
-							style="background-image: url(<c:url value="${path}/res/image/default.png"/>)">
+					<div class="list_img">
+						<c:forTokens items="${photo}" delims="/" var="img">
+						<a class="img_a" href="detail?shopidx=<%=shopvo.getShop_idx() %>"
+							style="background-image: url('<c:url value="${path}/serverImg/shopimg/${img}"/>')">
 							<div class="img_top">
 								<span>예약 <%=shopvo.getShop_reserve()%> 리뷰 <%=shopvo.getShop_review()%>
 									조회수<%=shopvo.getShop_view()%></span> <span class="star_"
@@ -135,6 +141,7 @@
 								<div class="shop_area"><%=shopvo.getShop_location()%></div>
 							</div>
 						</a>
+							</c:forTokens>
 					</div>
 					<div class="shop_desc">
 						<div class="shop_star">
@@ -357,11 +364,11 @@
   		$("#nav_btn").siblings().removeClass('focus');
   	
   		$('#popup_body').css('width', 404 + 'px');
-  		$('#popup_body').css('height', 554 + 'px');
+  		$('#popup_body').css('height', 472 + 'px');
   	
   		$("#naverIdLogin").css('top', 0);
   	
-  		$('.popup_close').css('top', -90 + 'px');
+  		$('.popup_close').css('top', -50 + 'px');
   		$('.popup_close').css('left', 80 + '%');
   	}
 

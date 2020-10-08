@@ -101,8 +101,8 @@
 
 <script>
 <c:forEach items="${dibsList}" var="shop">
-$("#shop_tmp${shop.shop_idx}").rateYo({
-  rating :  ${shop.shop_score},
+$("#shop_tmp${shop.shopVo.shop_idx}").rateYo({
+  rating :  ${shop.shopVo.shop_score},
   starWidth: "20px",
   halfStar: true,
   readOnly: true,

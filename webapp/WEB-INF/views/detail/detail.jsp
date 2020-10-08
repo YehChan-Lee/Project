@@ -180,7 +180,7 @@
 
 								<!-- Modal body -->
 								<div class="modal-body" id="modal-body">
-									<form action="reservation" method="post" class="a">
+									<form action="reservation" method="post" class="a" onsubmit="return false;">
 										<div class="shop_title_detail_div">가게 이름</div>
 										<input type="text" class="shop_id_none" name="shop_id" value="<%=shopvo.getShop_id()%>">
 										<input type="text" class="shop_title_detail" name="shop_title"
@@ -342,22 +342,23 @@
 		src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=cyozvucbzs&submodules=geocoder"></script>
 
 	<script>
-        $(document).ready(function(){
+       
         	var isdib = "${isDib}";
         	if(isdib == "true"){
         		$('.empty').attr("style","color:#f05e23;");
         	}else{
         		$('.empty').attr("style","color:white;");
-        	}
+        	} 
         	
-        	$(".empty").click(function () {
+        	$(".empty").click(function (e) {
         		 e.preventDefault();
                  $.ajax({
          			type : "POST",
          			url : "isDib",
          			data: {
          				starClass : $(this).attr("class"),
-         				shopId :"${shopId}"
+         				shopId :"${shopid}",
+         				shopIdx : "${shopidx}"
          			},
          			success : function(data) {
          				if(data == "success"){
@@ -543,42 +544,45 @@
                  //지도관련 끝
         
              $('.reservation_submit').click(function() {
-     		
-     			var action = $('.a').attr("action");  
-     			$.ajax({
-     				type : "POST",
-     				url : action,
-     				data : {
-     					shop_id : $(".shop_id_none").val(),
-     					res_customer : $(".res_customer_detail").val(),
-     					shop_title : $(".shop_title_detail").val(),
-     					rev_phone : $(".rev_phone").val(),
-     					res_name : $(".res_name_detail").val(),
-     					res_date : $(".res_date_detail").val() + "-" + $(".res_date_detail2").val() + "-" + 
-     					$(".res_date_detail3").val() +" "+  $(".res_time_detail").val() + ":" + $(".res_time_detail2").val()
-     				},
-     				success : function(data) {
-     					if (data == "fail") {
-     						alert("예약 실패");
-     						$(".rev_phone").val("");
-     						$(".res_name").val("");
-     						$(".res_customer").val("");
-     						} else if(data == "success"){
-     						alert("예약 성공")
-     						$(".rev_phone").val("");
-     						$(".res_name").val("");
-     						$(".res_customer").val("");
-     						window.location.reload()
-     						}
-     					},
-     				error : function() {
-  					
-     				}
-    		
-     			});
+     			
+     			if($(".rev_phone").val() != "" || $(".res_customer_detail").val() != "" || $(".res_name_detail").val() != ""){
+     				var action = $('.a').attr("action");  
+         			$.ajax({
+         				type : "POST",
+         				url : action,
+         				data : {
+         					shop_id : $(".shop_id_none").val(),
+         					res_customer : $(".res_customer_detail").val(),
+         					shop_title : $(".shop_title_detail").val(),
+         					rev_phone : $(".rev_phone").val(),
+         					res_name : $(".res_name_detail").val(),
+         					res_date : $(".res_date_detail").val() + "/" + $(".res_date_detail2").val() + "/" + 
+         					$(".res_date_detail3").val() +" "+  $(".res_time_detail").val() + ":" + $(".res_time_detail2").val()
+         				},
+         				success : function(data) {
+         					if (data == "fail") {
+         						alert("예약 실패");
+         						$(".rev_phone").val("");
+         						$(".res_name").val("");
+         						$(".res_customer").val("");
+         						} else if(data == "success"){
+         						alert("예약 성공")
+         						$(".rev_phone").val("");
+         						$(".res_name").val("");
+         						$(".res_customer").val("");
+         						window.location.reload()
+         						}
+         					},
+         				error : function() {
+      					
+         				}
+         			});
+     			}else{
+     				alert("공백값이 존재합니다!")
+     			}
+
     
-     		});      
-     }); 
+     		});     
 
         //로그인 팝업 관련
 		function loginPopUp(){
@@ -595,11 +599,11 @@
 			$("#nav_btn").siblings().removeClass('focus');
 
 			$('#popup_body').css('width', 404 + 'px');
-			$('#popup_body').css('height', 554 + 'px');
+			$('#popup_body').css('height', 472 + 'px');
 
 			$("#naverIdLogin").css('top', 0);
 
-			$('.popup_close').css('top', -90 + 'px');
+			$('.popup_close').css('top', -50 + 'px');
 			$('.popup_close').css('left', 80 + '%'); 
 	    }
         

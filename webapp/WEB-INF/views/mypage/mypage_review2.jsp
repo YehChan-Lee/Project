@@ -38,6 +38,7 @@ $(document).ready(function(){
 				}else if(data == "success"){
 					$("#contents_box").load("mypage/review2", {shopId : "${shopId}"});
 					 $.getScript("https://kit.fontawesome.com/a076d05399.js");
+					 $.getScript("https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js");
 				}
 			},
 			error : function() {
