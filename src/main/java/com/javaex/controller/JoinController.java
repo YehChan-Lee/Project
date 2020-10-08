@@ -57,8 +57,10 @@ public class JoinController {
 		
 		
 		if (email != null) {
+			ShopUserVo user = userDao.loginCheck(email);
 			if(userDao.getUser(email) != null) {
 				session.setAttribute("sessionID", email);
+				session.setAttribute("user_photo", user.getUser_photo());
 				session.setAttribute("is_owner", "0");
 			} else {
 				userDao.signUp(new ShopUserVo(email, "12345", name, gender, birthday, "010-0000-0000", "0", 0, "user2.png", 0, null, 0));

@@ -1,5 +1,6 @@
 package com.javaex.model;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -28,11 +29,14 @@ public class ReservationDao {
 		sqlSession.update("Reservation.updateAlertNew_shopId", shop_id);
 	}
 
-	public void insert_reservation(ReservationVo vo) {
-		sqlSession.insert("Reservation.insertReservation", vo);
+	public void insert_reservation(ReservationVo vo, String res_date) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("vo", vo);
+		map.put("res_date", res_date);
+		sqlSession.insert("Reservation.insertReservation", map);
 	}
 
-	public List<ReservationVo> reservationOne(String shop_id) {
+	public List<HashMap<String, Object>> reservationOne(String shop_id) {
 		return sqlSession.selectList("Reservation.reservationOne", shop_id);
 	}
 
