@@ -2,6 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Reservation">
+<resultMap type="hashMap" id="ReserveResult">
+		<id property="reserve_idx" column="RESERVE_IDX" />
+		<result property="res_name" column="RES_NAME" />
+		<result property="res_customer" column="RES_CUSTOMER" />
+		<result property="rev_phone" column="REV_PHONE" />
+		<result property="res_date" column="RES_DATE" />
+	</resultMap>
 
 	<!-- footer 예약수 -->
 	<select id="footerreserve" resultType="int">
@@ -16,7 +23,7 @@
 
 	<insert id="insertReservation" parameterType="Reservation">
       <![CDATA[
-      INSERT INTO "BP"."RESERVATION" (USER_EMAIL, SHOP_TITLE, RES_DATE, RES_CUSTOMER, SHOP_ID,RESERVE_IDX,REV_PHONE,RES_NAME ) VALUES (#{user_email},#{shop_title},#{res_date},#{res_customer},#{shop_id},SEQ_RESERVE_IDX.NEXTVAL,#{rev_phone},#{res_name})
+      INSERT INTO "BP"."RESERVATION" (USER_EMAIL, SHOP_TITLE, RES_DATE, RES_CUSTOMER, SHOP_ID,RESERVE_IDX,REV_PHONE,RES_NAME ) VALUES (#{vo.user_email},#{vo.shop_title},TO_DATE(#{res_date}, 'YYYY/MM/DD hh24:mi:ss'),#{vo.res_customer},#{vo.shop_id},SEQ_RESERVE_IDX.NEXTVAL,#{vo.rev_phone},#{vo.res_name})
       ]]>
 	</insert>
 
@@ -27,9 +34,19 @@
 	</update>
 
 	<select id="reservationOne" parameterType="String"
-		resultType="Reservation">
+		resultMap="ReserveResult">
 		<![CDATA[
-		SELECT * FROM RESERVATION WHERE SHOP_ID=#{Shop_id}
+		select
+		r.res_name,r.res_customer,r.reserve_idx,r.rev_phone,TO_char(r.res_date,'MM-DD
+		HH24:MI') as res_date from reservation R
+		inner join shopUser U
+		on U.user_email=R.user_email
+		inner join Shop S
+		on S.shop_title = R.shop_title
+		where R.shop_id= #{shop_id}
+		AND TO_Char(R.res_date,'MM-DD HH24:MI:SS')>TO_CHAR(SYSDATE, 'MM-DD
+		HH24:MI:SS')
+		ORDER BY res_date asc
 		]]>
 	</select>
 

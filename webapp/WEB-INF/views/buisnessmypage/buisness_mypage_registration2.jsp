@@ -50,7 +50,7 @@
 			class="food_type" name="food_type"
 			value="<%=shoplist.getFood_type()%>"> <span
 			class="budget_span">예산</span> <label class="budget_label1">5만원
-			미만</label><input type="radio" class="budget1" name="budget" value="5만원 미만">
+			미만</label><input type="radio" class="budget1" name="budget" value="5만원 미만" checked="checked">
 		<label class="budget_label2">5-10만원</label><input type="radio"
 			class="budget2" name="budget" value="5-10만원"> <label
 			class="budget_label3">10-16만원</label><input type="radio"
@@ -321,15 +321,15 @@
 					alert("음식종류는 필수입력칸 입니다.")
 				} else if (data == "shoptime_null") {
 					alert("가게 운영시간은 필수 입력칸 입니다.")
-				}
+				} 
 			},
 			error : function() {
 			}
  }
  
 $('.registration_form').submit(function () {
-	$(this).ajaxSubmit(option);
-	return false;
+		$(this).ajaxSubmit(option);
+		return false;
 })
 
 
@@ -361,7 +361,6 @@ $(document).on("click",".menu_delete_button", function(){
     	
     	var eventTarget = document.getElementsByClassName('menu_delete_button');
     	for (var i=0; i<eventTarget.length; i++) {
-    		
     			var parent = document.querySelector('#table2 tbody')
     			parent.removeChild(this.parentElement.parentElement)
     			i--

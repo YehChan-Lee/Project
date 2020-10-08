@@ -58,9 +58,15 @@
 						<div class="box">
 							<ul class="district">
 								<!-- <li data-dist="popularity">인기지역<span>></span></li> -->
-								<li data-dist="seoul">서울<span>></span></li>
+								<li data-dist="seoul" name="shop_addr">서울<span>></span></li>
 								<li data-dist="incheon">인천<span>></span></li>
 								<li data-dist="gyeonggi">경기<span>></span></li>
+								<li data-dist="busan">부산<span>></span></li>
+								<li data-dist="jeju">제주<span>></span></li>
+								<li data-dist="daegu">대구<span>></span></li>
+								<li data-dist="daejeon">대전<span>></span></li>
+								<li data-dist="gwangju">광주<span>></span></li>
+								<li data-dist="ulsan">울산<span>></span></li>
 							</ul>
 							<div class="neighborhood">
 								<!--<ul class="content scroll" data-dist="popularity">
@@ -136,71 +142,71 @@
 										<label for="popularity35">홍대</label></li>
 								</ul> -->
 								<ul class="content scroll" data-dist="seoul">
-									<li><input type="checkbox" value="강남구" name="shop_addr"
+									<li><input type="checkbox" value="서울특별시 강남구" name="shop_addr"
 										id="seoul01"> <label for="seoul01">강남구</label></li>
-									<li><input type="checkbox" value="강동구" name="shop_addr"
+									<li><input type="checkbox" value="서울특별시 강동구" name="shop_addr"
 										id="seoul02"> <label for="seoul02">강동구</label></li>
-									<li><input type="checkbox" value="강북구" name="shop_addr"
+									<li><input type="checkbox" value="서울특별시 강북구" name="shop_addr"
 										id="seoul03"> <label for="seoul03">강북구</label></li>
-									<li><input type="checkbox" value="강서구" name="shop_addr"
+									<li><input type="checkbox" value="서울특별시 강서구" name="shop_addr"
 										id="seoul04"> <label for="seoul04">강서구</label></li>
-									<li><input type="checkbox" value="관악구" name="shop_addr"
+									<li><input type="checkbox" value="서울특별시 관악구" name="shop_addr"
 										id="seoul05"> <label for="seoul05">관악구</label></li>
-									<li><input type="checkbox" value="광진구" name="shop_addr"
+									<li><input type="checkbox" value="서울특별시 광진구" name="shop_addr"
 										id="seoul06"> <label for="seoul06">광진구</label></li>
-									<li><input type="checkbox" value="구로구" name="shop_addr"
+									<li><input type="checkbox" value="서울특별시 구로구" name="shop_addr"
 										id="seoul07"> <label for="seoul07">구로구</label></li>
-									<li><input type="checkbox" value="금천구" name="shop_addr"
+									<li><input type="checkbox" value="서울특별시 금천구" name="shop_addr"
 										id="seoul08"> <label for="seoul08">금천구</label></li>
-									<li><input type="checkbox" value="노원구" name="shop_addr"
+									<li><input type="checkbox" value="서울특별시 노원구" name="shop_addr"
 										id="seoul09"> <label for="seoul09">노원구</label></li>
-									<li><input type="checkbox" value="도봉구" name="shop_addr"
+									<li><input type="checkbox" value="서울특별시 도봉구" name="shop_addr"
 										id="seoul10"> <label for="seoul10">도봉구</label></li>
-									<li><input type="checkbox" value="동대문구" name="shop_addr"
+									<li><input type="checkbox" value="서울특별시 동대문구" name="shop_addr"
 										id="seoul11"> <label for="seoul11">동대문구</label></li>
-									<li><input type="checkbox" value="동작구" name="shop_addr"
+									<li><input type="checkbox" value="서울특별시 동작구" name="shop_addr"
 										id="seoul12"> <label for="seoul12">동작구</label></li>
-									<li><input type="checkbox" value="마포구" name="shop_addr"
+									<li><input type="checkbox" value="서울특별시 마포구" name="shop_addr"
 										id="seoul13"> <label for="seoul13">마포구</label></li>
-									<li><input type="checkbox" value="서대문구" name="shop_addr"
+									<li><input type="checkbox" value="서울특별시 서대문구" name="shop_addr"
 										id="seoul14"> <label for="seoul14">서대문구</label></li>
-									<li><input type="checkbox" value="서초구" name="shop_addr"
+									<li><input type="checkbox" value="서울특별시 서초구" name="shop_addr"
 										id="seoul15"> <label for="seoul15">서초구</label></li>
-									<li><input type="checkbox" value="성동구" name="shop_addr"
+									<li><input type="checkbox" value="서울특별시 성동구" name="shop_addr"
 										id="seoul16"> <label for="seoul16">성동구</label></li>
-									<li><input type="checkbox" value="성북구" name="shop_addr"
+									<li><input type="checkbox" value="서울특별시 성북구" name="shop_addr"
 										id="seoul17"> <label for="seoul17">성북구</label></li>
-									<li><input type="checkbox" value="송파구" name="shop_addr"
+									<li><input type="checkbox" value="서울특별시 송파구" name="shop_addr"
 										id="seoul18"> <label for="seoul18">송파구</label></li>
-									<li><input type="checkbox" value="양천구" name="shop_addr"
+									<li><input type="checkbox" value="서울특별시 양천구" name="shop_addr"
 										id="seoul19"> <label for="seoul19">양천구</label></li>
-									<li><input type="checkbox" value="영등포구" name="shop_addr"
+									<li><input type="checkbox" value="서울특별시 영등포구" name="shop_addr"
 										id="seoul20"> <label for="seoul20">영등포구</label></li>
-									<li><input type="checkbox" value="용산구" name="shop_addr"
+									<li><input type="checkbox" value="서울특별시 용산구" name="shop_addr"
 										id="seoul21"> <label for="seoul21">용산구</label></li>
-									<li><input type="checkbox" value="은평구" name="shop_addr"
+									<li><input type="checkbox" value="서울특별시 은평구" name="shop_addr"
 										id="seoul22"> <label for="seoul22">은평구</label></li>
-									<li><input type="checkbox" value="종로구" name="shop_addr"
+									<li><input type="checkbox" value="서울특별시 종로구" name="shop_addr"
 										id="seoul23"> <label for="seoul23">종로구</label></li>
-									<li><input type="checkbox" value="중구" name="shop_addr"
+									<li><input type="checkbox" value="서울특별시 중구" name="shop_addr"
 										id="seoul24"> <label for="seoul24">중구</label></li>
-									<li><input type="checkbox" value="중랑구" name="shop_addr"
+									<li><input type="checkbox" value="서울특별시 중랑구" name="shop_addr"
 										id="seoul25"> <label for="seoul25">중랑구</label></li>
 								</ul>
 								<ul class="content scroll" data-dist="incheon">
-									<li><input type="checkbox" value="강화군" name="shop_addr"
+									<li><input type="checkbox" value="인천광역시 강화군" name="shop_addr"
 										id="incheon01"> <label for="incheon01">강화군</label></li>
-									<li><input type="checkbox" value="남동구" name="shop_addr"
+									<li><input type="checkbox" value="인천광역시 남동구" name="shop_addr"
 										id="incheon02"> <label for="incheon02">남동구</label></li>
-									<li><input type="checkbox" value="미추홀구" name="shop_addr"
+									<li><input type="checkbox" value="인천광역시 미추홀구" name="shop_addr"
 										id="incheon03"> <label for="incheon03">미추홀구</label></li>
-									<li><input type="checkbox" value="부평구" name="shop_addr"
+									<li><input type="checkbox" value="인천광역시 부평구" name="shop_addr"
 										id="incheon04"> <label for="incheon04">부평구</label></li>
-									<li><input type="checkbox" value="서구" name="shop_addr"
+									<li><input type="checkbox" value="인천광역시 서구" name="shop_addr"
 										id="incheon05"> <label for="incheon05">서구</label></li>
-									<li><input type="checkbox" value="연수구" name="shop_addr"
+									<li><input type="checkbox" value="인천광역시 연수구" name="shop_addr"
 										id="incheon06"> <label for="incheon06">연수구</label></li>
-									<li><input type="checkbox" value="중구" name="shop_addr"
+									<li><input type="checkbox" value="인천광역시 중구" name="shop_addr"
 										id="incheon07"> <label for="incheon07">중구</label></li>
 								</ul>
 								<ul class="content scroll" data-dist="gyeonggi">
@@ -260,6 +266,98 @@
 										id="gyeonggi27"> <label for="gyeonggi27">포천시</label></li>
 									<li><input type="checkbox" value="하남시" name="shop_addr"
 										id="gyeonggi28"> <label for="gyeonggi28">하남시</label></li>
+								</ul>
+								<ul class="content scroll" data-dist="busan">
+									<li><input type="checkbox" value="부산광역시 동구" name="shop_addr"
+										id="bnsan01"> <label for="busan01">동구</label></li>
+									<li><input type="checkbox" value="부산광역시 영도구" name="shop_addr"
+										id="bnsan02"> <label for="bnsan02">영도구</label></li>
+									<li><input type="checkbox" value="부산광역시 부산진구" name="shop_addr"
+										id="bnsan03"> <label for="bnsan03">부산진구</label></li>
+									<li><input type="checkbox" value="부산광역시 동래구" name="shop_addr"
+										id="bnsan04"> <label for="bnsan04">동래구</label></li>
+									<li><input type="checkbox" value="부산광역시 서구" name="shop_addr"
+										id="bnsan05"> <label for="bnsan05">서구</label></li>
+									<li><input type="checkbox" value="부산광역시 남구" name="shop_addr"
+										id="bnsan06"> <label for="bnsan06">남구</label></li>
+									<li><input type="checkbox" value="부산광역시 북구" name="shop_addr"
+										id="bnsan07"> <label for="bnsan07">북구</label></li>
+									<li><input type="checkbox" value="부산광역시 해운대구" name="shop_addr"
+										id="bnsan08"> <label for="bnsan08">해운대구</label></li>
+									<li><input type="checkbox" value="부산광역시 금정구" name="shop_addr"
+										id="bnsan09"> <label for="bnsan09">금정구</label></li>
+									<li><input type="checkbox" value="부산광역시 강서구" name="shop_addr"
+										id="bnsan10"> <label for="bnsan10">강서구</label></li>
+									<li><input type="checkbox" value="부산광역시 연제구" name="shop_addr"
+										id="bnsan11"> <label for="bnsan11">연제구</label></li>
+									<li><input type="checkbox" value="부산광역시 수영구" name="shop_addr"
+										id="bnsan12"> <label for="bnsan12">수영구</label></li>
+									<li><input type="checkbox" value="부산광역시 사상구" name="shop_addr"
+										id="bnsan13"> <label for="bnsan13">사상구</label></li>
+									<li><input type="checkbox" value="부산광역시 기장군" name="shop_addr"
+										id="bnsan14"> <label for="bnsan14">기장군</label></li>
+									<li><input type="checkbox" value="부산광역시 중구" name="shop_addr"
+										id="bnsan15"> <label for="bnsan15">중구</label></li>
+									<li><input type="checkbox" value="부산광역시 사하구" name="shop_addr"
+										id="bnsan16"> <label for="bnsan16">사하구</label></li>
+								</ul>
+								<ul class="content scroll" data-dist="jeju">
+									<li><input type="checkbox" value="제주시" name="shop_addr"
+										id="jeju01"> <label for="incheon01">제주시</label></li>
+										<li><input type="checkbox" value="서귀포시" name="shop_addr"
+										id="jeju02"> <label for="incheon01">서귀포시</label></li>
+								</ul>
+								<ul class="content scroll" data-dist="daegu">
+									<li><input type="checkbox" value="대구광역시 동구" name="shop_addr"
+										id="daegu01"> <label for="daegu01">동구</label></li>
+										<li><input type="checkbox" value="대구광역시 서구" name="shop_addr"
+										id="daegu02"> <label for="daegu02">서구</label></li>
+										<li><input type="checkbox" value="대구광역시 남구" name="shop_addr"
+										id="daegu03"> <label for="daegu03">남구</label></li>
+										<li><input type="checkbox" value="대구광역시 북구" name="shop_addr"
+										id="daegu04"> <label for="daegu04">북구</label></li>
+										<li><input type="checkbox" value="대구광역시 수성구" name="shop_addr"
+										id="daegu05"> <label for="daegu05">수성구</label></li>
+										<li><input type="checkbox" value="대구광역시 달서구" name="shop_addr"
+										id="daegu06"> <label for="daegu06">달서구</label></li>
+										<li><input type="checkbox" value="대구광역시 달성군" name="shop_addr"
+										id="daegu07"> <label for="daegu07">달성군</label></li>
+								</ul>
+								<ul class="content scroll" data-dist="daejeon">
+									<li><input type="checkbox" value="대전광역시 중구" name="shop_addr"
+										id="daejeon01"> <label for="daejeon01">중구</label></li>
+										<li><input type="checkbox" value="대전광역시 서구" name="shop_addr"
+										id="daejeon02"> <label for="daejeon02">서구</label></li>
+										<li><input type="checkbox" value="대전광역시 동구" name="shop_addr"
+										id="daejeon03"> <label for="daejeon03">동구</label></li>
+										<li><input type="checkbox" value="대전광역시 유성구" name="shop_addr"
+										id="daejeon04"> <label for="daejeon04">유성구</label></li>
+										<li><input type="checkbox" value="대전광역시 대덕구" name="shop_addr"
+										id="daejeon05"> <label for="daejeon05">대덕구</label></li>			
+								</ul>
+								<ul class="content scroll" data-dist="gwangju">
+									<li><input type="checkbox" value="광주광역시 남구" name="shop_addr"
+										id="gwangju01"> <label for="gwangju01">남구</label></li>
+										<li><input type="checkbox" value="광주광역시 서구" name="shop_addr"
+										id="gwangju02"> <label for="gwangju02">서구</label></li>
+										<li><input type="checkbox" value="광주광역시 동구" name="shop_addr"
+										id="gwangju03"> <label for="gwangju03">동구</label></li>
+										<li><input type="checkbox" value="광주광역시 유성구" name="shop_addr"
+										id="gwangju04"> <label for="gwangju04">북구</label></li>
+										<li><input type="checkbox" value="광주광역시 광산구" name="shop_addr"
+										id="gwangju05"> <label for="gwangju05">광산구</label></li>			
+								</ul>
+								<ul class="content scroll" data-dist="ulsan">
+									<li><input type="checkbox" value="울산광역시 남구" name="shop_addr"
+										id="ulsan01"> <label for="ulsan01">남구</label></li>
+										<li><input type="checkbox" value="울산광역시 중구" name="shop_addr"
+										id="ulsan02"> <label for="ulsan02">중구</label></li>
+										<li><input type="checkbox" value="울산광역시 동구" name="shop_addr"
+										id="ulsan03"> <label for="ulsan03">동구</label></li>
+										<li><input type="checkbox" value="울산광역시 북구" name="shop_addr"
+										id="ulsan04"> <label for="ulsan04">북구</label></li>
+										<li><input type="checkbox" value="울산광역시 울주군" name="shop_addr"
+										id="ulsan05"> <label for="ulsan05">울주군</label></li>			
 								</ul>
 							</div>
 							<button class="confirm_red" type="button">확인</button>
@@ -415,7 +513,7 @@
 							}
 						%>
 						<div id="nav_profile_list" class="border_radius soft">
-							<div class="item" data-link="mypage">마이 페이지</div>
+							<div class="item" data-link="mypage" id="item_mypage">마이 페이지</div>
 							<div id="nav_logout" class="item">로그아웃</div>
 						</div>
 					</div>
@@ -523,8 +621,8 @@
 			<div class="finddiv2" onclick="passclick();">비밀번호 찾기</div>
 
 
-			<input type="text" class="repassword" name="repassword"
-				placeholder="  비밀번호 입력"> <input type="text"
+			<input type="password" class="repassword" name="repassword"
+				placeholder="  비밀번호 입력"> <input type="password"
 				class="repassword2" name="repassword2" placeholder="  비밀번호 확인">
 			<input type="submit" class="repassword_submit" value="비밀번호 재설정"
 				onclick="password_update();">
@@ -1012,7 +1110,7 @@
 			$('#popup_body').css('width', 404 + 'px');
 			$('#popup_body').css('height', 472 + 'px');
 
-			$("#naverIdLogin").css('top',-22);
+			
 
 			$('.popup_close').css('top', -50 + 'px');
 			$('.popup_close').css('left', 80 + '%');
@@ -1197,7 +1295,7 @@
 			
 		}); */
 
-		$("#nav_profile_list>.item").click(function() {
+		$("#nav_profile_list>#item_mypage").click(function() {
 			var isowner = "${is_owner}";
 			if(isowner == 1){
 				location.href = "buisnessmypage";
