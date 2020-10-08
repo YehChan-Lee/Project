@@ -54,6 +54,7 @@ public class JoinController {
 		String name = request.getParameter("name");
 		String gender = request.getParameter("gender");
 		String birthday = request.getParameter("birthday");
+		mav.addObject("shop_vo", dao.mainshopList());
 		
 		
 		if (email != null) {

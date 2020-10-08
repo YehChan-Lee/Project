@@ -57,6 +57,7 @@ i_wrap background {
 	background-repeat: no-repeat;
 	filter: blur(3px);
 	z-index: 1;
+	margin-top:58px;
 }
 
 #banner.restaurant_detail .film {

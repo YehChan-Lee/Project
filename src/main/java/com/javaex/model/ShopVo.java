@@ -32,6 +32,8 @@ public class ShopVo {
 	private String shop_state;// 사업자 승인NOT NULL
 	
 	public ShopVo() {}
+	
+	
 
 	public ShopVo(String shop_id, String user_email, int shop_idx, String shop_title, String shop_addr,
 			String shop_location, String food_type, String shop_tip, String budget, int shop_reserve,

@@ -34,7 +34,7 @@
 					<div id="situation">
 						<a href="">예약 ${shopreserve}</a>
 						<a href="">리뷰 ${shopreview}</a>
-						<a href="">찜한 매장 ${shopdibsidx}</a>
+						<a href="">나를 찜한 수 ${shopdibsidx}</a>
 					</div>
 				</div>
 			</div>

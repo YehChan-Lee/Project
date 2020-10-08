@@ -33,9 +33,9 @@
 			value="<%=shoplist.getShop_title()%>"> <span
 			class="shop_addr_span">가게 주소</span> <input type="text"
 			class=shop_addr name="shop_addr" value="<%=shoplist.getShop_addr()%>"> <input type="text"
-			class=shop_addr2 name="shop_addr"> <span
-			class="shop_location_span">가게 지역</span> <select class="shop_location"
-			name="shop_location">
+			class=shop_addr2 name="shop_addr"> 
+			<span class="shop_location_span">가게 지역</span> 
+			<select class="shop_location" name="shop_location">
 			<option class="buisness_option" value="서울/수도권">서울/수도권
 			<option value="부산">부산
 			<option value="제주">제주
