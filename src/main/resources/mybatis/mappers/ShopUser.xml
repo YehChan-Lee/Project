@@ -8,7 +8,7 @@
 	</select>
 
 	<insert id="signUp" parameterType="ShopUserVo">
-		<![CDATA[insert into ShopUser VALUES(#{user_email},#{user_pw},#{user_name},#{user_gender},#{user_birth},#{user_phone},#{is_owner},sysdate,#{point}) ]]>
+		<![CDATA[insert into ShopUser VALUES(#{user_email},#{user_pw},#{user_name},#{user_gender},#{user_birth},#{user_phone},#{is_owner},sysdate,0, seq_user_idx.nextval, #{user_photo},null,0) ]]>
 	</insert>
 
 	<select id="shopUserList" resultType="ShopUserVo">

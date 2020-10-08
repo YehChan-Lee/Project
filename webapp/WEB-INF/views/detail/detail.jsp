@@ -53,7 +53,7 @@
 				<div class="i_wrap background">
 					<div class="film"></div>
 					 <%-- <img src="<c:url value='${path}/res/image/walkerhill.jpg'/>" alt=""> --%>
-					 	<c:forTokens items="${ShopPhoto}" var="img"
+				<c:forTokens items="${ShopPhoto}" var="img"
 				delims="/" varStatus="i">
 				<a href="<c:url value='${path}/serverImg/shopimg/${img}'/>">
 				<img src="<c:url value='${path}/serverImg/shopimg/${img}'/>"
@@ -121,9 +121,11 @@
 						<div class="slider">
 							<div id="detail_slider">
 								<div class="i_wrap">
+								<c:forTokens items="${ShopPhoto}" var="img" delims="/" varStatus="i">
 									<div class="image" data-index="0" id="shop_photo"
-										style="width:319px; height:213px; background-image:url(<c:url value='${path}/res/image/walkerhill1.jpg'/>)"
-										title="양재해장국 매장 이미지"></div>
+										style="background-image:url('<c:url value='${path}/serverImg/shopimg/${img}'/>') ; width:320px ; height:231px ; background-position: center;">
+									</div>
+								</c:forTokens>										
 								</div>
 							</div>
 						</div>
@@ -321,7 +323,8 @@
 							<li class="item">
 								<div class="detail">
 									<div class="name">
-										<a href="http://localhost:8088/BabPool/detail?shopidx=${shop.shop_idx}">${shop.shop_title}</a>
+										<a
+											href="http://localhost:8088/BabPool/detail?shopidx=${shop.shop_idx}">${shop.shop_title}</a>
 									</div>
 									<div class="info">${shop.shop_reserve} 예약,
 										${shop.shop_review} 리뷰, ${shop.shop_view} 조회수</div>
@@ -348,12 +351,13 @@
         	}
         	
         	$(".empty").click(function () {
+        		 e.preventDefault();
                  $.ajax({
          			type : "POST",
          			url : "isDib",
          			data: {
-         				shopId :"${shopid}",
-         				shopIdx : "${shopidx}"
+         				starClass : $(this).attr("class"),
+         				shopId :"${shopId}"
          			},
          			success : function(data) {
          				if(data == "success"){
@@ -369,7 +373,9 @@
          			error : function() {
          				alert("에러발생");
          			}
+
          		});			
+                 $(this).closest("span").toggleClass("off")
 			})
         	
         	$('.action > button').click(function () {
@@ -395,7 +401,7 @@
     				$('.popup_close').css('top', -90 + 'px');
     				$('.popup_close').css('left', 80 + '%');
     			}else{
-    				alert("로그인되어있습니다.")
+    				alert("로그인되어있슴")
     			}
     		})
         	
@@ -437,7 +443,10 @@
             	else if($("#content > ul > .item.selected")[0] == $("#photo")[0]) {
             		$("#naverMap").hide();
             		$("#import").unload();
-            		$("#import").load("detail/photo.do")
+            		$("#import").load("detail/photo.do",{
+            			"shopidx" : ${shopidx},
+            			"shopId" : "${shopOne.shop_id}"
+            		})
             		$("#import").show();
             	}
 				else if($("#content > ul > .item.selected")[0] == $("#review")[0]){

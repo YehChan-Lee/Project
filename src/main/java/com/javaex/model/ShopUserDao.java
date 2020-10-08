@@ -20,12 +20,14 @@ public class ShopUserDao {
 	public ShopUserVo loginCheck(String email) {
 		return sqlSession.selectOne("ShopUserVo.getUser", email);
 	}
+	
+	
 
 	public void signUp(ShopUserVo user) {
 		sqlSession.insert("ShopUserVo.signUp", user);
 	}
 
-	public void update_recentShop_shopIdx(String user_email, String shop_idx) {
+	public void update_recentShop_shopIdx(String user_email,int shop_idx) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("user_email", user_email);
 		map.put("shop_idx", shop_idx);

@@ -3,176 +3,198 @@
 
 <mapper namespace="All">
 	<resultMap type="Reservation" id="ReservationResult">
-		<result property="reserve_idx" column="RESERVE_IDX"/>
-		<result property="user_email" column="USER_EMAIL"/>
-		<result property="shop_title" column="SHOP_TITLE"/>
-		<result property="res_date" column="RES_DATE"/>
-		<result property="res_customer" column="RES_CUSTOMER"/>
-		<result property="shop_id" column="SHOP_ID"/>	
+		<result property="reserve_idx" column="RESERVE_IDX" />
+		<result property="user_email" column="USER_EMAIL" />
+		<result property="shop_title" column="SHOP_TITLE" />
+		<result property="res_date" column="RES_DATE" />
+		<result property="res_customer" column="RES_CUSTOMER" />
+		<result property="shop_id" column="SHOP_ID" />
+		<result property="rev_phone" column="REV_PHONE" />
 	</resultMap>
 
 	<resultMap type="ShopUserVo" id="ShopUserResult">
-		<result property="user_email" column="USER_EMAIL"/>
-		<result property="user_pw" column="USER_PW"/>
-		<result property="user_name" column="USER_NAME"/>
-		<result property="user_gender" column="USER_GENDER"/>
-		<result property="user_birth" column="USER_BIRTH"/>
-		<result property="user_phone" column="USER_PHONE"/>
-		<result property="is_owner" column="IS_OWNER"/>
-		<result property="sign_date" column="SIGN_DATE"/>
-		<result property="point" column="POINT"/>
-		<result property="user_photo" column="USER_PHOTO"/>
-		<result property="user_idx" column="USER_IDX"/>
-		<result property="review_cnt" column="REVIEW_CNT"/>
+		<result property="user_email" column="USER_EMAIL" />
+		<result property="user_pw" column="USER_PW" />
+		<result property="user_name" column="USER_NAME" />
+		<result property="user_gender" column="USER_GENDER" />
+		<result property="user_birth" column="USER_BIRTH" />
+		<result property="user_phone" column="USER_PHONE" />
+		<result property="is_owner" column="IS_OWNER" />
+		<result property="sign_date" column="SIGN_DATE" />
+		<result property="point" column="POINT" />
+		<result property="user_photo" column="USER_PHOTO" />
+		<result property="user_idx" column="USER_IDX" />
+		<result property="review_cnt" column="REVIEW_CNT" />
 	</resultMap>
-	
+
 	<resultMap type="ShopVo" id="ShopResult">
-		<result property="shop_id" column="SHOP_ID"/>
-		<result property="user_email" column="USER_EMAIL"/>
-		<result property="shop_idx" column="SHOP_IDX"/>
-		<result property="shop_title" column="SHOP_TITLE"/>
-		<result property="shop_addr" column="SHOP_ADDR"/>
-		<result property="shop_location" column="SHOP_LOCATION"/>
-		<result property="food_type" column="FOOD_TYPE"/>
-		<result property="shop_tip" column="SHOP_TIP"/>
-		<result property="budget" column="BUDGET"/>
-		<result property="shop_reserve" column="SHOP_RESERVE"/>
-		<result property="shop_comment" column="SHOP_COMMENT"/>
-		<result property="shop_view" column="SHOP_VIEW"/>
-		<result property="shop_score" column="SHOP_SCORE"/>
-		<result property="shop_phone" column="SHOP_PHONE"/>
-		<result property="shop_time" column="SHOP_TIME"/>
-		<result property="shop_addinfo" column="SHOP_ADDINFO"/>
-		<result property="shop_tb" column="SHOP_TB"/>
-		<result property="shop_alcohol" column="SHOP_ALCOHOL"/>
-		<result property="shop_car" column="SHOP_CAR"/>
-		<result property="shop_close" column="SHOP_CLOSE"/>
-		<result property="shop_review" column="SHOP_REVIEW"/>
-		<result property="shop_photo" column="SHOP_PHOTO"/>
-		<result property="hash_tag" column="HASH_TAG"/>
-		<result property="shop_date" column="SHOP_DATE"/>
+		<result property="shop_id" column="SHOP_ID" />
+		<result property="user_email" column="USER_EMAIL" />
+		<result property="shop_idx" column="SHOP_IDX" />
+		<result property="shop_title" column="SHOP_TITLE" />
+		<result property="shop_addr" column="SHOP_ADDR" />
+		<result property="shop_location" column="SHOP_LOCATION" />
+		<result property="food_type" column="FOOD_TYPE" />
+		<result property="shop_tip" column="SHOP_TIP" />
+		<result property="budget" column="BUDGET" />
+		<result property="shop_reserve" column="SHOP_RESERVE" />
+		<result property="shop_comment" column="SHOP_COMMENT" />
+		<result property="shop_view" column="SHOP_VIEW" />
+		<result property="shop_score" column="SHOP_SCORE" />
+		<result property="shop_phone" column="SHOP_PHONE" />
+		<result property="shop_time" column="SHOP_TIME" />
+		<result property="shop_addinfo" column="SHOP_ADDINFO" />
+		<result property="shop_tb" column="SHOP_TB" />
+		<result property="shop_alcohol" column="SHOP_ALCOHOL" />
+		<result property="shop_car" column="SHOP_CAR" />
+		<result property="shop_close" column="SHOP_CLOSE" />
+		<result property="shop_review" column="SHOP_REVIEW" />
+		<result property="shop_photo" column="SHOP_PHOTO" />
 	</resultMap>
-	
+
 	<resultMap type="ReviewVo" id="ReviewResult">
-		<result property="review_idx" column="REVIEW_IDX"/>
-		<result property="shop_id" column="SHOP_ID"/>
-		<result property="user_email" column="USER_EMAIL"/>
-		<result property="review_score" column="REVIEW_SCORE"/>
-		<result property="review" column="REVIEW"/>
-		<result property="review_photo" column="REVIEW_PHOTO"/>	
-		<result property="review_date" column="REVIEW_DATE"/>	
-		<result property="like_review" column="LIKE_REVIEW"/>	
-		<result property="hate_review" column="HATE_REVIEW"/>	
+		<result property="review_idx" column="REVIEW_IDX" />
+		<result property="shop_id" column="SHOP_ID" />
+		<result property="user_email" column="USER_EMAIL" />
+		<result property="review_score" column="REVIEW_SCORE" />
+		<result property="review" column="REVIEW" />
+		<result property="review_photo" column="REVIEW_PHOTO" />
+		<result property="review_date" column="REVIEW_DATE" />
+		<result property="like_review" column="LIKE_REVIEW" />
+		<result property="hate_review" column="HATE_REVIEW" />
 	</resultMap>
-	
- 	<resultMap type="Dibs" id="DibsResult">
-		<result property="shop_id" column="SHOP_ID"/>
-		<result property="user_email" column="USER_EMAIL"/>	
-		<result property="dibs_idx" column="DIBS_IDX"/>	
+
+	<resultMap type="Dibs" id="DibsResult">
+		<result property="shop_id" column="SHOP_ID" />
+		<result property="user_email" column="USER_EMAIL" />
+		<result property="dibs_idx" column="DIBS_IDX" />
 	</resultMap>
-	
- 	<resultMap type="NewsVo" id="NewsResult">
-		<result property="user_email" column="USER_EMAIL"/>	
-		<result property="news_idx" column="NEWS_IDX"/>
-		<result property="news_content" column="NEWS_CONTENT"/>	
-		<result property="news_date" column="NEWS_DATE"/>	
-		<result property="is_admin" column="IS_ADMIN"/>	
+
+	<resultMap type="NewsVo" id="NewsResult">
+		<result property="user_email" column="USER_EMAIL" />
+		<result property="news_idx" column="NEWS_IDX" />
+		<result property="news_content" column="NEWS_CONTENT" />
+		<result property="news_date" column="NEWS_DATE" />
+		<result property="is_admin" column="IS_ADMIN" />
 	</resultMap>
-	
+
 	<resultMap type="All" id="AllResult">
-		<id property="Reservation.reserve_idx" column="RESERVE_IDX"/>
-		<id property="ReviewVo.review_idx" column="REVIEW_IDX"/>
-		<id property="Dibs.dibs_idx" column="DIBS_IDX"/>			
-		<id property="NewsVo.news_idx" column="NEWS_IDX"/>			
-		<collection property="Reservation" resultMap="ReservationResult"></collection>
+		<id property="Reservation.reserve_idx" column="RESERVE_IDX" />
+		<id property="ReviewVo.review_idx" column="REVIEW_IDX" />
+		<id property="Dibs.dibs_idx" column="DIBS_IDX" />
+		<id property="NewsVo.news_idx" column="NEWS_IDX" />
+		<collection property="Reservation"
+			resultMap="ReservationResult"></collection>
 		<collection property="ShopVo" resultMap="ShopResult"></collection>
-		<collection property="ShopUserVo" resultMap="ShopUserResult"></collection>
+		<collection property="ShopUserVo"
+			resultMap="ShopUserResult"></collection>
 		<collection property="ReviewVo" resultMap="ReviewResult"></collection>
 		<collection property="Dibs" resultMap="DibsResult"></collection>
 		<collection property="NewsVo" resultMap="NewsResult"></collection>
 	</resultMap>
-	
+
 	<resultMap type="All" id="ShopReview">
-		<id property="ReviewVo.review_idx" column="REVIEW_IDX"/>		
+		<id property="ReviewVo.review_idx" column="REVIEW_IDX" />
 		<collection property="ShopVo" resultMap="ShopResult"></collection>
-		<collection property="ShopUserVo" resultMap="ShopUserResult"></collection>
+		<collection property="ShopUserVo"
+			resultMap="ShopUserResult"></collection>
 		<collection property="ReviewVo" resultMap="ReviewResult"></collection>
 	</resultMap>
-		
+
 	<resultMap type="hashMap" id="ReserveResult">
-		<id property="reserve_idx" column="RESERVE_IDX"/>
-		<result property="user_name" column="USER_NAME"/>
-		<result property="res_customer" column="RES_CUSTOMER"/>
-		<result property="rev_phone" column="REV_PHONE"/>
-		<result property="res_date" column="RES_DATE"/>
+		<id property="reserve_idx" column="RESERVE_IDX" />
+		<result property="user_name" column="USER_NAME" />
+		<result property="res_customer" column="RES_CUSTOMER" />
+		<result property="rev_phone" column="REV_PHONE" />
+		<result property="res_date" column="RES_DATE" />
 	</resultMap>
-	
+
+	<resultMap type="hashMap" id="PaymentResult">
+		<id property="pay_idx" column="PAY_IDX" />
+		<result property="user_email" column="USER_EMAIL" />
+		<result property="pay_point" column="PAY_POINT" />
+		<result property="pay_date" column="PAY_DATE" />
+	</resultMap>
+
 	<select id="reserveList" resultMap="AllResult">
 		select * from reservation R
-         inner join shopUser U
-            on U.user_email=R.user_email
-         inner join Shop S
-            on S.shop_title = R.shop_title
-         where R.user_email=#{user_email}
-            AND R.res_date>=TO_CHAR(SYSDATE, 'yyyy-mm-dd')
+		inner join shopUser U
+		on U.user_email=R.user_email
+		inner join Shop S
+		on S.shop_title = R.shop_title
+		where R.user_email=#{user_email}
+		AND R.res_date>TO_CHAR(SYSDATE, 'yyyy-mm-dd')
 	</select>
+
 	<select id="pos_reserveList" resultMap="ReserveResult">
-		select U.user_name,r.res_customer,r.reserve_idx,r.rev_phone,TO_char(r.res_date,'MM-DD HH24:MI') as res_date from reservation R
-			inner join shopUser U
-				on U.user_email=R.user_email
-			inner join Shop S
-				on S.shop_title = R.shop_title
-			where R.shop_id='123-12-12345'
-            AND TO_Char(R.res_date,'MM-DD HH24:MI:SS')>TO_CHAR(SYSDATE, 'MM-DD HH24:MI:SS')
+		select
+		U.user_name,r.res_customer,r.reserve_idx,r.rev_phone,TO_char(r.res_date,'MM-DD
+		HH24:MI') as res_date from reservation R
+		inner join shopUser U
+		on U.user_email=R.user_email
+		inner join Shop S
+		on S.shop_title = R.shop_title
+		where R.shop_id='123-12-12345'
+		AND TO_Char(R.res_date,'MM-DD HH24:MI:SS')>TO_CHAR(SYSDATE, 'MM-DD
+		HH24:MI:SS')
+		ORDER BY res_date asc
 	</select>
-		
+
+	<select id="getPayment" resultMap="PaymentResult">
+		select pay_idx,user_email,pay_point,pay_date from payment 
+		where shop_id ='123-12-12345'
+		ORDER BY pay_date ASC
+	</select>
+
+
 	<select id="pastList" resultMap="AllResult">
 		select * from reservation R
-			inner join shopUser U
-				on U.user_email=R.user_email
-			inner join Shop S
-				on S.shop_title = R.shop_title
-			where R.user_email=#{user_email}
-            AND TO_CHAR(SYSDATE, 'yyyy-mm-dd')>R.res_date
+		inner join shopUser U
+		on U.user_email=R.user_email
+		inner join Shop S
+		on S.shop_title = R.shop_title
+		where R.user_email=#{user_email}
+		AND TO_CHAR(SYSDATE, 'yyyy-mm-dd')>R.res_date
 	</select>
-	
+
 	<select id="reviewList" resultMap="AllResult">
 		select * from review R
-		    inner join ShopUser U
-		        on R.user_email=U.user_email
-		    inner join Shop S
-		        on R.shop_id=S.shop_id
-	   		where R.user_email=#{user_email}
+		inner join ShopUser U
+		on R.user_email=U.user_email
+		inner join Shop S
+		on R.shop_id=S.shop_id
+		where R.user_email=#{user_email}
 	</select>
-	
- 	<select id="dibsList" resultMap="AllResult">
+
+	<select id="dibsList" resultMap="AllResult">
 		select * from ShopDibs D
-		    inner join ShopUser U
-		        on D.user_email=U.user_email
-		    inner join Shop S
-		        on D.shop_id=S.shop_id
-		    where D.user_email=#{user_email}
+		inner join ShopUser U
+		on D.user_email=U.user_email
+		inner join Shop S
+		on D.shop_id=S.shop_id
+		where D.user_email=#{user_email}
 	</select>
-	
- 	<select id="newsList" resultMap="AllResult">
+
+	<select id="newsList" resultMap="AllResult">
 		select * from News N
-    		inner join ShopUser U
-        		on N.user_email=U.user_email
-    	where n.user_email=#{user_email}
-    	AND N.is_admin='0'
+		inner join ShopUser U
+		on N.user_email=U.user_email
+		where n.user_email=#{user_email}
+		AND N.is_admin='0'
 	</select>
-	
- 	<select id="bpList" resultMap="AllResult">
+
+	<select id="bpList" resultMap="AllResult">
 		select * from News N
-    		inner join ShopUser U
-        		on N.user_email=U.user_email
-    		where N.is_admin='1'
+		inner join ShopUser U
+		on N.user_email=U.user_email
+		where N.is_admin='1'
 	</select>
 
 	<!-- footer 사용자 -->
 	<select id="footeruser" resultType="int">
-		select count(DISTINCT user_email) from ShopUser
-	</select>	
+		select count(DISTINCT
+		user_email) from ShopUser
+	</select>
 
 	<select id="shopreviewList" resultMap="ShopReview">
 		SELECT R.review_idx,U.user_email,U.user_photo,U.user_name,U.user_idx,U.review_cnt, R.review_score,R.review,R.review_photo,R.like_review,R.hate_review FROM Review R

@@ -170,13 +170,26 @@
 		} else {
 			pageContext.setAttribute("curpage", 1);
 		}
+	pageContext.setAttribute("sort", request.getParameter("solt"));
 	%>
 </body>
 <%@include file="footer.jsp"%>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+	
 <script>
-
+	var sort = "${sort}";
+	if(sort == '1'){
+		$("#sort_sort_list").attr("style","color:#444");
+		$("#sort_star").attr("style","color:#f05e23");
+	}else if(sort =='2'){
+		$("#sort_sort_list").attr("style","color:#444");
+		$("#sort_resv").attr("style","color:#f05e23");
+	}else if(sort =='3'){
+		$("#sort_sort_list").attr("style","color:#444");
+		$("#sort_view").attr("style","color:#f05e23");
+	}
+	
 /* 버튼 색상변경 */
  	var user_id = null;
  	user_id = "${sessionID}";

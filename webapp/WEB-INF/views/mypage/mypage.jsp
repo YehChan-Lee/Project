@@ -15,11 +15,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>마이페이지 - 밥풀</title>
 
 <link rel="stylesheet" href="<c:url value="${path}/res/css/mypage.css?ver=1"/>"/>
 <link rel="stylesheet" href="<c:url value="${path}/res/css/jquery-ui.css"/>"/>
-<%-- <link rel="stylesheet" href="<c:url value="${path}/res/css/lkj.css"/>"/> --%>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
 </head>
 <body>
 <%@include file="../top_bar.jsp" %>
@@ -27,7 +27,6 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.4.0/"/></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 <script src="<c:url value='${path}/res/js/jquery-ui.js'/>" type="text/javascript"></script>
 
 <div id="timeline">
@@ -92,9 +91,13 @@ for (int i = 0; i < reserveList.size(); i++) {
 %>
 	<c:set var="rDate" value="<%=rDate %>" />
 	
-	<script>
-	  $(function() {
-		  
+	
+<%@include file="../footer.jsp" %>
+
+</body>
+<script>
+$(document).ready(function () {
+	  $(function() {  
 		  mypage_change();
           
          //모든 datepicker에 대한 공통 옵션 설정
@@ -227,9 +230,7 @@ for (int i = 0; i < reserveList.size(); i++) {
         	 } 
          }
      });
-	  
+})
     </script>
-<%@include file="../footer.jsp" %>
 
-</body>
 </html>

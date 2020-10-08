@@ -22,4 +22,9 @@
 	<select id="dibCheck" resultType="Dibs" parameterType="hashMap">
 		select * from shopdibs where user_email = #{email} and shop_id = #{shopId}
 	</select>
+	
+	<select id="getDib" resultType="String" parameterType="String">
+		select count(*) from shopdibs where shop_id = #{shop_id}
+	</select>
+	
 </mapper>

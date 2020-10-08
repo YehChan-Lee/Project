@@ -100,6 +100,9 @@ body {
 	-webkit-font-smoothing: subpixel-antialiased !important;
 	box-sizing: border-box;
 }
+#shop_sort_list>li:hover{
+	color : #f05e23;
+}
 #shop_sort_list>#sort_star {
 	border-right: 1px solid gray;
 }
@@ -118,7 +121,8 @@ body {
 	height: 100%;
 }
 .shop_comment{
-	font-size: 13px;
+	font-size: 11px;
+	color: #404040;
 }
 .shop_first, .shop_medium {
 	width: 233px;
@@ -209,13 +213,13 @@ body {
 	font-size: 12px;
 	padding: 2px 0px 5px;
 	margin: 3px 0 0;
+	color : #404040;
 }
 
 .review_btn {
 	box-sizing: border-box;
 	border-radius: 3px;	
-	background: #fff;
-	float: left;	
+	background: #fff;	
 	width: 233px;
 	text-align: center;
 	display: inline-block;
@@ -232,6 +236,9 @@ body {
 	display: block;	
 	line-height: 28px;
 
+}
+.review_btn .review_a:hover{
+	background-color: lightgray;
 }
 #paging {
 	width : 730px;

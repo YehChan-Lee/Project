@@ -30,7 +30,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
 	height : 100%;
 	width: 74%;
 }
-#table_div .table{
+#table_div .shoptable{
 	border: 1px solid white;
 	width : 300px;
 	height: 320px;
@@ -38,15 +38,15 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
 	margin: 60px 80px;
 	vertical-align: middle;
 }
-#table_div .table > p{
+#table_div .shoptable > p{
 	text-align: center;
 	border-bottom: 1px solid black;
 }
-#table_div .table div ul > li{
+#table_div .shoptable div ul > li{
 	margin-left: 30px;
 }
 #menu_div{
-	height: 35%;
+	height: 25%;
 	border-bottom: 1px solid black;
 }
 #reserve_list{
@@ -95,5 +95,16 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
 }
 .menuselected{
 	background-color: yellow;
+}
+#payment_div{
+	border:1px solid yellow;
+	width:100%;
+	height: 32%;
+	background-color: white;
+	font-size : 14px;
+}
+#payment_div > p{
+	text-align: center;
+	background-color: lightgray;
 }
 

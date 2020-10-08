@@ -42,11 +42,7 @@ public class HelloController {
 		return "hashTag_list";
 	}
 
-	@RequestMapping("/detail/photo.do")
-	public String detail_photo() {
-		System.out.println("/BabPool/detail");
-		return "detail/detail_photo";
-	}
+	
 
 	@RequestMapping("/home")
 	public String home() {
