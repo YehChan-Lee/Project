@@ -10,7 +10,6 @@
 <script type="text/javascript"
 	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
 	charset="utf-8"></script>
-<link rel="stylesheet" href="<c:url value='${path}/res/css/detail_review.css'/>">
 </head>
 <!-- footer -->
 <div id="footer_wrap">

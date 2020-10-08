@@ -31,9 +31,8 @@
 			사장님이 메뉴를 안적으셨어요.<br> 사장님께 말해볼께요
 		</div>
 		<script>
-			$(document).ready(function(){
 				$("#message").css("color", "lightgray").css("text-align", "center").css("background-color", "#fff").css("padding", "150px").css("font-size","17px").css("border-radius", "5px").css("font-family","'Noto Sans KR', sans-serif").css("font-weight", "500") ;
-			});
+			
 			</script>
 	</c:otherwise>
 </c:choose>

@@ -342,22 +342,23 @@
 		src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=cyozvucbzs&submodules=geocoder"></script>
 
 	<script>
-        $(document).ready(function(){
+       
         	var isdib = "${isDib}";
         	if(isdib == "true"){
         		$('.empty').attr("style","color:#f05e23;");
         	}else{
         		$('.empty').attr("style","color:white;");
-        	}
+        	} 
         	
-        	$(".empty").click(function () {
+        	$(".empty").click(function (e) {
         		 e.preventDefault();
                  $.ajax({
          			type : "POST",
          			url : "isDib",
          			data: {
          				starClass : $(this).attr("class"),
-         				shopId :"${shopId}"
+         				shopId :"${shopid}",
+         				shopIdx : "${shopidx}"
          			},
          			success : function(data) {
          				if(data == "success"){
@@ -577,8 +578,7 @@
     		
      			});
     
-     		});      
-     }); 
+     		});     
 
         //로그인 팝업 관련
 		function loginPopUp(){

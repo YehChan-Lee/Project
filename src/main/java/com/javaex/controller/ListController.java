@@ -199,6 +199,7 @@ public class ListController {
 		System.out.println("/BabPool/detail");
 		String user_email = (String) session.getAttribute("sessionID");
 		int shopIdx = Integer.parseInt(request.getParameter("shopidx"));
+		System.out.println("shopIdx : " + shopIdx);
 		// cnt 가져오기위한 먼저 shop 호출
 		ShopVo shop = dao.shopOne(shopIdx);
 		String ShopId = shop.getShop_id();
@@ -302,6 +303,8 @@ public class ListController {
 	@RequestMapping("/logout")
 	public void logout(HttpSession session,HttpServletResponse res) throws IOException {
 		System.out.println("/BabPool/logout");
+		session.setAttribute("sessionID", null);
+		session.setAttribute("is_owner", null);
 		session.invalidate();
 		res.getWriter().write("logout");
 	}

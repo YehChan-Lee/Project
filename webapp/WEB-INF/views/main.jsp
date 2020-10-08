@@ -250,7 +250,7 @@
 	
 
 
-	var naver_id_login = new naver_id_login("9N2m3BOpk_HOvgVlJP0X",
+	/* var naver_id_login = new naver_id_login("9N2m3BOpk_HOvgVlJP0X",
 			"http://127.0.0.1:8088/BabPool/main"); // 역시 마찬가지로 'localhost'가 포함된 CallBack URL
 			 var naver_id_login = new naver_id_login("9N2m3BOpk_HOvgVlJP0X", "http://127.0.0.1:8088/BabPool/main"); // 역시 마찬가지로 'localhost'가 포함된 CallBack URL
 		        
@@ -265,7 +265,7 @@
 		            alert(naver_id_login.getProfileData('email'));
 		            alert(naver_id_login.getProfileData('nickname'));
 		            alert(naver_id_login.getProfileData('age'));
-		        }
+		        } */
 
 
 </script>
