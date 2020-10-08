@@ -133,4 +133,9 @@ public class AdminDao {
 		System.out.println(vo);
 		 sqlSession.update("AdminVo.AcomState1", vo);
 	}
+	
+	public void admin_AcomState2(ShopVo vo) {
+		System.out.println(vo);
+		 sqlSession.update("AdminVo.AcomState2", vo);
+	}
 }

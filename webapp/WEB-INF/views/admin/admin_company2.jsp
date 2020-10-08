@@ -91,13 +91,13 @@
 		});
 		
 		$("#sec_admin_company2 > div:nth-child(1) > table > tbody > tr > td:nth-child(7) > span:nth-child(1)").on('click', function(){
-			var info = $(this).closest("tr").children("td:nth-child(1)").text();
+			var info1 = $(this).closest("tr").children("td:nth-child(1)").text();
 			
 			 $.ajax({
 		            type : "POST",
 		            url : "admin/admin_company2",
 		            dataType : "text",
-		            data: {info},
+		            data: {info1},
 		            error : function(){
 		            	alert("에러발생");
 		         
@@ -110,13 +110,13 @@
 		});
 		
 		$("#sec_admin_company2 > div:nth-child(1) > table > tbody > tr > td:nth-child(7) > span:nth-child(2)").on('click', function(){
-			var info = $(this).closest("tr").children("td:nth-child(1)").text();
+			var info2 = $(this).closest("tr").children("td:nth-child(1)").text();
 			
 			 $.ajax({
 		            type : "POST",
 		            url : "admin/admin_company2",
 		            dataType : "text",
-		            data: {info},
+		            data: {info2},
 		            error : function(){
 		            	alert("에러발생");
 		         
@@ -159,7 +159,7 @@
 		// 텍스트에 따라 색 변경하기 (승인/반려/신청중)
 
 		$("#sec_admin_company2 > div:nth-child(1) > table > tbody > tr > td:nth-child(6)").each(function(i, e) {
-			console.log($(this).text());
+			
 			if ($(this).text() == "승인") {
 				$(this).css({
 					color : "#008000"

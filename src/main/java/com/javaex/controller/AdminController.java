@@ -82,24 +82,36 @@ public class AdminController {
 	}
 
 	@RequestMapping(value="/admin/admin_company2")
-	public ModelAndView admin_company2(ModelAndView mav, HttpServletRequest req,
-			@RequestParam(required = false, defaultValue = "null") String info) {
+	public ModelAndView admin_company2(ModelAndView mav, HttpServletRequest req) {
 		System.out.println("/BabPool/admin/admin_company2");
 		
-		String shId = (String)req.getParameter("info");
-		System.out.println(shId);
+		String shId1 = (String)req.getParameter("info1");
+		String shId2 = (String)req.getParameter("info2");
+		System.out.println(shId1);
+		System.out.println(shId2);
 		
-		if (shId == null){
+		if (shId1 == null && shId2 == null){
 			mav.addObject("Acompany2_list", admindao.Acompany2_list());
 			mav.setViewName("admin/admin_company2");
 			return mav;
 		}
 		
-		if(!shId.equals("null") || shId != null) {
+		if(shId1 != null && shId2 == null) {
 			ShopVo vo = new ShopVo();
-			vo.setShop_id(shId);
+			vo.setShop_id(shId1);
 			admindao.admin_AcomState1(vo);
 		} 
+		
+		if(shId1 == null && shId2 != null) {
+			ShopVo vo = new ShopVo();
+			vo.setShop_id(shId2);
+			admindao.admin_AcomState2(vo);
+		}
+		/*if(!shId1.equals("info1") || shId1 != null) {
+			ShopVo vo = new ShopVo();
+			vo.setShop_id(shId1);
+			admindao.admin_AcomState1(vo);
+		} */
 		
 		mav.addObject("Acompany2_list", admindao.Acompany2_list());
 		mav.setViewName("admin/admin_company2");
