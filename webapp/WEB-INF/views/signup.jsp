@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원가입</title>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script type="text/JavaScript"
 	src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>

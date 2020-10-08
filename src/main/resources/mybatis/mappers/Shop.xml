@@ -18,10 +18,10 @@
 		</if>
 
 		<if test="shop_addrArr != null">
-			and
+			and(
 			<foreach collection="shop_addrArr" item="shop_addr" index="index"
 				separator="or">
-				SHOP_ADDR like '%' || #{shop_addr} || '%'</foreach>
+				SHOP_ADDR like '%' || #{shop_addr} || '%'</foreach>)
 		</if>
 
 		<if test="food_typeArr != null">
@@ -62,24 +62,24 @@
 		</if>
 		
 		<if test="add_infoArr != null">
-			and
+			and(
 			<foreach collection="add_infoArr" item="add_infoArr" index="index"
 				separator="or">
-				SHOP_ADDINFO like '%' || #{add_infoArr} || '%'</foreach>
+				SHOP_ADDINFO like '%' || #{add_infoArr} || '%'</foreach>)
 		</if>
 		
 		<if test="table_typeArr != null">
-			and
+			and(
 			<foreach collection="table_typeArr" item="table_typeArr" index="index"
 				separator="or">
-				SHOP_TB like '%' || #{table_typeArr} || '%'</foreach>
+				SHOP_TB like '%' || #{table_typeArr} || '%'</foreach>)
 		</if>
 		
 		<if test="alcohol_typeArr != null">
-			and
+			and(
 			<foreach collection="alcohol_typeArr" item="alcohol_typeArr" index="index"
 				separator="or">
-				SHOP_ALCOHOL like '%' || #{alcohol_typeArr} || '%'</foreach>
+				SHOP_ALCOHOL like '%' || #{alcohol_typeArr} || '%'</foreach>)
 		</if>
 		
 		<if test="parking_available != null">

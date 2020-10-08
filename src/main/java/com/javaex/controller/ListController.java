@@ -36,12 +36,12 @@ import com.javaex.model.ShopVo;
 
 @Controller
 public class ListController {
-
-	// String number;
-
+	
+	//String number;
+	
 	@Autowired
 	MenuDao menudao;
-
+	
 	@Autowired
 	ShopDao dao;
 
@@ -66,7 +66,7 @@ public class ListController {
 	String url = "C:\\Users\\Kosmo_23\\Desktop\\닭\\Project\\webapp\\serverImg\\";
 
 	@RequestMapping("/review_upload")
-	public void test(ModelAndView mav, MultipartHttpServletRequest req, HttpServletResponse res, HttpSession session)
+	public void test(ModelAndView mav,MultipartHttpServletRequest req, HttpServletResponse res, HttpSession session)
 			throws IOException {
 		System.out.println("/BabPool/review_upload");
 		String user_email = (String) session.getAttribute("sessionID");
@@ -84,7 +84,7 @@ public class ListController {
 		String review = req.getParameter("review_area");// 리뷰내용
 		String shopId = req.getParameter("shopId");
 		req.setAttribute("shopId", shopId);
-
+		
 		String folder = "review\\";// 이미지 저장 경로
 		String path = "";
 		String fileName = "";
@@ -114,7 +114,7 @@ public class ListController {
 		}
 		reviewdao.reviewUpload(new ReviewVo(0, shopId, user_email, reviewScore, review, path, 0, 0));
 		dao.reviewCntReload(shopId, reviewdao.reviewCnt(shopId));
-
+		
 		userDao.reviewCntUpload(user_email);
 		dao.scoreCalc(shopId);
 		res.getWriter().write("success");
@@ -172,20 +172,20 @@ public class ListController {
 			res.getWriter().write("nologin");
 			return;
 		} else {
-			// 로그인 되어있으면 넘어온다.
+			//로그인 되어있으면 넘어온다.
 			String email = (String) session.getAttribute("sessionID");
-			// 찜이 되어 있는지 우선 확인
-			if (dibdao.dibCheck(email, shopId)) {
-				// 찜이 되어있으면 찜해제
-				dibdao.delDib(email, shopId);
+			//찜이 되어 있는지 우선 확인
+			if(dibdao.dibCheck(email,shopId)) {
+				//찜이 되어있으면 찜해제
+				dibdao.delDib(email,shopId);
 				res.getWriter().write("deldib");
-			} else {
-				// 찜이 안되어있으면 찜하기
-				dibdao.addDib(email, shopId, shopIdx);
+			}else {
+				//찜이 안되어있으면 찜하기
+				dibdao.addDib(email, shopId,shopIdx);		
 				res.getWriter().write("adddib");
 			}
 			mav.addObject("sessionID", email);
-
+						
 		}
 	}
 
@@ -194,6 +194,7 @@ public class ListController {
 		System.out.println("/BabPool/detail");
 		String user_email = (String) session.getAttribute("sessionID");
 		int shopIdx = Integer.parseInt(request.getParameter("shopidx"));
+		System.out.println("shopIdx : " + shopIdx);
 		// cnt 가져오기위한 먼저 shop 호출
 		ShopVo shop = dao.shopOne(shopIdx);
 		String ShopId = shop.getShop_id();
@@ -201,9 +202,10 @@ public class ListController {
 		if (user_email != null) {
 			// 찜이 되어 있는지 우선 확인
 			if (dibdao.dibCheck(user_email, ShopId)) {
-				mav.addObject("isDib", "true");
-			} else {
-				mav.addObject("isDib", "false");
+				mav.addObject("isDib","true");
+			} 
+			else {
+				mav.addObject("isDib","false");
 			}
 			userDao.update_recentShop_shopIdx(user_email, shopIdx);
 			ShopUserVo user;
@@ -224,7 +226,7 @@ public class ListController {
 		mav.setViewName("detail/detail");
 		return mav;
 	}
-
+	
 	@RequestMapping("/detail/photo.do")
 	public ModelAndView detail_photo(ModelAndView mav, HttpServletRequest request, HttpSession session) {
 		System.out.println("/BabPool/detail/photo.do");
@@ -293,9 +295,8 @@ public class ListController {
 	}
 
 	@RequestMapping("/logout")
-	public void logout(HttpSession session, HttpServletResponse res) throws IOException {
+	public void logout(HttpSession session,HttpServletResponse res) throws IOException {
 		System.out.println("/BabPool/logout");
-
 		session.invalidate();
 		res.getWriter().write("logout");
 	}
@@ -327,7 +328,7 @@ public class ListController {
 			
 			userDao.signUp(new ShopUserVo(email, pw, name, gender, birth, phone, "1", 0, "user2.png", 0, null, 0));
 		}
-		mav.setViewName("main");
+		mav.setViewName("redirect:main");
 		return mav;
 	}
 
@@ -350,7 +351,7 @@ public class ListController {
 	}
 
 	@RequestMapping("/detail/menu.do")
-	public ModelAndView detail_menu(ModelAndView mav, HttpServletResponse response, HttpServletRequest req) {
+	public ModelAndView detail_menu(ModelAndView mav,HttpServletResponse response, HttpServletRequest req) {
 		String shopId = req.getParameter("shopId");
 		mav.addObject("shopMenu", dao.getMenu(shopId));
 		mav.setViewName("detail/detail_menu");
@@ -358,24 +359,22 @@ public class ListController {
 	}
 
 	@RequestMapping("/buisnessmypage")
-	public ModelAndView buisnessmypage(ModelAndView mav, HttpServletResponse response, HttpServletRequest req,
-			HttpSession session) {
+	public ModelAndView buisnessmypage(ModelAndView mav,HttpServletResponse response, HttpServletRequest req,HttpSession session) {
 		System.out.println("/buisnessmypage");
-		String user_email = (String) session.getAttribute("sessionID");
-		String shop_id = (String) session.getAttribute("shop_id");
-		mav.addObject("shopdibsidx", dibdao.getShopDibsIdx(shop_id));
-		mav.addObject("shopreserve", dao.getShopReserve(user_email));
+		String user_email = (String)session.getAttribute("sessionID");
+		String shop_id = (String)session.getAttribute("shop_id");
+		mav.addObject("shopdibsidx",dibdao.getShopDibsIdx(shop_id));
+		mav.addObject("shopreserve",dao.getShopReserve(user_email));
 		mav.addObject("shopreview", dao.getShopReview(user_email));
-		mav.addObject("user", userDao.getUser(user_email));
+		mav.addObject("user",userDao.getUser(user_email));
 		mav.setViewName("buisnessmypage/buisness_mypage");
 		System.out.println(dao.getShopReserve(user_email));
 		System.out.println(dao.getShopReview(user_email));
 		return mav;
 	}
-
+	
 	@RequestMapping("/buisness_update")
-	public void buisnessmypage_update(HttpServletResponse response, MultipartHttpServletRequest req)
-			throws IOException {
+	public void buisnessmypage_update(HttpServletResponse response , MultipartHttpServletRequest req) throws IOException {
 		String shop_title = req.getParameter("shop_title");
 		String shop_addr = req.getParameter("shop_addr");
 		String shop_location = req.getParameter("shop_location");
@@ -396,21 +395,21 @@ public class ListController {
 		String shop_close = req.getParameter("shop_close");
 		String hash_tag = req.getParameter("hash_tag");
 		String comma = "";
-
+		
 		List<MultipartFile> fileList = req.getFiles("shop_photo");
 		List<MultipartFile> fileList2 = req.getFiles("shop_subphoto");
-
+		
 		String folder = "shopsubimg\\";
 		String folder2 = "shopimg\\";
 		String path = "";
 		String fileName = "";
 		String path2 = "";
-
+		
 		for (MultipartFile mf : fileList2) {
 			String originFileName = mf.getOriginalFilename();
 			fileName = "shopsubimg" + shop_id + originFileName;
 			String safeFile = url + folder + fileName;
-
+			
 			try {
 				File file = new File(url);
 				if (!file.exists()) {
@@ -430,14 +429,15 @@ public class ListController {
 				e.printStackTrace();
 			}
 			path2 += fileName + "/";
-
+			
 		}
-
+		
+		
 		for (MultipartFile mf : fileList) {
 			String originFileName = mf.getOriginalFilename();
 			fileName = "shopimg" + shop_id + originFileName;
 			String safeFile = url + folder2 + fileName;
-
+			
 			try {
 				File file = new File(url);
 				if (!file.exists()) {
@@ -522,7 +522,7 @@ public class ListController {
 	public ModelAndView registration2(ModelAndView mav, HttpSession session) {
 		mav.addObject("shopOwnerList", dao.shopOwnerList((String) session.getAttribute("sessionID")));
 		System.out.println("/reservation2");
-		String shop_id = (String) session.getAttribute("shop_id");
+		String shop_id = (String)session.getAttribute("shop_id");
 		mav.addObject("menu", menudao.MenuOne(shop_id));
 		mav.setViewName("buisnessmypage/buisness_mypage_registration2");
 		return mav;
@@ -658,78 +658,81 @@ public class ListController {
 	}
 
 	@RequestMapping("/buisnessmypage/reservation2")
-	public ModelAndView reservation2(ModelAndView mav, HttpServletRequest req, HttpSession session) {
+	public ModelAndView reservation2(ModelAndView mav, HttpServletRequest req,HttpSession session) {
 		System.out.println("/reservation2");
-		String a = (String) session.getAttribute("shop_id");
-		mav.addObject("reservation", resDao.reservationOne(a));
+		String a = (String)session.getAttribute("shop_id");
+		mav.addObject("reservation", resDao.reservationOne(a));		
 		mav.setViewName("buisnessmypage/buisness_mypage_reservation2");
 		return mav;
 	}
-
+	
 	@RequestMapping("/idSearch")
-	public void findemail(HttpServletRequest req, HttpServletResponse response) throws IOException {
+	public void findemail(HttpServletRequest req,  HttpServletResponse response) throws IOException {
 		System.out.println("/idSearch");
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		String find_email = req.getParameter("find_email");
-		String find_phone = req.getParameter("find_phone");
+		String find_email =  req.getParameter("find_email");
+		String find_phone =  req.getParameter("find_phone");
 		map.put("user_name", find_email);
 		map.put("user_phone", find_phone);
-
+		
+	
 		String user_email = userDao.selectemail(map);
-		if (user_email == null) {
+		if(user_email == null) {
 			response.getWriter().write("fail");
-		} else {
+		}else {
 			response.getWriter().write(user_email);
 		}
 	}
-
+	
+	
 	@RequestMapping("/pwSearch")
-	public void pwSearch(HttpServletRequest req, HttpServletResponse response) throws IOException {
+	public void pwSearch(HttpServletRequest req,  HttpServletResponse response) throws IOException {
 		System.out.println("/pwSearch");
-		String pwsearch_email = req.getParameter("pwsearch_email");
+		String pwsearch_email =  req.getParameter("pwsearch_email");
 		String state = "fail";
-
+		
 		List<String> user_email = userDao.searchemail();
-		if (user_email == null) {
+		if(user_email == null) {
 			response.getWriter().write(state);
-		} else {
-			for (int i = 0; i < user_email.size(); i++) {
-				if (user_email.get(i).equals(pwsearch_email)) {
+		}else {
+			for(int i =0 ;i < user_email.size();i++) {
+				if(user_email.get(i).equals(pwsearch_email)) {
 					state = "success";
-
+				
 					response.getWriter().write("1234");
 					return;
 				}
 			}
-			if (state.equals("fail")) {
+			if(state.equals("fail")) {
 				response.getWriter().write(state);
 			}
-
+			
 		}
 	}
-
+	
 	@RequestMapping("/pwSearch2")
-	public void pwSearch2(HttpServletRequest req, HttpServletResponse response) throws IOException {
+	public void pwSearch2(HttpServletRequest req,  HttpServletResponse response) throws IOException {
 		System.out.println("/pwSearch2");
-		String email_number = req.getParameter("email_number");
+		String email_number =  req.getParameter("email_number");
 		String state = "fail";
-
-		if (email_number.equals("1234")) {
+		
+		if(email_number.equals("1234")) {
 			state = "success";
 			response.getWriter().write(state);
-		} else if (state.equals("fail")) {
+		}
+		else if(state.equals("fail")) {
 			response.getWriter().write(state);
 		}
-
+		
 	}
-
+	
 	@RequestMapping("/pwupdate")
-	public void pwupdate(HttpServletRequest req, HttpServletResponse response) throws IOException {
+	public void pwupdate(HttpServletRequest req,  HttpServletResponse response) throws IOException {
 		System.out.println("/pwupdate");
 		String pwsearch_email = req.getParameter("pwsearch_email");
 		String repassword = req.getParameter("repassword");
 		String repassword2 = req.getParameter("repassword2");
-
+		
 		if (repassword.equals(repassword2)) {
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("user_email", pwsearch_email);
@@ -739,11 +742,12 @@ public class ListController {
 		} else {
 			response.getWriter().write("fail");
 		}
-
+	
+	
 	}
-
 	@RequestMapping("/menu_insert")
-	public void menu_insert(ModelAndView mav, HttpServletRequest req, HttpServletResponse response) throws IOException {
+	public void menu_insert(ModelAndView mav,HttpServletRequest req,HttpServletResponse response
+			) throws IOException {
 
 		System.out.println("/menu_insert");
 		String shop_id = req.getParameter("shop_id");
@@ -754,9 +758,9 @@ public class ListController {
 		System.out.println(food_name);
 		System.out.println(food_price);
 		System.out.println(food_info);
-		if (food_name.equals("")) {
+		if(food_name.equals("")) {
 			response.getWriter().write("fail");
-		} else if (food_price.equals("")) {
+		} else if (food_price.equals("")){
 			response.getWriter().write("fail2");
 		} else if (food_info.equals("")) {
 			response.getWriter().write("fail3");
@@ -764,9 +768,9 @@ public class ListController {
 			response.getWriter().write("success");
 			MenuVo menuvo = new MenuVo(shop_id, food_name, food_price, food_info);
 			menudao.insert_menu(menuvo);
-		}
+		}		
 	}
-
+	
 	@RequestMapping("detail/reviewList")
 	public ModelAndView reviewList(ModelAndView mav, HttpSession session, HttpServletRequest req) {
 		String shopId = req.getParameter("shopId");
@@ -811,9 +815,10 @@ public class ListController {
 		}
 
 	}
-
+	
 	@RequestMapping("/menu_delete")
-	public void menu_delete(ModelAndView mav, HttpServletRequest req, HttpServletResponse response) throws IOException {
+	public void menu_delete(ModelAndView mav,HttpServletRequest req,HttpServletResponse response
+			) throws IOException {
 		System.out.println("/menu_delete");
 		String food_name = req.getParameter("food_name");
 		String shop_id = req.getParameter("shop_id");
@@ -823,5 +828,7 @@ public class ListController {
 		menudao.DeleteMenu(map);
 
 	}
-
+	
+	
 }
+

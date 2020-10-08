@@ -411,7 +411,7 @@ body {
 
 #main_content {
 	height: 245vh;
-	border-top: 2px solid #ffa500;
+	border-top: 1px solid lightgray;
 	padding-top: 70px;
 	/* background-color: #f3f3f3; */
 }
