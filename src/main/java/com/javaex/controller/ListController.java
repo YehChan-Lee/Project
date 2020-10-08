@@ -326,7 +326,7 @@ public class ListController {
 					+ " " + buisnessFoodType);
 			userDao.signUp(new ShopUserVo(email, pw, name, gender, birth, phone, "1", 0, "user2.png", 0, null, 0));
 		}
-		mav.setViewName("main");
+		mav.setViewName("redirect:main");
 		return mav;
 	}
 
