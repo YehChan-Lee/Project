@@ -98,6 +98,10 @@
 		var up3 = $("div.notice_seaAli3 > i.fas.fa-chevron-up"); // 작성자 업
 		var down3 = $("div.notice_seaAli3 > i.fas.fa-chevron-down"); // 작성자 다운
 
+	
+		// 공지사항 내용 디폴트
+		$('#sec_admin_notice > div > table > tbody > tr > td:nth-child(3)').find("*").removeAttr('style');
+		
 		$(".notice_seaAli").children().find("i").on("click", function() {
 			console.log("1");
 			if ($(this).has(".udSel")) {

@@ -28,7 +28,7 @@
 		공지사항 수정
 	</h2>
 	<hr />
-	<form id="container">
+	<form id="container" action="" method="post">
 		<table>
 			<tr>
 				<th>작성자</th>
@@ -38,13 +38,14 @@
 			</tr>
 			<tr>
 				<th>제목</th>
-				<td colspan="3"><input type="text"
+				<td colspan="3"><input type="text" name="title"
 					value="<%=vo.get(0).getNoticeVo().getNotice_title()%>" /></td>
 			</tr>
 			<tr>
 				<th>내용</th>
+				<!-- textarea >> 아니라 texarea로 일부러 하셨음.-->
 				<td colspan="3"><textarea id="texarea" name="texarea"
-						value="<%=vo.get(0).getNoticeVo().getNotice_title()%>"></textarea>
+						value=""></textarea>
 				</td>
 			</tr>
 		</table>
@@ -59,37 +60,49 @@
 	</form>
 </body>
 <script type="text/javascript">
+
 	var oEditors = [];
+	/* document.getElementById('texarea').innerHTML= */
+		$(function() {
+			nhn.husky.EZCreator.createInIFrame({
+				oAppRef : oEditors,
+				elPlaceHolder : "texarea",
+				//SmartEditor2Skin.html 파일이 존재하는 경로
+				sSkinURI : "res/SE2/SmartEditor2Skin.html",
+				htParams : {
+					// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+					bUseToolbar : true,
+					// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+					bUseVerticalResizer : true,
+					// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+					bUseModeChanger : false,
+					fOnBeforeUnload : function() {
+	
+					}
+				},
+				fOnAppLoad : function() {
+				//textarea 내용을 에디터상에 바로 뿌려주고자 할때 사용
+				oEditors.getById["texarea"].exec("PASTE_HTML", ['<%=vo.get(0).getNoticeVo().getNotice_content()%>']);
+				},
+				fCreator : "createSEditor2"
+			});	
+	
+	});
 
-	$(function() {
-		nhn.husky.EZCreator.createInIFrame({
-			oAppRef : oEditors,
-			elPlaceHolder : "texarea",
-			//SmartEditor2Skin.html 파일이 존재하는 경로
-			sSkinURI : "res/SE2/SmartEditor2Skin.html",
-			htParams : {
-				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-				bUseToolbar : true,
-				// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-				bUseVerticalResizer : true,
-				// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-				bUseModeChanger : true,
-				fOnBeforeUnload : function() {
-
-				}
-			},
-			fOnAppLoad : function() {
-			//textarea 내용을 에디터상에 바로 뿌려주고자 할때 사용
-			oEditors.getById["texarea"].exec("PASTE_HTML", ["<%=vo.get(0).getNoticeVo().getNotice_content()%>"]);
-			},
-			fCreator : "createSEditor2"
+</script>
+<script>
+	$(document).ready(function(){
+		$("#container > div > div:nth-child(1)").on('click', function(){
+			oEditors.getById["texarea"].exec("UPDATE_CONTENTS_FIELD", []);
+			$("#container").submit();
+			
+			opener.location.reload();
+			alert('등록되었습니다.');
+		})
+		$("#container > div > div:nth-child(2)").on("click", function() {
+			window.close();
 		});
 	});
-
-	$("#container > div > div:nth-child(2)").on("click", function() {
-		window.close();
-	});
 </script>
-
 
 </html>

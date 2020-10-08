@@ -97,7 +97,6 @@
 		<result property="notice_date" column="NOTICE_DATE" />
 		<result property="notice_content" column="NOTICE_CONTENT" />
 		<result property="notice_idx" column="NOTICE_IDX" />
-		<result property="nt_row" column="NT_ROW" />
 	</resultMap>
 
 	<resultMap type="AdminVo" id="AdminOneResult">
@@ -153,7 +152,7 @@
 		R.review, U.user_name, R.review_date
 		from Review R
 		join ShopUser U 
-		on R.user_email=U.user_email WHERE u.user_name = #{pSea_txt}
+		on R.user_email=U.user_email WHERE u.user_name like '%' ||  #{pSea_txt} || '%'
 		order by R.review_idx DESC
 	</select>
 	<select id="Areview_list2" resultMap="AdminResult" parameterType="string">
@@ -161,7 +160,7 @@
 		R.review, U.user_name, R.review_date
 		from Review R 
 		join ShopUser U
-		on R.user_email=U.user_email WHERE to_char(r.review_date,'YYYY-MM-DD') = #{pSea_txt}
+		on R.user_email=U.user_email WHERE to_char(r.review_date,'YYYY-MM-DD') like '%' ||  #{pSea_txt} || '%'
 		order by R.review_idx DESC
 	</select>
 	<!-- 관리자 회원관리 -->
@@ -260,4 +259,25 @@
 		select shop_state
 		from shop where shop_state ='0'
 	</select>
+	
+	<delete id="Anotice_infoDel" parameterType="int">
+		DELETE FROM NOTICE WHERE notice_idx = #{numInt}
+	</delete>
+	
+	<update id="Anotice_modi" parameterType="Notice">
+		UPDATE notice set notice_title = #{notice_title},
+			notice_content = #{notice_content},
+			notice_date = SYSDATE
+		WHERE notice_idx = #{notice_idx}
+	</update>
+	<update id="AcomState1" parameterType="ShopVo">
+		UPDATE shop SET shop_state = 1
+		WHERE shop_id = #{shop_id}
+	</update>
+	
+	<update id="AcomState2" parameterType="ShopVo">
+		UPDATE shop SET shop_state = 2
+		WHERE shop_id = #{shop_id}
+	</update>
+	
 </mapper>

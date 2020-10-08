@@ -16,6 +16,7 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
+	<c:url var="adminNoIn" value="/admin_notice_info"></c:url>
 	<h2>
 		<div>
 			<i class="fas fa-thumbtack"></i>
@@ -56,8 +57,39 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#container > div > button:nth-child(2)").on("click", function(){
-			alert("1");
-		})
+			/* var del = "true";
+			$.ajax({
+				type: "GET",
+				url : "admin_notice_info",
+				dataType : ""
+			}); */
+			
+			var url = "${adminNoIn}";
+			url = url + "?idx="+<%=vo.get(0).getNoticeVo().getNotice_idx()%>
+			url = url + "&del=true"
+			location.href = url
+			console.log(url);
+			<%-- "admin_notice_info?idx="+
+      		<%=vo.get(0).getNoticeVo().getNotice_title()%> +
+        	  "&del=true", --%>
+			 $.ajax({
+		            type : "GET",
+		            url : "admin_notice_info",
+		            dataType : "text",
+		            error : function(){
+		            	alert("데이터가 없습니다.");
+		            	
+		            },
+		            success : function(){
+		            	opener.location.reload();
+		            	
+						/*location.replace('/views/admin/admin_notice'); */
+		            	/* window.opener.document.location.href = "admin/admin_nitice"; */
+		            	/* opener.location.reload("admin_notice"); */
+		            }
+			 }
+		    )
+		});
 		
 		$("#container > div > button:nth-child(1)").on("click", function() {
 			var url = decodeURIComponent(window.location.href);

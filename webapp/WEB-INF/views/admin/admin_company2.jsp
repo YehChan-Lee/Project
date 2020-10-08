@@ -61,86 +61,6 @@
 					<%
 						}
 					%>
-					<!-- <tr>
-						<td>123-12-12345</td>
-						<td>골목식당</td>
-						<td>testID</td>
-						<td>010-1234-1234</td>
-						<td>2020-01-01</td>
-						<td>반려</td>
-						<td><span><i class="fas fa-angle-right"></i>승인</span> <span><i
-								class="fas fa-angle-right"></i>반려</span></td>
-					</tr>
-					<tr>
-						<td>123-12-12345</td>
-						<td>골목식당</td>
-						<td>testID</td>
-						<td>010-1234-1234</td>
-						<td>2020-01-01</td>
-						<td>승인</td>
-						<td><span><i class="fas fa-angle-right"></i>승인</span> <span><i
-								class="fas fa-angle-right"></i>반려</span></td>
-					</tr>
-					<tr>
-						<td>123-12-12345</td>
-						<td>골목식당</td>
-						<td>testID</td>
-						<td>010-1234-1234</td>
-						<td>2020-01-01</td>
-						<td>반려</td>
-						<td><span><i class="fas fa-angle-right"></i>승인</span> <span><i
-								class="fas fa-angle-right"></i>반려</span></td>
-					</tr>
-					<tr>
-						<td>123-12-12345</td>
-						<td>골목식당</td>
-						<td>testID</td>
-						<td>010-1234-1234</td>
-						<td>2020-01-01</td>
-						<td>승인</td>
-						<td><span><i class="fas fa-angle-right"></i>승인</span> <span><i
-								class="fas fa-angle-right"></i>반려</span></td>
-					</tr>
-					<tr>
-						<td>123-12-12345</td>
-						<td>골목식당</td>
-						<td>testID</td>
-						<td>010-1234-1234</td>
-						<td>2020-01-01</td>
-						<td>신청중</td>
-						<td><span><i class="fas fa-angle-right"></i>승인</span> <span><i
-								class="fas fa-angle-right"></i>반려</span></td>
-					</tr>
-					<tr>
-						<td>123-12-12345</td>
-						<td>골목식당</td>
-						<td>testID</td>
-						<td>010-1234-1234</td>
-						<td>2020-01-01</td>
-						<td>신청중</td>
-						<td><span><i class="fas fa-angle-right"></i>승인</span> <span><i
-								class="fas fa-angle-right"></i>반려</span></td>
-					</tr>
-					<tr>
-						<td>123-12-12345</td>
-						<td>골목식당</td>
-						<td>testID</td>
-						<td>010-1234-1234</td>
-						<td>2020-01-01</td>
-						<td>신청중</td>
-						<td><span><i class="fas fa-angle-right"></i>승인</span> <span><i
-								class="fas fa-angle-right"></i>반려</span></td>
-					</tr>
-					<tr>
-						<td>123-12-12345</td>
-						<td>골목식당</td>
-						<td>testID</td>
-						<td>010-1234-1234</td>
-						<td>2020-01-01</td>
-						<td>신청중</td>
-						<td><span><i class="fas fa-angle-right"></i>승인</span> <span><i
-								class="fas fa-angle-right"></i>반려</span></td>
-					</tr> -->
 				</table>
 			</div>
 			<div class="paging_com2">
@@ -171,11 +91,41 @@
 		});
 		
 		$("#sec_admin_company2 > div:nth-child(1) > table > tbody > tr > td:nth-child(7) > span:nth-child(1)").on('click', function(){
-			alert("1");
+			var info = $(this).closest("tr").children("td:nth-child(1)").text();
+			
+			 $.ajax({
+		            type : "POST",
+		            url : "admin/admin_company2",
+		            dataType : "text",
+		            data: {info},
+		            error : function(){
+		            	alert("에러발생");
+		         
+		            },
+		            success : function(){
+		            	$("#cont_section").load("admin/admin_company2");
+		            	
+		            }
+			 });
 		});
 		
 		$("#sec_admin_company2 > div:nth-child(1) > table > tbody > tr > td:nth-child(7) > span:nth-child(2)").on('click', function(){
-			alert("2");
+			var info = $(this).closest("tr").children("td:nth-child(1)").text();
+			
+			 $.ajax({
+		            type : "POST",
+		            url : "admin/admin_company2",
+		            dataType : "text",
+		            data: {info},
+		            error : function(){
+		            	alert("에러발생");
+		         
+		            },
+		            success : function(){
+		            	$("#cont_section").load("admin/admin_company2");
+		            	
+		            }
+			 });
 		});
 
 		$("#sec_admin_company2 table > tbody > tr > td:nth-child(1) > input[type=checkbox]").on('click', function() {
