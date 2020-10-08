@@ -111,18 +111,7 @@
                         </a>
                     </div>
                     
-                    <div class="content">
-                        <a href="list?location=전주" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475450055c3da9ad3655e.png">
-                            <div class="shading"></div> 
-                            <div class="center">
-                                <div class="middle">
-                                    <div class="subtitle">전주</div>    
-                                    <div id = "bg"></div>                
-                                    <img src="<c:url value='${path}/res/image/seongsu.jpg'/>" alt="전주">
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+  
                     
                     <div class="content">
                         <a href="list?location=울산" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475446855c3da86dd7f0a.png">

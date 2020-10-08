@@ -213,6 +213,7 @@
 											/* (5-1) 사용자 정보 재동의를 위하여 다시 네아로 동의페이지로 이동함 */
 											naverLogin.reprompt();
 											return;
+											
 										}
 										$("#naverIdLogin").click(function () {
 											$.ajax({
@@ -225,14 +226,7 @@
 													birthday : birthday
 												},
 												success : function(data) {
-													window.location
-													.replace("http://"
-															+ window.location.hostname
-															+ ((location.port == "" || location.port == undefined) ? ""
-																	: ":"
-																			+ location.port)
-															+ "127.0.0.1:8088/BabPool/main");
-													
+												
 												},
 												error : function() {
 													alert("에러발생");
@@ -240,34 +234,21 @@
 
 											});
 										})
-
+						
+	window.location
+													.replace("http://"
+															+ window.location.hostname
+															+ ((location.port == "" || location.port == undefined) ? ""
+																	: ":"
+																			+ location.port)
+															+ "127.0.0.1:8088/BabPool/main");
+													
 										/* 인증이 완료된후 /sample/main.html 페이지로 이동하라는것이다. 본인 페이로 수정해야한다. */
 									} else {
 										console.log("callback 처리에 실패하였습니다.");
 									}
 								});
-					});
-	
-
-
-	/* var naver_id_login = new naver_id_login("9N2m3BOpk_HOvgVlJP0X",
-			"http://127.0.0.1:8088/BabPool/main"); // 역시 마찬가지로 'localhost'가 포함된 CallBack URL
-			 var naver_id_login = new naver_id_login("9N2m3BOpk_HOvgVlJP0X", "http://127.0.0.1:8088/BabPool/main"); // 역시 마찬가지로 'localhost'가 포함된 CallBack URL
-		        
-		        // 접근 토큰 값 출력
-		        alert(naver_id_login.oauthParams.access_token);
-		        
-		        // 네이버 사용자 프로필 조회
-		        naver_id_login.get_naver_userprofile("naverSignInCallback()");
-		        
-		        // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
-		        function naverSignInCallback() {
-		            alert(naver_id_login.getProfileData('email'));
-		            alert(naver_id_login.getProfileData('nickname'));
-		            alert(naver_id_login.getProfileData('age'));
-		        } */
-
-
+					});	
 </script>
 
 </html>

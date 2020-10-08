@@ -22,10 +22,10 @@
 <body>
 
 	<div class="container">
-
+<c:choose>
+	<c:when test="${!empty reservation}">
 		<table class="table table-hover">
-		<%List<ReservationVo> reservationvoArr = (List<ReservationVo>)request.getAttribute("reservation"); %>
-			<thead>
+				<thead>
 				<tr>
 					<th>예약자 이름</th>
 					<th>예약 인원</th>
@@ -34,20 +34,29 @@
 				</tr>
 			</thead>
 			<tbody>
-			<% 
-				for (int i=0; i < reservationvoArr.size(); i++) { 
-			%>
+		<c:forEach items="${reservation}" var="reservation">
 				<tr>
-					<td><%=reservationvoArr.get(i).getRes_name() %></td>
-					<td><%=reservationvoArr.get(i).getRes_customer() %></td>
-					<td><%=reservationvoArr.get(i).getRes_date() %></td>
-					<td><%=reservationvoArr.get(i).getRev_phone() %></td>
+					<td>${reservation.res_name}</td>
+					<td>${reservation.res_customer}</td>
+					<td>${reservation.res_date}</td>
+					<td>${reservation.rev_phone}</td>
 				</tr>
-				<%
-				}
-				%>
+			</c:forEach>
 			</tbody>
 		</table>
+	</c:when>
+	
+	<c:otherwise>
+		<div id="message">
+			예약자가 없습니다.
+		</div>
+		<script>
+		$(document).ready(function(){
+			$("#message").css("color", "lightgray").css("text-align", "center").css("background-color", "#fff").css("padding", "150px").css("font-size","17px").css("border-radius", "5px").css("font-family","'Noto Sans KR', sans-serif").css("font-weight", "500") ;
+		});
+			</script>
+	</c:otherwise>
+</c:choose>
 	</div>
 </body>
 </html>

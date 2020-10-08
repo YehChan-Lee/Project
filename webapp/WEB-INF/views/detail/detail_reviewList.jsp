@@ -204,11 +204,13 @@
 		$("#nav_btn").siblings().removeClass('focus');
 	
 		$('#popup_body').css('width', 404 + 'px');
-		$('#popup_body').css('height', 554 + 'px');
+		$('#popup_body').css('height', 472 + 'px');
 	
-		$("#naverIdLogin").css('top', 0);
+		
 	
-		$('.popup_close').css('top', -90 + 'px');
+		$('.popup_close').css('top', -50 + 'px');
 		$('.popup_close').css('left', 80 + '%');
+		
+		
 	}
 </script>

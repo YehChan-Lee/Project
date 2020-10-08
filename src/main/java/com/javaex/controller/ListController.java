@@ -64,11 +64,6 @@ public class ListController {
 	ShopDibsDao dibdao;
 
 	String url = "C:\\Users\\Kosmo_23\\Desktop\\닭\\Project\\webapp\\serverImg\\";
-	
-	
-
-
-	
 
 	@RequestMapping("/review_upload")
 	public void test(ModelAndView mav,MultipartHttpServletRequest req, HttpServletResponse res, HttpSession session)
@@ -240,8 +235,7 @@ public class ListController {
 		mav.setViewName("detail/detail_photo");
 		return mav;
 	}
-	
-	
+
 	@RequestMapping("/isDib")
 	public void isDib(HttpServletRequest req, HttpServletResponse res, HttpSession session) throws IOException {
 		System.out.println("/BabPool/isDib");
@@ -303,8 +297,6 @@ public class ListController {
 	@RequestMapping("/logout")
 	public void logout(HttpSession session,HttpServletResponse res) throws IOException {
 		System.out.println("/BabPool/logout");
-		session.setAttribute("sessionID", null);
-		session.setAttribute("is_owner", null);
 		session.invalidate();
 		res.getWriter().write("logout");
 	}
@@ -464,49 +456,61 @@ public class ListController {
 			}
 			path += fileName + "/";
 		}
-		
+		if (shop_alcoholArr == null) {
+			shop_alcohol = "";
+		} else {
+			for (int i = 0; i < shop_alcoholArr.length; i++) {
+				if (i == 0) {
+					shop_alcohol += comma + shop_alcoholArr[i];
+					comma = ",";
+				} else {
+					shop_alcohol += comma + shop_alcoholArr[i];
+				}
+			}
+		}
 
-		for (int i = 0; i < shop_alcoholArr.length; i++) {
-			if (i == 0) {
-				shop_alcohol += comma + shop_alcoholArr[i];
-				comma = ",";
-			} else {
-				shop_alcohol += comma + shop_alcoholArr[i];
+		if (shop_tbArr == null) {
+			shop_tb = "";
+		} else {
+			for (int i = 0; i < shop_tbArr.length; i++) {
+				if (i == 0) {
+					comma = "";
+					shop_tb += comma + shop_tbArr[i];
+					comma = ",";
+				} else {
+					shop_tb += comma + shop_tbArr[i];
+				}
 			}
 		}
-		for (int i = 0; i < shop_tbArr.length; i++) {
-			if (i == 0) {
-				comma = "";
-				shop_tb += comma + shop_tbArr[i];
-				comma = ",";
-			} else {
-				shop_tb += comma + shop_tbArr[i];
+
+		if (shop_addinfoArr == null) {
+			shop_addinfo = "";
+		} else {
+			for (int i = 0; i < shop_addinfoArr.length; i++) {
+				if (i == 0) {
+					comma = "";
+					shop_addinfo += comma + shop_addinfoArr[i];
+					comma = ",";
+				} else {
+					shop_addinfo += comma + shop_addinfoArr[i];
+				}
 			}
 		}
-		for (int i = 0; i < shop_addinfoArr.length; i++) {
-			if (i == 0) {
-				comma = "";
-				shop_addinfo += comma + shop_addinfoArr[i];
-				comma = ",";
-			} else {
-				shop_addinfo += comma + shop_addinfoArr[i];
-			}
-		}
-		
-		
-		
-		if (shop_id.equals("")) {
+
+		if (shop_id.equals(null)) {
 			response.getWriter().write("shopid_null");
-		} else if (shop_addr.equals("")) {
+		} else if (shop_addr.equals(null)) {
 			response.getWriter().write("shopaddr_null");
-		} else if (shop_location.equals("")) {
+		} else if (shop_location.equals(null)) {
 			response.getWriter().write("shoplocation_null");
-		} else if (food_type.equals("")) {
+		} else if (food_type.equals(null)) {
 			response.getWriter().write("foodtype_null");
 		} else {
+			System.out.println("budget : " + budget);
 			response.getWriter().write("update");
-			ShopVo s = new ShopVo(shop_title,shop_id, shop_addr,  shop_location, food_type, shop_tip, budget, shop_comment,
-					shop_phone, shop_time, shop_addinfo, shop_tb, shop_alcohol, shop_car, shop_close, path,hash_tag, path2);
+			ShopVo s = new ShopVo(shop_title, shop_id, shop_addr, shop_location, food_type, shop_tip, budget,
+					shop_comment, shop_phone, shop_time, shop_addinfo, shop_tb, shop_alcohol, shop_car, shop_close,
+					path, hash_tag, path2);
 			dao.updateShop(s);
 		}
 
@@ -601,31 +605,36 @@ public class ListController {
 	}
 
 	@RequestMapping("/reservation")
-	public void Reservation(HttpServletRequest req,
-			HttpSession session,HttpServletResponse response) throws ParseException, IOException {
-		String user_email = (String) session.getAttribute("sessionID");
-		String shop_title = req.getParameter("shop_title");
-		int res_customer = Integer.parseInt(req.getParameter("res_customer"));
-		String shop_id = req.getParameter("shop_id");
-		String rev_phone = req.getParameter("rev_phone");
-		java.util.Date date = new java.util.Date();
-		java.sql.Date res_date2 = new java.sql.Date(date.getTime());
-		String res_name = req.getParameter("res_name");
+	public void Reservation(HttpServletRequest req, HttpSession session, HttpServletResponse response)
+			throws ParseException, IOException {
 		String state = "";
-		ReservationVo resvo = new ReservationVo(user_email, shop_title, res_date2, res_customer, shop_id, null, null,
-				rev_phone, res_name);
-		
-		
-		if (rev_phone.equals("") || res_name.equals("")) {
+		try {
+			String user_email = (String) session.getAttribute("sessionID");
+			String shop_title = req.getParameter("shop_title");
+			int res_customer = Integer.parseInt(req.getParameter("res_customer"));
+			String shop_id = req.getParameter("shop_id");
+			String rev_phone = req.getParameter("rev_phone");
+			String res_date = req.getParameter("res_date");
+			String res_name = req.getParameter("res_name");
+
+			ReservationVo resvo = new ReservationVo(user_email, shop_title, res_customer, shop_id, null, null,
+					rev_phone, res_name);
+
+			if (rev_phone == null || res_name.equals("")) {
+				state = "fail";
+				response.getWriter().write(state);
+			} else {
+				state = "success";
+				response.getWriter().write(state);
+				resDao.insert_reservation(resvo, res_date);
+				dao.reserveCntUp(dao.getReservCnt(shop_id), shop_id);
+			}
+
+		} catch (Exception e) {
 			state = "fail";
-			response.getWriter().write(state);
-		} else {
-			state = "success";
-			response.getWriter().write(state);
-			resDao.insert_reservation(resvo);
+
 		}
 
-		dao.reserveCntUp(dao.getReservCnt(shop_id), shop_id);
 	}
 
 	@RequestMapping("/alert")
@@ -650,11 +659,7 @@ public class ListController {
 	public ModelAndView reservation2(ModelAndView mav, HttpServletRequest req,HttpSession session) {
 		System.out.println("/reservation2");
 		String a = (String)session.getAttribute("shop_id");
-		mav.addObject("reservation", resDao.reservationOne(a));
-		List <ReservationVo> aa = resDao.reservationOne(a);
-		for(int i=0; i<aa.size(); i++) {
-			System.out.println(aa.get(i).getUser_email());
-		}
+		mav.addObject("reservation", resDao.reservationOne(a));		
 		mav.setViewName("buisnessmypage/buisness_mypage_reservation2");
 		return mav;
 	}
