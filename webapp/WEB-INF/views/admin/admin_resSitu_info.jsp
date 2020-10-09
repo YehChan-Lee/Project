@@ -31,16 +31,16 @@
 		<table>
 			<tr>
 				<th>예약번호</th>
-				<td><%=aresSitu_info.get(0).getReserveOrder().getReserve_idx ()%></td>
+				<td><%=aresSitu_info.get(0).getReserveOrder().getReserve_idx()%></td>
 				<th>예약자</th>
-				<td><%=aresSitu_info.get(0).getReservation().getRes_name ()%></td>
+				<td><%=aresSitu_info.get(0).getReservation().getRes_name()%></td>
 				<th>테이블</th>
 				<td><%=aresSitu_info.get(0).getReserveOrder().getTable_number()%></td>
 			</tr>
 		</table>
 		<table>
 			<tr>
-				<th colspan="4"><%=aresSitu_info.get(0).getReservation().getShop_title() %></th>
+				<th colspan="4"><%=aresSitu_info.get(0).getReservation().getShop_title()%></th>
 			</tr>
 			<c:forEach items="${AresSitu_info}" var="Ainfo" begin="0" step="1">
 				<c:set var="i" value="${i + 1}" />

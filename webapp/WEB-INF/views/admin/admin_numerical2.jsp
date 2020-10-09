@@ -49,34 +49,36 @@
 	</div>
 </body>
 <script>
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart);
+	google.charts.load('current', {
+		'packages' : ['corechart'
+		]
+	});
+	google.charts.setOnLoadCallback(drawChart);
 
-function drawChart() {
+	function drawChart() {
 
-  var data = google.visualization.arrayToDataTable([
-    ['', ''],
-    ['월요일', 11],
-    ['화요일', 4],
-    ['수요일', 7],
-    ['목요일', 4],
-    ['금요일', 5],
-    ['토요일', 12],
-    ['일요일', 16]
-  ]);
+		var data = google.visualization.arrayToDataTable([['', ''
+		], ['월요일', 11
+		], ['화요일', 4
+		], ['수요일', 7
+		], ['목요일', 4
+		], ['금요일', 5
+		], ['토요일', 12
+		], ['일요일', 16
+		]
+		]);
 
-  var options = {
-    title: ''
-  };
+		var options = {
+			title : ''
+		};
 
-  var chart = new google.visualization.PieChart(document.getElementById('num2_chart'));
+		var chart = new google.visualization.PieChart(document.getElementById('num2_chart'));
 
-  chart.draw(data, options);
-}
-    
+		chart.draw(data, options);
+	}
 </script>
 <script>
-	$(document).ready(function(){
+	$(document).ready(function() {
 		$("#sec_admin_numerical2 > div:nth-child(1) > div:nth-child(1)").on('click', function() {
 			$("#cont_section").load("admin/admin_numerical1");
 			// 일별 통계
@@ -92,23 +94,23 @@ function drawChart() {
 			// 월별 통계
 			console.log("월별 통계");
 		});
-		
-		$("#sec_admin_numerical2 > div:nth-child(1) > div:nth-child(1)").hover(function(){
+
+		$("#sec_admin_numerical2 > div:nth-child(1) > div:nth-child(1)").hover(function() {
 			$(this).css({
-				background:"#c8c8c8"
+				background : "#c8c8c8"
 			});
-		}, function(){
+		}, function() {
 			$(this).css({
-				background:"#e5e5e5"
+				background : "#e5e5e5"
 			})
 		});
-		$("#sec_admin_numerical2 > div:nth-child(1) > div:nth-child(3)").hover(function(){
+		$("#sec_admin_numerical2 > div:nth-child(1) > div:nth-child(3)").hover(function() {
 			$(this).css({
-				background:"#c8c8c8"
+				background : "#c8c8c8"
 			});
-		}, function(){
+		}, function() {
 			$(this).css({
-				background:"#e5e5e5"
+				background : "#e5e5e5"
 			})
 		});
 	});

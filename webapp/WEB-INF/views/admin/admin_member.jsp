@@ -40,8 +40,9 @@
 						<input type="radio" name="Business_sea" id="Business_x"
 						value="사업자미가입" /><label for="Business_x">미가입</label></td>
 					<th>가입일</th>
-					<td><input type="text" id="datepicker1" autocomplete="off"/> <span>~</span> <input
-						type="text" id="datepicker2" autocomplete="off"/></td>
+					<td><input type="text" id="datepicker1" autocomplete="off" />
+						<span>~</span> <input type="text" id="datepicker2"
+						autocomplete="off" /></td>
 				</tr>
 			</table>
 			<div>
@@ -72,25 +73,24 @@
 					<th>포인트</th>
 				</tr>
 				<%
-				List<AdminVo> Amember_list = (List<AdminVo>)request.getAttribute("Amember_list");
-				for(int i = 0; i< Amember_list.size(); i++){
-					AdminVo vo = Amember_list.get(i);
-					
+					List<AdminVo> Amember_list = (List<AdminVo>) request.getAttribute("Amember_list");
+					for (int i = 0; i < Amember_list.size(); i++) {
+						AdminVo vo = Amember_list.get(i);
 				%>
 				<tr>
 					<td><input type="checkbox" name="chk_sib" /></td>
-					<td><%=vo.getShopUser().getUser_idx() %></td>
-					<td><%=vo.getShopUser().getUser_name() %></td>
-					<td><%=vo.getShopUser().getUser_gender() %></td>
-					<td><%=vo.getShopUser().getUser_birth() %></td>
-					<td><%=vo.getShopUser().getUser_phone() %></td>
-					<td><%=vo.getShopUser().getUser_email() %></td>
-					<td><%=vo.getShopUser().getSign_date() %></td>
-					<td><%=vo.getShopUser().getIs_owner() %></td>
-					<td><%=vo.getShopUser().getPoint() %></td>
+					<td><%=vo.getShopUser().getUser_idx()%></td>
+					<td><%=vo.getShopUser().getUser_name()%></td>
+					<td><%=vo.getShopUser().getUser_gender()%></td>
+					<td><%=vo.getShopUser().getUser_birth()%></td>
+					<td><%=vo.getShopUser().getUser_phone()%></td>
+					<td><%=vo.getShopUser().getUser_email()%></td>
+					<td><%=vo.getShopUser().getSign_date()%></td>
+					<td><%=vo.getShopUser().getIs_owner()%></td>
+					<td><%=vo.getShopUser().getPoint()%></td>
 				</tr>
 				<%
-				}
+					}
 				%>
 				<!-- <tr>
 					<td><input type="checkbox" name="chk_sib" /></td>
@@ -219,7 +219,7 @@
 </body>
 <script>
 	$(document).ready(function() {
-		
+
 		$("#datepicker1").datepicker({
 			showOn : "both", // 버튼과 텍스트 필드 모두 캘린더를 보여준다.
 			/* buttonImage: "res/image/admin/calendar.png", // 버튼 이미지 */
@@ -237,21 +237,24 @@
 			/* yearRange: 'c-100:c+10', // 년도 선택 셀렉트박스를 현재 년도에서 이전, 이후로 얼마의 범위를 표시할것인가. */
 			yearRange : 'c-30:c+0', // 년도 선택 셀렉트박스를 현재 년도에서 이전, 이후로 얼마의 범위를 표시할것인가.
 			showButtonPanel : true, // 캘린더 하단에 버튼 패널을 표시한다.
-			gotoCurrent: true,
+			gotoCurrent : true,
 			currentText : '오늘 날짜', // 오늘 날짜로 이동하는 버튼 패널
 			closeText : '닫기', // 닫기 버튼 패널
 			dateFormat : "yy-mm-dd", // 텍스트 필드에 입력되는 날짜 형식.
 			/* showAnim: "slide", //애니메이션을 적용한다. */
 			showMonthAfterYear : true, // 월, 년순의 셀렉트 박스를 년,월 순으로 바꿔준다. 
-			dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-			dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-			dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], // 요일의 한글 형식.
+			dayNames : ['일', '월', '화', '수', '목', '금', '토'
+			],
+			dayNamesShort : ['일', '월', '화', '수', '목', '금', '토'
+			],
+			dayNamesMin : ['일', '월', '화', '수', '목', '금', '토'
+			], // 요일의 한글 형식.
 			monthNamesShort : ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'
 			]
 		// 월의 한글 형식.
 
 		});
-		
+
 		/* $(function() {
 			  var enableDays = ['2020-09-28', '2020-09-27', '2020-08-27'];
 			  console.log(enableDays);
@@ -267,7 +270,7 @@
 			 beforeShowDay: enableAllTheseDays
 			  } 
 		});*/
-		
+
 		$("#datepicker2").datepicker({
 			showOn : "both", // 버튼과 텍스트 필드 모두 캘린더를 보여준다.
 			/* buttonImage: "res/image/admin/calendar.png", // 버튼 이미지 */
@@ -285,15 +288,18 @@
 			/* yearRange: 'c-100:c+10', // 년도 선택 셀렉트박스를 현재 년도에서 이전, 이후로 얼마의 범위를 표시할것인가. */
 			yearRange : 'c-30:c+0', // 년도 선택 셀렉트박스를 현재 년도에서 이전, 이후로 얼마의 범위를 표시할것인가.
 			showButtonPanel : true, // 캘린더 하단에 버튼 패널을 표시한다.
-			gotoCurrent: true,
+			gotoCurrent : true,
 			currentText : '오늘 날짜', // 오늘 날짜로 이동하는 버튼 패널
 			closeText : '닫기', // 닫기 버튼 패널
 			dateFormat : "yy-mm-dd", // 텍스트 필드에 입력되는 날짜 형식.
 			/* showAnim: "slide", //애니메이션을 적용한다. */
 			showMonthAfterYear : true, // 월, 년순의 셀렉트 박스를 년,월 순으로 바꿔준다. 
-			dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-			dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-			dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], // 요일의 한글 형식.
+			dayNames : ['일', '월', '화', '수', '목', '금', '토'
+			],
+			dayNamesShort : ['일', '월', '화', '수', '목', '금', '토'
+			],
+			dayNamesMin : ['일', '월', '화', '수', '목', '금', '토'
+			], // 요일의 한글 형식.
 			monthNamesShort : ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'
 			],
 		// 월의 한글 형식.
@@ -303,7 +309,7 @@
 		/* $.datepicker._gotoToday = function(d) { 
 		    $(d).datepicker('setDate', new Date()).datepicker('hide').blur(); 
 		}; */
-		
+
 		// 초기화/검색 버튼
 		$(".mem_btnEraser").on('click', function() {
 			$("#mem_search option:eq(0)").prop("selected", true);
