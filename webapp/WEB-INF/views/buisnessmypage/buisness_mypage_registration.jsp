@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 </head>
 <body>
 
@@ -14,8 +13,6 @@
 		
 	</div>
 </div>
-
-<script src="http://code.jquery.com/jquery.js"></script>
 <script>
 $(document).ready(function(){
 	mypage_change();

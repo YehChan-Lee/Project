@@ -181,9 +181,6 @@ width: 100%;
 }
 /* setting */
 #setting.body>table{
-	margin-top:25px;
-}
-#setting.body>table{
 	width: 100%;
 	background-color: #fff;
 }

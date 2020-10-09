@@ -8,20 +8,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet"
-	href="<c:url value="${path}/res/css/bootstrap.min.css"/>">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="http://malsup.github.com/jquery.form.js"></script>
-<link rel="stylesheet"
-	href="<c:url value="${path}/res/css/buisness_mypage_registration2.css?ver=1"/>" />
-
-
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script type="text/javascript" src="http://malsup.github.com/jquery.form.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="<c:url value="${path}/res/css/buisness_mypage_registration2.css?ver=1"/>" />
+<link rel="stylesheet"	href="<c:url value="${path}/res/css/bootstrap.min.css"/>">
 </head>
 <body>
 	<%
@@ -408,46 +399,6 @@ $(document).on("click",".food_add_submit" ,function () {
 	});
 	
 })	
-
-/* function setThumbnail(event) { 
-	for (var image of event.target.files) { 
-		var reader = new FileReader(); 
-		reader.onload = function(event) { 
-			var img = document.createElement("img"); 
-			img.setAttribute("src", event.target.result); 
-			img.width ="400";
-			img.height ="200";
-			
-			document.querySelector("div#image_container").appendChild(img); 
-		}; 
-			console.log(image); 
-			reader.readAsDataURL(image); 
-	}
-	
-} 
-function setThumbnail2(event) { 
-	for (var image of event.target.files) { 
-		var reader = new FileReader(); 
-		reader.onload = function(event) { 
-			var img = document.createElement("img"); 
-			img.setAttribute("src", event.target.result); 
-			img.width ="200";
-			img.height ="200";
-			document.querySelector("div#subimage_container").appendChild(img); 
-			}; 
-			console.log(image); 
-			reader.readAsDataURL(image); 
-		}
-				
-	} 	 */		
-			
-
-
-
-
 	</script>
-
-
-
 </body>
 </html>

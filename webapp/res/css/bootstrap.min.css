@@ -45,6 +45,9 @@ html {
 	-webkit-text-size-adjust: 100%;
 	-webkit-tap-highlight-color: transparent
 }
+caption{
+	display: table-caption;
+}
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav,
 	section {
@@ -62,7 +65,7 @@ body {
 	color: #212529;
 	text-align: left;
 	background-color: #f3f3f3
-}
+} 
 
 [tabindex="-1"]:focus:not (:focus-visible ){
 	outline: 0 !important
@@ -184,7 +187,6 @@ figure {
 }
 
 img {
-	vertical-align: middle;
 	border-style: none
 }
 
@@ -196,15 +198,6 @@ svg {
 table {
 	border-collapse: collapse
 }
-
-caption {
-	padding-top: .75rem;
-	padding-bottom: .75rem;
-	color: #6c757d;
-	text-align: left;
-	caption-side: bottom
-}
-
 th {
 	text-align: inherit
 }

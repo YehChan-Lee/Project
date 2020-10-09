@@ -8,10 +8,8 @@
 <meta charset="UTF-8">
 <title>사업자 마이 페이지</title>
 
-<link rel="stylesheet" href="<c:url value="${path}/res/css/buisnessmypage.css?ver=1"/>"/>
+<link rel="stylesheet" href="<c:url value="${path}/res/css/buisnessmypage.css"/>"/>
 <link rel="stylesheet" href="<c:url value="${path}/res/css/jquery-ui.css"/>"/>
- 
-
 </head>
 <body>
 <%@include file="../top_bar.jsp" %>
