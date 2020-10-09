@@ -61,6 +61,19 @@ public class ShopVo {
 		this.shop_photo = shop_photo;
 		this.shop_review = shop_review;
 	}
+	public ShopVo(String shop_id, String user_email, int shop_idx, String shop_title, String shop_addr,
+			String shop_location, String food_type, String shop_time, String shop_state) {
+		this.shop_id = shop_id;
+		this.user_email = user_email;
+		this.shop_idx = shop_idx;
+		this.shop_title = shop_title;
+		this.shop_addr = shop_addr;
+		this.shop_location = shop_location;
+		this.food_type = food_type;
+		this.shop_time = shop_time;
+		this.shop_state = shop_state;
+	}
+
 	public String getShop_date() {
 		return shop_date;
 	}
