@@ -9,6 +9,7 @@
 	src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
+	
 	<div id="sec_admin_numerical3">
 		<div>
 			<div>일별</div>
@@ -18,13 +19,14 @@
 		<div class="numerical3_cont">
 			<h4>
 				<i class="fas fa-chart-pie"></i>
-				<p>2020년 9월 월별 접속자 통계</p>
+				<p>2020년 월별 접속자 통계</p>
 			</h4>
 		</div>
 		<div class="numer3_sear">
 			<select name="numer3_y" id="numer3_y">
-				<option>2020년</option>
-			</select> 
+				<option value="2020" selected="selected">2020년</option>
+			</select>
+			
 			<button>
 				<i class="fas fa-search"></i>검색
 			</button>
@@ -70,6 +72,19 @@ function drawChart() {
 </script>
 <script>
 	$(document).ready(function(){
+		
+		$("div.numer3_sear > button").on('click', function(){
+			/* if ($(".paging_search").find("input[name='pSea_txt']").val() == '') {
+				alert("키워드를 입력하세요");
+				return false;
+			} */
+			var url = "${admin_numerical3}";
+			url = url + "?numer3_y=" + $('.numer3_y').val();
+			location.href = url;
+			console.log(url);
+			alert("!!1");
+		});
+		
 		$("#sec_admin_numerical3 > div:nth-child(1) > div:nth-child(1)").on('click', function() {
 			$("#cont_section").load("admin/admin_numerical1");
 			// 일별 통계

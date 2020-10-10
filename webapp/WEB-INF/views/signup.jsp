@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원가입</title>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script type="text/JavaScript"
 	src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -113,7 +113,17 @@
 			</div>
 			<input type="text" class="buisnessmanstoreaddress2"
 				name="buisness_address_etc" id="buisness_address_etc">
-
+<span class="shop_location_span">가게 지역</span> 
+			<select class="shop_location" name="shop_location">
+			<option class="buisness_option" value="서울/수도권">서울/수도권
+			<option value="부산">부산
+			<option value="제주">제주
+			<option value="대구">대구
+			<option value="대전/세종">대전/세종
+			<option value="광주">광주
+			<option value="전주">전주
+			<option value="울산">울산
+		</select>
 			<h4 class="foodkindsh4">음식종류</h4>
 			<select class="foodkindsselect" name="buisness_food_type"
 				id="buisness_food_type">
@@ -162,10 +172,12 @@
              		alert('공백값이 존재 할 수 없습니다');   	
             					  }
              		 else{
+             			 alert("회원가입 성공");
             		 document.getElementById('form').submit();
             		} 
            	 }
            	 else{
+           		alert("회원가입 성공");
            		document.getElementById('form').submit();
            	 }
             		 

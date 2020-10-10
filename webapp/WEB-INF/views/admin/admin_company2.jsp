@@ -44,10 +44,9 @@
 						<th>결제</th>
 					</tr>
 					<%
-						List<AdminVo> Acompany2_list = (List<AdminVo>)request.getAttribute("Acompany2_list");
-						for(int i = 0; i< Acompany2_list.size(); i++){
+						List<AdminVo> Acompany2_list = (List<AdminVo>) request.getAttribute("Acompany2_list");
+						for (int i = 0; i < Acompany2_list.size(); i++) {
 							AdminVo vo = Acompany2_list.get(i);
-					
 					%>
 					<tr>
 						<td><%=vo.getShopVo().getShop_id()%></td>
@@ -62,86 +61,6 @@
 					<%
 						}
 					%>
-					<!-- <tr>
-						<td>123-12-12345</td>
-						<td>골목식당</td>
-						<td>testID</td>
-						<td>010-1234-1234</td>
-						<td>2020-01-01</td>
-						<td>반려</td>
-						<td><span><i class="fas fa-angle-right"></i>승인</span> <span><i
-								class="fas fa-angle-right"></i>반려</span></td>
-					</tr>
-					<tr>
-						<td>123-12-12345</td>
-						<td>골목식당</td>
-						<td>testID</td>
-						<td>010-1234-1234</td>
-						<td>2020-01-01</td>
-						<td>승인</td>
-						<td><span><i class="fas fa-angle-right"></i>승인</span> <span><i
-								class="fas fa-angle-right"></i>반려</span></td>
-					</tr>
-					<tr>
-						<td>123-12-12345</td>
-						<td>골목식당</td>
-						<td>testID</td>
-						<td>010-1234-1234</td>
-						<td>2020-01-01</td>
-						<td>반려</td>
-						<td><span><i class="fas fa-angle-right"></i>승인</span> <span><i
-								class="fas fa-angle-right"></i>반려</span></td>
-					</tr>
-					<tr>
-						<td>123-12-12345</td>
-						<td>골목식당</td>
-						<td>testID</td>
-						<td>010-1234-1234</td>
-						<td>2020-01-01</td>
-						<td>승인</td>
-						<td><span><i class="fas fa-angle-right"></i>승인</span> <span><i
-								class="fas fa-angle-right"></i>반려</span></td>
-					</tr>
-					<tr>
-						<td>123-12-12345</td>
-						<td>골목식당</td>
-						<td>testID</td>
-						<td>010-1234-1234</td>
-						<td>2020-01-01</td>
-						<td>신청중</td>
-						<td><span><i class="fas fa-angle-right"></i>승인</span> <span><i
-								class="fas fa-angle-right"></i>반려</span></td>
-					</tr>
-					<tr>
-						<td>123-12-12345</td>
-						<td>골목식당</td>
-						<td>testID</td>
-						<td>010-1234-1234</td>
-						<td>2020-01-01</td>
-						<td>신청중</td>
-						<td><span><i class="fas fa-angle-right"></i>승인</span> <span><i
-								class="fas fa-angle-right"></i>반려</span></td>
-					</tr>
-					<tr>
-						<td>123-12-12345</td>
-						<td>골목식당</td>
-						<td>testID</td>
-						<td>010-1234-1234</td>
-						<td>2020-01-01</td>
-						<td>신청중</td>
-						<td><span><i class="fas fa-angle-right"></i>승인</span> <span><i
-								class="fas fa-angle-right"></i>반려</span></td>
-					</tr>
-					<tr>
-						<td>123-12-12345</td>
-						<td>골목식당</td>
-						<td>testID</td>
-						<td>010-1234-1234</td>
-						<td>2020-01-01</td>
-						<td>신청중</td>
-						<td><span><i class="fas fa-angle-right"></i>승인</span> <span><i
-								class="fas fa-angle-right"></i>반려</span></td>
-					</tr> -->
 				</table>
 			</div>
 			<div class="paging_com2">
@@ -169,6 +88,44 @@
 				//취소
 				return;
 			}
+		});
+		
+		$("#sec_admin_company2 > div:nth-child(1) > table > tbody > tr > td:nth-child(7) > span:nth-child(1)").on('click', function(){
+			var info1 = $(this).closest("tr").children("td:nth-child(1)").text();
+			
+			 $.ajax({
+		            type : "POST",
+		            url : "admin/admin_company2",
+		            dataType : "text",
+		            data: {info1},
+		            error : function(){
+		            	alert("에러발생");
+		         
+		            },
+		            success : function(){
+		            	$("#cont_section").load("admin/admin_company2");
+		            	
+		            }
+			 });
+		});
+		
+		$("#sec_admin_company2 > div:nth-child(1) > table > tbody > tr > td:nth-child(7) > span:nth-child(2)").on('click', function(){
+			var info2 = $(this).closest("tr").children("td:nth-child(1)").text();
+			
+			 $.ajax({
+		            type : "POST",
+		            url : "admin/admin_company2",
+		            dataType : "text",
+		            data: {info2},
+		            error : function(){
+		            	alert("에러발생");
+		         
+		            },
+		            success : function(){
+		            	$("#cont_section").load("admin/admin_company2");
+		            	
+		            }
+			 });
 		});
 
 		$("#sec_admin_company2 table > tbody > tr > td:nth-child(1) > input[type=checkbox]").on('click', function() {
@@ -202,7 +159,7 @@
 		// 텍스트에 따라 색 변경하기 (승인/반려/신청중)
 
 		$("#sec_admin_company2 > div:nth-child(1) > table > tbody > tr > td:nth-child(6)").each(function(i, e) {
-			console.log($(this).text());
+			
 			if ($(this).text() == "승인") {
 				$(this).css({
 					color : "#008000"

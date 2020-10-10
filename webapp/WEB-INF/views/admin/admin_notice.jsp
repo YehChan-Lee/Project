@@ -2,7 +2,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,10 +73,9 @@
 					href="#" class="num">3</a> <a href="#" class="bt"><i
 					class="fas fa-angle-right"></i></a> <a href="#" class="bt"><i
 					class="fas fa-angle-double-right"></i></a>
-				<div>
-				</div>
+				<div></div>
 			</div>
-			<div class="paging_search" >
+			<div class="paging_search">
 				<select name="pSea" id="pSea">
 					<option value="번호">NO.</option>
 					<option value="제목">제목</option>
@@ -99,6 +98,10 @@
 		var up3 = $("div.notice_seaAli3 > i.fas.fa-chevron-up"); // 작성자 업
 		var down3 = $("div.notice_seaAli3 > i.fas.fa-chevron-down"); // 작성자 다운
 
+	
+		// 공지사항 내용 디폴트
+		$('#sec_admin_notice > div > table > tbody > tr > td:nth-child(3)').find("*").removeAttr('style');
+		
 		$(".notice_seaAli").children().find("i").on("click", function() {
 			console.log("1");
 			if ($(this).has(".udSel")) {

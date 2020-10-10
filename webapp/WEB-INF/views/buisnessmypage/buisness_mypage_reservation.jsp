@@ -14,8 +14,6 @@
 		
 	</div>
 </div>
-
-<script src="http://code.jquery.com/jquery.js"></script>
 <script>
 $(document).ready(function(){
 	mypage_change();

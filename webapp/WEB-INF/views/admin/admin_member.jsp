@@ -40,8 +40,9 @@
 						<input type="radio" name="Business_sea" id="Business_x"
 						value="사업자미가입" /><label for="Business_x">미가입</label></td>
 					<th>가입일</th>
-					<td><input type="text" id="datepicker1" autocomplete="off"/> <span>~</span> <input
-						type="text" id="datepicker2" autocomplete="off"/></td>
+					<td><input type="text" id="datepicker1" autocomplete="off" />
+						<span>~</span> <input type="text" id="datepicker2"
+						autocomplete="off" /></td>
 				</tr>
 			</table>
 			<div>
@@ -72,27 +73,26 @@
 					<th>포인트</th>
 				</tr>
 				<%
-				List<AdminVo> Amember_list = (List<AdminVo>)request.getAttribute("Amember_list");
-				for(int i = 0; i< Amember_list.size(); i++){
-					AdminVo vo = Amember_list.get(i);
-					
+					List<AdminVo> Amember_list = (List<AdminVo>) request.getAttribute("Amember_list");
+					for (int i = 0; i < Amember_list.size(); i++) {
+						AdminVo vo = Amember_list.get(i);
 				%>
 				<tr>
 					<td><input type="checkbox" name="chk_sib" /></td>
-					<td><%=vo.getShopUser().getUser_idx() %></td>
-					<td><%=vo.getShopUser().getUser_name() %></td>
-					<td><%=vo.getShopUser().getUser_gender() %></td>
-					<td><%=vo.getShopUser().getUser_birth() %></td>
-					<td><%=vo.getShopUser().getUser_phone() %></td>
-					<td><%=vo.getShopUser().getUser_email() %></td>
-					<td><%=vo.getShopUser().getSign_date() %></td>
-					<td><%=vo.getShopUser().getIs_owner() %></td>
-					<td><%=vo.getShopUser().getPoint() %></td>
+					<td><%=vo.getShopUser().getUser_idx()%></td>
+					<td><%=vo.getShopUser().getUser_name()%></td>
+					<td><%=vo.getShopUser().getUser_gender()%></td>
+					<td><%=vo.getShopUser().getUser_birth()%></td>
+					<td><%=vo.getShopUser().getUser_phone()%></td>
+					<td><%=vo.getShopUser().getUser_email()%></td>
+					<td><%=vo.getShopUser().getSign_date()%></td>
+					<td><%=vo.getShopUser().getIs_owner()%></td>
+					<td><%=vo.getShopUser().getPoint()%></td>
 				</tr>
 				<%
-				}
+					}
 				%>
-			<!-- 	<tr>
+				<!-- <tr>
 					<td><input type="checkbox" name="chk_sib" /></td>
 					<td>2</td>
 					<td>테스트</td>
@@ -219,6 +219,8 @@
 </body>
 <script>
 	$(document).ready(function() {
+
+
 		$("#datepicker1").datepicker({
 			showOn : "both", // 버튼과 텍스트 필드 모두 캘린더를 보여준다.
 			/* buttonImage: "res/image/admin/calendar.png", // 버튼 이미지 */
@@ -238,6 +240,9 @@
 			showButtonPanel : true, // 캘린더 하단에 버튼 패널을 표시한다. 
 			currentText : '오늘날짜', // 오늘 날짜로 이동하는 버튼 패널 
 			
+			showButtonPanel : true, // 캘린더 하단에 버튼 패널을 표시한다.
+			gotoCurrent : true,
+			currentText : '오늘 날짜', // 오늘 날짜로 이동하는 버튼 패널
 			closeText : '닫기', // 닫기 버튼 패널
 			dateFormat : "yy-mm-dd", // 텍스트 필드에 입력되는 날짜 형식.
 			/* showAnim: "slide", //애니메이션을 적용한다. */
