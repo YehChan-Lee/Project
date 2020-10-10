@@ -1,10 +1,10 @@
 .registration_form {
-	    display: inline-block;
+    display: inline-block;
     position: relative;
     width: 808px;
     height: 2800px;
     margin: 0;
-    left: -14px;
+    left: -19px;
 }
 
 .shop_registration {
@@ -127,12 +127,13 @@
 	clear: both;
 	position: relative;
 	float: left;
-	width: 460px;
-	height: 30px;
+	width: 466px;
+	height: 34px;
 	border-radius: 10px;
 	border: 1px solid #BCBCBC;
 	top: 195px;
 	left: 172px;
+	font-size: 13px;
 }
 
 .budget_span {
@@ -411,76 +412,76 @@
 }
 
 .shop_addinfo_label1 {
-	    position: relative;
+    position: relative;
     top: 1428px;
-    left: 137px;
+    left: 136px;
 }
 
 .shop_addinfo_label2 {
-
-	    position: relative;
+     position: relative;
     top: 1404px;
-    left: 325px;
+    left: 414px;
 }
 
 .shop_addinfo_label3 {
-	position: relative;
-    top: 1411px;
-    left: 82px;
+position: relative;
+    top: 1436px;
+    left: 56px;
 }
 
 .shop_addinfo_label4 {
-	position: relative;
-    top: 1388px;
-    left: 370px;
+       position: relative;
+    top: 1413px;
+    left: 393px;
 }
 
 .shop_addinfo_label5 {
-    position: relative;
-    top: 1395px;
-    left: 90px;
+      position: relative;
+    top: 1419px;
+    left: 175px;
 }
 
 .shop_addinfo_label6 {
-position: relative;
-    top: 985px;
-    left: 359px;
+      position: relative;
+    top: 1419px;
+    left: 293px;
 }
 
 .shop_addinfo_label7 {
-    position: relative;
-    top: 993px;
-    left: 114px;
+      position: relative;
+    top: 1427px;
+    left: 93px;
 }
 
 .shop_addinfo_label8 {
-        position: relative;
-    top: 968px;
-    left: 387px;
+    position: relative;
+    top: 1017px;
+    left: 388px;
 }
 
 .shop_addinfo_label9 {
-	position: relative;
-    top: 975px;
-    left: 99px;
+        position: relative;
+    top: 1023px;
+    left: 121px;
 }
 
 .shop_addinfo_label10 {
-	position: relative;
-    top: 951px;
-    left: 381px;
+	     position: relative;
+    top: 1000px;
+    left: 404px;
 }
 
 .shop_addinfo_label11 {
-       position: relative;
-    top: 959px;
-    left: 112px;
+    position: relative;
+    top: 1007px;
+    left: 91px;
 }
 
 .shop_addinfo_label12 {
-    position: relative;
-    top: 934px;
-    left: 367px;
+     position: relative;
+    top: 983px;
+    left: 353px;
+
 }
 
 .shop_addinfo2 {
@@ -562,7 +563,7 @@ clear: both;
 .shop_tb_label1 {
        position: relative;
     top: 1244px;
-    left: -273px;
+    left: -282px;
 }
 
 .shop_tb_label2 {
@@ -579,9 +580,9 @@ clear: both;
 }
 
 .shop_tb_label4 {
-       position: relative;
+     position: relative;
     top: 1244px;
-    left: -168px;
+    left: -158px;
 }
 
 .shop_alcohol_div {
@@ -698,50 +699,50 @@ clear: both;
 
 .shop_alcohol_label1 {
 	position: relative;
-    top: 1400px;
+    top: 1399px;
     left: -440px;
 }
 
 .shop_alcohol_label2 {
-    position: relative;
-    top: 1400px;
+      position: relative;
+    top: 1399px;
     left: -354px;
 }
 
 .shop_alcohol_label3 {
-	position: relative;
-    top: 1400px;
-    left: -271px;
+	    position: relative;
+    top: 1399px;
+    left: -268px;
 }
 
 .shop_alcohol_label4 {
-	position: relative;
+    position: relative;
     top: 1399px;
-    left: -206px;
+    left: -189px;
 }
 
 .shop_alcohol_label5 {
-      position: relative;
-    top: 1426px;
-    left: -629px;
+   position: relative;
+    top: 1424px;
+    left: -612px;
 }
 
 .shop_alcohol_label6 {
-	    position: relative;
-    top: 1425px;
-    left: -542px;
+	position: relative;
+    top: 1424px;
+    left: -526px;
 }
 
 .shop_alcohol_label7 {
- position: relative;
-    top: 1425px;
-    left: -460px;
+     position: relative;
+    top: 1424px;
+    left: -440px;
 }
 
 .shop_alcohol_label8 {
-	    position: relative;
-    top: 1393px;
-    left: -206px;
+    position: relative;
+    top: 1424px;
+    left: -361px;
 }
 
 .shop_car_span {
@@ -822,10 +823,10 @@ clear: both;
 }
 
 .shop_photo {
-     position: relative;
+      position: relative;
     float: left;
-    top: 792px;
-    left: 85px;
+    top: 787px;
+    left: 91px;
 }
 
 #image_container {
@@ -949,16 +950,16 @@ position: relative;
     left: 172px;
 }
 .shop_subphoto_span {
-	clear: both;
+	    clear: both;
     position: relative;
     float: left;
     font-size: 16px;
     color: #444;
-    top: 875px;
+    top: 843px;
     left: 172px;
 }
 .shop_subphoto {
 	    position: relative;
     top: 1439px;
-    left: -84px;
+    left: -76px;
 }

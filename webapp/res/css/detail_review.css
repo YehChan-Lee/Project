@@ -116,6 +116,7 @@ hr{border-top: 1px solid lightgray;margin-top: 15px;}
     background: #fff;
     display: inline-block;
     box-sizing: border-box;
+        font-family: 'Noto Sans KR', sans-serif;
 }
 #review_wrap .thumbnail{
 	display: inline-block;

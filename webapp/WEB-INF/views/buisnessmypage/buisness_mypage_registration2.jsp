@@ -46,9 +46,19 @@
 			<option value="울산">울산
 		</select> <span class="shop_id_span">사업자 번호</span> <input type="text"
 			class="shop_id" name="shop_id" value="<%=shoplist.getShop_id()%>">
-		<span class="food_type_span">음식 종류</span> <input type="text"
-			class="food_type" name="food_type"
-			value="<%=shoplist.getFood_type()%>"> <span
+		<span class="food_type_span">음식 종류</span> 
+			<select class="food_type" name="food_type"
+				id="food_type">
+				<option value="한식">한식</option>
+				<option value="양식">양식</option>
+				<option value="중식">중식</option>
+				<option value="일식">일식</option>
+				<option value="아시아식">아시아식</option>
+				<option value="뷔페">뷔페</option>
+				<option value="구이">구이</option>
+				<option value="술집">술집</option>
+				<option value="카페/베이커리">카페/베이커리</option>
+			</select> <span
 			class="budget_span">예산</span> <label class="budget_label1">5만원
 			미만</label><input type="radio" class="budget1" name="budget" value="5만원 미만" checked="checked">
 		<label class="budget_label2">5-10만원</label><input type="radio"

@@ -137,6 +137,7 @@ width: 100%;
     border-radius: 5px;
     /* position: relative; */
     height: 2727px;
+        font-family: 'Noto Sans KR', sans-serif;
 }
 /* mypage_notice */
 #my_notice, #bobpool_notice{
@@ -182,6 +183,7 @@ width: 100%;
 /* setting */
 #setting.body>table{
 	margin-top:25px;
+	    font-family: 'Noto Sans KR', sans-serif;
 }
 #setting.body>table{
 	width: 100%;
