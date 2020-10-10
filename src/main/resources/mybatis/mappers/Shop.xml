@@ -3,7 +3,7 @@
 
 <mapper namespace="ShopVo">
 	<select id="shopList" resultType="ShopVo">
-		<![CDATA[SELECT * FROM Shop]]> 		
+		<![CDATA[SELECT * FROM Shop where shop_state='1']]> 		
 	</select>
 	<select id="mainshoplist" resultType="ShopVo">
 		<![CDATA[
@@ -12,7 +12,7 @@
 	</select>
 		
 	<select id="shopSearch" resultType="ShopVo" parameterType="hashMap">
-		select * from Shop where 1=1
+		select * from Shop where 1=1 and shop_state='1'
 		<if test="location != null">
 			and SHOP_LOCATION = #{location}
 		</if>
@@ -117,7 +117,7 @@
 	
 	<select id="getAll_shopIdx" parameterType="String" resultType="ShopVo">
 		<![CDATA[
-		SELECT * FROM Shop WHERE shop_idx=#{shop_idx}
+		SELECT * FROM Shop WHERE shop_idx=#{shop_idx} 
 		]]>		
 	</select>
 
@@ -179,8 +179,8 @@
 	
 	<insert id="shopInsert" parameterType="ShopVo">
 		<![CDATA[
-		INSERT INTO Shop(shop_id,user_email,shop_idx,shop_title,shop_addr,shop_location,food_type,shop_time,shop_state)  VALUES(#{shop_id}, #{user_email}, seq_shop_idx.nextval, #{shop_title}, #{shop_addr}, 
-						#{shop_location}, #{food_type},	#{shop_time}, #{shop_state})
+		INSERT INTO Shop(shop_id,user_email,shop_idx,shop_title,shop_addr,shop_location,food_type,shop_time,shop_state,shop_date)  VALUES(#{shop_id}, #{user_email}, seq_shop_idx.nextval, #{shop_title}, #{shop_addr}, 
+						#{shop_location}, #{food_type},	#{shop_time}, #{shop_state},sysdate)
 		]]>
 	</insert>
 		<insert id="firstshopInsert" parameterType="ShopVo">

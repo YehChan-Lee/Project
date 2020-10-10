@@ -245,7 +245,7 @@ public class JoinController {
 			throws IOException {
 		System.out.println("/BabPool/mypage/profile.do");
 		String user_email = (String) session.getAttribute("sessionID");
-		String url = "C:\\Users\\Kosmo_23\\Desktop\\諛깆뾽\\Project\\webapp\\serverImg\\";
+		String url = "D:\\Git\\Project\\Project\\webapp\\serverImg\\";
 
 		String folder = "profile\\user\\";
 		String fileName = "profile" + user_email + ".png";

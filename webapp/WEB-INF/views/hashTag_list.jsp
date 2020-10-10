@@ -34,7 +34,7 @@
                 <div class="body">
 
                     <div class="content">
-                        <a href="list?string_search=%23매운" class="image lazy" >
+                        <a href="list?page=1&string_search=%23매운" class="image lazy" >
                             <div class="shading"></div> 
                             <div class="center">
                                 <div class="middle">
@@ -47,7 +47,7 @@
                     </div>
                     
                     <div class="content">
-                        <a href="list?string_search=%23브런치" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475447465c3da8aa96cd2.png">
+                        <a href="list?page=1&string_search=%23브런치" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475447465c3da8aa96cd2.png">
                             <div class="shading"></div> 
                             <div class="center">
                                  <div class="middle">
@@ -60,7 +60,7 @@
                     </div>
                     
                     <div class="content">
-                        <a href="list?string_search=%23혼밥" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475445375c3da7d93a73f.png">
+                        <a href="list?page=1&string_search=%23혼밥" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475445375c3da7d93a73f.png">
                             <div class="shading"></div> 
                             <div class="center">
                                 <div class="middle">
@@ -73,7 +73,7 @@
                     </div>
                     
                     <div class="content">
-                        <a href="list?string_search=%23맛집" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475448665c3da92297813.png">
+                        <a href="list?page=1&string_search=%23맛집" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475448665c3da92297813.png">
                             <div class="shading"></div> 
                             <div class="center">
                                 <div class="middle">
@@ -86,7 +86,7 @@
                     </div>
                     
                     <div class="content">
-                        <a href="list?string_search=%23일상" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475450715c3da9efb02e1.png">
+                        <a href="list?page=1&string_search=%23일상" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475450715c3da9efb02e1.png">
                             <div class="shading"></div> 
                             <div class="center">
                                  <div class="middle">
@@ -99,7 +99,7 @@
                     </div>
                     
                     <div class="content">
-                        <a href="list?string_search=%23맛스타그램" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475449435c3da96febbe0.png">
+                        <a href="list?page=1&string_search=%23맛스타그램" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475449435c3da96febbe0.png">
                             <div class="shading"></div> 
                             <div class="center">
                                 <div class="middle">
@@ -112,7 +112,7 @@
                     </div>
                     
                     <div class="content">
-                        <a href="list?string_search=%23소통" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475450055c3da9ad3655e.png">
+                        <a href="list?page=1&string_search=%23소통" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475450055c3da9ad3655e.png">
                             <div class="shading"></div> 
                             <div class="center">
                                 <div class="middle">
@@ -125,7 +125,7 @@
                     </div>
                     
                     <div class="content">
-                        <a href="list?string_search=%23먹방" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475446855c3da86dd7f0a.png">
+                        <a href="list?page=1&string_search=%23먹방" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475446855c3da86dd7f0a.png">
                             <div class="shading"></div> 
                             <div class="center">
                                 <div class="middle">
@@ -137,7 +137,7 @@
                         </a>
                     </div>
                     <div class="content">
-                        <a href="list?string_search=%23셀카" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475446855c3da86dd7f0a.png">
+                        <a href="list?page=1&string_search=%23셀카" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475446855c3da86dd7f0a.png">
                             <div class="shading"></div> 
                             <div class="center">
                                 <div class="middle">

@@ -24,7 +24,7 @@ ShopVo shopvo = (ShopVo)request.getAttribute("shopOne");
 		<hr />
 		<div class="detail_section">
 			<div class="section_title">음식 종류</div>
-			<div class="section_body"><%=shopvo.getFood_type() %></div>
+			<div class="section_body"><%=shopvo.getFood_type()%></div>
 		</div>
 		<div class="detail_section">
 			<div class="section_title">예산</div>
@@ -33,18 +33,17 @@ ShopVo shopvo = (ShopVo)request.getAttribute("shopOne");
 		<hr />
 		<div class="detail_section">
 			<div class="section_title">테이블 종류</div>
-			<div class="section_body"><%=shopvo.getShop_tb() %></div>
+			<div class="section_body"><%=shopvo.getShop_tb() %></div>			
+		</div>
+		<div class="detail_section">
+			<div class="section_title">판매 주류</div>
+			<div class="section_body"><%=shopvo.getShop_alcohol() %></div>
 		</div>
 		<hr />
 		<div class="detail_section">
 			<div class="section_title">부가정보</div>
 			<div class="section_body"><%=shopvo.getShop_addinfo() %></div>
-		</div>
-		<hr />
-		<div class="detail_section">
-			<div class="section_title">판매 주류</div>
-			<div class="section_body"><%=shopvo.getShop_alcohol() %></div>
-		</div>
+		</div>		
 	</div>
 </div>
 
