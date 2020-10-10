@@ -150,8 +150,8 @@ public class ShopDao {
 		return sqlsession.selectOne("ShopVo.cntShopReserve");
 	}
 	
-	public void insertShop() {
-		sqlsession.insert("ShopVo.shopInsert");
+	public void insertShop(ShopVo vo) {
+		sqlsession.insert("ShopVo.shopInsert",vo);
 	}
 	
 	public void updateShop(ShopVo shopVo) {

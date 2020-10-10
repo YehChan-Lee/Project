@@ -320,13 +320,10 @@ public class ListController {
 			String buisnessName = req.getParameter("buisness_name");
 			String buisnessAddress = req.getParameter("buisness_address");
 			String buisnessAddressEtc = req.getParameter("buisness_address_etc");
-			String buisnessFoodType = req.getParameter("buisness_food_type");
 			String shop_location = req.getParameter("shop_location");
-			
-			System.out.println(buisnessNumber + " " + buisnessName + " " + buisnessAddress + " " + buisnessAddressEtc
-					+ " " + buisnessFoodType);
-			
+			String food_type = req.getParameter("buisness_food_type");
 			userDao.signUp(new ShopUserVo(email, pw, name, gender, birth, phone, "1", 0, "user2.png", 0, null, 0));
+			dao.insertShop(new ShopVo(buisnessNumber, email, 0, buisnessName, buisnessAddress+buisnessAddressEtc, shop_location, food_type, "09:00-21:00", "1"));
 		}
 		mav.setViewName("redirect:main");
 		return mav;

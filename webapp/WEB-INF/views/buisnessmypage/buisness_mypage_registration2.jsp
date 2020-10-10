@@ -418,46 +418,6 @@ $(document).on("click",".food_add_submit" ,function () {
 	});
 	
 })	
-
-/* function setThumbnail(event) { 
-	for (var image of event.target.files) { 
-		var reader = new FileReader(); 
-		reader.onload = function(event) { 
-			var img = document.createElement("img"); 
-			img.setAttribute("src", event.target.result); 
-			img.width ="400";
-			img.height ="200";
-			
-			document.querySelector("div#image_container").appendChild(img); 
-		}; 
-			console.log(image); 
-			reader.readAsDataURL(image); 
-	}
-	
-} 
-function setThumbnail2(event) { 
-	for (var image of event.target.files) { 
-		var reader = new FileReader(); 
-		reader.onload = function(event) { 
-			var img = document.createElement("img"); 
-			img.setAttribute("src", event.target.result); 
-			img.width ="200";
-			img.height ="200";
-			document.querySelector("div#subimage_container").appendChild(img); 
-			}; 
-			console.log(image); 
-			reader.readAsDataURL(image); 
-		}
-				
-	} 	 */		
-			
-
-
-
-
-	</script>
-
-
-
+  </script>
 </body>
 </html>

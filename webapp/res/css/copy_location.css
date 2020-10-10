@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
+
 #banner.image>.title_wrap{
     position:relative;
     width:100%;
@@ -10,7 +12,8 @@
     color:#fff;
     font-size:22px;
     line-height:31px;
-    text-align:center
+    text-align:center;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 #banner_wrap{
     width:100%
@@ -39,7 +42,8 @@
 .main #content_wrap>.section>.subtitle{
     color:#323232;
     font-size:16px;
-    margin-bottom:60px
+    margin-bottom:60px;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 #content_wrap>.section{
@@ -85,4 +89,6 @@
     padding-top: 125px;
     font-weight: bolder;
     display: inline-block;
+    font-family: 'Noto Sans KR', sans-serif;
+    
 }

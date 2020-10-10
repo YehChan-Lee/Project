@@ -2,23 +2,41 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="VisitVo">
-   
-   <insert id="VisitInsert" parameterType="VisitVo">
+
+	<insert id="VisitInsert" parameterType="VisitVo">
    <![CDATA[
       INSERT INTO visit(visit_idx, visit_id, visit_date) 
       VALUES(SEQ_VISIT_IDX.NEXTVAL, #{visit_id}, SYSDATE)
    ]]>
-   </insert>
-   
-   <select id="visitAll" resultType="VisitVo">
-   		SELECT * FROM visit
-   </select>
-   
-   <select id="visitToday" resultType="VisitVo" parameterType="string">
-   		SELECT * FROM visit WHERE to_date(visit_date, 'YY/MM/DD') = #{today}
-   </select>
-   
-   <!-- <select id="reVisi" parameterType="VisitVo" resultType="VisitVo">
-   		SELECT visit_id FROM visit WHERE visit_id = #{visit_id}
-   </select> -->
+	</insert>
+
+	<select id="visitAll" resultType="VisitVo">
+		SELECT * FROM visit
+	</select>
+
+	<select id="visitToday" resultType="VisitVo"
+		parameterType="string">
+		SELECT * FROM visit WHERE to_date(visit_date, 'YY/MM/DD') = #{today}
+	</select>
+
+	<select id="visitMonth" resultType="int">
+		select count(*)
+		from visit
+		where to_char(visit_date, 'yy/mm') =
+		to_char(sysdate, 'yy/mm')
+		group by to_char(visit_date, 'yy/mm')
+	</select>
+
+	<select id="visitWeek" resultType="hashMap" parameterType="string">
+		select count(*),
+		to_char(visit_date, 'DAY') 요일
+		from visit WHERE to_char(visit_date, 'MM') = #{week}
+		group by
+		to_char(visit_date, 'DAY'), to_char(visit_date, 'MM')
+	</select>
+
+	<select id="visitHomeM" resultType="VisitVo" parameterType="string">
+		select * from visit WHERE to_char(visit_date, 'MM') = #{month}
+	</select>
+
 </mapper>

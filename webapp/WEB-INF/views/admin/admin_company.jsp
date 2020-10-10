@@ -51,26 +51,25 @@
 						<th>주차기능</th>
 					</tr>
 					<%
-						List<AdminVo> Acompany_list = (List<AdminVo>)request.getAttribute("Acompany_list");
-						for(int i = 0; i< Acompany_list.size(); i++){
+						List<AdminVo> Acompany_list = (List<AdminVo>) request.getAttribute("Acompany_list");
+						for (int i = 0; i < Acompany_list.size(); i++) {
 							AdminVo vo = Acompany_list.get(i);
-					
 					%>
 					<tr>
 						<td><input type="checkbox" name="company_sib" /></td>
 						<td><%=vo.getShopVo().getShop_idx()%></td>
 						<td><%=vo.getShopVo().getShop_id()%></td>
-						<td><%=vo.getShopUser().getUser_name() %></td>
-						<td><%=vo.getShopUser().getUser_phone() %></td>
-						<td><%=vo.getShopUser().getUser_email() %></td>
-						<td><%=vo.getShopVo().getShop_title() %></td>
-						<td><%=vo.getShopVo().getShop_phone() %></td>
-						<td><%=vo.getShopVo().getShop_addr() %></td>
-						<td><%=vo.getShopVo().getShop_date() %></td>
-						<td><%=vo.getShopVo().getShop_view() %></td>
-						<td><%=vo.getShopVo().getShop_score() %></td>
-						<td><%=vo.getShopVo().getShop_time() %></td>
-						<td><%=vo.getShopVo().getShop_car() %></td>
+						<td><%=vo.getShopUser().getUser_name()%></td>
+						<td><%=vo.getShopUser().getUser_phone()%></td>
+						<td><%=vo.getShopUser().getUser_email()%></td>
+						<td><%=vo.getShopVo().getShop_title()%></td>
+						<td><%=vo.getShopVo().getShop_phone()%></td>
+						<td><%=vo.getShopVo().getShop_addr()%></td>
+						<td><%=vo.getShopVo().getShop_date()%></td>
+						<td><%=vo.getShopVo().getShop_view()%></td>
+						<td><%=vo.getShopVo().getShop_score()%></td>
+						<td><%=vo.getShopVo().getShop_time()%></td>
+						<td><%=vo.getShopVo().getShop_car()%></td>
 					</tr>
 					<%
 						}

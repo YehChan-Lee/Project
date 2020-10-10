@@ -16,8 +16,11 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
+	<c:url var="adminNoIn" value="/admin_notice_info"></c:url>
 	<h2>
-		<div><i class="fas fa-thumbtack"></i></div>
+		<div>
+			<i class="fas fa-thumbtack"></i>
+		</div>
 		공지사항
 	</h2>
 	<hr />
@@ -42,27 +45,65 @@
 			</tr>
 		</table>
 		<div>
-			<button><i class="fas fa-tools"></i>수정</button>
-			<button><i class="fas fa-trash-alt"></i>삭제</button>
+			<button>
+				<i class="fas fa-tools"></i>수정
+			</button>
+			<button>
+				<i class="fas fa-trash-alt"></i>삭제
+			</button>
 		</div>
 	</div>
 </body>
 <script type="text/javascript">
-	$(document).ready(function(){
-		$("#container > div > button:nth-child(1)").on("click", function(){
+	$(document).ready(function() {
+		$("#container > div > button:nth-child(2)").on("click", function(){
+			/* var del = "true";
+			$.ajax({
+				type: "GET",
+				url : "admin_notice_info",
+				dataType : ""
+			}); */
+			
+			var url = "${adminNoIn}";
+			url = url + "?idx="+<%=vo.get(0).getNoticeVo().getNotice_idx()%>
+			url = url + "&del=true"
+			location.href = url
+			console.log(url);
+			<%-- "admin_notice_info?idx="+
+      		<%=vo.get(0).getNoticeVo().getNotice_title()%> +
+        	  "&del=true", --%>
+			 $.ajax({
+		            type : "GET",
+		            url : "admin_notice_info",
+		            dataType : "text",
+		            error : function(){
+		            	alert("데이터가 없습니다.");
+		            	
+		            },
+		            success : function(){
+		            	opener.location.reload();
+		            	
+						/*location.replace('/views/admin/admin_notice'); */
+		            	/* window.opener.document.location.href = "admin/admin_nitice"; */
+		            	/* opener.location.reload("admin_notice"); */
+		            }
+			 }
+		    )
+		});
+		
+		$("#container > div > button:nth-child(1)").on("click", function() {
 			var url = decodeURIComponent(window.location.href);
 			console.log(url);
-			
+
 			function getParameterByName(name) {
-		        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-		        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-		                results = regex.exec(location.search);
-		        return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-		    }
+				name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+				var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"), results = regex.exec(location.search);
+				return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+			}
 			var idx = getParameterByName('idx');
 			console.log(idx);
-		
-			var modify = "admin_notice_modify?idx="+idx;
+
+			var modify = "admin_notice_modify?idx=" + idx;
 			window.open(modify, "_self");
 		});
 

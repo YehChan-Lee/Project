@@ -179,14 +179,8 @@
 	
 	<insert id="shopInsert" parameterType="ShopVo">
 		<![CDATA[
-		INSERT INTO Shop(shop_id, user_email, seq_shop_idx, shop_title, shop_addr, 
-						shop_location, food_type, shop_tip, budget, shop_reserve,
-						shop_comment, shop_view, shop_score, shop_dibs, shop_phone,
-						shop_time, shop_addinfo, shop_tb, shop_alcohol, shop_car, shop_close)
-		VALUES(#{shop_id}, #{user_email}, #{seq_shop_idx}, #{shop_title}, #{shop_addr}, 
-						#{shop_location}, #{food_type}, #{shop_tip}, #{budget}, #{shop_reserve},
-						#{shop_comment}, #{shop_view}, #{shop_score}, #{shop_dibs}, #{shop_phone},
-						#{shop_time}, #{shop_addinfo}, #{shop_tb}, #{shop_alcohol}, #{shop_car}, #{shop_close})
+		INSERT INTO Shop(shop_id,user_email,shop_idx,shop_title,shop_addr,shop_location,food_type,shop_time,shop_state)  VALUES(#{shop_id}, #{user_email}, seq_shop_idx.nextval, #{shop_title}, #{shop_addr}, 
+						#{shop_location}, #{food_type},	#{shop_time}, #{shop_state})
 		]]>
 	</insert>
 		<insert id="firstshopInsert" parameterType="ShopVo">
