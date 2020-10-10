@@ -55,9 +55,7 @@
 					 <%-- <img src="<c:url value='${path}/res/image/walkerhill.jpg'/>" alt=""> --%>
 				<c:forTokens items="${ShopPhoto}" var="img"
 				delims="/" varStatus="i">
-				<a href="<c:url value='${path}/serverImg/shopimg/${img}'/>">
-				<img src="<c:url value='${path}/serverImg/shopimg/${img}'/>"
-					></a>
+				<img src="<c:url value='${path}/serverImg/shopimg/${img}'/>">
 			</c:forTokens>
 			
 				</div>

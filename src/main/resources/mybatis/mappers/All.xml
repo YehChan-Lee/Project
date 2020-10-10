@@ -232,5 +232,4 @@
 	 		ORDER BY r.review_date DESC) WHERE ROWNUM <= 6
 		]]>
 	</select>
-
 </mapper>

@@ -8,6 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <link rel="stylesheet" href="<c:url value="${path}/res/css/buisness_mypage_registration2.css?ver=1"/>" />
 <link rel="stylesheet"	href="<c:url value="${path}/res/css/bootstrap.min.css"/>">
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -24,9 +25,9 @@
 			value="<%=shoplist.getShop_title()%>"> <span
 			class="shop_addr_span">가게 주소</span> <input type="text"
 			class=shop_addr name="shop_addr" value="<%=shoplist.getShop_addr()%>"> <input type="text"
-			class=shop_addr2 name="shop_addr"> <span
-			class="shop_location_span">가게 지역</span> <select class="shop_location"
-			name="shop_location">
+			class=shop_addr2 name="shop_addr"> 
+			<span class="shop_location_span">가게 지역</span> 
+			<select class="shop_location" name="shop_location">
 			<option class="buisness_option" value="서울/수도권">서울/수도권
 			<option value="부산">부산
 			<option value="제주">제주
@@ -37,9 +38,19 @@
 			<option value="울산">울산
 		</select> <span class="shop_id_span">사업자 번호</span> <input type="text"
 			class="shop_id" name="shop_id" value="<%=shoplist.getShop_id()%>">
-		<span class="food_type_span">음식 종류</span> <input type="text"
-			class="food_type" name="food_type"
-			value="<%=shoplist.getFood_type()%>"> <span
+		<span class="food_type_span">음식 종류</span> 
+			<select class="food_type" name="food_type"
+				id="food_type">
+				<option value="한식">한식</option>
+				<option value="양식">양식</option>
+				<option value="중식">중식</option>
+				<option value="일식">일식</option>
+				<option value="아시아식">아시아식</option>
+				<option value="뷔페">뷔페</option>
+				<option value="구이">구이</option>
+				<option value="술집">술집</option>
+				<option value="카페/베이커리">카페/베이커리</option>
+			</select> <span
 			class="budget_span">예산</span> <label class="budget_label1">5만원
 			미만</label><input type="radio" class="budget1" name="budget" value="5만원 미만" checked="checked">
 		<label class="budget_label2">5-10만원</label><input type="radio"
@@ -399,6 +410,6 @@ $(document).on("click",".food_add_submit" ,function () {
 	});
 	
 })	
-	</script>
+  </script>
 </body>
 </html>

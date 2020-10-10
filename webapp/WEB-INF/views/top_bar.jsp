@@ -303,9 +303,9 @@
 								</ul>
 								<ul class="content scroll" data-dist="jeju">
 									<li><input type="checkbox" value="제주시" name="shop_addr"
-										id="jeju01"> <label for="incheon01">제주시</label></li>
+										id="jeju01"> <label for="jeju01">제주시</label></li>
 										<li><input type="checkbox" value="서귀포시" name="shop_addr"
-										id="jeju02"> <label for="incheon01">서귀포시</label></li>
+										id="jeju02"> <label for="jeju02">서귀포시</label></li>
 								</ul>
 								<ul class="content scroll" data-dist="daegu">
 									<li><input type="checkbox" value="대구광역시 동구" name="shop_addr"

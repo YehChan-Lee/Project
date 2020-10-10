@@ -5,6 +5,11 @@
 	<select id="shopList" resultType="ShopVo">
 		<![CDATA[SELECT * FROM Shop where shop_state='1']]> 		
 	</select>
+	<select id="mainshoplist" resultType="ShopVo">
+		<![CDATA[
+		SELECT * FROM Shop where rownum <= 6
+		]]> 		
+	</select>
 		
 	<select id="shopSearch" resultType="ShopVo" parameterType="hashMap">
 		select * from Shop where 1=1 and shop_state='1'
@@ -178,6 +183,19 @@
 						#{shop_location}, #{food_type},	#{shop_time}, #{shop_state},sysdate)
 		]]>
 	</insert>
+		<insert id="firstshopInsert" parameterType="ShopVo">
+		<![CDATA[
+		INSERT INTO Shop(shop_id, user_email, seq_shop_idx, shop_title, shop_addr, 
+						shop_location, food_type, shop_tip, budget, shop_reserve,
+						shop_comment, shop_view, shop_score, shop_dibs, shop_phone,
+						shop_time, shop_addinfo, shop_tb, shop_alcohol, shop_car, shop_close)
+		VALUES(#{shop_id}, #{user_email}, #{seq_shop_idx}, #{shop_title}, #{shop_addr}, 
+						#{shop_location}, #{food_type}, #{shop_tip}, #{budget}, #{shop_reserve},
+						#{shop_comment}, #{shop_view}, #{shop_score}, #{shop_dibs}, #{shop_phone},
+						#{shop_time}, #{shop_addinfo}, #{shop_tb}, #{shop_alcohol}, #{shop_car}, #{shop_close})
+		]]>
+	</insert>
+	
 	
 	<update id="shopUpdate" parameterType="ShopVo">
 		<![CDATA[

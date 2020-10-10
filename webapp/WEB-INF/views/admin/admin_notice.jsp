@@ -126,5 +126,5 @@
 				window.open(url, "공지사항 정보", "height=700, width=1200, top=100, left=300", "_blank");
 		});
 	});
-</script>
+  </script>
 </html>
