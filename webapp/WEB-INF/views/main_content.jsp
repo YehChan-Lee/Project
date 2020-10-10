@@ -23,7 +23,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
-	href="<c:url value="${path}/res/css/main_content.css?ver=3"/>" />
+	href="<c:url value="${path}/res/css/main_content.css"/>" />
 </head>
 <body>
 	<div class="benefit">
@@ -361,8 +361,10 @@
 			<c:forEach items="${reviewList}" var="review">
 			<div class="reviewdiv1">
 				<div class="reviewdiv2">
-					<img src="<c:url value="${path}/res/image/main_content/coffie.jpg"/>"
+					<c:forTokens items="${review.shopVo.shop_photo}" delims="/" var="img">
+					<img src="<c:url value="${path}/serverImg/shopimg/${img}"/>"
 						class="reviewdiv2img">
+						</c:forTokens>
 					<div class="review_img_div">
 						${review.shopVo.shop_title}<br> ${review.shopVo.shop_location}
 					</div>
