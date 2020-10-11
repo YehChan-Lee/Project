@@ -13,5 +13,20 @@
 		]]>
 		
 	</select>
+	
+	<resultMap type="hashMap" id="payResult">
+		<result property="food_name" column="FOOD_NAME"/>
+		<result property="food_price" column="FOOD_PRICE"/>
+		<result property="food_count" column="FOOD_COUNT"/>
+	</resultMap>
+	
+	<select id="getMenu" parameterType="hashMap" resultMap="payResult">
+		select r.food_name,m.food_price,r.food_count from reserve_order R
+	    INNER JOIN payment p
+	    on r.pay_date= p.pay_date
+	    INNER JOIN Menu m
+	    on r.food_name = m.food_name
+	    where r.user_email = #{user_email} and r.pay_date = TO_DATE(#{pay_date},'yy/mm/dd hh24:mi:ss')
+	</select>
 
 </mapper>

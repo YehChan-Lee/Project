@@ -20,7 +20,7 @@
 				<li>
 					<div>
 						<h3></h3>
-						<span>Sub-title #1</span>
+						<span></span>
 					</div>
 				
 				<img src="<c:url value='${path}/serverImg/shopsubimg/${img}'/>"

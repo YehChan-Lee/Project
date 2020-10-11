@@ -8,11 +8,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+<link rel="stylesheet"	href="<c:url value="${path}/res/css/bootstrap.min.css"/>">
+<link rel="stylesheet" href="<c:url value="${path}/res/css/buisness_mypage_registration2.css?ver=1"/>" />
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script type="text/javascript" src="http://malsup.github.com/jquery.form.js"></script>
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="<c:url value="${path}/res/css/buisness_mypage_registration2.css?ver=1"/>" />
-<link rel="stylesheet"	href="<c:url value="${path}/res/css/bootstrap.min.css"/>">
 </head>
 <body>
 	<%
@@ -24,9 +25,9 @@
 			value="<%=shoplist.getShop_title()%>"> <span
 			class="shop_addr_span">가게 주소</span> <input type="text"
 			class=shop_addr name="shop_addr" value="<%=shoplist.getShop_addr()%>"> <input type="text"
-			class=shop_addr2 name="shop_addr"> <span
-			class="shop_location_span">가게 지역</span> <select class="shop_location"
-			name="shop_location">
+			class=shop_addr2 name="shop_addr"> 
+			<span class="shop_location_span">가게 지역</span> 
+			<select class="shop_location" name="shop_location">
 			<option class="buisness_option" value="서울/수도권">서울/수도권
 			<option value="부산">부산
 			<option value="제주">제주
@@ -37,9 +38,19 @@
 			<option value="울산">울산
 		</select> <span class="shop_id_span">사업자 번호</span> <input type="text"
 			class="shop_id" name="shop_id" value="<%=shoplist.getShop_id()%>">
-		<span class="food_type_span">음식 종류</span> <input type="text"
-			class="food_type" name="food_type"
-			value="<%=shoplist.getFood_type()%>"> <span
+		<span class="food_type_span">음식 종류</span> 
+			<select class="food_type" name="food_type"
+				id="food_type">
+				<option value="한식">한식</option>
+				<option value="양식">양식</option>
+				<option value="중식">중식</option>
+				<option value="일식">일식</option>
+				<option value="아시아식">아시아식</option>
+				<option value="뷔페">뷔페</option>
+				<option value="구이">구이</option>
+				<option value="술집">술집</option>
+				<option value="카페/베이커리">카페/베이커리</option>
+			</select> <span
 			class="budget_span">예산</span> <label class="budget_label1">5만원
 			미만</label><input type="radio" class="budget1" name="budget" value="5만원 미만" checked="checked">
 		<label class="budget_label2">5-10만원</label><input type="radio"
@@ -291,11 +302,10 @@
 		</div>
 	</div>
 
-	<script> 
+	<script>
+	$(document).ready(function () {	
 	
-
- 
- var option = {
+ 		var option = {
 			type : "POST",
 			url : "buisness_update",
 
@@ -316,89 +326,90 @@
 			},
 			error : function() {
 			}
- }
+ 		}
  
-$('.registration_form').submit(function () {
-		$(this).ajaxSubmit(option);
-		return false;
-})
+		$('.registration_form').submit(function () {
+				$(this).ajaxSubmit(option);
+				return false;
+		})
 
 
 
 
-$(document).on("click",".menu_delete_button", function(){
-	console.log("삭제")
-	var food =  $(this).parent().parent().children().eq(0).text();
-     if(confirm("음식이름 : "+food+"을 삭제하시겠습니까?")){
-    	$.ajax({
-    		type : "POST",
-    		url : "menu_delete",
-    		data : {
-    				food_name : $(this).parent().parent().children().eq(0).text(),
-    				food_price :  $(this).parent().parent().children().eq(1).text(),
-    				food_info : $(this).parent().parent().children().eq(2).text(),
-    				shop_id : "${shopOwnerList.shop_id}"
-    		},
-    		success : function(data) {
-    			if (data == "success") {
-    				
-    			} else if (data == "fail") {
-    				
-    			}
-    		},
-    		error : function() {
-    		}
-    	});
-    	
-    	var eventTarget = document.getElementsByClassName('menu_delete_button');
-    	for (var i=0; i<eventTarget.length; i++) {
-    			var parent = document.querySelector('#table2 tbody')
-    			parent.removeChild(this.parentElement.parentElement)
-    			i--
-    			
-    	}
-    } 
-});
+		$(document).on("click",".menu_delete_button", function(){
+			console.log("삭제")
+			var food =  $(this).parent().parent().children().eq(0).text();
+		     if(confirm("음식이름 : "+food+"을 삭제하시겠습니까?")){
+		    	$.ajax({
+		    		type : "POST",
+		    		url : "menu_delete",
+		    		data : {
+		    				food_name : $(this).parent().parent().children().eq(0).text(),
+		    				food_price :  $(this).parent().parent().children().eq(1).text(),
+		    				food_info : $(this).parent().parent().children().eq(2).text(),
+		    				shop_id : "${shopOwnerList.shop_id}"
+		    		},
+		    		success : function(data) {
+		    			if (data == "success") {
+		    				
+		    			} else if (data == "fail") {
+		    				
+		    			}
+		    		},
+		    		error : function() {
+		    		}
+		    	});
+		    	
+		    	var eventTarget = document.getElementsByClassName('menu_delete_button');
+		    	for (var i=0; i<eventTarget.length; i++) {
+		    			var parent = document.querySelector('#table2 tbody')
+		    			parent.removeChild(this.parentElement.parentElement)
+		    			i--
+		    			
+		    	}
+		    } 
+		});
 
-$(document).on("click",".food_add_submit" ,function () {
-
-	var action = $('.menu_insert_form').attr("action");;
+	$(document).on("click",".food_add_submit" ,function () {
 	
-	var form_data = {
-			food_name : $(".food_name").val(),
-			food_price :  $(".food_price").val(),
-			food_info : $(".food_info").val(),
-			shop_id : "${shopOwnerList.shop_id}"
-	}
-	$.ajax({
-		type : "POST",
-		url : action,
-		data : form_data,
-		success : function(data) {
-			if (data == "success") {
-				alert("추가 완료");		 
-				var my_tbody = document.getElementById('my-tbody');
-				var row = my_tbody.insertRow(my_tbody.rows.length);
-				var cell1 = row.insertCell(0);
-				var cell2 = row.insertCell(1);
-				var cell3 = row.insertCell(2);
-				var cell4 = row.insertCell(3);
-				cell1.innerHTML = $(".food_name").val();
-				cell2.innerHTML = $(".food_price").val();
-				cell3.innerHTML = $(".food_info").val();
-				cell4.innerHTML ="<td><button class='menu_delete_button'>삭제</button></td>"; 
-				//$(".menu_list_hover").load(window.location.href + ".menu_list_hover");
-			} else if (data == "fail") {
-				alert("음식이름을 입력해주세요");
-			} else if (data == "fail2") {
-				alert("가격을 입력해주세요");
-			} else if (data == "fail3") {
-				alert("음식 설명을 입력해주세요")
-			}
-		}		
+		var action = $('.menu_insert_form').attr("action");;
+		
+		var form_data = {
+				food_name : $(".food_name").val(),
+				food_price :  $(".food_price").val(),
+				food_info : $(".food_info").val(),
+				shop_id : "${shopOwnerList.shop_id}"
+		}
+		$.ajax({
+			type : "POST",
+			url : action,
+			data : form_data,
+			success : function(data) {
+				if (data == "success") {
+					alert("추가 완료");		 
+					var my_tbody = document.getElementById('my-tbody');
+					var row = my_tbody.insertRow(my_tbody.rows.length);
+					var cell1 = row.insertCell(0);
+					var cell2 = row.insertCell(1);
+					var cell3 = row.insertCell(2);
+					var cell4 = row.insertCell(3);
+					cell1.innerHTML = $(".food_name").val();
+					cell2.innerHTML = $(".food_price").val();
+					cell3.innerHTML = $(".food_info").val();
+					cell4.innerHTML ="<td><button class='menu_delete_button'>삭제</button></td>"; 
+					//$(".menu_list_hover").load(window.location.href + ".menu_list_hover");
+				} else if (data == "fail") {
+					alert("음식이름을 입력해주세요");
+				} else if (data == "fail2") {
+					alert("가격을 입력해주세요");
+				} else if (data == "fail3") {
+					alert("음식 설명을 입력해주세요")
+				}
+			}		
+		});
+		
+		})
 	});
-	
-})	
-	</script>
+  </script>
 </body>
 </html>

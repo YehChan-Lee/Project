@@ -63,7 +63,7 @@ public class ListController {
 	@Autowired
 	ShopDibsDao dibdao;
 
-	String url = "C:\\Users\\Kosmo_23\\Desktop\\닭\\Project\\webapp\\serverImg\\";
+	String url = "D:\\Git\\Project\\Project\\webapp\\serverImg\\";
 
 	@RequestMapping("/review_upload")
 	public void test(ModelAndView mav,MultipartHttpServletRequest req, HttpServletResponse res, HttpSession session)
@@ -322,9 +322,8 @@ public class ListController {
 			String buisnessAddressEtc = req.getParameter("buisness_address_etc");
 			String shop_location = req.getParameter("shop_location");
 			String food_type = req.getParameter("buisness_food_type");
-
 			userDao.signUp(new ShopUserVo(email, pw, name, gender, birth, phone, "1", 0, "user2.png", 0, null, 0));
-			dao.insertShop(new ShopVo(buisnessNumber, email, 0, buisnessName, buisnessAddress+buisnessAddressEtc, shop_location, food_type, "09:00-21:00", "1"));
+			dao.insertShop(new ShopVo(buisnessNumber, email, 0, buisnessName, buisnessAddress+buisnessAddressEtc, shop_location, food_type, "09:00-21:00", "0"));
 		}
 		mav.setViewName("redirect:main");
 		return mav;

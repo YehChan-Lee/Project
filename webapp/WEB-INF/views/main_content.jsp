@@ -1,3 +1,4 @@
+<%@page import="com.javaex.model.ShopVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
@@ -26,153 +27,31 @@
 	href="<c:url value="${path}/res/css/main_content.css?ver=3"/>" />
 </head>
 <body>
+
 	<div class="benefit">
-		<span class="epicureanspan">함께 즐기고 싶은 혜택</span>
+		<span class="epicureanspan">밥풀이 추천하는 가게</span>
+	
 		<div class="epicureandiv">
+		<c:forEach items="${shop_vo}" var="shopvo">
 			<div class="epicureandiv1">
 				<div class="epicureandiv2">
-					<img
-						src="<c:url value="${path}/res/image/main_content/benefit1.png"/>"
+					<c:forTokens items="${shopvo.shop_photo}" delims="/" var="img">
+					<img src="<c:url value="${path}/serverImg/shopimg/${img}"/>"
 						class="epicureandiv2img">
+						</c:forTokens>
 				</div>
 				<div class="epicureandiv3">
-					<div class="epicureandiv3div">밥풀예약수 TOP 20 | 다이닝 티켓</div>
-					<div class="epicureandiv3div2">포잉 사용자들이 가장 사랑한 레스토랑</div>
+					<div class="epicureandiv3div">${shopvo.shop_title}</div>
+					<div class="epicureandiv3div2">${shopvo.shop_comment}</div>
 					<hr class="epicureandiv3hr">
 					<div class="epicureandiv3div3">
-						<a href="">더보기 ></a>
+						<a href="detail?shopidx=${shopvo.shop_idx}">더보기 ></a>
 					</div>
 				</div>
 			</div>
-
-			<div class="epicureandiv1">
-				<div class="epicureandiv2">
-					<img
-						src="<c:url value="${path}/res/image/main_content/benefit2.png"/>"
-						class="epicureandiv2img">
-				</div>
-				<div class="epicureandiv3">
-					<div class="epicureandiv3div">스시오마카세 | 다이닝 티켓</div>
-					<div class="epicureandiv3div2">미들급 스시야부터 하이엔드 스시야까지</div>
-					<hr class="epicureandiv3hr">
-					<div class="epicureandiv3div3">
-						<a href="">더보기 ></a>
-					</div>
-				</div>
-			</div>
-
-			<div class="epicureandiv1">
-				<div class="epicureandiv2">
-					<img
-						src="<c:url value="${path}/res/image/main_content/benefit3.png"/>"
-						class="epicureandiv2img">
-				</div>
-				<div class="epicureandiv3">
-					<div class="epicureandiv3div">스테이크 | 다이닝 티켓</div>
-					<div class="epicureandiv3div2">육향이 남다른 스테이크를 즐겨보세요</div>
-					<hr class="epicureandiv3hr">
-					<div class="epicureandiv3div3">
-						<a href="">더보기 ></a>
-					</div>
-				</div>
-			</div>
-
-			<div class="epicureandiv1">
-				<div class="epicureandiv2">
-					<img
-						src="<c:url value="${path}/res/image/main_content/benefit4.png"/>"
-						class="epicureandiv2img">
-				</div>
-				<div class="epicureandiv3">
-					<div class="epicureandiv3div">컨템퍼러리 | 다이닝 티켓</div>
-					<div class="epicureandiv3div2">셰프의 섬세한 터치가 가미된 창의적인 다이닝</div>
-					<hr class="epicureandiv3hr">
-					<div class="epicureandiv3div3">
-						<a href="">더보기 ></a>
-					</div>
-				</div>
-			</div>
-
-			<div class="epicureandiv1">
-				<div class="epicureandiv2">
-					<img
-						src="<c:url value="${path}/res/image/main_content/benefit5.png"/>"
-						class="epicureandiv2img">
-				</div>
-				<div class="epicureandiv3">
-					<div class="epicureandiv3div">양식 | 다이닝 티켓</div>
-					<div class="epicureandiv3div2">이탈리안부터 프렌치까지. 데이트하기 좋은 곳</div>
-					<hr class="epicureandiv3hr">
-					<div class="epicureandiv3div3">
-						<a href="">더보기 ></a>
-					</div>
-				</div>
-			</div>
-
-			<div class="epicureandiv1">
-				<div class="epicureandiv2">
-					<img
-						src="<c:url value="${path}/res/image/main_content/benefit6.png"/>"
-						class="epicureandiv2img">
-				</div>
-				<div class="epicureandiv3">
-					<div class="epicureandiv3div">일식 | 다이닝 티켓</div>
-					<div class="epicureandiv3div2">가이세키 요리부터 쿠시아게 오마카세까지</div>
-					<hr class="epicureandiv3hr">
-					<div class="epicureandiv3div3">
-						<a href="">더보기 ></a>
-					</div>
-				</div>
-			</div>
-
-			<div class="epicureandiv1">
-				<div class="epicureandiv2">
-					<img
-						src="<c:url value="${path}/res/image/main_content/benefit7.png"/>"
-						class="epicureandiv2img">
-				</div>
-				<div class="epicureandiv3">
-					<div class="epicureandiv3div">중식 | 다이닝 티켓</div>
-					<div class="epicureandiv3div2">중화요리의 전설, 환상적인 불맛</div>
-					<hr class="epicureandiv3hr">
-					<div class="epicureandiv3div3">
-						<a href="">더보기 ></a>
-					</div>
-				</div>
-			</div>
-
-			<div class="epicureandiv1">
-				<div class="epicureandiv2">
-					<img
-						src="<c:url value="${path}/res/image/main_content/benefit8.png"/>"
-						class="epicureandiv2img">
-				</div>
-				<div class="epicureandiv3">
-					<div class="epicureandiv3div">한식 | 다이닝 티켓</div>
-					<div class="epicureandiv3div2">한식의 다채로운 변주를 경험해보세요</div>
-					<hr class="epicureandiv3hr">
-					<div class="epicureandiv3div3">
-						<a href="">더보기 ></a>
-					</div>
-				</div>
-			</div>
-
-			<div class="epicureandiv1">
-				<div class="epicureandiv2">
-					<img
-						src="<c:url value="${path}/res/image/main_content/benefit9.png"/>"
-						class="epicureandiv2img">
-				</div>
-				<div class="epicureandiv3">
-					<div class="epicureandiv3div">한우 | 다이닝 티켓</div>
-					<div class="epicureandiv3div2">숙성 한우 등심부터 추억의 로스구이까지</div>
-					<hr class="epicureandiv3hr">
-					<div class="epicureandiv3div3">
-						<a href="">더보기 ></a>
-					</div>
-				</div>
-			</div>
+			</c:forEach>
 		</div>
+		
 	</div>
 
 

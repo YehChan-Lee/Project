@@ -51,7 +51,7 @@
 				<h2 class="v-story-tt" data-aos="fade-up"></h2>
 				<div class="v-story-slider" data-aos="fade-up">
 					<div class="slider-item">
-						<a href="list" class="block">
+						<a href="list?shop_search=&page=1" class="block">
 							<div class="img-box block">
 								<img src="<c:url value="${path}/res/image/main/hotelfood.jpg"/>">
 
@@ -69,7 +69,7 @@
 						</div>
 					</div>
 					<div class="slider-item">
-						<a href="list?solt=4" class="block">
+						<a href="list?solt=4&page=1" class="block">
 							<div class="img-box">
 								<img
 									src="<c:url value="${path}/res/image/main/restaurant.jpg"/>">
@@ -87,7 +87,7 @@
 						</div>
 					</div>
 					<div class="slider-item">
-						<a href="list?string_search=%23혼밥" class="block">
+						<a href="list?string_search=%23혼밥&page=1" class="block">
 							<div class="img-box">
 								<img src="<c:url value="${path}/res/image/main/3.png"/>">
 							</div>
@@ -104,7 +104,7 @@
 						</div>
 					</div>
 					<div class="slider-item">
-						<a href="list?food_type=한식" class="block">
+						<a href="list?food_type=한식&page=1" class="block">
 							<div class="img-box">
 								<img src="<c:url value="${path}/res/image/main/4.jpg"/>">
 							</div>

@@ -268,44 +268,44 @@
 										id="gyeonggi28"> <label for="gyeonggi28">하남시</label></li>
 								</ul>
 								<ul class="content scroll" data-dist="busan">
-									<li><input type="checkbox" value="부산광역시 동구" name="shop_addr"
+									<li><input type="checkbox" value="부산 동구" name="shop_addr"
 										id="bnsan01"> <label for="busan01">동구</label></li>
-									<li><input type="checkbox" value="부산광역시 영도구" name="shop_addr"
+									<li><input type="checkbox" value="부산 영도구" name="shop_addr"
 										id="bnsan02"> <label for="bnsan02">영도구</label></li>
-									<li><input type="checkbox" value="부산광역시 부산진구" name="shop_addr"
+									<li><input type="checkbox" value="부산 부산진구" name="shop_addr"
 										id="bnsan03"> <label for="bnsan03">부산진구</label></li>
-									<li><input type="checkbox" value="부산광역시 동래구" name="shop_addr"
+									<li><input type="checkbox" value="부산 동래구" name="shop_addr"
 										id="bnsan04"> <label for="bnsan04">동래구</label></li>
-									<li><input type="checkbox" value="부산광역시 서구" name="shop_addr"
+									<li><input type="checkbox" value="부산 서구" name="shop_addr"
 										id="bnsan05"> <label for="bnsan05">서구</label></li>
-									<li><input type="checkbox" value="부산광역시 남구" name="shop_addr"
+									<li><input type="checkbox" value="부산 남구" name="shop_addr"
 										id="bnsan06"> <label for="bnsan06">남구</label></li>
-									<li><input type="checkbox" value="부산광역시 북구" name="shop_addr"
+									<li><input type="checkbox" value="부산 북구" name="shop_addr"
 										id="bnsan07"> <label for="bnsan07">북구</label></li>
-									<li><input type="checkbox" value="부산광역시 해운대구" name="shop_addr"
+									<li><input type="checkbox" value="부산 해운대구" name="shop_addr"
 										id="bnsan08"> <label for="bnsan08">해운대구</label></li>
-									<li><input type="checkbox" value="부산광역시 금정구" name="shop_addr"
+									<li><input type="checkbox" value="부산 금정구" name="shop_addr"
 										id="bnsan09"> <label for="bnsan09">금정구</label></li>
-									<li><input type="checkbox" value="부산광역시 강서구" name="shop_addr"
+									<li><input type="checkbox" value="부산 강서구" name="shop_addr"
 										id="bnsan10"> <label for="bnsan10">강서구</label></li>
-									<li><input type="checkbox" value="부산광역시 연제구" name="shop_addr"
+									<li><input type="checkbox" value="부산 연제구" name="shop_addr"
 										id="bnsan11"> <label for="bnsan11">연제구</label></li>
-									<li><input type="checkbox" value="부산광역시 수영구" name="shop_addr"
+									<li><input type="checkbox" value="부산 수영구" name="shop_addr"
 										id="bnsan12"> <label for="bnsan12">수영구</label></li>
-									<li><input type="checkbox" value="부산광역시 사상구" name="shop_addr"
+									<li><input type="checkbox" value="부산 사상구" name="shop_addr"
 										id="bnsan13"> <label for="bnsan13">사상구</label></li>
-									<li><input type="checkbox" value="부산광역시 기장군" name="shop_addr"
+									<li><input type="checkbox" value="부산 기장군" name="shop_addr"
 										id="bnsan14"> <label for="bnsan14">기장군</label></li>
-									<li><input type="checkbox" value="부산광역시 중구" name="shop_addr"
+									<li><input type="checkbox" value="부산 중구" name="shop_addr"
 										id="bnsan15"> <label for="bnsan15">중구</label></li>
-									<li><input type="checkbox" value="부산광역시 사하구" name="shop_addr"
+									<li><input type="checkbox" value="부산 사하구" name="shop_addr"
 										id="bnsan16"> <label for="bnsan16">사하구</label></li>
 								</ul>
 								<ul class="content scroll" data-dist="jeju">
 									<li><input type="checkbox" value="제주시" name="shop_addr"
-										id="jeju01"> <label for="incheon01">제주시</label></li>
+										id="jeju01"> <label for="jeju01">제주시</label></li>
 										<li><input type="checkbox" value="서귀포시" name="shop_addr"
-										id="jeju02"> <label for="incheon01">서귀포시</label></li>
+										id="jeju02"> <label for="jeju02">서귀포시</label></li>
 								</ul>
 								<ul class="content scroll" data-dist="daegu">
 									<li><input type="checkbox" value="대구광역시 동구" name="shop_addr"
