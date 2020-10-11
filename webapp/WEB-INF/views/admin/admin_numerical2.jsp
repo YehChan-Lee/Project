@@ -18,7 +18,7 @@
 		<div class="numerical2_cont">
 			<h4>
 				<i class="fas fa-chart-pie"></i>
-				<p>2020년 9월 요일별 접속자 통계</p>
+				<p>2020년 요일별 접속자 통계</p>
 			</h4>
 		</div>
 		<div class="numer2_sear">
@@ -34,7 +34,7 @@
 				<option value="">7월</option>
 				<option value="">8월</option>
 				<option value="">9월</option>
-				<option value="">10월</option>
+				<option value="" selected="selected">10월</option>
 				<option value="">11월</option>
 				<option value="">12월</option>
 			</select>
