@@ -26,7 +26,7 @@
 		<div class="numerical1_cont">
 			<h4>
 				<i class="fas fa-chart-bar"></i>
-				<p>2020년 9월 일별 접속자 통계</p>
+				<p>2020년 일별 접속자 통계</p>
 			</h4>
 		</div>
 		<div class="numer1_sear">
@@ -42,7 +42,7 @@
 				<option value="07">7월</option>
 				<option value="08">8월</option>
 				<option value="09">9월</option>
-				<option value="10">10월</option>
+				<option value="10" selected="selected">10월</option>
 				<option value="11">11월</option>
 				<option value="12">12월</option>
 			</select>
@@ -137,8 +137,9 @@
 	            	alert("에러발생");
 	            },
 	            success : function(){
-	            	alert("성공");
-	            	$("#num1_chart").load("admin/admin_numerical1_chart");
+	            	$("#num1_chart").load("admin/admin_numerical1_chart",{
+	            		"info":info
+	            	});
 	            	
 	            }
 		 	});

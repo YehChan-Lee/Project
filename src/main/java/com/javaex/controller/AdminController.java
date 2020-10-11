@@ -31,7 +31,7 @@ import com.javaex.model.VisitVo;
 @Controller
 public class AdminController {
 
-	String coun="01";
+	String coun = "01";
 
 	@Autowired
 	ShopDao dao;
@@ -194,56 +194,32 @@ public class AdminController {
 	}
 
 	@RequestMapping("/admin/admin_numerical1_chart")
-	public ModelAndView admin_numerical1_chart(ModelAndView mav, HttpServletRequest req,
-			@RequestParam(required = false, defaultValue = "info") String info) {
+	public ModelAndView admin_numerical1_chart(ModelAndView mav, HttpServletRequest req) {
 		System.out.println("/BabPool/admin/admin_numerical1_chart");
-		
-		System.out.println(">>>i"+info);
-		Date d = new Date();
-		SimpleDateFormat monthFo = new SimpleDateFormat("MM");
-		String month = monthFo.format(d);
+
+		String info = req.getParameter("info");
 		ArrayList<Object> da = new ArrayList<>();
 
 		String[] cnt1 = { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15",
 				"16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" };
-		
-		if(info.equals("info")) {
-			for (int o = 0; o < 31; o++) {
-				for (int p = 0; p < visitDao.aDAy(month).size(); p++) {
-					try {
-						if ((month + "/" + cnt1[o]).equals(visitDao.aDAy(month).get(p).getDay())) {
-							da.add(visitDao.aDAy(month).get(p).getCount());
-						}
-					} catch (Exception e) {
+
+		for (int i = 0; i < 31; i++) {
+			for (int p = 0; p < visitDao.aDAy(info).size(); p++) {
+				try {
+					if ((info + "/" + cnt1[i]).equals(visitDao.aDAy(info).get(p).getDay())) {
+						da.add(visitDao.aDAy(info).get(p).getCount());
 					}
-				}
-				if (da.size() == o) {
-					da.add(0);
+				} catch (Exception e) {
 				}
 			}
-		
-			mav.addObject("admin_numerical1_day", da);
-			mav.setViewName("admin/admin_numerical1_chart");
-			return mav;
-		} 
-		
-			for (int i = 0; i < 31; i++) {
-				for (int p = 0; p < visitDao.aDAy(info).size(); p++) {
-					try {
-						if ((info + "/" + cnt1[i]).equals(visitDao.aDAy(info).get(p).getDay())) {
-							da.add(visitDao.aDAy(info).get(p).getCount());
-						}
-					} catch (Exception e) {
-					}
-				}
-				if (da.size() == i) {
-					da.add(0);
-				}
+			if (da.size() == i) {
+				da.add(0);
 			}
-		
-		for (int m = 0; m < da.size(); m++) {
-			System.out.println(da.get(m));
 		}
+
+		/*
+		 * for (int m = 0; m < da.size(); m++) { System.out.println(da.get(m)); }
+		 */
 		mav.addObject("admin_numerical1_day", da);
 		mav.setViewName("admin/admin_numerical1_chart");
 		return mav;
