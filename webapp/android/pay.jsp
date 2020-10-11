@@ -50,7 +50,7 @@
 	}
 	else {
 		out.println("{");
-			out.println("\"food_name\": \"" +(String)resArr.get(0)+"\",");
+			out.println("\"food_name\": \"" +((String)resArr.get(0)).replace("\"", "'")+"\",");
 			out.println("\"food_count\": \"" +(String)resArr.get(1)+"\",");
 			out.println("\"is_pay\": \"" +(String)resArr.get(2)+"\"");
 
@@ -59,7 +59,7 @@
 			for(int i = 3; i < resArr.size(); i+=3) {
 				out.println(",");
 				out.println("{");
-				out.println("	\"food_name\": \"" +(String)resArr.get(i)+"\",");
+				out.println("	\"food_name\": \"" +((String)resArr.get(i)).replace("\"", "'")+"\",");
 				out.println("	\"food_count\": \"" +(String)resArr.get(i+1)+"\",");
 				out.println("	\"is_pay\": \"" +(String)resArr.get(i+2)+"\"");
 				out.println("}");

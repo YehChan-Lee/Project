@@ -44,7 +44,7 @@
 			out.println("\"SHOP_TITLE\": \"" +(String)resArr.get(0)+"\",");
 			out.println("\"SHOP_ADDR\": \"" +(String)resArr.get(1)+"\",");
 			out.println("\"FOOD_TYPE\": \"" +(String)resArr.get(2)+"\",");
-			out.println("\"SHOP_TIP\": \"" +(String)resArr.get(3)+"\",");
+			out.println("\"SHOP_TIP\": \"" +((String)resArr.get(3)).replace("\"", "'")+"\",");
 			out.println("\"BUDGET\": \"" +(String)resArr.get(4)+"\",");
 			out.println("\"SHOP_RESERVE\": \"" +(String)resArr.get(5)+"\",");
 			out.println("\"SHOP_COMMENT\": \"" +(String)resArr.get(6)+"\",");
@@ -69,19 +69,21 @@
 		out.println("\"Shop_Location\": \"" +(String)resArr.get(1)+"\",");
 		out.println("\"Food_Type\": \"" +(String)resArr.get(2)+"\",");
 		out.println("\"Shop_Score\": \"" +(String)resArr.get(3)+"\",");
-		out.println("\"Shop_Tip\": \"" +(String)resArr.get(4)+"\",");
-		out.println("\"Shop_Id\": \"" +(String)resArr.get(5)+"\"");
+		out.println("\"Shop_Tip\": \"" +((String)resArr.get(4)).replace("\"", "'")+"\",");
+		out.println("\"Shop_Id\": \"" +(String)resArr.get(5)+"\",");
+		out.println("\"shop_photo\": \"" +(String)resArr.get(6)+"\"");
 		out.println("}");
 		
-			for(int i = 6; i < resArr.size(); i+=6) {
+			for(int i = 7; i < resArr.size(); i+=7) {
 				out.println(",");
 				out.println("{");
 				out.println("	\"Shop_Title\": \"" +(String)resArr.get(i)+"\",");
 				out.println("	\"Shop_Location\": \"" +(String)resArr.get(i+1)+"\",");
 				out.println("	\"Food_Type\": \"" +(String)resArr.get(i+2)+"\",");
 				out.println("	\"Shop_Score\": \"" +(String)resArr.get(i+3)+"\",");
-				out.println("	\"Shop_Tip\": \"" +(String)resArr.get(i+4)+"\",");
-				out.println("	\"Shop_Id\": \"" +(String)resArr.get(i+5)+"\"");
+				out.println("	\"Shop_Tip\": \"" +((String)resArr.get(i+4)).replace("\"", "'")+"\",");
+				out.println("	\"Shop_Id\": \"" +(String)resArr.get(i+5)+"\",");
+				out.println("	\"shop_photo\": \"" +(String)resArr.get(i+6)+"\"");
 				out.println("}");
 			}
 		}

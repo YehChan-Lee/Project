@@ -149,7 +149,7 @@
 				<div id="naverMap"></div>
 			</div>
 			<div id="sidebar_wrap" class="detail">
-				<div class="container">
+				<div class="container" style="padding-top:0;margin-top:0;">
 
 					<!-- Button to Open the Modal -->
 					<%
@@ -322,7 +322,7 @@
 								<div class="detail">
 									<div class="name">
 										<a
-											href="http://localhost:8088/BabPool/detail?shopidx=${shop.shop_idx}">${shop.shop_title}</a>
+											href="http://babpool.duckdns.org:8088/BabPool/detail?shopidx=${shop.shop_idx}">${shop.shop_title}</a>
 									</div>
 									<div class="info">${shop.shop_reserve} 예약,
 										${shop.shop_review} 리뷰, ${shop.shop_view} 조회수</div>

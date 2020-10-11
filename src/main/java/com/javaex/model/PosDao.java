@@ -41,4 +41,10 @@ public class PosDao {
 		System.out.println("pay_date : "+pay_date);
 		return sqlsession.selectList("ReserveOrder.getMenu",map);
 	}
+	public List<HashMap<String,Object>> getReserveMenu(String user_email,String reserve_idx){
+	      HashMap<String,Object> map = new HashMap<String, Object>();
+	      map.put("user_email", user_email);
+	      map.put("reserve_idx", reserve_idx);
+	      return sqlsession.selectList("ReserveOrder.getReserveMenu",map);
+	  }
 }
