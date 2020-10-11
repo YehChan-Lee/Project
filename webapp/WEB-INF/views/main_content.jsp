@@ -35,9 +35,10 @@
 		<c:forEach items="${shop_vo}" var="shopvo">
 			<div class="epicureandiv1">
 				<div class="epicureandiv2">
-					<img
-						src="<c:url value="${path}/serverImg/shopimg/${shopvo.shop_photo }"/>"
+					<c:forTokens items="${shopvo.shop_photo}" delims="/" var="img">
+					<img src="<c:url value="${path}/serverImg/shopimg/${img}"/>"
 						class="epicureandiv2img">
+						</c:forTokens>
 				</div>
 				<div class="epicureandiv3">
 					<div class="epicureandiv3div">${shopvo.shop_title}</div>
