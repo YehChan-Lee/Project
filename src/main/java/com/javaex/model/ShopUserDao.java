@@ -83,5 +83,5 @@ public class ShopUserDao {
 		map.put("fileName", fileName);
 		map.put("user_email", user_email);
 		sqlSession.update("ShopUserVo.profileUpdate",map);		
-	}	
+	}
 }

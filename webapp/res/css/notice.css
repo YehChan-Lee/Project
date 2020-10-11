@@ -6,7 +6,6 @@ html, body{
 body{
 	background-color: #f3f3f3;
 }
-
 #notice_banner{
 	margin-top: 58px;;
 	padding: 0;
@@ -23,7 +22,7 @@ body{
 	padding-left: 25%;
 	position: relative;
 	width: 940px;
-	margin-bottom: 30px;
+	margin-bottom: 120px;
 }
 #notice_list .notice_open{
 	color: #55534c;
@@ -56,45 +55,4 @@ body{
 	height: 200px;
 	display: none;
 	padding: 30px;
-}
-#no_notice{
-	background-color: #fff;
-	text-align: center;
-	padding: 150px;
-	font-size: 20px;
-	font-weight:600;
-	border-radius: 5px;
-}
-/* pagination */
-#container{
-    position: relative;
-    border: 0px solid red;
-    overflow: auto;
-    display: flex;
-    margin-bottom: 7%;
-    text-align: center;
-    justify-content: center;
-}
-#container>ul>li{
-	list-style: none;
-    float: left;
-    padding: 10px 20px;
-    color: black;
-    background: #fff;
-    border: 1px solid #f3f3f3;
-    border-radius: 5px;
-}
-#container>ul>li:hover{
-	background-color: #ddd;
-}
-#pagination{
-	display: flex;
-    text-align: center;
-}
-#container a:link{
-	color: #000;
-}
-#container a:hover {
-	color: #000;
-	font-weight: 600;
 }

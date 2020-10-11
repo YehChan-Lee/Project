@@ -23,6 +23,7 @@
 </head>
 <body>
 	<%@include file="top_bar.jsp"%>
+
 	<%
 		List<ShopVo> shoplist = (ArrayList<ShopVo>) request.getAttribute("shopList");
 		pageContext.setAttribute("sort", request.getParameter("shopListCnt"));
@@ -164,7 +165,6 @@
 			</div>
 			<!--상점 목록 끝 -->
 			<%@include file="menubar.jsp"%>
-
 			<!--페이지 번호 시작-->
 			<div id="paging"></div>
 			<!--페이지 번호 끝-->

@@ -116,6 +116,5 @@ public class HelloController {
 		System.out.println("/hellospring/menubar");
 		return "menubar";
 	}
-
 	
 }

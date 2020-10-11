@@ -28,7 +28,8 @@ public ReservationVo(String user_email, String shop_title, int res_customer, Str
 	this.res_name = res_name;
 }
 
-	public String getUser_email() {
+
+public String getUser_email() {
 	return user_email;
 }
 
@@ -119,9 +120,11 @@ public void setRev_phone(String rev_phone) {
 }
 
 
-	@Override
-	public String toString() {
-		return "ReservationVo [user_email=" + user_email + ", shop_title=" + shop_title + ", res_date=" + res_date
-				+ ", res_customer=" + res_customer + ", shop_id=" + shop_id + "]";
-	}
+@Override
+public String toString() {
+	return "ReservationVo [user_email=" + user_email + ", shop_title=" + shop_title + ", res_date=" + res_date
+			+ ", res_customer=" + res_customer + ", shop_id=" + shop_id + ", reserve_idx=" + reserve_idx
+			+ ", alert_new=" + alert_new + ", rev_phone=" + rev_phone + "]";
+}
+
 }

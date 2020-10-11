@@ -21,6 +21,11 @@ public class ShopDao {
 	public List<ShopVo> shopList(){
 		return sqlsession.selectList("ShopVo.shopList");
 	}
+	
+	public List<ShopVo> mainshopList(){
+		return sqlsession.selectList("ShopVo.mainshoplist");
+	}
+	
 	public List<ShopVo> getTop5(){
 		return sqlsession.selectList("ShopVo.getTop5");
 	}

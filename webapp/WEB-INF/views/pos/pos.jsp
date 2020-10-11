@@ -51,7 +51,7 @@
 						<tbody>
 						<c:forEach items="${reserveList}" var="reserve">
 							<tr>
-								<td>${reserve.user_name}</td>
+								<td>${reserve.res_name}</td>
 								<td>${reserve.res_customer}</td>
 								<td>${reserve.rev_phone}</td>
 								<td>${reserve.res_date}</td>
@@ -73,13 +73,15 @@
 								<th>결제 날짜</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="payTable">
 						<c:forEach items="${payment}" var="pay">
-							<tr>
+							<tr data-toggle="modal" data-target="#myModal">
 								<td>${pay.pay_idx}</td>
 								<td>${pay.user_email}</td>
 								<td>${pay.pay_point}</td>
 								<td>${pay.pay_date}</td>
+								<input type="hidden" class="hide1" value="${pay.pay_date}"/>								
+								<input type="hidden" class="hide2" value="${pay.user_email}"/>								
 							</tr>							
 						</c:forEach>
 						</tbody>
@@ -107,6 +109,9 @@
 				<p>3번 테이블</p>
 				<div id="food_list3">
 					<ul>
+					<c:forEach items="${table3}" var="menu">
+						<li>${menu.food_name}/${menu.food_count}</li>
+					</c:forEach>
 					</ul>
 				</div>
 			</div>
@@ -133,9 +138,72 @@
 			</div>
 		</div>
 	</div>
+	
+	 <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">결제 상세 내역</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <!-- 결제상세내역 넣어주기 -->
+          <table class="table">
+						<thead>
+							<tr>
+								<th>메뉴</th>
+								<th>갯수</th>
+								<th>가격</th>
+							</tr>
+						</thead>
+						<tbody id="menu_table">							
+						</tbody>
+					</table>
+        </div> 
+        
+      </div>
+    </div>
+  </div>
 </body>
 <script>
 $(document).ready(function () {
+	
+	$("#payTable tr").click(function () {
+		/* alert($(this).children("input").val()); */
+		$("#menu_table").html("");
+		$.ajax({
+			type:'POST',
+			url:'pos/payment',
+			dataType : "JSON",
+			data : {
+				pay_date : $(this).children(".hide1").val(),
+				user_email : $(this).children(".hide2").val()
+			},
+			success:function(data) {				
+				$.each(data,function(key,value){
+					$("#menu_table").append("<tr>");
+					$.each(value,function(key2,value2){
+						$("#menu_table").append("<td>"+value2+"</td>");
+					})
+					$("#menu_table").append("</tr>");
+				});
+					/* $("#menu_table").append("<tr><td>" +"</td>");
+					$("#menu_table").append("<td>"+"</td>");
+					$("#menu_table").append("<td>" +"</td></tr>"); */
+				
+			},
+			error : function() {
+				alert("에러발생");
+			}
+		})
+	})
+	
+	
 	$(".shoptable").click(function (e) {
 		$(".shoptable").removeClass('selected');
 		$(this).toggleClass('selected');
@@ -175,7 +243,8 @@ $(document).ready(function () {
 			url : "pos/alert",
 			data : {
 				reserve_cnt : "${reserveCnt}",
-				menu_cnt : "${table2Cnt}"
+				menu_cnt : "${table2Cnt}",
+				menu_cnt2: "${table3Cnt}"
 				},
 			success : function(data) {
 				if (data == "deferent") {

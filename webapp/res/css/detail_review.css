@@ -105,7 +105,7 @@ hr{border-top: 1px solid lightgray;margin-top: 15px;}
     border:none;
 }
 #review_wrap .author{
-	display: block;	
+	display: inline-block;	
 }
 #review_wrap .review{
 	position: relative;
@@ -116,6 +116,7 @@ hr{border-top: 1px solid lightgray;margin-top: 15px;}
     background: #fff;
     display: inline-block;
     box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 #review_wrap .thumbnail{
 	display: inline-block;
@@ -258,10 +259,6 @@ hr{border-top: 1px solid lightgray;margin-top: 15px;}
 #review_wrap .grade_comment{
 	line-height: 25px;
 	margin-left : 5px;
-}
-#review_wrap .no_name{
-	color: #323232;
-    font-weight: 600;
 }
 .del > i{
 	float : right;

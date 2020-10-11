@@ -46,17 +46,17 @@ html {
 }
 /* a�깭洹� �뒪���씪 none */
 a:link {
-/* 	color: white; */
+	color: white;
 	text-decoration: none;
 }
 
 a:visited {
-	/* color: white; */
+	color: white;
 	text-decoration: none;
 }
 
 a:hover {
-	/* color: white; */
+	color: white;
 	text-decoration: none;
 }
 

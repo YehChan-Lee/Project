@@ -4,8 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">	
-<link rel="stylesheet" href="<c:url value="${path}/res/css/buisnessmypage.css"/>" />
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="<c:url value="${path}/res/css/buisnessmypage.css"/>" />
+	
 </head>
 <body>
 	<div id="setting" class="body empty">
