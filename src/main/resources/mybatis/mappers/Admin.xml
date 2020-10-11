@@ -200,7 +200,7 @@
 		FROM shop S
 		JOIN ShopUser U
 		ON U.user_email = S.user_email
-		ORDER BY S.shop_date DESC
+		ORDER BY U.sign_date DESC
 	</select>
 	<!-- 관리자 예약현황 -->
 	<select id="AresSitu_list" resultMap="AdminResult">

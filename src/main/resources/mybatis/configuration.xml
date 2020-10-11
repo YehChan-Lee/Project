@@ -19,16 +19,18 @@
 		
 		<typeAlias alias="NewsVo" type="com.javaex.model.NewsVo"></typeAlias>
 
-		<typeAlias alias="ReviewLikeVo"
-			type="com.javaex.model.ReviewLikeVo"></typeAlias>
+		<typeAlias alias="ReviewLikeVo" type="com.javaex.model.ReviewLikeVo"></typeAlias>
 		
-		<typeAlias alias="ReviewHateVo"
-			type="com.javaex.model.ReviewHateVo"></typeAlias>
+		<typeAlias alias="ReviewHateVo" type="com.javaex.model.ReviewHateVo"></typeAlias>
+		
 		<typeAlias alias="MenuVo" type="com.javaex.model.MenuVo"></typeAlias>
 		
 		<typeAlias alias="AdminVo" type="com.javaex.model.AdminVo"></typeAlias>
 		
 		<typeAlias alias="VisitVo" type="com.javaex.model.VisitVo"></typeAlias>
+		
+		<typeAlias alias="VisitDayVo" type="com.javaex.model.VisitDayVo"></typeAlias>
+		
 		
 		<typeAlias alias="ReserveOrder" type="com.javaex.model.ReserveOrderVo"></typeAlias>
 		

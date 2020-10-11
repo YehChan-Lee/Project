@@ -86,8 +86,8 @@ $(document).ready(function(){
 				<c:when test="${!empty reviewList}">
 					<c:forEach items="${reviewList}" var="review">
 						<div class="review">
-							<div class="del">
-								<input type="hidden"
+							<div class="del" style="display: inline-block;float: right;">
+								<input type="hidden" 
 									id="h_reviewIdx${review.reviewVo.review_idx}"
 									value="${review.reviewVo.review_idx}" /> <input type="hidden"
 									id="h_user_email${review.reviewVo.review_idx}"

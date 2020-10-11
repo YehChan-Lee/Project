@@ -39,7 +39,7 @@
 			<div id="reserve_list">
 				<p>예약 목록</p>
 				<div id="list">
-					<table class="table table-dark">
+					<table class="table table-dark reserveTable">
 						<thead>
 							<tr>
 								<th>이름</th>
@@ -175,7 +175,7 @@
 <script>
 $(document).ready(function () {	
 	
-	$(".table-dark tr").click(function () {
+	$(".reserveTable tr").click(function () {
 		console.log($(this).children(".hide1").val() + ' ' +$(this).children(".hide2").val());
 		$(".modal-header").html('<h4 class="modal-title">예약 메뉴 내역</h4>');
 		$("#menu_table").html("");
@@ -290,7 +290,7 @@ $(document).ready(function () {
 					alert("새로운 주문이 있습니다.");
 					window.location.reload();
 				}else if(data == "payment"){
-					alert("2번 테이블 결제완료");
+					alert("테이블 결제완료");
 					window.location.reload();
 				}
 			}
