@@ -77,6 +77,38 @@ public class VisitDao {
 		}*/
 		return weekList;
 	}
+	// 월별 통계
+	public String aMonth(String cntM) {
+		String cnt = sqlSession.selectOne("VisitVo.visitMo", cntM);
+		return cnt;
+	} 
+	// 일별 통계
+		public List<VisitDayVo> aDAy(String infoM) {
+			List<VisitDayVo> visitDayVo = sqlSession.selectList("VisitVo.visitD", infoM);
+//			for(int i=0;i<visitDayVo.size();i++) {
+//				System.out.println(visitDayVo.get(i));
+//			}
+			return visitDayVo;
+		} 
+	
+		public int aDAy1(String infoM) {
+			String[] cnt = {"01","02","03","04","05","06","07","08","09",
+					"10","11","12","13","14","15","16","17","18",
+					"19","20","21","22","23","24","25","26","27","28","29","30","31"};
+			HashMap<String, Object> list = new HashMap<String, Object>();
+			list.put("infoM",infoM);
+			list.put("cnt",cnt);
+						
+			List<VisitVo> visitDayVo = sqlSession.selectList("VisitVo.visitDt", list);
+			System.out.println("13123");
+//			System.out.println(visitDayVo.size());
+//			for(int i=0;i<visitDayVo.size();i++) {
+//				System.out.println(visitDayVo.size());
+//				System.out.println(visitDayVo.get(i));
+//			}
+			return 1;
+		} 
+		
 }
 
 

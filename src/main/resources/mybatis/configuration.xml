@@ -30,6 +30,8 @@
 		
 		<typeAlias alias="VisitVo" type="com.javaex.model.VisitVo"></typeAlias>
 		
+		<typeAlias alias="VisitDayVo" type="com.javaex.model.VisitDayVo"></typeAlias>
+		
 		<typeAlias alias="ReserveOrder" type="com.javaex.model.ReserveOrderVo"></typeAlias>
 		
 	</typeAliases>
@@ -47,4 +49,5 @@
 		<mapper resource="mybatis/mappers/Admin.xml" />
 		<mapper resource="mybatis/mappers/ReserveOrder.xml" />
 	</mappers>
+
 </configuration>
