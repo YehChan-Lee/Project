@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>#해쉬태그 - 밥풀</title>
     <link rel="stylesheet" href="<c:url value="${path}/res/css/copy_location.css"/>" type="text/css">
     <style type="text/css">
         a:link { color: white; text-decoration: none;}

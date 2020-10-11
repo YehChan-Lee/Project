@@ -125,6 +125,7 @@
 		on S.shop_title = R.shop_title
 		where R.user_email=#{user_email}
 		AND R.res_date>TO_CHAR(SYSDATE, 'yyyy-mm-dd')
+		ORDER BY res_date asc
 	</select>
 
 	<select id="pos_reserveList" resultMap="ReserveResult">

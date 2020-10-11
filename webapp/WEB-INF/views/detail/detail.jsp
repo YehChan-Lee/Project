@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>밥풀 - 카페/베이커리</title>
+<title>밥풀 - 상세 페이지</title>
 
 <link rel="stylesheet"
 	href="<c:url value='${path}/res/css/detail.css?ver=1'/>">
@@ -44,6 +44,8 @@
 		pageContext.setAttribute("star", shopvo.getShop_score());
 		pageContext.setAttribute("shopidx", shopvo.getShop_idx());
 		pageContext.setAttribute("shopid", shopvo.getShop_id());
+		String[] photo = shopvo.getShop_photo().split("/");
+		pageContext.setAttribute("shopphoto", photo[0]);
 		List<ShopUserVo> shopuservo = (List<ShopUserVo>) request.getAttribute("shopuser");
 		%>
 
@@ -482,7 +484,7 @@
                        '<div class="marker_tooltip">',
                        '   <h3>${shopOne.shop_title}</h3>',
                        '   <p><i1>'+shop_addr+'</i1>',
-                       '       <img src="<c:url value='${path}/res/image/walkerhill1.jpg'/>" width="100" height="100"  /><br/>',
+                       '       <img src="<c:url value='${path}/serverImg/shopimg/${shopphoto}'/>" width="100" height="100"  /><br/>',
                        '       <i2>${shopOne.shop_phone} | ${shopOne.shop_time} | ${shopOne.shop_close}<br/></i2>',
                        '   </p>',
                        '</div>'
@@ -492,7 +494,7 @@
                     '<div class="marker_tooltip">',
                     '   <h3>${shopOne.shop_title}</h3>',
                     '   <p><i1>'+shop_addr+'<br>'+"${shopOne.shop_addr}".substring("${shopOne.shop_addr}".indexOf("|")+1)+'<br/></i1>',
-                    '       <img src="<c:url value='${path}/res/image/walkerhill1.jpg'/>" width="100" height="100"  /><br/>',
+                    '       <img src="<c:url value='${path}/serverImg/shopimg/${shopphoto}'/>" width="100" height="100"  /><br/>',
                     '       <i2>${shopOne.shop_phone} | ${shopOne.shop_time} | ${shopOne.shop_close}<br/></i2>',
                     '   </p>',
                     '</div>'

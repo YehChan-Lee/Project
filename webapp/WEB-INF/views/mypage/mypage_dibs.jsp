@@ -37,12 +37,14 @@
          <%            
             for(int i=0;i<dibsList.size();i++){
                AllVo vo = dibsList.get(i);
+               pageContext.setAttribute("reviewimg", vo.getShopVo().getShop_photo());
                if(i%3 == 0){
          %>
          <div id="shop_list">
             <div class="shop_first">
                <div class="list_img">
-                  <a class="img_a" href="detail?shopidx=<%=vo.getShopVo().getShop_idx() %>" style="background-image: url(<c:url value="${path}/res/image/default.png"/>)">
+               <c:forTokens items="${reviewimg}" delims="/" var="img">
+                  <a class="img_a" href="detail?shopidx=<%=vo.getShopVo().getShop_idx() %>" style="background-image: url('<c:url value="${path}/serverImg/shopimg/${img}"/>')">
                      <div class="img_top">
                         <span>예약 <%=vo.getShopVo().getShop_reserve() %> 리뷰 <%=vo.getShopVo().getShop_review() %> 조회수 <%=vo.getShopVo().getShop_view() %></span>
                         <span class="star_"><i class="far fa-star fa-2x"></i></span>      
@@ -52,6 +54,7 @@
                         <div class="shop_area"> <%=vo.getShopVo().getShop_location() %></div>
                      </div>
                   </a>
+                  </c:forTokens>
                </div>
                <div class="shop_desc">
                   <div class="shop_star">
@@ -70,7 +73,8 @@
            	%>
            <div class="shop_medium">
                <div class="list_img" style="background-image: url(<c:url value="${path}/res/image/default.png"/>)">
-                  <a class="img_a" href="detail?shopidx=<%=vo.getShopVo().getShop_idx() %>" style="background-image: url(<c:url value="${path}/res/image/default.png"/>)">
+               <c:forTokens items="${reviewimg}" delims="/" var="img">
+                  <a class="img_a" href="detail?shopidx=<%=vo.getShopVo().getShop_idx() %>" style="background-image: url('<c:url value="${path}/serverImg/shopimg/${img}"/>')">
                      <div class="img_top">
                         <span>예약 <%=vo.getShopVo().getShop_reserve() %> 리뷰 <%=vo.getShopVo().getShop_review() %> 조회수 <%=vo.getShopVo().getShop_view() %></span>
                         <span class="star_"><i class="far fa-star fa-2x"></i></span>      
@@ -80,6 +84,7 @@
                         <div class="shop_area"> <%=vo.getShopVo().getShop_location() %></div>
                      </div>
                   </a>
+                   </c:forTokens>
                </div>
                <div class="shop_desc">
                   <div class="shop_star">

@@ -21,7 +21,7 @@
 </head>
 <body>
 
-	<div class="container">
+	<div class="container" style="padding:0px;">
 <c:choose>
 	<c:when test="${!empty reservation}">
 		<table class="table table-hover">
