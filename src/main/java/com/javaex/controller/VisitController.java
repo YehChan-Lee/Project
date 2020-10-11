@@ -31,11 +31,12 @@ public class VisitController implements HttpSessionListener {
 		System.out.println("방문자 세션 ID : " + visitId);
 		visitDAO.insertVisit(vo);
 	}
+	
 	@Override
 	public void sessionDestroyed(HttpSessionEvent e) {
-//		System.out.println("세션 제거 완료");
-//		HttpSession session = e.getSession();
-//		session.invalidate();
+		/*HttpSession session = e.getSession();
+		session.invalidate();
+		System.out.println("세션 제거 완료");*/
 	}
 	
 	

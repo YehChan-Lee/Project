@@ -50,11 +50,13 @@
 						</thead>
 						<tbody>
 						<c:forEach items="${reserveList}" var="reserve">
-							<tr>
+							<tr data-toggle="modal" data-target="#myModal">
 								<td>${reserve.res_name}</td>
 								<td>${reserve.res_customer}</td>
 								<td>${reserve.rev_phone}</td>
 								<td>${reserve.res_date}</td>
+								<input type="hidden" class="hide1" value="${reserve.reserve_idx}"/>
+								<input type="hidden" class="hide2" value="${reserve.user_email}"/>
 							</tr>							
 						</c:forEach>
 						</tbody>
@@ -146,7 +148,7 @@
       
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">결제 상세 내역</h4>
+          <!-- <h4 class="modal-title">결제 상세 내역</h4> -->
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         
@@ -171,10 +173,44 @@
   </div>
 </body>
 <script>
-$(document).ready(function () {
+$(document).ready(function () {	
+	
+	$(".table-dark tr").click(function () {
+		console.log($(this).children(".hide1").val() + ' ' +$(this).children(".hide2").val());
+		$(".modal-header").html('<h4 class="modal-title">예약 메뉴 내역</h4>');
+		$("#menu_table").html("");
+		
+		$.ajax({
+			type:'POST',
+			url:'pos/reserveMenu',
+			dataType : "JSON",
+			data : {
+				reserve_idx : $(this).children(".hide1").val(),
+				user_email : $(this).children(".hide2").val()
+			},
+			success:function(data) {				
+				$.each(data,function(key,value){
+					$("#menu_table").append("<tr>");
+					$.each(value,function(key2,value2){
+						$("#menu_table").append("<td>"+value2+"</td>");
+					})
+					$("#menu_table").append("</tr>");
+				});
+					/* $("#menu_table").append("<tr><td>" +"</td>");
+					$("#menu_table").append("<td>"+"</td>");
+					$("#menu_table").append("<td>" +"</td></tr>"); */
+				
+			},
+			error : function() {
+				alert("에러발생");
+			}
+		})
+	});
+	
 	
 	$("#payTable tr").click(function () {
 		/* alert($(this).children("input").val()); */
+		$(".modal-header").html('<h4 class="modal-title">결제 상세 내역</h4>');
 		$("#menu_table").html("");
 		$.ajax({
 			type:'POST',

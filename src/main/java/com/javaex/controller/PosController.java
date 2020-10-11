@@ -84,4 +84,23 @@ public class PosController {
 		String jsonstr = jobj.toString();
 		res.getWriter().write(jsonstr);
 	}
+	
+	@RequestMapping("/pos/reserveMenu")
+	   public void reserveMenu(HttpServletResponse res,HttpServletRequest req,HttpSession session) throws IOException, ParseException {
+	      System.out.println("/pos/payment");
+	      String reserve_idx = req.getParameter("reserve_idx");
+	      String email = req.getParameter("user_email");
+	      JSONObject jobj = new JSONObject();
+	      
+	      List<HashMap<String,Object>> list = posdao.getReserveMenu(email, reserve_idx);
+	      for(int i=0;i<list.size();i++) {
+	         jobj.put("reservemenu"+i, list.get(i));
+	      }
+	      
+	      
+	      String jsonstr = jobj.toString();
+	      res.getWriter().write(jsonstr);
+	   }
+	
+	
 }

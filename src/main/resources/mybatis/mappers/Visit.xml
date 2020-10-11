@@ -3,6 +3,11 @@
 
 <mapper namespace="VisitVo">
 
+	<resultMap type="VisitDayVo" id="VisitDayResult">
+		<result property="count" column="count" />
+		<result property="day" column="day" />
+	</resultMap>
+
 	<insert id="VisitInsert" parameterType="VisitVo">
    <![CDATA[
       INSERT INTO visit(visit_idx, visit_id, visit_date) 
@@ -18,7 +23,7 @@
 		parameterType="string">
 		SELECT * FROM visit WHERE to_date(visit_date, 'YY/MM/DD') = #{today}
 	</select>
-
+	
 	<select id="visitMonth" resultType="int">
 		select count(*)
 		from visit
@@ -26,7 +31,7 @@
 		to_char(sysdate, 'yy/mm')
 		group by to_char(visit_date, 'yy/mm')
 	</select>
-
+	<!-- 방문 -->
 	<select id="visitWeek" resultType="hashMap" parameterType="string">
 		select count(*),
 		to_char(visit_date, 'DAY') 요일
@@ -34,7 +39,29 @@
 		group by
 		to_char(visit_date, 'DAY'), to_char(visit_date, 'MM')
 	</select>
-
+	
+	<select id="visitMo" resultType="string" parameterType="String">
+		select count(*)
+		from visit
+			where to_char(visit_date, 'mm') = #{cntM}
+			group by to_char(visit_date, 'mm') order by to_char(visit_date, 'mm') DESC
+	</select>
+	
+	<select id="visitD" resultType="VisitDayVo" parameterType="string">
+		    select count(*) as count,to_char(visit_date, 'mm/dd') as day
+		from visit 
+			where to_char(visit_date, 'mm') = #{infoM}
+			group by to_char(visit_date, 'mm/dd') order by to_char(visit_date, 'mm/dd') ASC
+	</select>
+	<!-- daytest -->
+	<select id="visitDt" resultType="VisitVo" parameterType="hashMap">
+		     select *
+		from visit 
+			<foreach collection="list" open="" close="" index="index">
+				where to_char(visit_date, 'mm/dd') = #{infoM}/#{cnt[index]}
+			</foreach>
+	</select>
+	
 	<select id="visitHomeM" resultType="VisitVo" parameterType="string">
 		select * from visit WHERE to_char(visit_date, 'MM') = #{month}
 	</select>

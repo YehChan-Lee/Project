@@ -218,7 +218,7 @@ public class QueryBean {
 		StringBuffer sb = new StringBuffer();
 
 		sb.append(" SELECT ");
-		sb.append("SHOP_TITLE, SHOP_ADDR, FOOD_TYPE, SHOP_SCORE, SHOP_TIP, SHOP_ID");
+		sb.append("SHOP_TITLE, SHOP_ADDR, FOOD_TYPE, SHOP_SCORE, SHOP_TIP, SHOP_ID, SHOP_PHOTO");
 		sb.append(" FROM ");
 		sb.append("Shop");
 		if (search == null) {
@@ -270,6 +270,7 @@ public class QueryBean {
 			res.add(rs.getString(4));
 			res.add(rs.getString(5));
 			res.add(rs.getString(6));
+			res.add(rs.getString(7));
 
 		}
 		System.out.println(sb.toString());
@@ -572,15 +573,6 @@ public class QueryBean {
 
 			stmt.executeQuery(sb3.toString());
 			System.out.println(sb3.toString());
-			
-			StringBuffer sb4 = new StringBuffer();
-			sb4.append("UPDATE SHOPUSER");
-			sb4.append(" SET POINT = POINT + "+pay_point);
-			sb4.append(" WHERE");
-			sb4.append(" USER_EMAIL = (SELECT USER_EMAIL FROM SHOP WHERE SHOP_ID = '"+shop_id+"')");
-
-			stmt.executeQuery(sb4.toString());
-			System.out.println(sb4.toString());
 		
 	}
 	

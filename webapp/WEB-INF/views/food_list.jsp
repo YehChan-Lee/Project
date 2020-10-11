@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="<c:url value="${path}/res/css/location.css"/>" type="text/css">
+    <link rel="stylesheet" href="<c:url value="${path}/res/css/copy_location.css"/>" type="text/css">
     <style type="text/css">
         a:link { color: white; text-decoration: none;}
         a:visited { color: white; text-decoration: none;}
@@ -98,6 +98,8 @@
                         </a>
                     </div>
                     
+                    
+                    
                     <div class="content">
                         <a href="list?food_type=구이&page=1" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475450055c3da9ad3655e.png">
                             <div class="shading"></div> 
@@ -109,7 +111,7 @@
                                 </div>
                             </div>
                         </a>
-                    </div>
+                    </div>   
                     
                     <div class="content">
                         <a href="list?food_type=술집&page=1" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475446055c3da81dba890.png">

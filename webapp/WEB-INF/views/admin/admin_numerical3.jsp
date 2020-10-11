@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,7 +10,12 @@
 	src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
+		
+	<%-- <%
+		
+		map = request.getAttribute("admin_aMonth");
 	
+	%> --%>
 	<div id="sec_admin_numerical3">
 		<div>
 			<div>일별</div>
@@ -44,18 +50,18 @@ google.charts.setOnLoadCallback(drawChart);
 function drawChart() {
   var data = google.visualization.arrayToDataTable([
     ['월별', '조회수'],
-    ['1월', 11],
-    ['2월', 14],
-    ['3월', 18],
-    ['4월', 34],
-    ['5월', 42],
-    ['6월', 31],
-    ['7월', 37],
-    ['8월', 39],
-    ['9월', 48],
-    ['10월', 52],
-    ['11월', 58],
-    ['12월', 53]
+    ['1월', ${admin_aMonth.get(0) }],
+    ['2월', ${admin_aMonth.get(1) }],
+    ['3월', ${admin_aMonth.get(2) }],
+    ['4월', ${admin_aMonth.get(3) }],
+    ['5월', ${admin_aMonth.get(4) }],
+    ['6월', ${admin_aMonth.get(5) }],
+    ['7월', ${admin_aMonth.get(6) }],
+    ['8월', ${admin_aMonth.get(7) }],
+    ['9월', ${admin_aMonth.get(8) }],
+    ['10월', ${admin_aMonth.get(9) }],
+    ['11월', ${admin_aMonth.get(10) }],
+    ['12월', ${admin_aMonth.get(11) }]
   ]);
 
   var options = {
@@ -72,7 +78,7 @@ function drawChart() {
 </script>
 <script>
 	$(document).ready(function(){
-		
+	
 		$("div.numer3_sear > button").on('click', function(){
 			/* if ($(".paging_search").find("input[name='pSea_txt']").val() == '') {
 				alert("키워드를 입력하세요");

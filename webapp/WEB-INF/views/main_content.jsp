@@ -35,9 +35,10 @@
 		<c:forEach items="${shop_vo}" var="shopvo">
 			<div class="epicureandiv1">
 				<div class="epicureandiv2">
-					<img
-						src="<c:url value="${path}/serverImg/shopimg/${shopvo.shop_photo }"/>"
+					<c:forTokens items="${shopvo.shop_photo}" delims="/" var="img">
+					<img src="<c:url value="${path}/serverImg/shopimg/${img}"/>"
 						class="epicureandiv2img">
+						</c:forTokens>
 				</div>
 				<div class="epicureandiv3">
 					<div class="epicureandiv3div">${shopvo.shop_title}</div>
@@ -238,17 +239,16 @@
 		<div class="reviewdiv">
 			<c:forEach items="${reviewList}" var="review">
 			<div class="reviewdiv1">
-				<div class="reviewdiv2">
-					<img src="<c:url value="${path}/res/image/main_content/coffie.jpg"/>"
-						class="reviewdiv2img">
+				<div class="reviewdiv2" style="overflow:hidden;">
+				<c:forTokens items="${review.shopVo.shop_photo}" delims="/" var="img">
+					<img style="width:100%;height:100%;" src="<c:url value="${path}/serverImg/shopimg/${img}"/>">
+					</c:forTokens>
 					<div class="review_img_div">
 						${review.shopVo.shop_title}<br> ${review.shopVo.shop_location}
 					</div>
 				</div>
 				<div class="reviewdiv3">
-					<img
-						src="<c:url value="${path}/serverImg/profile/user/${review.shopUser.user_photo}"/>"
-						class="profile">
+					<img src="<c:url value="${path}/serverImg/profile/user/${review.shopUser.user_photo}"/>" class="profile">
 					<div class="info">
 						<div class="infoname">${review.shopUser.user_name}</div>
 						<div class="infocount">리뷰수 ${review.shopUser.review_cnt}</div>
@@ -260,7 +260,7 @@
 							<span class="reviewspan2">${review.reviewVo.review}</span>
 						</div>
 						<div class="infodetail">
-							<a href="http://localhost:8088/BabPool/detail?shopidx=${review.shopVo.shop_idx}"><span style="position: relative;bottom : 3px;right : -2px;">더보기</span></a>
+							<a href="http://babpool.duckdns.org:8088/BabPool/detail?shopidx=${review.shopVo.shop_idx}"><span style="position: relative;bottom : 3px;right : -2px;">더보기</span></a>
 						</div>
 					</div>
 				</div>

@@ -194,19 +194,19 @@
 										id="seoul25"> <label for="seoul25">중랑구</label></li>
 								</ul>
 								<ul class="content scroll" data-dist="incheon">
-									<li><input type="checkbox" value="인천광역시 강화군" name="shop_addr"
+									<li><input type="checkbox" value="인천 강화군" name="shop_addr"
 										id="incheon01"> <label for="incheon01">강화군</label></li>
-									<li><input type="checkbox" value="인천광역시 남동구" name="shop_addr"
+									<li><input type="checkbox" value="인천 남동구" name="shop_addr"
 										id="incheon02"> <label for="incheon02">남동구</label></li>
-									<li><input type="checkbox" value="인천광역시 미추홀구" name="shop_addr"
+									<li><input type="checkbox" value="인천 미추홀구" name="shop_addr"
 										id="incheon03"> <label for="incheon03">미추홀구</label></li>
-									<li><input type="checkbox" value="인천광역시 부평구" name="shop_addr"
+									<li><input type="checkbox" value="인천 부평구" name="shop_addr"
 										id="incheon04"> <label for="incheon04">부평구</label></li>
-									<li><input type="checkbox" value="인천광역시 서구" name="shop_addr"
+									<li><input type="checkbox" value="인천 서구" name="shop_addr"
 										id="incheon05"> <label for="incheon05">서구</label></li>
-									<li><input type="checkbox" value="인천광역시 연수구" name="shop_addr"
+									<li><input type="checkbox" value="인천 연수구" name="shop_addr"
 										id="incheon06"> <label for="incheon06">연수구</label></li>
-									<li><input type="checkbox" value="인천광역시 중구" name="shop_addr"
+									<li><input type="checkbox" value="인천 중구" name="shop_addr"
 										id="incheon07"> <label for="incheon07">중구</label></li>
 								</ul>
 								<ul class="content scroll" data-dist="gyeonggi">

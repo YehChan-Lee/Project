@@ -34,18 +34,18 @@
 	}
 	else {
 		out.println("{");
-		out.println("\"FOOD_NAME\": \"" +(String)resArr.get(0)+"\",");
+		out.println("\"FOOD_NAME\": \"" +((String)resArr.get(0)).replace("\"", "'")+"\",");
 		out.println("\"FOOD_PRICE\": \"" +(String)resArr.get(1)+"\",");
-		out.println("\"FOOD_INFO\": \"" +(String)resArr.get(2)+"\"");
+		out.println("\"FOOD_INFO\": \"" +((String)resArr.get(2)).replace("\"", "'")+"\"");
 
 		out.println("}");
 		
 		for(int i = 3; i < resArr.size(); i+=3) {
 			out.println(",");
 			out.println("{");
-			out.println("	\"FOOD_NAME\": \"" +(String)resArr.get(i)+"\",");
+			out.println("	\"FOOD_NAME\": \"" +((String)resArr.get(i)).replace("\"", "'")+"\",");
 			out.println("	\"FOOD_PRICE\": \"" +(String)resArr.get(i+1)+"\",");
-			out.println("	\"FOOD_INFO\": \"" +(String)resArr.get(i+2)+"\"");
+			out.println("	\"FOOD_INFO\": \"" +((String)resArr.get(i+2)).replace("\"", "'")+"\"");
 			out.println("}");
 		}
 		out.println("]");

@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.javaex.model.VisitDayVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,6 +11,12 @@
 	src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
+	<%-- <%
+		ArrayList<Object> day = (ArrayList<Object>)request.getAttribute("admin_numerical1_day");
+		
+	%> --%>
+
+
 	<div id="sec_admin_numerical1">
 		<div>
 			<div>일별</div>
@@ -18,25 +26,25 @@
 		<div class="numerical1_cont">
 			<h4>
 				<i class="fas fa-chart-bar"></i>
-				<p>2020년 9월 일별 접속자 통계</p>
+				<p>2020년 일별 접속자 통계</p>
 			</h4>
 		</div>
 		<div class="numer1_sear">
 			<select name="numer1_y" id="numer1_y">
 				<option>2020년</option>
 			</select> <select name="numer1_m" id="numer1_m">
-				<option value="">1월</option>
-				<option value="">2월</option>
-				<option value="">3월</option>
-				<option value="">4월</option>
-				<option value="">5월</option>
-				<option value="">6월</option>
-				<option value="">7월</option>
-				<option value="">8월</option>
-				<option value="">9월</option>
-				<option value="">10월</option>
-				<option value="">11월</option>
-				<option value="">12월</option>
+				<option value="01">1월</option>
+				<option value="02">2월</option>
+				<option value="03">3월</option>
+				<option value="04">4월</option>
+				<option value="05">5월</option>
+				<option value="06">6월</option>
+				<option value="07">7월</option>
+				<option value="08">8월</option>
+				<option value="09">9월</option>
+				<option value="10" selected="selected">10월</option>
+				<option value="11">11월</option>
+				<option value="12">12월</option>
 			</select>
 			<button>
 				<i class="fas fa-search"></i>검색
@@ -61,22 +69,37 @@
 
 		var data = google.visualization.arrayToDataTable([['일별', '일별',
 		],
-
-		['9월 13일', 43
-		], ['9월 12일', 36
-		], ['9월 11일', 39
-		], ['9월 10일', 34
-		], ['9월 9일', 32
-		], ['9월 8일', 47
-		], ['9월 7일', 52
-		], ['9월 6일', 41
-		], ['9월 5일', 16
-		], ['9월 4일', 21
-		], ['9월 3일', 13
-		], ['9월 2일', 36
-		], ['9월 1일', 31
-		],
-
+		['31일', ${admin_numerical1_day.get(30) }],
+		['30일', ${admin_numerical1_day.get(29) }],
+		['29일', ${admin_numerical1_day.get(28) }],
+		['28일', ${admin_numerical1_day.get(27) }],
+		['27일', ${admin_numerical1_day.get(26) }],
+		['26일', ${admin_numerical1_day.get(25) }],
+		['25일', ${admin_numerical1_day.get(24) }],
+		['24일', ${admin_numerical1_day.get(23) }],
+		['23일', ${admin_numerical1_day.get(22) }],
+		['22일', ${admin_numerical1_day.get(21) }],
+		['21일', ${admin_numerical1_day.get(20) }],
+		['20일', ${admin_numerical1_day.get(19) }],
+		['19일', ${admin_numerical1_day.get(18) }],
+		['18일', ${admin_numerical1_day.get(17) }],
+		['17일', ${admin_numerical1_day.get(16) }],
+		['16일', ${admin_numerical1_day.get(15) }],
+		['15일', ${admin_numerical1_day.get(14) }],
+		['14일', ${admin_numerical1_day.get(13) }],
+		['13일', ${admin_numerical1_day.get(12) }],
+		['12일', ${admin_numerical1_day.get(11) }],
+		['11일', ${admin_numerical1_day.get(10) }],
+		['10일',${admin_numerical1_day.get(9) }],
+		['9일', ${admin_numerical1_day.get(8) }],
+		['8일', ${admin_numerical1_day.get(7) }],
+		['7일', ${admin_numerical1_day.get(6) }],
+		['6일', ${admin_numerical1_day.get(5) }],
+		['5일', ${admin_numerical1_day.get(4) }],
+		['4일', ${admin_numerical1_day.get(3) }],
+		['3일', ${admin_numerical1_day.get(2) }],
+		['2일', ${admin_numerical1_day.get(1) }],
+		['1일', ${admin_numerical1_day.get(0) }],
 		]);
 
 		var options = {
@@ -100,6 +123,30 @@
 </script>
 <script>
 	$(document).ready(function() {
+		
+		
+		$("#sec_admin_numerical1 > div.numer1_sear > button").on('click',function(){
+			var info = $("#numer1_m").val();
+			
+			$.ajax({
+	            type : "get",
+	            url : "admin/admin_numerical1_chart",
+	            dataType : "text",
+	            data: {info},
+	            error : function(){
+	            	alert("에러발생");
+	            },
+	            success : function(){
+	            	$("#num1_chart").load("admin/admin_numerical1_chart",{
+	            		"info":info
+	            	});
+	            	
+	            }
+		 	});
+		})
+		 
+		
+		
 		$("#sec_admin_numerical1 > div:nth-child(1) > div:nth-child(1)").on('click', function() {
 			$("#cont_section").load("admin/admin_numerical1");
 			// 일별 통계

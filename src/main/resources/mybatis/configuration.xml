@@ -48,4 +48,5 @@
 		<mapper resource="mybatis/mappers/Admin.xml" />
 		<mapper resource="mybatis/mappers/ReserveOrder.xml" />
 	</mappers>
+
 </configuration>

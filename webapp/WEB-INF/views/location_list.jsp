@@ -79,7 +79,7 @@
                                 <div class="middle">
                                     <div class="subtitle">대구</div>       
                                     <div id = "bg"></div>             
-                                    <img src="<c:url value='${path}/res/image/seouluniv.jpg'/>" alt="대구">
+                                    <img src="<c:url value='${path}/res/image/대구.jpg'/>" alt="대구">
                                 </div>
                             </div>
                         </a>
@@ -92,7 +92,7 @@
                                  <div class="middle">
                                      <div class="subtitle">대전/세종</div>   
                                      <div id = "bg"></div>                 
-                                     <img src="<c:url value='${path}/res/image//hyehwa.jpg'/>" alt="대전/세종">
+                                     <img src="<c:url value='${path}/res/image/대전_세종.jpg'/>" alt="대전/세종">
                                 </div>
                             </div>
                         </a>
