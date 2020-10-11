@@ -98,44 +98,20 @@
                         </a>
                     </div>
                     
-                    <div class="content">
-                        <a href="list?food_type=패스트푸드&page=1" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475449435c3da96febbe0.png">
-                            <div class="shading"></div> 
-                            <div class="center">
-                                <div class="middle">
-                                    <div class="subtitle">패스트푸드</div>      
-                                    <div id = "bg"></div>              
-                                    <img src="<c:url value='${path}/res/image/fastfood.jpg'/>" alt="패스트푸드">
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                    
                     
                     <div class="content">
-                        <a href="list?food_type=고깃집&page=1" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475450055c3da9ad3655e.png">
+                        <a href="list?food_type=구이&page=1" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475450055c3da9ad3655e.png">
                             <div class="shading"></div> 
                             <div class="center">
                                 <div class="middle">
-                                    <div class="subtitle">고깃집</div>    
+                                    <div class="subtitle">구이</div>    
                                     <div id = "bg"></div>                
                                     <img src="<c:url value='${path}/res/image/meat.jpg'/>" alt="고깃집">
                                 </div>
                             </div>
                         </a>
-                    </div>
-                    
-                    <div class="content">
-                        <a href="list?food_type=해산물&page=1" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475446855c3da86dd7f0a.png">
-                            <div class="shading"></div> 
-                            <div class="center">
-                                <div class="middle">
-                                    <div class="subtitle">해산물</div>       
-                                    <div id = "bg"></div>             
-                                    <img src="<c:url value='${path}/res/image/seafood.jpeg'/>" alt="해산물">
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                    </div>   
                     
                     <div class="content">
                         <a href="list?food_type=술집&page=1" class="image lazy" data-src="https://c2.poing.co.kr/banner/MjAxOTAx/15475446055c3da81dba890.png">
