@@ -26,9 +26,9 @@
 				<div id="user_info_box">
 					<div id="user_info">
 						<div id="user_name">
-							<span>${user.user_name }</span>
+							<span>${user.user_name}</span>
 						</div>
-						<div class="point">POINT</div>
+						<div class="point">${user.point} POINT</div>
 					</div>
 					<div id="situation">
 						<a href="">예약 ${shopreserve}</a>
