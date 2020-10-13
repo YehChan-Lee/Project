@@ -812,7 +812,7 @@
             Notification.requestPermission();
         }
         function notify() {
-            if (Notification.permission !== 'granted') {
+            if (Notification.permission == 'granted') {
                 alert('알림기능을 허용 해주세요');
             }
             else {
@@ -1266,7 +1266,7 @@
 		});
 
 		$("#nav_notice_list_all").click(function() {
-			location.href = "";
+			location.href = "mypage";
 		});
 
 		// profile section
@@ -1316,7 +1316,7 @@
 		//네이버 로그인 API 관련
 			var naverLogin = new naver.LoginWithNaverId({
 				clientId : "9N2m3BOpk_HOvgVlJP0X",
-				callbackUrl : "http://127.0.0.1:8088/BabPool/main",
+				callbackUrl : "http://babpool.duckdns.org:8088/BabPool/main",
 				isPopup : false, /* 팝업을 통한 연동처리 여부 */
 				loginButton : {
 					color : "green",

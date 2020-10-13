@@ -22,7 +22,7 @@
 		<div class="notice_cont">
 			<div class="notice_search">
 				<p>
-					· 검색 결과 : <span><%=vo.get(0).getNoticeVo().getNotice_idx()%>건</span>
+					· 검색 결과 : <span><%=vo.size()%></span>
 				</p>
 				<div class="notice_seaAli">
 					<div class="notice_seaAli1">

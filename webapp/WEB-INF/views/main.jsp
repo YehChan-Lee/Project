@@ -186,7 +186,7 @@
 
 	var naverLogin = new naver.LoginWithNaverId({
 		clientId : "9N2m3BOpk_HOvgVlJP0X",
-		callbackUrl : "http://127.0.0.1:8088/BabPool/main",
+		callbackUrl : "http://babpool.duckdns.org:8088/BabPool/main",
 		isPopup : false,
 		callbackHandle : true
 	/* callback 페이지가 분리되었을 경우에 callback 페이지에서는 callback처리를 해줄수 있도록 설정합니다. */
@@ -238,7 +238,7 @@
 															+ ((location.port == "" || location.port == undefined) ? ""
 																	: ":"
 																			+ location.port)
-															+ "127.0.0.1:8088/BabPool/main");
+															+ "babpool.duckdns.org:8088/BabPool/main");
 													
 										/* 인증이 완료된후 /sample/main.html 페이지로 이동하라는것이다. 본인 페이로 수정해야한다. */
 									} else {

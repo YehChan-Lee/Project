@@ -31,7 +31,7 @@ $("#rev>li").on("click", function(){
 		 $('#reservation>#contents_box').css('padding', -150 + 'px');
 		 $("#reservation>#contents_box").css('top', -17 + 'px');
 		 $("#reservation>#contents_box").css('height', 300 + 'px');
-		 $("#reservation>#contents_box").css('display','inline-block');
+		 $("#reservation>#contents_box").css('display','inline-table');
 		 $("#reservation>#contents_box").css('width', 910 + 'px');
 		 
 		 $("#contents_box").load("buisnessmypage/reservation2");
