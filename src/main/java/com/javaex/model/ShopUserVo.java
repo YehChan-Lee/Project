@@ -48,7 +48,13 @@ public class ShopUserVo {
 	public ShopUserVo(String user_pw) {
 		this.user_pw = user_pw;
 	}
-
+	
+	public ShopUserVo(String user_email, String user_name, String user_phone) {
+		this.user_email = user_email;
+		this.user_name = user_name;
+		this.user_phone = user_phone;
+	}
+	
 	public String getUser_email() {
 		return user_email;
 	}

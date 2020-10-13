@@ -3,6 +3,10 @@
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 
 <head>
+
+<meta charset="UTF-8">
+
+<title>footer</title>
 <link rel="stylesheet" type="text/css" href="<c:url value="${path}/res/css/footer.css"/>"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
 <script type="text/javascript" src="http://malsup.github.com/jquery.form.js"></script>
@@ -11,6 +15,7 @@
 	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
 	charset="utf-8"></script>
 </head>
+<body>
 <!-- footer -->
 <div id="footer_wrap">
 	<div id="footer_container">
@@ -49,3 +54,6 @@
 			공지사항</a>
 		</div>
 	</div>
+</body>
+
+</html>

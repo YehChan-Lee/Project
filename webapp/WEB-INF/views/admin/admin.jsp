@@ -24,8 +24,6 @@
 </head>
 
 <body>
-	<c:url var="adminReview" value="/admin"></c:url>
-	<c:url var="admin_numerical3" value="/admin_numerical3"></c:url>
 	<div class="loader_bg">
 		<div class="loader"></div>
 	</div>
@@ -173,8 +171,10 @@
 							<td><%=vo.getReviewVo().getReview_date()%></td>
 						</tr>
 						<%
-							}
+						}
+						
 						%>
+						
 
 					</table>
 					<div class="paging">

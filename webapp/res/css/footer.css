@@ -69,10 +69,19 @@ body, html{
    padding-left:15px;
 }
 #info{
+<<<<<<< HEAD
+	font-family: 'NanumSquareRound';
+	font-size:11px;
+}
+.foot{
+	color: red;
+	font-size: 600;
+=======
    font-family: 'NanumSquareRound';
    font-size:11px;
 }
 .foot{
    color: red;
    font-size: 600;
+>>>>>>> refs/remotes/remote/origin/master
 }

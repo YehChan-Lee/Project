@@ -45,5 +45,4 @@ public class ReservationDao {
 		System.out.println(footerreserve);
 		return sqlSession.selectOne("Reservation.footerreserve");
 	}
-
 }

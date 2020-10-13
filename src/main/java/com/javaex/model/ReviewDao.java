@@ -12,14 +12,13 @@ public class ReviewDao {
 
 	@Autowired
 	private SqlSession sqlsession;
-
-	public ReviewDao() {
-	}
-
+	
+	public ReviewDao() {}
+	
 	public ReviewDao(SqlSession sqlsession) {
 		this.sqlsession = sqlsession;
 	}
-
+	
 	public int footerreview() {
 		int footerreview = sqlsession.selectOne("Review.footerreview");
 		System.out.println(footerreview);

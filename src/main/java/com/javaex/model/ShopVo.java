@@ -17,9 +17,9 @@ public class ShopVo {
 	private String shop_comment;	// 한줄 설명				NULL
 	private int shop_view;			// 조회수					NULL
 	private Double shop_score;		// 별점					NULL
-	private String shop_phone;		// 가게 전화번호			NULL
-	private String shop_time;		// 가게 운영시간			NOT NULL
-	private String shop_addinfo;	// 가게 부가정보			NULL
+	private String shop_phone;		// 가게 전화번호				NULL
+	private String shop_time;		// 가게 운영시간				NOT NULL
+	private String shop_addinfo;	// 가게 부가정보				NULL
 	private String shop_tb;			// 가게 테이블 종류			NULL
 	private String shop_alcohol;	// 가게 주류				NULL
 	private String shop_car;		// 주차기능				NOT NULL
@@ -37,7 +37,7 @@ public class ShopVo {
 			String shop_location, String food_type, String shop_tip, String budget, int shop_reserve,
 			String shop_comment, int shop_view, Double shop_score, String shop_phone, String shop_time,
 			String shop_addinfo, String shop_tb, String shop_alcohol, String shop_car, String shop_close,
-			String shop_photo,String shop_review) {
+			String shop_photo, String shop_review, String shop_date, String hash_tag) {
 		this.shop_id = shop_id;
 		this.user_email = user_email;
 		this.shop_idx = shop_idx;
@@ -60,6 +60,8 @@ public class ShopVo {
 		this.shop_close = shop_close;
 		this.shop_photo = shop_photo;
 		this.shop_review = shop_review;
+		this.shop_date = shop_date;
+		this.hash_tag = hash_tag;
 	}
 	public ShopVo(String shop_id, String user_email, int shop_idx, String shop_title, String shop_addr,
 			String shop_location, String food_type, String shop_time, String shop_state) {
@@ -154,13 +156,6 @@ public class ShopVo {
 		this.shop_addr = shop_addr;
 	}
 
-	public String getHash_tag() {
-		return hash_tag;
-	}
-
-	public void setHash_tag(String hash_tag) {
-		this.hash_tag = hash_tag;
-	}
 	public String getShop_location() {
 		return shop_location;
 	}

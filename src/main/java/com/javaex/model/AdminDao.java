@@ -1,3 +1,4 @@
+
 package com.javaex.model;
 
 import java.util.HashMap;

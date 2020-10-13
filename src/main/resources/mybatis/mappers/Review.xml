@@ -72,15 +72,14 @@
 		select * from Review_Hate
 		where review_idx = #{reviewIdx} and user_email = #{email}
 	</select>
-
 	<!--싫어요 누른갯수 -->
 	<select id="hateCnt" resultType="hashMap">
 		select count(*) as cnt from
 		Review_Hate
 		where review_idx = #{reviewIdx}
-	</select>
+    </select>
 
-	<!--싫어요 테이블에 데이터 추가 -->
+	<!--싫어요 테이블에 데이터 추가  -->
 	<insert id="hateAdd" parameterType="hashMap">
 		insert into Review_Hate
 		values(#{email},#{shopId},${reviewIdx})

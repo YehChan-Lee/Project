@@ -2,6 +2,7 @@ package com.javaex.controller;
 
 import java.io.File;
 import java.io.IOException;
+
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.ArrayList;
@@ -114,7 +115,7 @@ public class ListController {
 		}
 		reviewdao.reviewUpload(new ReviewVo(0, shopId, user_email, reviewScore, review, path, 0, 0));
 		dao.reviewCntReload(shopId, reviewdao.reviewCnt(shopId));
-		
+
 		userDao.reviewCntUpload(user_email);
 		dao.scoreCalc(shopId);
 		res.getWriter().write("success");
@@ -194,7 +195,6 @@ public class ListController {
 		System.out.println("/BabPool/detail");
 		String user_email = (String) session.getAttribute("sessionID");
 		int shopIdx = Integer.parseInt(request.getParameter("shopidx"));
-		System.out.println("shopIdx : " + shopIdx);
 		// cnt 가져오기위한 먼저 shop 호출
 		ShopVo shop = dao.shopOne(shopIdx);
 		String ShopId = shop.getShop_id();
@@ -235,7 +235,8 @@ public class ListController {
 		mav.setViewName("detail/detail_photo");
 		return mav;
 	}
-
+	
+	
 	@RequestMapping("/isDib")
 	public void isDib(HttpServletRequest req, HttpServletResponse res, HttpSession session) throws IOException {
 		System.out.println("/BabPool/isDib");
@@ -392,7 +393,7 @@ public class ListController {
 		String shop_close = req.getParameter("shop_close");
 		String hash_tag = req.getParameter("hash_tag");
 		String comma = "";
-		
+
 		List<MultipartFile> fileList = req.getFiles("shop_photo");
 		List<MultipartFile> fileList2 = req.getFiles("shop_subphoto");
 		

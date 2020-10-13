@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="Notice">
+<mapper namespace="Notice">	
 	<select id="noticeList" resultType="Notice">
-		<![CDATA[SELECT * FROM Notice]]> 		
+		<![CDATA[SELECT * FROM Notice
+			order by rownum DESC]]> 		
 	</select>
 	
+	<select id="getNoticeCnt" resultType="int">
+		<![CDATA[
+		select count(*) from Notice
+		]]> 
+	</select>
+		
 	<insert id="noticeInsert">
 		<![CDATA[
 	

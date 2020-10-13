@@ -14,7 +14,7 @@
 	<select id="shopUserList" resultType="ShopUserVo">
 		<![CDATA[SELECT * FROM ShopUser]]>
 	</select>
-
+	
 	<select id="cntShopUser" resultType="ShopUserVo">
 		<!-- 사업자 제외 -->
 		<![CDATA[
@@ -31,7 +31,6 @@
 				#{user_birth}, #{user_phone}, #{is_owner}, #{sign_date}, #{point})
 		]]>
 	</insert>
-
 	<update id="shopuserUpdate">
 		<![CDATA[
 		UPDATE ShopUser set user_pw=#{user_pw}, user_phone=#{user_phone}

@@ -54,6 +54,7 @@ body {
 	width: 100%;
 	font-family : 'Handon3gyeopsal300g',sans-serif;
 	font-weight : 700;
+	overflow: hidden;
 	min-height: 1000px;
 	max-height: 1900px;
 }
@@ -234,6 +235,7 @@ body {
 	height: 28px;
 	display: block;	
 	line-height: 28px;
+
 }
 .review_btn .review_a:hover{
 	background-color: lightgray;

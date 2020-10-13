@@ -32,21 +32,22 @@ public class JoinController {
 
 	@Autowired
 	ShopUserDao userDao;
-
+	
 	@Autowired
 	ReservationDao reservedao;
-
+	
 	@Autowired
 	AllDao alldao;
-
+	
 	@Autowired
 	ReviewDao reviewdao;
-
+	
 	@Autowired
 	private VisitDao visitDao;
 
 	// 메인페이지 실시간 리뷰 리스트 Get
 	@RequestMapping("/main")
+	
 	public ModelAndView main(ModelAndView mav, String v, HttpSession session, HttpServletRequest request) {
 		System.out.println("/BabPool/main");
 		
@@ -203,7 +204,7 @@ public class JoinController {
 		return mav;
 	}
 
-	// 留덉씠�럹�씠吏� �꽕�젙
+	// 마이페이지 설정
 	@RequestMapping("/mypage/setting")
 	public ModelAndView mypage_setting(ModelAndView mav, HttpSession session, HttpServletRequest req) {
 		System.out.println("/BabPool/mypage/setting");
@@ -239,23 +240,22 @@ public class JoinController {
 		}
 		resp.getWriter().write("update_success");
 	}
-
+	
 	@RequestMapping("mypage/profile.do")
-	public void mypage_profile(MultipartHttpServletRequest req, HttpServletResponse res, HttpSession session)
-			throws IOException {
+	public void mypage_profile(MultipartHttpServletRequest req, HttpServletResponse res, HttpSession session) throws IOException {
 		System.out.println("/BabPool/mypage/profile.do");
 		String user_email = (String) session.getAttribute("sessionID");
 		String url = "D:\\Git\\Project\\Project\\webapp\\serverImg\\";
 
 		String folder = "profile\\user\\";
-		String fileName = "profile" + user_email + ".png";
+		String fileName = "profile"+user_email+".png";
 		MultipartFile mf = req.getFile("photofile");
 		String safeFile = url + folder + fileName;
 		try {
-			File file = new File(url + folder);
+			File file = new File(url+folder);
 			if (!file.exists()) {
 				try {
-					file.mkdir(); // �뤃�뜑 �깮�꽦�빀�땲�떎.
+					file.mkdir(); // 폴더 생성합니다.
 					System.out.println("폴더가 생성되었습니다.");
 					mf.transferTo(new File(safeFile));
 				} catch (Exception e) {
@@ -274,18 +274,18 @@ public class JoinController {
 		session.setAttribute("user_photo", user.getUser_photo());
 		res.getWriter().write("update_success");
 	}
-
+	
 	// footer
 	@RequestMapping("/footer")
 	public ModelAndView footer(ModelAndView mav) {
-		System.out.println("/BabPool/footer_user");
+		System.out.println("/BabPool/footer_user");		
 		mav.addObject("footeruser", alldao.footeruser());
 		mav.addObject("footerreview", reviewdao.footerreview());
 		mav.addObject("footerreserve", reservedao.footerreserve());
 		mav.setViewName("footer");
 		return mav;
 	}
-
+	
 	@RequestMapping("/detail/review.do")
 	public ModelAndView hello(ModelAndView mav, HttpSession session, HttpServletRequest req) {
 		System.out.println("/BabPool/review.do");
@@ -301,5 +301,5 @@ public class JoinController {
 		mav.setViewName("detail/detail_review");
 		return mav;
 	}
-
+	
 }
