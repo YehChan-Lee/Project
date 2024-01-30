@@ -25,6 +25,10 @@
     - Android Studio
 - Database
     - Oracle11
+ 
+## 📊 ERD
+![babpool_erd]()
+
 
 ## 🖥 담당한 기능
 - Database 설계 및 구축
