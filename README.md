@@ -27,7 +27,7 @@
     - Oracle11
  
 ## 📊 ERD
-![babpool_erd]()
+![babpool_erd](./babpool_erd.png)
 
 
 ## 🖥 담당한 기능
