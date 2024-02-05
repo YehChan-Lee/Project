@@ -45,3 +45,16 @@
 - POS, APP, WEB Application을 연동하려 WEB이나 APP에서의 예약현황이나 주문결제내역 업데이트가 됩니다.
 
 ## 🖼️ 구현 이미지
+
+<details>
+<summary>🍀 toggle을 열어주세요 🍀</summary>
+</br>
+  
+  ![babpool_img1](./babpool_img1.png)
+  
+  ![babpool_img2](./babpool_img2.png)
+  
+  ![babpool_img3](./babpool_img3.png)
+    
+</details>
+
